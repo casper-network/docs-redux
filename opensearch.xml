@@ -4,8 +4,8 @@
   <ShortName>Casper Docs - Redux</ShortName>
   <Description>Search Casper Docs - Redux</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://casper-network.github.io/icon/favicon.ico</Image>
-  <Url type="text/html" method="get" template="https://casper-network.github.io/search?q={searchTerms}"/>
-  <Url type="application/opensearchdescription+xml" rel="self" template="https://casper-network.github.io/opensearch.xml" />
-  <moz:SearchForm>https://casper-network.github.io/</moz:SearchForm>
+  <Image width="16" height="16" type="image/x-icon">https://docs.casper.network/icon/favicon.ico</Image>
+  <Url type="text/html" method="get" template="https://docs.casper.network/search?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://docs.casper.network/opensearch.xml" />
+  <moz:SearchForm>https://docs.casper.network/</moz:SearchForm>
 </OpenSearchDescription>

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcspr_docs_redux=self.webpackChunkcspr_docs_redux||[]).push([[81903],{1912:s=>{s.exports=JSON.parse('{"blogBasePath":"/blog","blogTitle":"Casper Developer Relations Blog","authorsListPath":"/blog/authors"}')}}]);

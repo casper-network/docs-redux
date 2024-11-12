@@ -1,0 +1,1244 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-2.0.0 docs-doc-page docs-doc-id-concepts/serialization/types" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.6.0">
+<title data-rh="true">Type Serialization | Casper Docs - Redux</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://docs.casper.network/concepts/serialization/types"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="2.0.0"><meta data-rh="true" name="docusaurus_tag" content="docs-default-2.0.0"><meta data-rh="true" name="docsearch:version" content="2.0.0"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-2.0.0"><meta data-rh="true" property="og:title" content="Type Serialization | Casper Docs - Redux"><meta data-rh="true" name="description" content="Account Action Thresholds"><meta data-rh="true" property="og:description" content="Account Action Thresholds"><link data-rh="true" rel="icon" href="/icon/favicon.ico"><link data-rh="true" rel="canonical" href="https://docs.casper.network/concepts/serialization/types"><link data-rh="true" rel="alternate" href="https://docs.casper.network/concepts/serialization/types" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.casper.network/concepts/serialization/types" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://KQNX60E7J5-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="Casper Docs - Redux" href="/opensearch.xml"><link rel="stylesheet" href="/assets/css/styles.62b18139.css">
+<script src="/assets/js/runtime~main.ade15996.js" defer="defer"></script>
+<script src="/assets/js/main.55c04741.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):window.matchMedia("(prefers-color-scheme: light)").matches?t("light"):t("dark")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/icon/Casper_Wordmark_Red_RGB.png" alt="Casper Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/icon/Casper_Wordmark_Red_RGB.png" alt="Casper Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/concepts">Concepts</a><a class="navbar__item navbar__link" href="/developers">Developers</a><a class="navbar__item navbar__link" href="/operators">Operators</a><a class="navbar__item navbar__link" href="/users">Users</a><a class="navbar__item navbar__link" href="/resources">Resources</a><a class="navbar__item navbar__link" href="/resources/quick-start">Tutorials</a></div><div class="navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/condor/index">Casper 2.0</a><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div><a href="https://github.com/casper-network/docs-redux/issues/new?template=feedback.yml" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Submit Feedback</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a class="navbar__link" aria-haspopup="true" aria-expanded="false" role="button" href="/concepts/serialization/types">2.0.0</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/next/concepts/serialization/types">Next</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/concepts/serialization/types">2.0.0</a></li><li><a class="dropdown__link" href="/1.5.X">1.5.X</a></li></ul></div><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently dark mode)" aria-label="Switch between dark and light mode (currently dark mode)" aria-live="polite" aria-pressed="true"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/concepts">Overview</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/concepts/about">What is Casper?</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/design">Design</a><button aria-label="Expand sidebar category &#x27;Design&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/economics">Economics</a><button aria-label="Expand sidebar category &#x27;Economics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/glossary">Glossary</a><button aria-label="Expand sidebar category &#x27;Glossary&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/concepts/serialization">Binary Serialization Standard</a><button aria-label="Collapse sidebar category &#x27;Binary Serialization Standard&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/concepts/serialization/primitives">Primitives and Basic Serialization Rules</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/concepts/serialization/structures">Major Structures</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/concepts/serialization/types">Type Serialization</a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/concepts/intro-to-dapps">dApps</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/concepts/addressable-entity">Addressable Entities</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/concepts/accounts-and-keys">Accounts and Keys</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/concepts/key-types">Key Types</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/concepts/transactions">Transactions</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/transactions-and-transaction-lifecycle">Transaction Lifecycle</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/concepts/global-state">Global State</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/concepts/smart-contracts">Smart Contracts</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/concepts/list-auth-keys">Authorization Keys</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/concepts/callstack">Call Stacks</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/concepts/dictionaries">Dictionaries</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/concepts/serialization"><span itemprop="name">Binary Serialization Standard</span></a><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Type Serialization</span><meta itemprop="position" content="2"></li></ul></nav><span class="theme-doc-version-badge badge badge--secondary">Version: 2.0.0</span><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Type Serialization</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="account-action-thresholds">Account Action Thresholds<a href="#account-action-thresholds" class="hash-link" aria-label="Direct link to Account Action Thresholds" title="Direct link to Account Action Thresholds">​</a></h2>
+<p>The minimum weight thresholds that have to be met when executing an action of a certain type. It serializes as three consecutive <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u8</code> values</a> as follows.</p>
+<ul>
+<li>
+<p><code>deployment</code>: The minimum weight threshold required to perform deployment actions as a <code>u8</code> value.</p>
+</li>
+<li>
+<p><code>key_management</code>: The minimum weight threshold required to perform key management actions as a <code>u8</code> value.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="account-config">Account Config<a href="#account-config" class="hash-link" aria-label="Direct link to Account Config" title="Direct link to Account Config">​</a></h2>
+<p>Configuration of an individual account in <em>accounts.toml</em>, containing the account&#x27;s public key, main purse balance and validator config.</p>
+<ul>
+<li>
+<p><code>public_key</code> The public key of the account, serialized as the byte representation of <a href="/concepts/serialization/primitives#clvalue-publickey">itself</a>.</p>
+</li>
+<li>
+<p><code>balance</code> The balance of the account&#x27;s main purse, serialized as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512 value</code></a>.</p>
+</li>
+<li>
+<p><code>validator</code> The validator configuration for the account, serialized as an <a href="/concepts/serialization/primitives#clvalue-option"><code>Option</code></a>.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="account-hash">Account Hash<a href="#account-hash" class="hash-link" aria-label="Direct link to Account Hash" title="Direct link to Account Hash">​</a></h2>
+<p>A <code>blake2b</code> hash of the public key, representing the address of a user&#x27;s account. The account hash serializes as a 32-byte buffer containing the bytes of the account hash.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="account-identifier">Account Identifier<a href="#account-identifier" class="hash-link" aria-label="Direct link to Account Identifier" title="Direct link to Account Identifier">​</a></h2>
+<p>Identifier for possible ways to retrieve an Account. It can consist of any of the following in most situations:</p>
+<ul>
+<li>
+<p><a href="#publickey"><code>PublicKey</code></a>: The account&#x27;s public key.</p>
+</li>
+<li>
+<p><a href="#account-hash"><code>AccountHash</code></a>: The <code>blake2b</code> hash of the account&#x27;s public key.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="activation-point">Activation Point<a href="#activation-point" class="hash-link" aria-label="Direct link to Activation Point" title="Direct link to Activation Point">​</a></h2>
+<p>The first era to which the associated protocol version applies. It serializes as a single <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u8</code></a> tag indicating if the era in question is genesis. If it is the genesis era, the following bytes will be a <code>timestamp</code>. If not, the bytes represent an <code>era_id</code>.</p>
+<ul>
+<li>
+<p><code>era_id</code>: An <a href="#eraid">Era ID newtype</a> identifying the era when the protocol version will activate.</p>
+</li>
+<li>
+<p><code>timestamp</code>: A <a href="#timestamp">timestamp</a> if the activation point is of the Genesis variant.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="addressable-entity-hash">AddressableEntityHash<a href="#addressable-entity-hash" class="hash-link" aria-label="Direct link to AddressableEntityHash" title="Direct link to AddressableEntityHash">​</a></h2>
+<p>The hex-encoded address of an addressable entity, which serializes as the byte representation of itself.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="approval">Approval<a href="#approval" class="hash-link" aria-label="Direct link to Approval" title="Direct link to Approval">​</a></h2>
+<p>A struct containing a signature and the public key of the signer.</p>
+<ul>
+<li>
+<p><code>signature</code>: The approval signature, which serializes as the byte representation of the <a href="#signature"><code>Signature</code></a>. The first byte within the signature is 1 in the case of an <code>Ed25519</code> signature or 2 in the case of <code>Secp256k1</code>.</p>
+</li>
+<li>
+<p><code>signer</code>: The public key of the approvals signer. It serializes to the byte representation of the <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a>. If the <code>PublicKey</code> is an <code>Ed25519</code> key, then the first byte within the serialized buffer is 1 followed by the bytes of the key itself; else, in the case of <code>Secp256k1</code>, the first byte is 2.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="approvals-hash">ApprovalsHash<a href="#approvals-hash" class="hash-link" aria-label="Direct link to ApprovalsHash" title="Direct link to ApprovalsHash">​</a></h2>
+<p>The cryptographic hash of the bytesrepr-encoded set of approvals. It serializes as a <a href="#digest"><code>digest</code></a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="associatedkey">AssociatedKey<a href="#associatedkey" class="hash-link" aria-label="Direct link to AssociatedKey" title="Direct link to AssociatedKey">​</a></h2>
+<p>A key granted limited permissions to an Account, for purposes such as multisig. It is serialized as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of keys and weights held within. The remainder consists of a repeating pattern of serialized named keys and then weights of the length dictated by the first four bytes.</p>
+<ul>
+<li>
+<p><code>account_hash</code>: The <a href="#account-hash">account hash</a> of the associated key.</p>
+</li>
+<li>
+<p><code>weight</code>: The weight of an associated key. The weight serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u8</code> value</a>.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="availableblockrange">AvailableBlockRange<a href="#availableblockrange" class="hash-link" aria-label="Direct link to AvailableBlockRange" title="Direct link to AvailableBlockRange">​</a></h2>
+<p>An unbroken, inclusive range of blocks. It serializes as two consecutive <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code> values</a> containing the following two fields:</p>
+<ul>
+<li>
+<p><code>low</code>: The inclusive lower bound of the range.</p>
+</li>
+<li>
+<p><code>high</code>: - The inclusive upper bound of the range.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="balanceholdaddr">BalanceHoldAddr<a href="#balanceholdaddr" class="hash-link" aria-label="Direct link to BalanceHoldAddr" title="Direct link to BalanceHoldAddr">​</a></h2>
+<p>A balance hold address. It serializes as a <a href="#balanceholdaddrtag"><code>BalanceHoldAddrTag</code></a> describing the type of balance hold address as follows:</p>
+<ul>
+<li>
+<p><code>Gas</code> serializes as a <code>BalanceHoldAddrTag</code> of <code>0</code> followed by the <a href="/concepts/serialization/primitives#clvalue-uref">URef</a> of the purse the hold will be placed on, and the <a href="#blocktime"><code>block_time</code></a> that the hold was placed.</p>
+</li>
+<li>
+<p><code>Processing</code> serializes as a <code>BalanceHoldAddrTag</code> of <code>1</code> followed by the <a href="/concepts/serialization/primitives#clvalue-uref">URef</a> of the purse the hold will be placed on, and the <a href="#blocktime"><code>block_time</code></a> that the hold was placed.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="balanceholdaddrtag">BalanceHoldAddrTag<a href="#balanceholdaddrtag" class="hash-link" aria-label="Direct link to BalanceHoldAddrTag" title="Direct link to BalanceHoldAddrTag">​</a></h2>
+<p>A tag describing the type of <code>BalanceHoldAddr</code>, serializing as a single <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u8</code> value</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="balance-response">BalanceResponse<a href="#balance-response" class="hash-link" aria-label="Direct link to BalanceResponse" title="Direct link to BalanceResponse">​</a></h2>
+<p><code>BalanceResponse</code> is a struct that provides the response to a balance query. It consists of the following fields:</p>
+<ul>
+<li>
+<p><code>total_balance</code>: The purse&#x27;s total balance, not considering holds. It serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code> value</a>.</p>
+</li>
+<li>
+<p><code>available_balance</code>: The available balance, consisting of the total balance minus the sum of all active holds. It serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code> value</a>.</p>
+</li>
+<li>
+<p><code>total_balance_proof</code>: A proof that the given value is present in the Merkle trie. It serializes as a <code>TrieMerkleProof</code>, consisting of a key, a value and a <code>proof_step</code>.</p>
+</li>
+<li>
+<p><code>balance_holds</code>: Any time-relevant active holds on the balance. It serializes as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of <code>BlockTime</code> and <code>BalanceHoldsWithProof</code> held within. The remainder consists of a repeating pattern of serialized <code>BlockTime</code>s and <code>BalanceHoldsWithProof</code>s of the length dictated by the first four bytes.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bid">Bid<a href="#bid" class="hash-link" aria-label="Direct link to Bid" title="Direct link to Bid">​</a></h2>
+<p>An entry in the validator map. The structure consists of the following fields:</p>
+<ul>
+<li>
+<p><code>validator_public_key</code>: The validator&#x27;s public key. It serializes as a <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a>.</p>
+</li>
+<li>
+<p><code>bonding_purse</code>: The purse used for bonding. It serializes as a <a href="/concepts/serialization/primitives#clvalue-uref"><code>Uref</code></a>.</p>
+</li>
+<li>
+<p><code>staked_amount</code>: The amount of tokens staked by a validator (not including delegators). It serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code> value</a>.</p>
+</li>
+<li>
+<p><code>delegation_rate</code>: The delegation rate of the bid. It serializes as an <code>i32</code> signed 32-bit integer primitive.</p>
+</li>
+<li>
+<p><code>vesting_schedule</code>: The vesting schedule for a genesis validator. <code>None</code> if it is a non-genesis validator. It serializes as an <a href="/concepts/serialization/primitives#clvalue-option"><code>Option</code></a>.</p>
+</li>
+<li>
+<p><code>delegators</code>: The validator&#x27;s delegators, indexed by their public keys. They are serialized as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of <code>PublicKey</code>s and delegators held within. The remainder consists of a repeating pattern of serialized <code>PublicKey</code>s and then delegators of the length dictated by the first four bytes.</p>
+</li>
+<li>
+<p><code>inactive</code>: If the validator has been evicted. A <a href="/concepts/serialization/primitives#clvalue-boolean">boolean</a> value that serializes as a single byte; <code>true</code> maps to <code>1</code>, while <code>false</code> maps to <code>0</code>.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bidaddr">BidAddr<a href="#bidaddr" class="hash-link" aria-label="Direct link to BidAddr" title="Direct link to BidAddr">​</a></h2>
+<p><code>BidAddr</code> manages data associated with bids for the <code>Auction</code> system contract. It serializes as a single <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u8</code></a> tag describing the type of Bid, followed by information relating to the bid itself. It may be one of the following:</p>
+<ul>
+<li>
+<p><code>Unified</code> A <code>BidAddr</code> for legacy unified bids. It serializes as a <code>u8</code> of <code>0</code> followed by the <a href="#account-hash"><code>account_hash</code></a> identifying the legacy bid.</p>
+</li>
+<li>
+<p><code>Validator</code> A validator bid. It serializes as a <code>u8</code> of <code>1</code> followed by the <a href="#account-hash"><code>account_hash</code></a> of the validator.</p>
+</li>
+<li>
+<p><code>Delegator</code> A delegator bid. It serializes as a <code>u8</code> of <code>2</code> followed by the <a href="#account-hash"><code>account_hash</code></a> of the associated validator and then the <a href="#account-hash"><code>account_hash</code></a> of the delegator.</p>
+</li>
+<li>
+<p><code>Credit</code> A <code>BidAddr</code> representing an auction credit. It serializes as a <code>u8</code> of <code>4</code> followed by the <a href="#account-hash"><code>account_hash</code></a> of the validator and the <a href="#eraid"><code>EraId</code></a> for the applicable credit.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bid-kind">BidKind<a href="#bid-kind" class="hash-link" aria-label="Direct link to BidKind" title="Direct link to BidKind">​</a></h2>
+<p>Auction bid variants. It serializes as a single <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u8</code> value</a> indicating the type of bid kind as per the following table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>BidKind</th><th>u8</th><th>Description</th></tr></thead><tbody><tr><td><a href="#bid">Unified</a></td><td>0</td><td>Legacy data that contains all delegators for a given validator.</td></tr><tr><td><a href="#validatorbid">Validator</a></td><td>1</td><td>A bid record containing only validator data.</td></tr><tr><td><a href="#delegatorbid">Delegator</a></td><td>2</td><td>A bid record containing only delegator data.</td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="blockglobaladdr">BlockGlobalAddr<a href="#blockglobaladdr" class="hash-link" aria-label="Direct link to BlockGlobalAddr" title="Direct link to BlockGlobalAddr">​</a></h2>
+<p>An address for singleton values associated to a specific block. These are values which are calculated or set during the execution of a block such as the block timestamp, or the total count of messages emitted during the execution of the block.</p>
+<p>It serializes as two <code>u8</code> values, the first of which describes the category, followed by the underlying value as follows:</p>
+<ul>
+<li>
+<p><code>BlockTime</code> begins with a <code>u8</code> of 0, followed by the <code>u8</code> of the block time.</p>
+</li>
+<li>
+<p><code>MessageCount</code> begins with a <code>u8</code> of 1, followed by message count as a <code>u8</code>.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="blockidentifier">BlockIdentifier<a href="#blockidentifier" class="hash-link" aria-label="Direct link to BlockIdentifier" title="Direct link to BlockIdentifier">​</a></h2>
+<p>Identifier for possible ways to retrieve a Block. It can consist of any of the following in most situations:</p>
+<ul>
+<li>
+<p><a href="/concepts/serialization/structures#block-hash"><code>hash</code></a>: Identify and retrieve a Block with its hash. The <code>BlockHash</code> serializes as the byte representation of the hash itself.</p>
+</li>
+<li>
+<p><code>height</code>: Identify and retrieve the Block with its height. Height serializes as a single <code>u64</code> value.</p>
+</li>
+<li>
+<p><code>state_root_hash</code>: Identify and retrieve the Block with its state root hash. It serializes to the byte representation of the <code>state root hash</code>. The serialized buffer of the <code>state_root_hash</code> is 32 bytes long.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="block-signatures">BlockSignatures<a href="#block-signatures" class="hash-link" aria-label="Direct link to BlockSignatures" title="Direct link to BlockSignatures">​</a></h2>
+<p>A collection of signatures for a single block, along with the associated block&#x27;s hash and era ID.</p>
+<p>There are two possible versions for <code>BlockSignatures</code>, with a prefixed <code>u8</code> tag describing which version it is.</p>
+<ul>
+<li>
+<p><a href="#block-signatures-v1"><code>BlockSignaturesV1</code></a> serializes as a <code>u8</code> of 0 followed by the <code>BlockSignaturesV1</code>.</p>
+</li>
+<li>
+<p><a href="#block-signatures-v2"><code>BlockSignaturesV2</code></a> serializes as a <code>u8</code> of 1 followed by the <code>BlockSignaturesV2</code>.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="block-signatures-v1">BlockSignaturesV1<a href="#block-signatures-v1" class="hash-link" aria-label="Direct link to BlockSignaturesV1" title="Direct link to BlockSignaturesV1">​</a></h3>
+<p><code>BlockSignaturesV1</code> is a legacy version of <code>BlockSignatures</code> that applies to blocks created before the Condor release. The structure is as follows:</p>
+<ul>
+<li>
+<p><a href="/concepts/serialization/structures#block-hash"><code>block_hash</code></a>: The block hash of the associated block. It serializes as the byte representation of the hash itself.</p>
+</li>
+<li>
+<p><a href="#eraid"><code>era_id</code></a>: The era ID in which this block was created. It serializes as a single <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code> value</a>.</p>
+</li>
+<li>
+<p><code>proofs</code>: The proofs of the block, a collection of validator&#x27;s signatures of the block hash. It serializes as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of <a href="#publickey"><code>PublicKeys</code></a> and <a href="#signature"><code>signatures</code></a> held within. The remainder consists of a repeating pattern of serialized public keys and signatures of the length dictated by the first four bytes.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="block-signatures-v2">BlockSignaturesV2<a href="#block-signatures-v2" class="hash-link" aria-label="Direct link to BlockSignaturesV2" title="Direct link to BlockSignaturesV2">​</a></h3>
+<p><code>BlockSignaturesV2</code> is the current version of <code>BlockSignatures</code> that applies to blocks created after the Condor release. The structure is as follows:</p>
+<ul>
+<li>
+<p><a href="/concepts/serialization/structures#block-hash"><code>block_hash</code></a>: The block hash of the associated block. It serializes as the byte representation of the hash itself.</p>
+</li>
+<li>
+<p><code>block_height</code>: The block height. It serializes as a single <code>u64</code> value.</p>
+</li>
+<li>
+<p><a href="#eraid"><code>era_id</code></a>: The era ID in which this block was created. It serializes as a single <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code> value</a>.</p>
+</li>
+<li>
+<p><a href="#chain-name-digest"><code>chain_name_hash</code></a>: The hash of the chain name of the associated block. It serializes as the byte representation of the hash itself.</p>
+</li>
+<li>
+<p><code>proofs</code>: The proofs of the block, a collection of validator&#x27;s signatures of the block hash. It serializes as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of <a href="#publickey"><code>PublicKeys</code></a> and <a href="#signature"><code>signatures</code></a> held within. The remainder consists of a repeating pattern of serialized public keys and signatures of the length dictated by the first four bytes.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="blocksyncstatus">BlockSyncStatus<a href="#blocksyncstatus" class="hash-link" aria-label="Direct link to BlockSyncStatus" title="Direct link to BlockSyncStatus">​</a></h2>
+<p>The status of syncing an individual block. It serializes as the byte representation of the <a href="/concepts/serialization/structures#block-hash">block hash</a> of the block in question, followed by an <a href="/concepts/serialization/primitives#clvalue-option"><code>option</code></a> representing a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code></a> of the block height and the remainder is the byte representation of the <code>acquisition_state</code> as a <a href="/concepts/serialization/primitives#clvalue-string">string</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="blocktime">BlockTime<a href="#blocktime" class="hash-link" aria-label="Direct link to BlockTime" title="Direct link to BlockTime">​</a></h2>
+<p>The block time serialized as a single <code>u64</code> value.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="btreemap">BTreeMap<a href="#btreemap" class="hash-link" aria-label="Direct link to BTreeMap" title="Direct link to BTreeMap">​</a></h2>
+<p>A <code>BTreeMap</code> is a method of mapping keys to values within a Casper network. They serialize with the first 4 bytes representing a <code>u32</code> value describing the number of keys and values held within. The remainder consists of a repeating pattern of serialized keys and then values of the length dictated by the first four bytes.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="btreeset">BTreeSet<a href="#btreeset" class="hash-link" aria-label="Direct link to BTreeSet" title="Direct link to BTreeSet">​</a></h2>
+<p>A <code>BTreeSet</code> is a method of storing a set of values within a Casper network. They serialize with the first 4 bytes representing a <code>u32</code> value describing the number of values held within. The remainder consists of a repeating series of values of the length dictated by the first four bytes.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bytecode">ByteCode<a href="#bytecode" class="hash-link" aria-label="Direct link to ByteCode" title="Direct link to ByteCode">​</a></h2>
+<p>A container for a contract&#x27;s Wasm bytes. It serializes as the single <code>u8</code> <a href="#bid-kind">BidKind</a>, followed by a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u32</code></a> value describing the size of the remaining <a href="#bytes">Bytes</a> and then the bytes as described.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bytes">Bytes<a href="#bytes" class="hash-link" aria-label="Direct link to Bytes" title="Direct link to Bytes">​</a></h2>
+<p>Hex-encoded bytes serialized as a <code>u32</code> value describing the length of the bytes, followed by the bytes themselves.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bytecodekind">ByteCodeKind<a href="#bytecodekind" class="hash-link" aria-label="Direct link to ByteCodeKind" title="Direct link to ByteCodeKind">​</a></h2>
+<p>The type of byte code, serialized as a single <code>u8</code> value. A <code>0</code> indicates empty byte code, while a <code>1</code> indicates a <code>V1CasperWasm</code> to be executed with the first version of the Casper execution engine.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="caller">Caller<a href="#caller" class="hash-link" aria-label="Direct link to Caller" title="Direct link to Caller">​</a></h2>
+<p><code>Caller</code> is the identity of a calling entity. It serializes as one of two variants, described below:</p>
+<ul>
+<li>
+<p><code>Initiator</code> is the overall calling account and serializes as a <code>u8</code> tag of 0 followed by the <a href="#account-hash"><code>account_hash</code></a> of the calling account.</p>
+</li>
+<li>
+<p><code>Entity</code> is a calling entity, such as a smart contract or a system contract. It serializes as a <code>u8</code> tag of 1 followed by the <a href="#package-hash"><code>package_hash</code></a> and <a href="#addressable-entity-hash"><code>entity_hash</code></a>.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="call-stack-element">CallStackElement<a href="#call-stack-element" class="hash-link" aria-label="Direct link to CallStackElement" title="Direct link to CallStackElement">​</a></h2>
+<p><code>CallStackElement</code> is a legacy <code>enum</code> created pre-Condor release that represents the origin of a sub-call in a call stack. It begins with a <code>u8</code> tag that describes the type of caller as follows:</p>
+<ul>
+<li>
+<p><code>Session</code>: Session code, which serializes as a <code>u8</code> tag of 0 followed by the <a href="#account-hash"><code>account_hash</code></a> of the calling account.</p>
+</li>
+<li>
+<p><code>StoredSession</code>: Stored access to a session, serializing as a <code>u8</code> of 1 followed by the <a href="#account-hash"><code>account_hash</code></a>, <a href="/concepts/serialization/structures#contractpackagehash"><code>contract_package_hash</code></a> and the <a href="/concepts/serialization/structures#contracthash"><code>contract_hash</code></a>.</p>
+</li>
+<li>
+<p><code>StoredContract</code>: A contract, which serializes as a <code>u8</code> tag of 2 followed by the <a href="/concepts/serialization/structures#contractpackagehash"><code>contract_package_hash</code></a> and the <a href="/concepts/serialization/structures#contracthash"><code>contract_hash</code></a>.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="chain-name-digest">ChainNameDigest<a href="#chain-name-digest" class="hash-link" aria-label="Direct link to ChainNameDigest" title="Direct link to ChainNameDigest">​</a></h2>
+<p>The cryptographic hash of a chain name, serialized as the byte representation of the hash itself.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="chainspecregistry">ChainspecRegistry<a href="#chainspecregistry" class="hash-link" aria-label="Direct link to ChainspecRegistry" title="Direct link to ChainspecRegistry">​</a></h2>
+<p>ChainspecRegistry is a unique key variant which contains a mapping of file names to the hash of the file itself. This map includes <em>Chainspec.toml</em> and may include <em>Accounts.toml</em> and <em>GlobalState.toml</em>. It is serialized as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of names as strings and <a href="#digest">digests</a> held within. The remainder consists of a repeating pattern of serialized strings and then digests of the length dictated by the first four bytes. Digests and their inclusion criteria are as follows:</p>
+<ul>
+<li>
+<p><code>chainspec_raw_hash</code> will always be included.</p>
+</li>
+<li>
+<p><code>genesis_accounts_raw_hash</code> may be included in specific circumstances.</p>
+</li>
+<li>
+<p><code>global_state_raw_hash</code> may be included in specific circumstances.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="checksum-registry">ChecksumRegistry<a href="#checksum-registry" class="hash-link" aria-label="Direct link to ChecksumRegistry" title="Direct link to ChecksumRegistry">​</a></h2>
+<p>The checksum registry. It serializes as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of checksum names as strings and <a href="#digest">digests</a> held within. The remainder consists of a repeating pattern of serialized strings and then digests of the length dictated by the first four bytes.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="delegator">Delegator<a href="#delegator" class="hash-link" aria-label="Direct link to Delegator" title="Direct link to Delegator">​</a></h2>
+<p>Represents a party delegating their stake to a validator (or &quot;delegatee&quot;). The structure consists of the following fields:</p>
+<ul>
+<li>
+<p><code>delegator_public_key</code>: The public key of the delegator, serialized as a <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a>.</p>
+</li>
+<li>
+<p><code>staked_amount</code>: The amount staked by the delegator, serialized as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code> value</a>.</p>
+</li>
+<li>
+<p><code>bonding_purse</code>: The bonding purse associated with the delegation. It serializes as a <a href="/concepts/serialization/primitives#clvalue-uref"><code>URef</code> value</a>.</p>
+</li>
+<li>
+<p><code>validator_public_key</code>: The public key of the validator that the delegator will be delegating to, serialized as a <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a>.</p>
+</li>
+<li>
+<p><code>vesting_schedule</code>: The vesting schedule for the provided delegator bid. <code>None</code> if it is a non-genesis validator. It serializes as an <a href="/concepts/serialization/primitives#clvalue-option"><code>Option</code></a>.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="digest">Digest<a href="#digest" class="hash-link" aria-label="Direct link to Digest" title="Direct link to Digest">​</a></h2>
+<p>A <code>blake2b</code> hash digest. The digest serializes as a byte representation of the hash itself.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="disabledversions">DisabledVersions<a href="#disabledversions" class="hash-link" aria-label="Direct link to DisabledVersions" title="Direct link to DisabledVersions">​</a></h2>
+<p>Disabled contract versions, containing the following:</p>
+<ul>
+<li>
+<p><code>contract_version</code>: The version of the contract within the protocol major version. It serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u32</code> value</a>.</p>
+</li>
+<li>
+<p><code>protocol_version_major</code>: The major element of the protocol version this contract is compatible with. It serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u32</code> value</a>.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="effects">Effects<a href="#effects" class="hash-link" aria-label="Direct link to Effects" title="Direct link to Effects">​</a></h2>
+<p>A log of all transforms produced during execution, serialized as a vector of <a href="#transformV2">transforms</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="entity-action-thresholds">Entity Action Thresholds<a href="#entity-action-thresholds" class="hash-link" aria-label="Direct link to Entity Action Thresholds" title="Direct link to Entity Action Thresholds">​</a></h2>
+<p>The minimum weight thresholds that have to be met when executing an action of a certain type. It serializes as three consecutive <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u8</code> values</a> as follows.</p>
+<ul>
+<li>
+<p><code>deployment</code>: The minimum weight threshold required to perform deployment actions as a <code>u8</code> value.</p>
+</li>
+<li>
+<p><code>upgrade_management</code>: The minimum weight threshold required to perform upgrade management actions as a <code>u8</code> value.</p>
+</li>
+<li>
+<p><code>key_management</code>: The minimum weight threshold required to perform key management actions as a <code>u8</code> value.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="entity-addr">EntityAddr<a href="#entity-addr" class="hash-link" aria-label="Direct link to EntityAddr" title="Direct link to EntityAddr">​</a></h2>
+<p>The address for an <code>AddressableEntity</code>. It serializes as a <code>u8</code> <a href="#entity-kind-tag"><code>EntityKindTag</code></a> followed by the 32-byte buffer containing the bytes of the <code>hash_addr</code> as follows:</p>
+<ul>
+<li>
+<p><code>System</code>: A package associated with a native contract implementation, serialized as a <code>u8</code> of 0, followed by the <code>hash_addr</code>.</p>
+</li>
+<li>
+<p><code>Account</code>: A package associated with an Account hash, serialized as <code>u8</code> of 1 followed by the <code>hash_addr</code>.</p>
+</li>
+<li>
+<p><code>SmartContract</code>: A package associated with Wasm stored on chain, serialized as a <code>u8</code> of 2 followed by the <code>hash_addr</code></p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="entity-kind">EntityKind<a href="#entity-kind" class="hash-link" aria-label="Direct link to EntityKind" title="Direct link to EntityKind">​</a></h2>
+<p>The type of <code>Package</code>, serialized as a <code>u8</code> <a href="#entity-kind-tag"><code>EntityKindTag</code></a> describing the type followed by further data as follows:</p>
+<ul>
+<li>
+<p><code>System</code>: A package associated with a native contract implementation. It serializes as a <code>u8</code> of 0 followed by a <a href="#system-entity-type"><code>SystemEntityType</code></a>.</p>
+</li>
+<li>
+<p><code>Account</code>: A package associated with an Account hash, serialized as a <code>u8</code> of 1 followed by an <a href="#account-hash"><code>account_hash</code></a>.</p>
+</li>
+<li>
+<p><code>SmartContract</code>: A package associated with Wasm stored on chain, serialized as a <code>u8</code> of 2 followed by a <a href="/concepts/serialization/structures#transactionruntime"><code>transaction_runtime</code></a>.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="entity-kind-tag">EntityKindTag<a href="#entity-kind-tag" class="hash-link" aria-label="Direct link to EntityKindTag" title="Direct link to EntityKindTag">​</a></h2>
+<p>A tag for the variants of <code>EntityKind</code>, serialized as a single <code>u8</code> tag of 0 for <code>System</code>, 1 for <code>Account</code> and 2 for <code>SmartContract</code>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="entityversionkey">EntityVersionKey<a href="#entityversionkey" class="hash-link" aria-label="Direct link to EntityVersionKey" title="Direct link to EntityVersionKey">​</a></h2>
+<p>The major element of <code>ProtocolVersion</code> combined with <code>EntityVersion</code> serialized as two <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u32</code></a> values.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="entity-versions">EntityVersions<a href="#entity-versions" class="hash-link" aria-label="Direct link to EntityVersions" title="Direct link to EntityVersions">​</a></h2>
+<p>A collection of entity versions, serialized as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of <a href="#entityversionkey"><code>EntityVersionKeys</code></a> mapped to <a href="#addressable-entity-hash"><code>AddressableEntityHashes</code></a> within. The remainder consists of a repeating pattern of serialized <code>EntityVersionKeys</code> and <code>AddressableEntityHashes</code> of the length dictated by the first four bytes.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="entrypoint">EntryPoint (Contract)<a href="#entrypoint" class="hash-link" aria-label="Direct link to EntryPoint (Contract)" title="Direct link to EntryPoint (Contract)">​</a></h2>
+<p>A type of signature method. Order of arguments matters, since this can be referenced by index as well as name.</p>
+<ul>
+<li>
+<p><code>name</code>: The name of the entry point, serialized as a <a href="/concepts/serialization/primitives#clvalue-string"><code>String</code></a>.</p>
+</li>
+<li>
+<p><code>args</code>: Arguments for this method. They serialize as a list of the <a href="#parameter"><code>Parameter</code></a>s, where each parameter represents an argument passed to the entrypoint.</p>
+</li>
+<li>
+<p><code>ret</code>: The return type of the method, serialized as a <a href="/concepts/serialization/primitives#clvalue-unit"><code>Unit</code></a>.</p>
+</li>
+<li>
+<p><code>access</code>: An <code>enum</code> describing the possible access control options for a contract entry point. It serializes as a <code>u8</code> value of 1 for public or a 2 followed by a <a href="/concepts/serialization/primitives#clvalue-list"><code>List</code></a> of authorized users.</p>
+</li>
+<li>
+<p><code>entry_point_type</code>: Identifies the type of entry point. It serializes as a <code>0</code> for Session and a <code>1</code> for Contract.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="entry-point">EntryPoint (Entity)<a href="#entry-point" class="hash-link" aria-label="Direct link to EntryPoint (Entity)" title="Direct link to EntryPoint (Entity)">​</a></h2>
+<p>The type signature of a method. This structure consists of the following fields:</p>
+<ul>
+<li>
+<p><code>name</code>: The name of the entry point, serialized as a <a href="/concepts/serialization/primitives#clvalue-string"><code>String</code></a>.</p>
+</li>
+<li>
+<p><code>args</code>: Arguments for this method. They serialize as a list of the <a href="#parameter"><code>Parameter</code></a>s, where each parameter represents an argument passed to the entrypoint.</p>
+</li>
+<li>
+<p><code>ret</code>: The return type of the method, serialized as a <a href="/concepts/serialization/primitives#clvalue-unit"><code>Unit</code></a>.</p>
+</li>
+<li>
+<p><code>access</code>: An <code>enum</code> describing the possible access control options for a contract entry point. It serializes as a <code>u8</code> value of 1 for public or a 2 followed by a <a href="/concepts/serialization/primitives#clvalue-list"><code>List</code></a> of authorized users.</p>
+</li>
+<li>
+<p><a href="/developers/json-rpc/types_chain#entrypoint"><code>entry_point_type</code></a></p>
+</li>
+<li>
+<p><a href="/developers/json-rpc/types_chain#entrypointpayment"><code>entry_point_payment</code></a></p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="entrypointaddr">EntryPointAddr<a href="#entrypointaddr" class="hash-link" aria-label="Direct link to EntryPointAddr" title="Direct link to EntryPointAddr">​</a></h3>
+<p>An entry point&#x27;s address. It serializes as one of the two following variants:</p>
+<ul>
+<li>
+<p><code>VmCasperV1</code>: A V1 entry point. It serializes as a <code>u8</code> of 0 followed by an <a href="#entity-addr"><code>EntityAddr</code></a> and <code>name_bytes</code>, which is the 32-byte hash of the name of the entry point.</p>
+</li>
+<li>
+<p><code>VmCasperV2</code>: A V2 entry point. It serializes as a <code>u8</code> of 1 followed by an <a href="#entity-addr"><code>EntityAddr</code></a> followed by a <code>u32</code> <code>Selector</code>.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="entrypointpayment">EntrypointPayment<a href="#entrypointpayment" class="hash-link" aria-label="Direct link to EntrypointPayment" title="Direct link to EntrypointPayment">​</a></h3>
+<p>An <code>enum</code> specifying who pays for the invocation and execution of an entry point. It serializes as a single <code>u8</code> byte tag as follows:</p>
+<ul>
+<li>
+<p><code>Caller</code>: Serializes as a 0 and indicates that the caller must cover the cost.</p>
+</li>
+<li>
+<p><code>SelfOnly</code>: Serializes as a 1 and indicates that the contract will pay the cost to execute itself, but no subsequent invoked contracts.</p>
+</li>
+<li>
+<p><code>SelfOnward</code>: Serializes as a 2 and indicates that the contract will pay for executing itself and any subsequent invocations.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="entrypointtype">EntrypointType<a href="#entrypointtype" class="hash-link" aria-label="Direct link to EntrypointType" title="Direct link to EntrypointType">​</a></h3>
+<p>The context of method execution. It serializes as one of the following:</p>
+<ul>
+<li>
+<p><code>Caller</code>: Serializes as a single <code>u8</code>, <code>0b00000000</code></p>
+</li>
+<li>
+<p><code>Called</code>: Serializes as a single <code>u8</code>, <code>0b00000001</code></p>
+</li>
+<li>
+<p><code>Factory</code>: Serializes as a single <code>u8</code>, <code>0b10000000</code></p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="entrypointv2">EntrypointV2<a href="#entrypointv2" class="hash-link" aria-label="Direct link to EntrypointV2" title="Direct link to EntrypointV2">​</a></h2>
+<p>The entry point for the V2 Casper VM. It serializes as a <code>u32</code> representing the <code>Selector</code> followed by a <code>u32</code> representing the <code>Flags</code>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="entrypoints">EntryPoints<a href="#entrypoints" class="hash-link" aria-label="Direct link to EntryPoints" title="Direct link to EntryPoints">​</a></h2>
+<p>Entry points for a given entity, serialized as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of <code>String</code> to <code>EntryPoint</code>s held within. The remainder consists of a repeating pattern of serialized <code>String</code>s and then <code>EntryPoint</code>s of the length dictated by the first four bytes.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="eraid">EraID<a href="#eraid" class="hash-link" aria-label="Direct link to EraID" title="Direct link to EraID">​</a></h2>
+<p>An Era ID newtype. It serializes as a single <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code> value</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="erainfo">EraInfo<a href="#erainfo" class="hash-link" aria-label="Direct link to EraInfo" title="Direct link to EraInfo">​</a></h2>
+<p>Auction metadata, intended to be recorded each era. It serializes as a <a href="/concepts/serialization/primitives#clvalue-list"><code>List</code></a> of <a href="#seigniorageallocation">seigniorage allocations</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="executable-deploy-item">ExecutableDeployItem<a href="#executable-deploy-item" class="hash-link" aria-label="Direct link to ExecutableDeployItem" title="Direct link to ExecutableDeployItem">​</a></h2>
+<p>The executable component of a <code>Deploy</code>, serialized as a <code>u8</code> identifying tag followed by additional bytes as follows:</p>
+<ul>
+<li>
+<p><code>ModuleBytes</code>: Serializes as a <code>u8</code> tag of 0 followed by <a href="#bytes"><code>bytes</code></a> and <a href="#runtimeargs"><code>runtimeargs</code></a>.</p>
+</li>
+<li>
+<p><code>StoredContractByHash</code>: Serializes as a <code>u8</code> tag of 1 followed by the contract hash as an <a href="#addressable-entity-hash"><code>AddressableEntityHash</code></a>, the name of an entry point as a <a href="/concepts/serialization/primitives#clvalue-string">String</a> and <a href="#runtimeargs"><code>runtimeargs</code></a>.</p>
+</li>
+<li>
+<p><code>StoredContractByName</code>: Serializes as a <code>u8</code> tag of 2 followed by the named key as a <a href="/concepts/serialization/primitives#clvalue-string">String</a>, the name of an entry point as a <code>String</code> and <a href="#runtimeargs"><code>runtimeargs</code></a>.</p>
+</li>
+<li>
+<p><code>StoredVersionedContractByHash</code>: Serializes as a <code>u8</code> tag of 3 followed by the <a href="#package-hash"><code>PackageHash</code></a>, the <code>version</code> as an <a href="/concepts/serialization/primitives#clvalue-option"><code>Option</code></a>, an entry point as a <a href="/concepts/serialization/primitives#clvalue-string">String</a> and <a href="#runtimeargs"><code>runtimeargs</code></a>.</p>
+</li>
+<li>
+<p><code>StoredVersionedContractByName</code>: Serializes as a <code>u8</code> tag of 4 followed by the named key as a <a href="/concepts/serialization/primitives#clvalue-string">String</a>, the <code>version</code> as an <a href="/concepts/serialization/primitives#clvalue-option"><code>Option</code></a>, the name of an entry point as a <code>String</code> and <a href="#runtimeargs"><code>runtimeargs</code></a>.</p>
+</li>
+<li>
+<p><code>Transfer</code>: Serializes as a <code>u8</code> tag of 5 followed by <a href="#runtimeargs"><code>runtimeargs</code></a>.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="executioneffect">ExecutionEffect<a href="#executioneffect" class="hash-link" aria-label="Direct link to ExecutionEffect" title="Direct link to ExecutionEffect">​</a></h2>
+<p>The journal of execution transforms from a single deploy.</p>
+<ul>
+<li>
+<p><code>operations</code>: The resulting operations, serialized as a <a href="/concepts/serialization/primitives#clvalue-list"><code>List</code></a> of <a href="#operation">operations</a>.</p>
+</li>
+<li>
+<p><code>transforms</code>: The actual <a href="#transformV2">transformation</a> performed while executing a deploy.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="executionresultv1">ExecutionResultV1<a href="#executionresultv1" class="hash-link" aria-label="Direct link to ExecutionResultV1" title="Direct link to ExecutionResultV1">​</a></h2>
+<p>The result of a single deploy. It serializes as a <code>u8</code> tag indicating either <code>Failure</code> as a 0 or <code>Success</code> as a 1. This is followed by the appropriate structure below:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="failure"><code>Failure</code><a href="#failure" class="hash-link" aria-label="Direct link to failure" title="Direct link to failure">​</a></h3>
+<p>The result of a failed execution.</p>
+<ul>
+<li>
+<p><code>effect</code>: The <a href="#executioneffect">effect</a> of executing the deploy.</p>
+</li>
+<li>
+<p><code>transfers</code>: A record of transfers performed while executing the deploy, serialized as a <a href="/concepts/serialization/primitives#clvalue-list"><code>List</code></a>.</p>
+</li>
+<li>
+<p><code>cost</code>: The cost of executing the deploy, serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code></a> value.</p>
+</li>
+<li>
+<p><code>error_message</code>: The error message associated with executing the deploy, serialized as a <a href="/concepts/serialization/primitives#clvalue-string"><code>String</code></a>.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="success"><code>Success</code><a href="#success" class="hash-link" aria-label="Direct link to success" title="Direct link to success">​</a></h3>
+<p>The result of a successful execution.</p>
+<ul>
+<li>
+<p><code>effect</code>: The <a href="#executioneffect">effect</a> of executing the deploy.</p>
+</li>
+<li>
+<p><code>transfers</code>: A record of transfers performed while executing the deploy, serialized as a <a href="/concepts/serialization/primitives#clvalue-list"><code>List</code></a>.</p>
+</li>
+<li>
+<p><code>cost</code>: The cost of executing the deploy, serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code></a> value.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="executionresultv2">ExecutionResultV2<a href="#executionresultv2" class="hash-link" aria-label="Direct link to ExecutionResultV2" title="Direct link to ExecutionResultV2">​</a></h2>
+<p>The result of a single transaction. It serializes as a <code>u8</code> tag indicating either <code>Failure</code> as a 0 or <code>Success</code> as a 1. This is followed by the appropriate structure below:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="failure-1"><code>Failure</code><a href="#failure-1" class="hash-link" aria-label="Direct link to failure-1" title="Direct link to failure-1">​</a></h3>
+<p>The result of a failed execution.</p>
+<ul>
+<li>
+<p><code>effects</code>: The <a href="#effects">effect</a> of executing the transaction.</p>
+</li>
+<li>
+<p><code>transfers</code>: A record of transfers performed while executing the transaction, serialized as a <a href="/concepts/serialization/primitives#clvalue-list"><code>List</code></a>.</p>
+</li>
+<li>
+<p><code>cost</code>: The cost of executing the transaction, serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code></a> value.</p>
+</li>
+<li>
+<p><code>error_message</code>: The error message associated with executing the transaction, serialized as a <a href="/concepts/serialization/primitives#clvalue-string"><code>String</code></a>.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="success-1"><code>Success</code><a href="#success-1" class="hash-link" aria-label="Direct link to success-1" title="Direct link to success-1">​</a></h3>
+<p>The result of a successful execution.</p>
+<ul>
+<li>
+<p><code>effects</code>: The <a href="#effects">effects</a> of executing the transaction.</p>
+</li>
+<li>
+<p><code>transfers</code>: A record of transfers performed while executing the transaction, serialized as a <a href="/concepts/serialization/primitives#clvalue-list"><code>List</code></a>.</p>
+</li>
+<li>
+<p><code>cost</code>: The cost of executing the transaction, serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code></a> value.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="gas">Gas<a href="#gas" class="hash-link" aria-label="Direct link to Gas" title="Direct link to Gas">​</a></h2>
+<p>The <code>Gas</code> structure serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code></a> amount of gas.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="group">Group<a href="#group" class="hash-link" aria-label="Direct link to Group" title="Direct link to Group">​</a></h2>
+<p>A (labeled) &quot;user group&quot;. Each method of a versioned contract may be associated with one or more user groups which are allowed to call it. User groups are serialized as a <a href="/concepts/serialization/primitives#clvalue-string">String</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="groups">Groups<a href="#groups" class="hash-link" aria-label="Direct link to Groups" title="Direct link to Groups">​</a></h2>
+<p>They are serialized as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of user groups and <code>BTreeSets</code> of <a href="/concepts/serialization/primitives#clvalue-uref"><code>URef</code></a>s held within. The remainder consists of a repeating pattern of serialized user groups and <code>BTreeSets</code> of the length dictated by the first four bytes.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="initiatoraddr">InitiatorAddr<a href="#initiatoraddr" class="hash-link" aria-label="Direct link to InitiatorAddr" title="Direct link to InitiatorAddr">​</a></h2>
+<p>The address of the initiator of a <a href="/concepts/serialization/structures#transactionV1"><code>TransactionV1</code></a>, which serializes as a <code>u8</code> of <code>0</code> followed by a <a href="#publickey"><code>PublicKey</code></a> or a <code>1</code> followed by an <a href="#account-hash"><code>AccountHash</code></a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="serialization-standard-state-keys">Keys<a href="#serialization-standard-state-keys" class="hash-link" aria-label="Direct link to Keys" title="Direct link to Keys">​</a></h2>
+<p>A <em>key</em> in <a href="/concepts/design/casper-design">Global State</a> is one of the following data types:</p>
+<ul>
+<li>32-byte account identifier (called an &quot;account identity key&quot;)</li>
+<li>32-byte immutable contract identifier (called a &quot;hash key&quot;)</li>
+<li>32-byte reference identifier (called an &quot;unforgeable reference&quot;)</li>
+<li>32-byte transfer identifier</li>
+<li>32-byte deploy information identifier</li>
+<li>32-byte purse balance identifier</li>
+<li>32-byte Auction bid identifier</li>
+<li>32-byte Auction withdrawal identifier</li>
+<li>32-byte Dictionary identifier</li>
+<li>32-byte System Contract Registry</li>
+<li>32-byte Auction unbond identifier</li>
+<li>32-byte Chainspec Registry</li>
+</ul>
+<p>The one exception to note here is the identifier for <a href="#erainfo"><code>EraInfo</code></a>, which actually serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code></a> value with an additional byte for the tag.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="global-state-account-key">Account Identity Key<a href="#global-state-account-key" class="hash-link" aria-label="Direct link to Account Identity Key" title="Direct link to Account Identity Key">​</a></h3>
+<p>This key type is used specifically for accounts in the global state. All accounts in the system must be stored under an account identity key, and no other types. The 32-byte identifier which represents this key is derived from the <code>blake2b256</code> hash of the public key used to create the associated account (see <a href="/concepts/design/casper-design#accounts-associated-keys-weights">Accounts</a> for more information).</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="serialization-standard-hash-key">Hash Key<a href="#serialization-standard-hash-key" class="hash-link" aria-label="Direct link to Hash Key" title="Direct link to Hash Key">​</a></h3>
+<p>This key type is used for storing contracts immutably. Once a contract is written under a hash key, that contract can never change. The 32-byte identifier representing this key is derived from the <code>blake2b256</code> hash of the deploy hash (see <a href="/concepts/design/casper-design#block-structure-head">block-structure-head</a> for more information) concatenated with a 4-byte sequential ID. The ID begins at zero for each deploy and increments by one each time a contract is stored. The purpose of this ID is to allow each contract stored in the same deploy to have a unique key.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="serialization-standard-uref">Unforgeable Reference (<code>URef</code>)<a href="#serialization-standard-uref" class="hash-link" aria-label="Direct link to serialization-standard-uref" title="Direct link to serialization-standard-uref">​</a></h3>
+<p><code>URef</code> broadly speaking can be used to store values and manage permissions to interact with the value stored under the <code>URef</code>. <code>URef</code> is a tuple which contains the address under which the values are stored and the Access rights to the <code>URef</code>. Refer to the <a href="/concepts/design/casper-design#uref-head">Unforgeable Reference</a> section for details on how <code>URefs</code> are managed.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="serialization-standard-transfer-key">Transfer Key<a href="#serialization-standard-transfer-key" class="hash-link" aria-label="Direct link to Transfer Key" title="Direct link to Transfer Key">​</a></h3>
+<p>This key type is used specifically for transfers in the global state. All transfers in the system must be stored under a transfer key and no other type. The 32-byte identifier representing this key is derived from the <code>blake2b256</code> hash of the transfer address associated with the given transfer.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="serialization-standard-deploy-info-key">DeployInfo Key<a href="#serialization-standard-deploy-info-key" class="hash-link" aria-label="Direct link to DeployInfo Key" title="Direct link to DeployInfo Key">​</a></h3>
+<p>This key type is used specifically for storing information related to deploys in the global state. Information for a given deploy is stored under this key only. The 32-byte identifier which represents this key is derived from the <code>blake2b256</code> hash of the deploy itself.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="serialization-standard-era-info-key">EraInfo Key<a href="#serialization-standard-era-info-key" class="hash-link" aria-label="Direct link to EraInfo Key" title="Direct link to EraInfo Key">​</a></h3>
+<p>This key type is used specifically for storing information related to the <code>Auction</code> metadata for a particular era. The underlying data type stored under this is a vector of the allocation of seigniorage for that given era. The identifier for this key is a new type that wraps around the primitive <code>u64</code> data type and co-relates to the era number when the auction information was stored.</p>
+<p>This key type is used specifically for storing information related to auction bids in the global state. Information for the bids is stored under this key only. The 32-byte identifier which represents this key is derived from the <code>blake2b256</code> hash of the public key used to create the associated account (see <a href="/concepts/design/casper-design#accounts-associated-keys-weights">Accounts</a> for more information).</p>
+<p>This key type is used specifically for storing information related to auction withdraws in the global state. Information for the withdrawals is stored under this key only. The 32-byte identifier which represents this key is derived from the <code>blake2b256</code> hash of the public key used to create the associated account (see <a href="/concepts/design/casper-design#accounts-associated-keys-weights">Accounts</a> for more information).</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="serialization-standard-serialization-key">Serialization for <code>Key</code><a href="#serialization-standard-serialization-key" class="hash-link" aria-label="Direct link to serialization-standard-serialization-key" title="Direct link to serialization-standard-serialization-key">​</a></h3>
+<p>Given the different variants for the over-arching <code>Key</code> data-type, each of the different variants is serialized differently. This section of this chapter details how the individual variants are serialized. The leading byte of the serialized buffer acts as a tag indicating the serialized variant.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><code>Key</code></th><th>Serialization Tag</th></tr></thead><tbody><tr><td><code>Account</code></td><td>0</td></tr><tr><td><code>Hash</code></td><td>1</td></tr><tr><td><code>URef</code></td><td>2</td></tr><tr><td><code>Transfer</code></td><td>3</td></tr><tr><td><code>DeployInfo</code></td><td>4</td></tr><tr><td><code>EraInfo</code></td><td>5</td></tr><tr><td><code>Balance</code></td><td>6</td></tr><tr><td><code>Bid</code></td><td>7</td></tr><tr><td><code>Withdraw</code></td><td>8</td></tr><tr><td><code>Dictionary</code></td><td>9</td></tr><tr><td><code>SystemContractRegistry</code></td><td>10</td></tr><tr><td><code>EraSummary</code></td><td>11</td></tr><tr><td><code>Unbond</code></td><td>12</td></tr><tr><td><code>ChainspecRegistry</code></td><td>13</td></tr><tr><td><code>ChecksumRegistry</code></td><td>14</td></tr><tr><td><code>BidAddr</code></td><td>15</td></tr></tbody></table>
+<p>| <code>Package</code>    | 16               |
+| <code>AddressableEntity</code> | 17        |
+| <code>ByteCode</code>   | 18               |
+| <code>Message</code>    | 19               |</p>
+<ul>
+<li><code>Account</code> serializes as a 32 byte long buffer containing the byte representation of the underlying <code>AccountHash</code>.</li>
+<li><code>Hash</code> serializes as a 32 byte long buffer containing the byte representation of the underlying <code>Hash</code> itself.</li>
+<li><code>URef</code> is a tuple that contains the address of the URef and the access rights to that <code>URef</code>. The serialized representation of the <code>URef</code> is 33 bytes long. The first 32 bytes are the byte representation of the <code>URef</code> address, and the last byte contains the bits corresponding to the access rights of the <code>URef</code>. Refer to the <a href="/concepts/serialization/primitives#clvalue">CLValue</a> section of this chapter for details on how <code>AccessRights</code> are serialized.</li>
+<li><code>Transfer</code> serializes as a 32 byte long buffer containing the byte representation of the hash of the transfer.</li>
+<li><code>DeployInfo</code> serializes as 32 byte long buffer containing the byte representation of the Deploy hash. See the Deploy section above for how Deploy hashes are serialized.</li>
+<li><code>EraInfo</code> serializes a <code>u64</code> primitive type containing the little-endian byte representation of <code>u64</code>.</li>
+<li><code>Balance</code> serializes as 32 byte long buffer containing the byte representation of the URef address.</li>
+<li><code>Bid</code> and <code>Withdraw</code> both contain the <code>AccountHash</code> as their identifier; therefore, they serialize in the same manner as the <code>Account</code> variant.</li>
+<li><code>Dictionary</code> serializes as the 32 byte long buffer containing the byte representation of the seed URef hashed with the identifying name of the dictionary item.</li>
+<li><code>SystemContractRegistry</code> serializes as a 32 byte long buffer of zeros.</li>
+<li><code>EraSummary</code> serializes as a 32 byte long buffer of zeros.</li>
+<li><code>Unbond</code> contains the <code>AccountHash</code> as its identifier; therefore, it serialize in the same manner as the <code>Account</code> variant.</li>
+<li><code>ChainspecRegistry</code> serializes as a 32 byte long buffer of ones.</li>
+<li><code>ChecksumRegistry</code> serializes as a 32 byte long buffer of zeros.</li>
+<li><code>BidAddr</code> may be one of three types:
+<ul>
+<li><code>Unified</code> serializes as the tag <code>0</code> followed by a 32 byte long buffer containing the byte representation of a legacy bid.</li>
+<li><code>Validator</code> serializes as the tag <code>1</code> followed by a 32 byte long buffer containing the byte representation of a validator&#x27;s hash.</li>
+<li><code>Delegator</code> serializes as the tag <code>2</code> followed by a 32 byte long buffer containing the byte representation of the associated validator&#x27;s hash, appended with a 32 byte long buffer containing the byte representation of the given delegator&#x27;s hash.</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="serialization-standard-permissions">Permissions<a href="#serialization-standard-permissions" class="hash-link" aria-label="Direct link to Permissions" title="Direct link to Permissions">​</a></h3>
+<p>There are three types of actions that can be done on a value: read, write, add. The reason for <em>add</em> to be called out separately from <em>write</em> is to allow for commutativity checking. The available actions depend on the key type and the context. Some key types only allow controlled access by smart contracts via the contract API, and other key types refer to values produced and used by the system itself and are not accessible to smart contracts at all but can be read via off-chain queries. This is summarized in the table below:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Key</th><th>Type Available Actions</th></tr></thead><tbody><tr><td>Account</td><td>Read + Add (via API)</td></tr><tr><td>Hash</td><td>Read</td></tr><tr><td>URef</td><td>Read + Write and/or Add</td></tr><tr><td>Transfer</td><td>System</td></tr><tr><td>Deploy</td><td>System</td></tr><tr><td>EraInfo</td><td>System</td></tr><tr><td>Balance</td><td>Read (via API)</td></tr><tr><td>Bid</td><td>System</td></tr><tr><td>Withdraw</td><td>System</td></tr><tr><td>Dictionary</td><td>Read (via API)</td></tr><tr><td>SystemContractRegistry</td><td>Read (via API)</td></tr><tr><td>Unbond</td><td>System</td></tr><tr><td>ChainspecRegistry</td><td>Read (via API)</td></tr></tbody></table>
+<hr>
+<p>Refer to <a href="/concepts/design/casper-design#uref-permissions">URef permissions</a> on how permissions are handled in the case of <code>URef</code>s.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="message-topics">MessageTopics<a href="#message-topics" class="hash-link" aria-label="Direct link to MessageTopics" title="Direct link to MessageTopics">​</a></h2>
+<p>A topic for contract-level messages. It is serialized as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of <code>topic_name</code> strings and <a href="#topic-name-hash"><code>topic_name_hash</code></a> held within. The remainder consists of a repeating pattern of serialized <code>topic_name</code> and <code>topic_name_hash</code> of the length dictated by the first four bytes.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="message-topic-summary">MessageTopicSummary<a href="#message-topic-summary" class="hash-link" aria-label="Direct link to MessageTopicSummary" title="Direct link to MessageTopicSummary">​</a></h2>
+<p>A summary of a message topic that will be stored in global state. It serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u32</code></a> value for the <code>message_count</code> followed by the <a href="#blocktime"><code>BlockTime</code></a></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="motes">Motes<a href="#motes" class="hash-link" aria-label="Direct link to Motes" title="Direct link to Motes">​</a></h2>
+<p>A <code>struct</code> representing a number of <code>Motes</code> serialized as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code></a> value.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="namedarg">NamedArg<a href="#namedarg" class="hash-link" aria-label="Direct link to NamedArg" title="Direct link to NamedArg">​</a></h2>
+<p>Named arguments to a contract. It is serialized by the combination of a <a href="/concepts/serialization/primitives#clvalue-string"><code>String</code></a> followed by the associated <a href="/concepts/serialization/primitives#clvalue"><code>CLValue</code></a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="namedkey">NamedKey<a href="#namedkey" class="hash-link" aria-label="Direct link to NamedKey" title="Direct link to NamedKey">​</a></h2>
+<p>A mapping of string identifiers to a Casper <code>Key</code> type. It is serialized as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of named keys and values held within. The remainder consists of a repeating pattern of serialized named keys and then values of the length dictated by the first four bytes.</p>
+<ul>
+<li>
+<p><code>name</code>: The name of the entry. It serializes as a <a href="/concepts/serialization/primitives#clvalue-string"><code>string</code></a>.</p>
+</li>
+<li>
+<p><code>key</code>: The value of the entry, which is a Casper <code>Key</code> type.</p>
+</li>
+</ul>
+<p>The named keys portion of the account structure serializes as a mapping of a string to Casper <code>Key</code> values as described <a href="#serialization-standard-serialization-key">here</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="named-key-addr">NamedKeyAddr<a href="#named-key-addr" class="hash-link" aria-label="Direct link to NamedKeyAddr" title="Direct link to NamedKeyAddr">​</a></h2>
+<p>A NamedKey address, serialized as an <a href="#entity-addr"><code>EntityAddr</code></a> followed by a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u8</code></a> describing the length of a string and the 32-byte representation of the string itself.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="named-key-value">NamedKeyValue<a href="#named-key-value" class="hash-link" aria-label="Direct link to NamedKeyValue" title="Direct link to NamedKeyValue">​</a></h2>
+<p>A NamedKey value, serialized as the <code>named_key</code> serialized as a <a href="/concepts/serialization/primitives#clvalue"><code>CLValue</code></a> followed by the <code>name</code> of the key also serialized as a <a href="/concepts/serialization/primitives#clvalue"><code>CLValue</code></a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="named-keys">NamedKeys<a href="#named-keys" class="hash-link" aria-label="Direct link to NamedKeys" title="Direct link to NamedKeys">​</a></h2>
+<p>A collection of named keys. It is serialized as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of <a href="/concepts/serialization/primitives#clvalue-string"><code>names</code></a> and <a href="/concepts/serialization/primitives#clvalue-key"><code>keys</code></a> held within. The remainder consists of a repeating pattern of names and keys of the length dictated by the first four bytes.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="operation">Operation<a href="#operation" class="hash-link" aria-label="Direct link to Operation" title="Direct link to Operation">​</a></h2>
+<p>An operation performed while executing a deploy. It contains:</p>
+<ul>
+<li>
+<p><code>key</code>: The formatted string of the key, serialized as a <a href="/concepts/serialization/primitives#clvalue-string"><code>String</code></a>.</p>
+</li>
+<li>
+<p><code>kind</code>: OpKind, The type of operation performed. It serializes as a single byte based on the following table:</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>OpKind</th><th>Serialization</th></tr></thead><tbody><tr><td>Read</td><td>0</td></tr><tr><td>Write</td><td>1</td></tr><tr><td>Add</td><td>2</td></tr><tr><td>NoOp</td><td>3</td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="package">Package<a href="#package" class="hash-link" aria-label="Direct link to Package" title="Direct link to Package">​</a></h2>
+<p>A structure defining an entity, metadata and security container. The structure consists of the following fields:</p>
+<ul>
+<li>
+<p><a href="/concepts/serialization/primitives#clvalue-uref"><code>access_key</code></a></p>
+</li>
+<li>
+<p><code>versions</code>: An array of entity versions associated with given hashes.</p>
+</li>
+<li>
+<p><a href="#entityversionkey"><code>disabled_versions</code></a></p>
+</li>
+<li>
+<p><a href="#group"><code>groups</code></a></p>
+</li>
+<li>
+<p><a href="/concepts/serialization/structures#contractpackagestatus"><code>lock_status</code></a></p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="package-hash">PackageHash<a href="#package-hash" class="hash-link" aria-label="Direct link to PackageHash" title="Direct link to PackageHash">​</a></h2>
+<p>The hex-encoded address of a package associated with an <a href="/concepts/serialization/structures#addressable-entity"><code>AddressableEntity</code></a>, serialized as the byte representation of itself.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="package-status">PackageStatus<a href="#package-status" class="hash-link" aria-label="Direct link to PackageStatus" title="Direct link to PackageStatus">​</a></h2>
+<p>The lock status of the package, serialized as a <a href="/concepts/serialization/primitives#clvalue-boolean"><code>boolean</code></a> where <code>true</code> indicates a locked package and <code>false</code> indicates an unlocked package.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="parameter">Parameter<a href="#parameter" class="hash-link" aria-label="Direct link to Parameter" title="Direct link to Parameter">​</a></h2>
+<p>Parameter to a method, structured as a name followed by a <code>CLType</code>. It is serialized as a <a href="/concepts/serialization/primitives#clvalue-string"><code>String</code></a> followed by a <a href="/concepts/serialization/primitives#clvalue-cltype"><code>CLType</code></a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="pricingmode">PricingMode<a href="#pricingmode" class="hash-link" aria-label="Direct link to PricingMode" title="Direct link to PricingMode">​</a></h2>
+<p>The pricing mode of a transaction, with two possible variants. It serializes as a <code>u8</code> tag followed by additional data based on the following table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tag</th><th>PricingMode</th><th>Description</th></tr></thead><tbody><tr><td>0</td><td>Classic</td><td>The original payment model, in which the creator of a transaction specifies how much they will pay and at which gas price.</td></tr><tr><td>1</td><td>Fixed</td><td>The cost of the transaction is determined by the cost table, per the transaction kind.</td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="pricingmode-classic">Classic<a href="#pricingmode-classic" class="hash-link" aria-label="Direct link to Classic" title="Direct link to Classic">​</a></h3>
+<p>After the <code>0</code> tag, a <code>Classic</code> <code>PricingMode</code> serializes as the <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code></a> <code>payment_amount</code> followed by the <code>u64</code> value of the <code>gas_price</code>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="pricingmode-fixed">Fixed<a href="#pricingmode-fixed" class="hash-link" aria-label="Direct link to Fixed" title="Direct link to Fixed">​</a></h3>
+<p>After the <code>1</code> tag, a <code>Fixed</code> <code>PricingMode</code> serializes as the <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code></a> <code>gas_price_tolerance</code>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="protocolversion">ProtocolVersion<a href="#protocolversion" class="hash-link" aria-label="Direct link to ProtocolVersion" title="Direct link to ProtocolVersion">​</a></h2>
+<p>A newtype indicating the Casper Platform protocol version. It is serialized as three <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u32</code></a> values indicating major, minor and patch versions in that order.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="publickey">PublicKey<a href="#publickey" class="hash-link" aria-label="Direct link to PublicKey" title="Direct link to PublicKey">​</a></h2>
+<p>Hex-encoded cryptographic public key, including the algorithm tag prefix. Serialization can be found under <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="rewarded-signatures">RewardedSignatures<a href="#rewarded-signatures" class="hash-link" aria-label="Direct link to RewardedSignatures" title="Direct link to RewardedSignatures">​</a></h2>
+<p>A list of identifiers for finality signatures for a particular past block. It serializes as a vector of <code>SingleBlockRewardedSignatures</code> which describes signatures for a single ancestor block. The first entry represents the signatures for the parent block, the second for the parent of the parent, and so on.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="runtimeargs">RuntimeArgs<a href="#runtimeargs" class="hash-link" aria-label="Direct link to RuntimeArgs" title="Direct link to RuntimeArgs">​</a></h2>
+<p>Represents a collection of arguments passed to a smart contract. They serialize as a <a href="/concepts/serialization/primitives#clvalue-list"><code>List</code></a> comprised of <a href="/concepts/serialization/primitives#clvalue-tuple"><code>Tuples</code></a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="seigniorageallocation">SeigniorageAllocation<a href="#seigniorageallocation" class="hash-link" aria-label="Direct link to SeigniorageAllocation" title="Direct link to SeigniorageAllocation">​</a></h2>
+<p>Information about seigniorage allocation.</p>
+<p>If the seigniorage allocation in question is for a validator, it serializes as the validator&#x27;s <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a> followed by the <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code> amount</a>.</p>
+<p>If it is a delegator, it serializes as the delegator&#x27;s <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a>, followed by the validator&#x27;s <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a> and finally the <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code> amount</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="semver">SemVer<a href="#semver" class="hash-link" aria-label="Direct link to SemVer" title="Direct link to SemVer">​</a></h2>
+<p>A <code>struct</code> for semantic versioning, it serializes as three <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u32</code></a> that describe the major version, minor version and patch version.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="signature">Signature<a href="#signature" class="hash-link" aria-label="Direct link to Signature" title="Direct link to Signature">​</a></h2>
+<p>The signature serializes the byte representation of the underlying cryptographic primitive signature. The first byte within the signature is 1 in the case of an <code>Ed25519</code> signature or 2 in the case of <code>Secp256k1</code>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="serialization-standard-values">Stored Values<a href="#serialization-standard-values" class="hash-link" aria-label="Direct link to Stored Values" title="Direct link to Stored Values">​</a></h2>
+<p>A value stored in the global state is a <code>StoredValue</code>. A <code>StoredValue</code> is one of three possible variants:</p>
+<ul>
+<li>A <code>CLValue</code></li>
+<li>A contract</li>
+<li>An account</li>
+</ul>
+<p>We discuss <code>CLValue</code> and contract in more detail below. Details about accounts can be found in <a href="/concepts/design/casper-design#accounts-head">accounts-head</a>.</p>
+<p>Each <code>StoredValue</code> is serialized when written to the global state. The serialization format consists of a single byte tag, indicating which variant of <code>StoredValue</code> it is, followed by the serialization of that variant. The tag for each variant is as follows:</p>
+<ul>
+<li><code>CLValue</code> is <code>0</code></li>
+<li><code>Account</code> is <code>1</code></li>
+<li><code>Contract</code> is <code>2</code></li>
+</ul>
+<p>The details of <code>CLType</code> serialization are in the following section. Using the serialization format for <code>CLValue</code> as a basis, we can succinctly write the serialization rules for contracts and accounts:</p>
+<ul>
+<li>contracts serialize in the same way as data with <code>CLType</code> equal to <code>Tuple3(List(U8), Map(String, Key), Tuple3(U32, U32, U32))</code>;</li>
+<li>accounts serialize in the same way as data with <code>CLType</code> equal to <code>Tuple5(ByteArray(U8, 32), Map(String, Key), URef, Map(ByteArray(U8, 32), U8), Tuple2(U8, U8))</code>.</li>
+</ul>
+<p>Note: <code>Tuple5</code> is not a presently supported <code>CLType</code>. However, it is clear how to generalize the rules for <code>Tuple1</code>, <code>Tuple2</code>, <code>Tuple3</code> to any size tuple.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="systemcontractregistry">SystemContractRegistry<a href="#systemcontractregistry" class="hash-link" aria-label="Direct link to SystemContractRegistry" title="Direct link to SystemContractRegistry">​</a></h2>
+<p>SystemContractRegistry is a unique <code>Key</code> under which a mapping of the names and <code>ContractHashes</code> for system contracts. This includes <code>Mint</code>, <code>Auction</code>, <code>HandlePayment</code> and <code>StandardPayment</code>. It is serialized as a <code>BTreeMap</code> where the first 4 bytes represent a <code>u32</code> value describing the number of names as strings and <a href="/concepts/serialization/structures#contracthash">ContractHashes</a> held within. The remainder consists of a repeating pattern of serialized strings and then ContractHashes of the length dictated by the first four bytes.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="system-entity-type">SystemEntityType<a href="#system-entity-type" class="hash-link" aria-label="Direct link to SystemEntityType" title="Direct link to SystemEntityType">​</a></h2>
+<p>Entity types for system contracts, serialized as a single <code>u8</code> tag identifying the contract as per the following table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tag</th><th>System Contract</th></tr></thead><tbody><tr><td>0</td><td><code>Mint</code></td></tr><tr><td>1</td><td><code>Auction</code></td></tr><tr><td>2</td><td><code>StandardPayment</code></td></tr><tr><td>3</td><td><code>HandlePayment</code></td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="timediff">TimeDiff<a href="#timediff" class="hash-link" aria-label="Direct link to TimeDiff" title="Direct link to TimeDiff">​</a></h2>
+<p>A human-readable duration between two timestamps. It serializes as a single <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code></a> value.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="timestamp">Timestamp<a href="#timestamp" class="hash-link" aria-label="Direct link to Timestamp" title="Direct link to Timestamp">​</a></h2>
+<p>A timestamp formatted as per RFC 3339 and serialized as a single <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code></a> value.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="topic-name-hash">TopicNameHash<a href="#topic-name-hash" class="hash-link" aria-label="Direct link to TopicNameHash" title="Direct link to TopicNameHash">​</a></h2>
+<p>A <code>blake2b</code> hash of a topic name. The topic name hash serializes as a 32-byte buffer containing the bytes of the topic name hash.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="transferaddr">TransferAddr<a href="#transferaddr" class="hash-link" aria-label="Direct link to TransferAddr" title="Direct link to TransferAddr">​</a></h2>
+<p>Hex-encoded transfer address, which serializes as a byte representation of itself.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="transformkindV1">TransformKindV1<a href="#transformkindV1" class="hash-link" aria-label="Direct link to TransformKindV1" title="Direct link to TransformKindV1">​</a></h2>
+<p>The actual transformation performed while executing a deploy. It serializes as a single <code>u8</code> value indicating the type of transform performed as per the following table. The remaining bytes represent the information and serialization as listed.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Transform Type</th><th>Serialization</th><th>Description</th></tr></thead><tbody><tr><td>Identity</td><td>0</td><td>A transform having no effect.</td></tr><tr><td>Write_CLValue</td><td>1</td><td>Writes the given <a href="/concepts/serialization/primitives#clvalue"><code>CLValue</code></a> to global state.</td></tr><tr><td>Write_Account</td><td>2</td><td>Writes the given <a href="#account-hash"><code>Account</code></a> to global state.</td></tr><tr><td>Write_Contract_WASM</td><td>3</td><td>Writes a smart <a href="/concepts/serialization/structures#contractwasmhash">contract as Wasm</a> to global state.</td></tr><tr><td>Write_Contract</td><td>4</td><td>Writes a smart <a href="/concepts/serialization/structures#contracthash">contract</a> to global state.</td></tr><tr><td>Write_Contract_Package</td><td>5</td><td>Writes a smart <a href="/concepts/serialization/structures#contractpackagehash">contract package</a> to global state.</td></tr><tr><td>Write_Deploy_Info</td><td>6</td><td>Writes the given <a href="/concepts/serialization/structures#deployinfo"><code>DeployInfo</code></a> to global state.</td></tr><tr><td>Write_Transfer</td><td>7</td><td>Writes the given <a href="#transferaddr">Transfer</a> to global state.</td></tr><tr><td>Write_Era_Info</td><td>8</td><td>Writes the given <a href="#erainfo"><code>EraInfo</code></a> to global state.</td></tr><tr><td>Write_Bid</td><td>9</td><td>Writes the given <a href="#bid"><code>Bid</code></a> to global state.</td></tr><tr><td>Write_Withdraw</td><td>10</td><td>Writes the given <a href="#unbondingpurse">Withdraw</a> to global state.</td></tr><tr><td>Add_INT32</td><td>11</td><td>Adds the given <a href="/concepts/serialization/primitives#clvalue-numeric"><code>i32</code></a>.</td></tr><tr><td>Add_UINT64</td><td>12</td><td>Adds the given <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code></a>.</td></tr><tr><td>Add_UINT128</td><td>13</td><td>Adds the given <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U128</code></a>.</td></tr><tr><td>Add_UINT256</td><td>14</td><td>Adds the given <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U256</code></a>.</td></tr><tr><td>Add_UINT512</td><td>15</td><td>Adds the given <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code></a>.</td></tr><tr><td>Add_Keys</td><td>16</td><td>Adds the given collection of <a href="#namedkey">named keys</a>.</td></tr><tr><td>Failure</td><td>17</td><td>A failed transformation, containing an error message.</td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="transformkindV2">TransformKindV2<a href="#transformkindV2" class="hash-link" aria-label="Direct link to TransformKindV2" title="Direct link to TransformKindV2">​</a></h2>
+<p>The actual transformation performed while executing a deploy. It serializes as a single <code>u8</code> value indicating the type of transform performed as per the following table. The remaining bytes represent the information and serialization as listed.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Transform Type</th><th>Serialization</th><th>Description</th></tr></thead><tbody><tr><td>Identity</td><td>0</td><td>A transform having no effect, created as a result of reading from the global state.</td></tr><tr><td>Write</td><td>1</td><td>Writes a new value in the global state.</td></tr><tr><td>AddInt32</td><td>2</td><td>Adds the given <a href="/concepts/serialization/primitives#clvalue-numeric"><code>i32</code></a>.</td></tr><tr><td>AddUInt64</td><td>3</td><td>Adds the given <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code></a>.</td></tr><tr><td>AddUInt128</td><td>4</td><td>Adds the given <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U128</code></a>.</td></tr><tr><td>AddUInt256</td><td>5</td><td>Adds the given <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U256</code></a>.</td></tr><tr><td>AddUInt512</td><td>6</td><td>Adds the given <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code></a>.</td></tr><tr><td>AddKeys</td><td>7</td><td>Adds the given collection of <a href="#namedkey">named keys</a>.</td></tr><tr><td>Failure</td><td>8</td><td>A failed transformation, containing an error message.</td></tr><tr><td>Prune</td><td>9</td><td>Removes the pathing to the global state entry of the specified key. The pruned element remains reachable from previously generated global state root hashes, but will not be included in the next generated global state root hash and subsequent states.</td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="transformentry">TransformEntry<a href="#transformentry" class="hash-link" aria-label="Direct link to TransformEntry" title="Direct link to TransformEntry">​</a></h2>
+<p>A transformation performed while executing a deploy.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="transformV1">TransformV1<a href="#transformV1" class="hash-link" aria-label="Direct link to TransformV1" title="Direct link to TransformV1">​</a></h2>
+<p>A legacy transform struct serialized as a <a href="/concepts/serialization/primitives#clvalue-string"><code>String</code></a> of the <a href="/concepts/serialization/primitives#clvalue-key">key</a> followed by the <a href="#transformkindV1"><code>transformkindv1</code></a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="transformV2">Transformv2<a href="#transformV2" class="hash-link" aria-label="Direct link to Transformv2" title="Direct link to Transformv2">​</a></h2>
+<p>A struct representing an executed transformation serialized as a <a href="/concepts/serialization/primitives#clvalue-string"><code>String</code></a> of the <a href="/concepts/serialization/primitives#clvalue-key">key</a> followed by the <a href="#transformkindV2"><code>transformkindv2</code></a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="unbondingpurse">UnbondingPurse<a href="#unbondingpurse" class="hash-link" aria-label="Direct link to UnbondingPurse" title="Direct link to UnbondingPurse">​</a></h2>
+<p>A purse used for unbonding. The structure consists of the following:</p>
+<ul>
+<li>
+<p><code>bonding_purse</code>: The bonding purse, serialized as a <a href="/concepts/serialization/primitives#clvalue-uref"><code>URef</code></a>.</p>
+</li>
+<li>
+<p><code>validator_public_key</code>: The public key of the validator, serialized as a <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a>.</p>
+</li>
+<li>
+<p><code>unbonder_public_key</code>: The public key of the unbonder, serialized as a <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a>.</p>
+</li>
+<li>
+<p><code>era_of_creation</code>: Era in which this unbonding request was created, as an <a href="#eraid"><code>EraId</code></a> newtype, which serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code></a> value.</p>
+</li>
+<li>
+<p><code>amount</code>: The unbonding amount, serialized as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code></a> value.</p>
+</li>
+<li>
+<p><code>new_validator</code>: The validator public key to redelegate to, serialized as an <a href="/concepts/serialization/primitives#clvalue-option"><code>Option</code></a> containing the public key.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="validatorbid">ValidatorBid<a href="#validatorbid" class="hash-link" aria-label="Direct link to ValidatorBid" title="Direct link to ValidatorBid">​</a></h2>
+<p>An entry in the validator map. The structure consists of the following fields:</p>
+<ul>
+<li>
+<p><code>validator_public_key</code>: The public key of the validator that the delegator will be delegating to, serialized as a <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a>.</p>
+</li>
+<li>
+<p><code>bonding_purse</code>: The bonding purse associated with the delegation. It serializes as a <a href="/concepts/serialization/primitives#clvalue-uref"><code>URef</code> value</a>.</p>
+</li>
+<li>
+<p><code>staked_amount</code>: The amount staked by the delegator, serialized as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code> value</a>.</p>
+</li>
+<li>
+<p><code>delegation_rate</code>: The delegation rate serialized as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u8</code> value</a>.</p>
+</li>
+<li>
+<p><code>vesting_schedule</code>: The vesting schedule for the provided delegator bid. <code>None</code> if it is a non-genesis validator. It serializes as an <a href="/concepts/serialization/primitives#clvalue-option"><code>Option</code></a>.</p>
+</li>
+<li>
+<p><code>inactive</code>: The validator&#x27;s inactivity status, serialized as a <a href="/concepts/serialization/primitives#clvalue-boolean"><code>boolean</code></a>.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="validator-change">ValidatorChange<a href="#validator-change" class="hash-link" aria-label="Direct link to ValidatorChange" title="Direct link to ValidatorChange">​</a></h2>
+<p>A change to a validator&#x27;s status between two eras, serialized as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u8</code></a> tag as follows:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tag</th><th>Change</th></tr></thead><tbody><tr><td>0</td><td>Added</td></tr><tr><td>1</td><td>Removed</td></tr><tr><td>2</td><td>Banned</td></tr><tr><td>3</td><td>Cannot Propose</td></tr><tr><td>4</td><td>Seen as Faulty</td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="validator-config">ValidatorConfig<a href="#validator-config" class="hash-link" aria-label="Direct link to ValidatorConfig" title="Direct link to ValidatorConfig">​</a></h2>
+<p>A validator account configuration, serialized as a <a href="#motes"><code>bonded_amount</code></a> followed by the <code>delegation_rate</code> as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u8</code></a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="validator-credit">ValidatorCredit<a href="#validator-credit" class="hash-link" aria-label="Direct link to ValidatorCredit" title="Direct link to ValidatorCredit">​</a></h2>
+<p>A <code>struct</code> representing the record of a validator credit, with fields as follows:</p>
+<ul>
+<li>
+<p><a href="/concepts/serialization/primitives#clvalue-publickey"><code>validator_public_key</code></a>: The validator&#x27;s public key.</p>
+</li>
+<li>
+<p><a href="#eraid"><code>era_id</code></a>: The era ID the credit was created.</p>
+</li>
+<li>
+<p><code>amount</code>: The credit amount as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code></a>.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="withdrawpurse">WithdrawPurse<a href="#withdrawpurse" class="hash-link" aria-label="Direct link to WithdrawPurse" title="Direct link to WithdrawPurse">​</a></h2>
+<p>A purse used for unbonding, replaced in 1.5 by <a href="#unbondingpurse">UnbondingPurse</a>. WithdrawPurses prior to 1.5 were known as UnbondingPurses and now consist of historical data.</p>
+<ul>
+<li>
+<p><code>bonding_purse</code>: The bonding purse, serialized as a <a href="/concepts/serialization/primitives#clvalue-uref"><code>URef</code></a>.</p>
+</li>
+<li>
+<p><code>validator_public_key</code>: The public key of the validator, serialized as a <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a>.</p>
+</li>
+<li>
+<p><code>unbonder_public_key</code>: The public key of the unbonder, serialized as a <a href="/concepts/serialization/primitives#clvalue-publickey"><code>PublicKey</code></a>.</p>
+</li>
+<li>
+<p><code>era_of_creation</code> Era in which this unbonding request was created, as an <a href="#eraid"><code>EraId</code></a> newtype, which serializes as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>u64</code></a> value.</p>
+</li>
+<li>
+<p><code>amount</code> The unbonding amount, serialized as a <a href="/concepts/serialization/primitives#clvalue-numeric"><code>U512</code></a> value.</p>
+</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"></div><div class="col lastUpdated_JAkA"><span class="theme-last-updated">Last updated<!-- --> on <b><time datetime="2024-10-03T15:41:44.000Z" itemprop="dateModified">Oct 3, 2024</time></b> by <b>Mel Padden</b></span></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/concepts/serialization/structures"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Major Structures</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/concepts/intro-to-dapps"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">dApps</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#account-action-thresholds" class="table-of-contents__link toc-highlight">Account Action Thresholds</a></li><li><a href="#account-config" class="table-of-contents__link toc-highlight">Account Config</a></li><li><a href="#account-hash" class="table-of-contents__link toc-highlight">Account Hash</a></li><li><a href="#account-identifier" class="table-of-contents__link toc-highlight">Account Identifier</a></li><li><a href="#activation-point" class="table-of-contents__link toc-highlight">Activation Point</a></li><li><a href="#addressable-entity-hash" class="table-of-contents__link toc-highlight">AddressableEntityHash</a></li><li><a href="#approval" class="table-of-contents__link toc-highlight">Approval</a></li><li><a href="#approvals-hash" class="table-of-contents__link toc-highlight">ApprovalsHash</a></li><li><a href="#associatedkey" class="table-of-contents__link toc-highlight">AssociatedKey</a></li><li><a href="#availableblockrange" class="table-of-contents__link toc-highlight">AvailableBlockRange</a></li><li><a href="#balanceholdaddr" class="table-of-contents__link toc-highlight">BalanceHoldAddr</a></li><li><a href="#balanceholdaddrtag" class="table-of-contents__link toc-highlight">BalanceHoldAddrTag</a></li><li><a href="#balance-response" class="table-of-contents__link toc-highlight">BalanceResponse</a></li><li><a href="#bid" class="table-of-contents__link toc-highlight">Bid</a></li><li><a href="#bidaddr" class="table-of-contents__link toc-highlight">BidAddr</a></li><li><a href="#bid-kind" class="table-of-contents__link toc-highlight">BidKind</a></li><li><a href="#blockglobaladdr" class="table-of-contents__link toc-highlight">BlockGlobalAddr</a></li><li><a href="#blockidentifier" class="table-of-contents__link toc-highlight">BlockIdentifier</a></li><li><a href="#block-signatures" class="table-of-contents__link toc-highlight">BlockSignatures</a><ul><li><a href="#block-signatures-v1" class="table-of-contents__link toc-highlight">BlockSignaturesV1</a></li><li><a href="#block-signatures-v2" class="table-of-contents__link toc-highlight">BlockSignaturesV2</a></li></ul></li><li><a href="#blocksyncstatus" class="table-of-contents__link toc-highlight">BlockSyncStatus</a></li><li><a href="#blocktime" class="table-of-contents__link toc-highlight">BlockTime</a></li><li><a href="#btreemap" class="table-of-contents__link toc-highlight">BTreeMap</a></li><li><a href="#btreeset" class="table-of-contents__link toc-highlight">BTreeSet</a></li><li><a href="#bytecode" class="table-of-contents__link toc-highlight">ByteCode</a></li><li><a href="#bytes" class="table-of-contents__link toc-highlight">Bytes</a></li><li><a href="#bytecodekind" class="table-of-contents__link toc-highlight">ByteCodeKind</a></li><li><a href="#caller" class="table-of-contents__link toc-highlight">Caller</a></li><li><a href="#call-stack-element" class="table-of-contents__link toc-highlight">CallStackElement</a></li><li><a href="#chain-name-digest" class="table-of-contents__link toc-highlight">ChainNameDigest</a></li><li><a href="#chainspecregistry" class="table-of-contents__link toc-highlight">ChainspecRegistry</a></li><li><a href="#checksum-registry" class="table-of-contents__link toc-highlight">ChecksumRegistry</a></li><li><a href="#delegator" class="table-of-contents__link toc-highlight">Delegator</a></li><li><a href="#digest" class="table-of-contents__link toc-highlight">Digest</a></li><li><a href="#disabledversions" class="table-of-contents__link toc-highlight">DisabledVersions</a></li><li><a href="#effects" class="table-of-contents__link toc-highlight">Effects</a></li><li><a href="#entity-action-thresholds" class="table-of-contents__link toc-highlight">Entity Action Thresholds</a></li><li><a href="#entity-addr" class="table-of-contents__link toc-highlight">EntityAddr</a></li><li><a href="#entity-kind" class="table-of-contents__link toc-highlight">EntityKind</a></li><li><a href="#entity-kind-tag" class="table-of-contents__link toc-highlight">EntityKindTag</a></li><li><a href="#entityversionkey" class="table-of-contents__link toc-highlight">EntityVersionKey</a></li><li><a href="#entity-versions" class="table-of-contents__link toc-highlight">EntityVersions</a></li><li><a href="#entrypoint" class="table-of-contents__link toc-highlight">EntryPoint (Contract)</a></li><li><a href="#entry-point" class="table-of-contents__link toc-highlight">EntryPoint (Entity)</a><ul><li><a href="#entrypointaddr" class="table-of-contents__link toc-highlight">EntryPointAddr</a></li><li><a href="#entrypointpayment" class="table-of-contents__link toc-highlight">EntrypointPayment</a></li><li><a href="#entrypointtype" class="table-of-contents__link toc-highlight">EntrypointType</a></li></ul></li><li><a href="#entrypointv2" class="table-of-contents__link toc-highlight">EntrypointV2</a></li><li><a href="#entrypoints" class="table-of-contents__link toc-highlight">EntryPoints</a></li><li><a href="#eraid" class="table-of-contents__link toc-highlight">EraID</a></li><li><a href="#erainfo" class="table-of-contents__link toc-highlight">EraInfo</a></li><li><a href="#executable-deploy-item" class="table-of-contents__link toc-highlight">ExecutableDeployItem</a></li><li><a href="#executioneffect" class="table-of-contents__link toc-highlight">ExecutionEffect</a></li><li><a href="#executionresultv1" class="table-of-contents__link toc-highlight">ExecutionResultV1</a><ul><li><a href="#failure" class="table-of-contents__link toc-highlight"><code>Failure</code></a></li><li><a href="#success" class="table-of-contents__link toc-highlight"><code>Success</code></a></li></ul></li><li><a href="#executionresultv2" class="table-of-contents__link toc-highlight">ExecutionResultV2</a><ul><li><a href="#failure-1" class="table-of-contents__link toc-highlight"><code>Failure</code></a></li><li><a href="#success-1" class="table-of-contents__link toc-highlight"><code>Success</code></a></li></ul></li><li><a href="#gas" class="table-of-contents__link toc-highlight">Gas</a></li><li><a href="#group" class="table-of-contents__link toc-highlight">Group</a></li><li><a href="#groups" class="table-of-contents__link toc-highlight">Groups</a></li><li><a href="#initiatoraddr" class="table-of-contents__link toc-highlight">InitiatorAddr</a></li><li><a href="#serialization-standard-state-keys" class="table-of-contents__link toc-highlight">Keys</a><ul><li><a href="#global-state-account-key" class="table-of-contents__link toc-highlight">Account Identity Key</a></li><li><a href="#serialization-standard-hash-key" class="table-of-contents__link toc-highlight">Hash Key</a></li><li><a href="#serialization-standard-uref" class="table-of-contents__link toc-highlight">Unforgeable Reference (<code>URef</code>)</a></li><li><a href="#serialization-standard-transfer-key" class="table-of-contents__link toc-highlight">Transfer Key</a></li><li><a href="#serialization-standard-deploy-info-key" class="table-of-contents__link toc-highlight">DeployInfo Key</a></li><li><a href="#serialization-standard-era-info-key" class="table-of-contents__link toc-highlight">EraInfo Key</a></li><li><a href="#serialization-standard-serialization-key" class="table-of-contents__link toc-highlight">Serialization for <code>Key</code></a></li><li><a href="#serialization-standard-permissions" class="table-of-contents__link toc-highlight">Permissions</a></li></ul></li><li><a href="#message-topics" class="table-of-contents__link toc-highlight">MessageTopics</a></li><li><a href="#message-topic-summary" class="table-of-contents__link toc-highlight">MessageTopicSummary</a></li><li><a href="#motes" class="table-of-contents__link toc-highlight">Motes</a></li><li><a href="#namedarg" class="table-of-contents__link toc-highlight">NamedArg</a></li><li><a href="#namedkey" class="table-of-contents__link toc-highlight">NamedKey</a></li><li><a href="#named-key-addr" class="table-of-contents__link toc-highlight">NamedKeyAddr</a></li><li><a href="#named-key-value" class="table-of-contents__link toc-highlight">NamedKeyValue</a></li><li><a href="#named-keys" class="table-of-contents__link toc-highlight">NamedKeys</a></li><li><a href="#operation" class="table-of-contents__link toc-highlight">Operation</a></li><li><a href="#package" class="table-of-contents__link toc-highlight">Package</a></li><li><a href="#package-hash" class="table-of-contents__link toc-highlight">PackageHash</a></li><li><a href="#package-status" class="table-of-contents__link toc-highlight">PackageStatus</a></li><li><a href="#parameter" class="table-of-contents__link toc-highlight">Parameter</a></li><li><a href="#pricingmode" class="table-of-contents__link toc-highlight">PricingMode</a><ul><li><a href="#pricingmode-classic" class="table-of-contents__link toc-highlight">Classic</a></li><li><a href="#pricingmode-fixed" class="table-of-contents__link toc-highlight">Fixed</a></li></ul></li><li><a href="#protocolversion" class="table-of-contents__link toc-highlight">ProtocolVersion</a></li><li><a href="#publickey" class="table-of-contents__link toc-highlight">PublicKey</a></li><li><a href="#rewarded-signatures" class="table-of-contents__link toc-highlight">RewardedSignatures</a></li><li><a href="#runtimeargs" class="table-of-contents__link toc-highlight">RuntimeArgs</a></li><li><a href="#seigniorageallocation" class="table-of-contents__link toc-highlight">SeigniorageAllocation</a></li><li><a href="#semver" class="table-of-contents__link toc-highlight">SemVer</a></li><li><a href="#signature" class="table-of-contents__link toc-highlight">Signature</a></li><li><a href="#serialization-standard-values" class="table-of-contents__link toc-highlight">Stored Values</a></li><li><a href="#systemcontractregistry" class="table-of-contents__link toc-highlight">SystemContractRegistry</a></li><li><a href="#system-entity-type" class="table-of-contents__link toc-highlight">SystemEntityType</a></li><li><a href="#timediff" class="table-of-contents__link toc-highlight">TimeDiff</a></li><li><a href="#timestamp" class="table-of-contents__link toc-highlight">Timestamp</a></li><li><a href="#topic-name-hash" class="table-of-contents__link toc-highlight">TopicNameHash</a></li><li><a href="#transferaddr" class="table-of-contents__link toc-highlight">TransferAddr</a></li><li><a href="#transformkindV1" class="table-of-contents__link toc-highlight">TransformKindV1</a></li><li><a href="#transformkindV2" class="table-of-contents__link toc-highlight">TransformKindV2</a></li><li><a href="#transformentry" class="table-of-contents__link toc-highlight">TransformEntry</a></li><li><a href="#transformV1" class="table-of-contents__link toc-highlight">TransformV1</a></li><li><a href="#transformV2" class="table-of-contents__link toc-highlight">Transformv2</a></li><li><a href="#unbondingpurse" class="table-of-contents__link toc-highlight">UnbondingPurse</a></li><li><a href="#validatorbid" class="table-of-contents__link toc-highlight">ValidatorBid</a></li><li><a href="#validator-change" class="table-of-contents__link toc-highlight">ValidatorChange</a></li><li><a href="#validator-config" class="table-of-contents__link toc-highlight">ValidatorConfig</a></li><li><a href="#validator-credit" class="table-of-contents__link toc-highlight">ValidatorCredit</a></li><li><a href="#withdrawpurse" class="table-of-contents__link toc-highlight">WithdrawPurse</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="footer__links text--center"><div class="footer__links"><a href="https://support.casperlabs.io/" target="_blank" rel="noopener noreferrer" class="footer__link-item" position="right">Support<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><span class="footer__link-separator">·</span><a href="https://discord.com/invite/casperblockchain" target="_blank" rel="noopener noreferrer" class="footer__link-item" position="right">Discord<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><span class="footer__link-separator">·</span><a href="https://github.com/casper-network/docs-redux" target="_blank" rel="noopener noreferrer" class="footer__link-item" position="right">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><span class="footer__link-separator">·</span><a class="footer__link-item" position="right" href="/concepts/serialization/disclaimer.md">Disclaimer</a></div></div><div class="footer__bottom text--center"><div class="margin-bottom--sm"><a href="https://casper.network/" rel="noopener noreferrer" class="footerLogoLink_BH7S"><img src="/icon/Casper_Wordmark_Horizontal_Red_RGB.png" alt="Casper Logo" class="footer__logo themedComponent_mlkZ themedComponent--light_NVdE" width="120" height="30"><img src="/icon/Casper_Wordmark_Horizontal_White_RGB.png" alt="Casper Logo" class="footer__logo themedComponent_mlkZ themedComponent--dark_xIcU" width="120" height="30"></a></div><div class="footer__copyright">Copyright © 2024 Casper Association. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
