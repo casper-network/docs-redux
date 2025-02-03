@@ -24,12 +24,12 @@ Once your request has been processed, you will be notified and provided with a l
 ## What are the Condor/2.0.0 Compatible branches/commits of downstream components?
 
 **casper-sidecar:**
-  - Release Candidate   : `release-1.0.0-rc3_node-2.0.0-rc6`
-  - Branch/Repo : [casper-sidecar-release-1.0.0-rc3_node-2.0.0-rc6](https://github.com/casper-network/casper-sidecar/tree/release-1.0.0-rc3_node-2.0.0-rc6)
+  - Release Candidate   : `release-1.0.0-rc5_node-2.0.0-rc6`
+  - Branch/Repo : [casper-sidecar-release-1.0.0-rc5_node-2.0.0-rc6](https://github.com/casper-network/casper-sidecar/tree/release-1.0.0-rc5_node-2.0.0-rc6)
 
 **casper-client-rs:**
-  - Release Candidate   : WIP
-  - Branch/Repo : WIP
+  - Release Candidate   : `release-3.0.1-rc2_node-2.0.0-rc6`
+  - Branch/Repo : [casper-client-release-3.0.1-rc2_node-2.0.0-rc6](https://github.com/casper-ecosystem/casper-client-rs/tree/release-3.0.1-rc2_node-2.0.0-rc6)
 
 **NCTL:**
   - New NCTL image with `v200-rc6` available on Docker Hub: 
