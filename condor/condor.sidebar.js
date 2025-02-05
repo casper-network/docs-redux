@@ -25,6 +25,7 @@ const sidebars = {
         'transactions',
         'validator-rewards',
         'zug',
+        'devnet-info',
     ],
     //
     //   {
