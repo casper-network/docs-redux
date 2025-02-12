@@ -26,6 +26,7 @@ const sidebars = {
         'validator-rewards',
         'zug',
         'devnet-info',
+        'migration-guide',
     ],
     //
     //   {
