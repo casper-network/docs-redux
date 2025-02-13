@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /CNAME
-Disallow: /opensearch.xml
-Disallow: /.nojekyll
-Sitemap: https://docs-redux.melpadden.com/sitemap.xml
-# Algolia-Crawler-Verif: 47EC0D9A31F6D517
