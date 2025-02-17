@@ -1,0 +1,24 @@
+condor:
+  label: 'Condor'
+  permalink: '/condor'
+  description: 'Blog posts related to the Condor upgrade'
+  
+validators:
+  label: 'Validators'
+  permalink: '/validators'
+  description: 'Validators'
+
+setup:
+  label: 'Setup'
+  permalink: '/setup'
+  description: 'Getting set up on Casper'
+
+consensus:
+  label: 'Consensus'
+
+smart-contracts:
+  label: 'Smart Contracts'
+
+json-rpc:
+  label: 'JSON RPC'
+

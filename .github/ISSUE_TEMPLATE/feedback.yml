@@ -1,6 +1,6 @@
 name: Docs v2 Feedback Form
 description: Use this form to give us feedback on Docs v2
-title: 'Docs Feedback'
+title: '[Docs-V2-Feedback]'
 labels:
   - docs-v2-feedback
 body:
@@ -39,6 +39,6 @@ body:
     id: attachments
     attributes:
       label: Attachments (optional)
-      description: Please attach any logs, screenshots, or links.
+      description: Please attach any logs, screenshots, or links that may help with the analysis.
     validations:
       required: false

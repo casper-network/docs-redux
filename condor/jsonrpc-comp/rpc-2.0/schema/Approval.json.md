@@ -1,0 +1,19 @@
+```json copy 
+{
+    "description": "A struct containing a signature of a transaction hash and the public key of the signer.",
+    "type": "object",
+    "required": [
+        "signature",
+        "signer"
+    ],
+    "properties": {
+        "signer": {
+            "$ref": "#/components/schemas/PublicKey"
+        },
+        "signature": {
+            "$ref": "#/components/schemas/Signature"
+        }
+    },
+    "additionalProperties": false
+} 
+``` 

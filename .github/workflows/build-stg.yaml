@@ -1,0 +1,33 @@
+name: (STG) Trigger Internal Build Pipeline
+
+on:
+  push:
+    branches:
+      - stg
+
+jobs:
+  trigger-internal-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract Short Commit SHA
+        id: short_sha
+        run: |
+          echo "short_sha=$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_OUTPUT
+
+      - name: Trigger Internal Build Workflow
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.PAT_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'casper-network',
+              repo: 'docs-infra',
+              workflow_id: 'build-redux-stg.yaml',
+              ref: 'main',
+              inputs: {
+                short_sha: '${{ steps.short_sha.outputs.short_sha }}'
+              }
+            });
