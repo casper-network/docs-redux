@@ -9,7 +9,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: "Casper Docs - Redux",
+    title: "Casper Docs",
     tagline: "Casper Documentation",
     favicon: "icon/favicon.ico",
     url: envConfig.siteUrl,
