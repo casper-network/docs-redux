@@ -34,15 +34,22 @@ At the same time, legacy (Casper 1.x) deploys will continue to be accepted by Ca
 ### SDK Integration
 Depending on which SDK language (e.g. JS, Go) you use, and which methods you interface with, you might not have to immediately migrate your integration. However, in order to be safe and future-proof, it is strongly recommended to upgrade your SDK to the latest version applicable to your stack. For most languages, this can be done immediately, as the SDKs maintain both forward (2.x) and backward (1.x) compatibility at the same time. 
 
+While it may not be strictly necessary to upgrade your integration if all you do is submit Deploys to the network (e.g. transfers in and out of accounts), it is STRONGLY RECOMMENDED to upgrade to the new SDK now, to experience a seamless upgrade to Casper 2.0 and beyond.
+
 Please see instructions below for your specific SDK language:
 
 | SDK    | Instructions | 
 |---------------------|-------------|
-| **JavaScript** | While it may not be strictly necessary to upgrade your integration if all you do is submit `Deploys` to the network (e.g. transfers in and out of accounts), it is STRONGLY RECOMMENDED to upgrade to the new SDK now, to experience a seamless upgrade to Casper 2.0 and beyond. |
-| |The appropriate SDK to upgrade to is the lates v5.x release found [here](https://github.com/casper-ecosystem/casper-js-sdk/releases). |
-| | Common use case examples (connect to RPC, send a transfer, etc.) can be found in [Casper JS SDK 5.0 README](https://github.com/ casper-ecosystem/casper-js-sdk/tree/feat-5.0.0?tab=readme-ov-file#usage-examples) |
+| **JavaScript** | The appropriate SDK to upgrade to is the latest v5.x release can be found [here](https://github.com/casper-ecosystem/casper-js-sdk/releases). |
+| | Common use case examples (connect to RPC, send a transfer, etc.) can be found in [Casper JS SDK 5.0 README](https://github.com/casper-ecosystem/casper-js-sdk/tree/feat-5.0.0?tab=readme-ov-file#usage-examples) |
 | |To upgrade your integration, follow the detailed [V2 to V5 Migration Guide](https://github.com/casper-ecosystem/casper-js-sdk/blob/feat-5.0.0/resources/migration-guide-v2-v5.md) | 
-| **#C .NET** / **Go** / **Java** | While it may not be strictly necessary to upgrade your integration if all you do is submit `Deploys` to the network (e.g. transfers in and out of accounts), it is STRONGLY RECOMMENDED to upgrade to the new SDK now, to experience a seamless upgrade to Casper 2.0 and beyond.|
+| **#C .NET** | The appropriate SDK to upgrade to is the latest v3.x release can be found [here](https://github.com/make-software/casper-net-sdk/releases).|
+| | Typical use case examples (connect to RPC, send a transfer, etc.) can be found in [the Examples folder](https://github.com/make-software/casper-net-sdk/tree/casper-2.0.0/Docs/Examples). |
+| |To upgrade your integration, follow the document [Migration from Casper .NET SDK v2.x to v3.0](https://github.com/make-software/casper-net-sdk/blob/casper-2.0.0/Docs/Articles/Casper20MigrationGuide.md) | 
+| **Go** | The appropriate SDK to upgrade to is the latest v2.x release found [here](https://github.com/make-software/casper-go-sdk/releases).|
+| |Typical use case examples (connect to RPC, send a transfer, etc.) can be found in the [README](https://github.com/make-software/casper-go-sdk/blob/master/README.md). | 
+| **Java** | The appropriate SDK to upgrade to is the latest v2.x release can be found [here](https://github.com/casper-network/casper-java-sdk/releases).|
+| |Casper Java SDK in Maven Repository can be found in the link [here](https://central.sonatype.com/artifact/network.casper/casper-java-sdk/2.7.0-BETA.4/overview). | 
 | **Other** | If you are using an SDK not listed in this chapter, please contact the Casper Exchange Support Team.|
 
 ## Important changes/updates in Casper 2.0(Placeholder - Core Team input required)
