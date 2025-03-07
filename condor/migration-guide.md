@@ -1,52 +1,48 @@
 # Casper 2.0 Migration Guide for Crypto Exchanges
 
-The Casper Network is in the process of upgrading to Casper 2.0, which introduces breaking changes to the node software, the protocol and the interfaces associated with interacting with the network. In order to maintain compatibility with Casper Network after the upgrade of mainnet, tentatively scheduled for March 2025, crypto exchanges that offer $CSPR pairs, allow for $CSPR deposits and withdrawals and/or allow their users to stake $CSPR, may need to upgrade their integration with Casper Network. This migration guide will help you determine whether, and if so - how, to migrate your integration in prepartion for the network upgrade.
+The Casper Network is in the process of upgrading to Casper 2.0, which introduces breaking changes to the node software, the protocol, and the API Interfaces. 
 
-More information about the specific changes in, and features introduced by Casper 2.0 can be found here (LINK).
+In order to maintain compatibility with Casper Network after the upgrade of Mainnet, which is tentatively scheduled for end of March/mid-April 2025, crypto exchanges that offer $CSPR pairs, allow for $CSPR deposits and withdrawals and/or allow their users to stake $CSPR, may need to upgrade their integration with Casper Network. This migration guide will help you determine whether, and if so - how to update your integration in preparation for the network upgrade.
 
-This migration guide aims at listing down the key information required for exchanges to make the necessary changes on their side to become Casper 2.0 ready.
+This guide will help you assess whether any changes are needed on your end and, if so, how to update your integration to ensure compatibility with Casper 2.0.
 
-## Should I migrate my integration?
+## Should I update my integration?
 
-Exchanges have different levels of integration with Casper Network, and offer different subsets of functionality relating to $CSPR to their user base. Depending on the specifics of your integration, you may or may not have to migrate your integration prior to the mainnet launch of Casper 2.0. The table below helps you determine your next steps, if any.
+Exchanges integrate with Casper Network at different levels, offering varying $CSPR functionalities. 
 
-| Integration Type     | Description | Migration? |
-|---------------------|-------------|------------|
-| **Indirect** | Some exchanges do not integrate with Casper Network directly but leverage liquidity provided by other exchanges through their APIs | No migration required (assuming the downstream exchange migrates on time, if needed) |
-| **[Run own node](#)** | Some exchanges run their own node and interface with its RPC methods | Exchange needs to upgrade the node software, and participate in the network upgrade process. Additionally, exchange needs to ensure the RPC methods they rely on are either still supported in 2.0 or migrate to new RPC methods |
-| **[RPC integration](#)** | Some exchanges use public node infrastructure and interface with those via RPC | Exchange needs to ensure the RPC methods they rely on are either still supported in 2.0, or migrate to new RPC methods |
-| **[SDK integration](#)** | Some exchanges use the publicly available Casper SDKs (e.g. JavaScript SDK, C#.NET SDK, Go SDK, etc.) | Depending on the SDK language (e.g. JS, Go) and the methods you use, you may or may not need to migrate prior to mainnet launch |
+Whether you need to migrate before Casper 2.0’s Mainnet launch depends on your integration. The table below can help you determine your next steps.
 
-## Integration-specific Migration Documentation
+| Integration Type     | Required actions |
+|---------------------|-------------|
+| **Indirect integration via 3rd party Partner [<sup>ⓘ<sup>](a "Exchanges that don’t directly integrate with Casper Network but use liquidity from other exchanges via APIs.")** | No migration required, assuming the partner updates their integration.| 
+| **[Running your own node](#) [<sup>ⓘ<sup>](a "Exchanges that run their own node and interface with its RPC methods")** | Node software upgrade is required |
+| **[Direct RPC API Integration](#) [<sup>ⓘ<sup>](a "Exchanges that use public node infrastructure and interface with those via RPC")** | Adjustments to new response structures is required. Deprecated methods should be replaced with their newer alternatives |
+| **[SDK Integration](#) [<sup>ⓘ<sup>](a "Exchanges that use the publicly available Casper SDKs(e.g. JavaScript SDK, C#.NET SDK, Go SDK, etc.)")** | Depending on the SDK language (e.g. JS, Go) and the methods you use, upgrade to a Casper 2.0 compatible version is required|
 
-### Running our own node
+More information about the specific changes in, and features introduced by Casper 2.0 can be found [here](https://docs.casper.network/condor/index).
+
+## Integration Types
+
+### Running your own node
 If you run your own node, your migration experience will likely involve two distinct paths. 
 
-On the one hand, as a node operator you will participate in the actual mainnet upgrade of Casper Network, which will take place a specific date and time (you will have a number of days to stage the upgrade in advance of the activation point), while on the other hand you will have to possibly migrate the method by which you interface with your own node. Continue with the migration details provided for exchanges with direct RPC integration or SDK integration, depending on which applies to you.
+On the one hand, as a node operator you will participate in the actual Mainnet upgrade of Casper Network, which will take place a specific date and time (you will have a number of days to stage the upgrade in advance of the activation point), while on the other hand you will have to possibly migrate the method by which you interface with your own node. Continue with the migration details provided for exchanges with direct RPC integration or SDK integration, depending on which applies to you.
 
-### RPC Integration
+### Direct RPC API Integration
 
-**Casper Sidecar**
+In Casper 2.0, the JSON RPC API is moved from the node to an accompanying software called [Casper Sidecar](https://github.com/casper-network/casper-sidecar). The sidecar communicates with the node via a binary protocol and exposes a familiar JSON RPC interface to the end users. It's still possible to fetch information directly from the node using the binary protocol; however, at this moment, the required libraries exist only for the Rust language.
 
-One of the major changes in the **Casper 2.0** upgrade is the introduction of **[casper-sidecar](https://github.com/casper-network/condor-info/blob/a7af985d60aa719454cbd219d4982bd5c79eee84/articles/034-sidecar.md)**.  
+The sidecar could be run on the same machine as the node or on a separate instance. Multiple sidecars could be run against one node to increase availability.
 
-The **sidecar** runs as a dedicated process, bound to a node’s **binary port** and/or **SSE port**. It takes full responsibility for running the **JSON-RPC server** and exposing **JSON-RPC endpoints** to the internet.  
+SSE API users can optionally configure the sidecar to store the SSE events in an external database. The current options are SQLite or PostgreSQL.
 
-As a result, the **node software itself no longer exposes a JSON-RPC API** to consumers—this function is now handled exclusively by the **sidecar**.
+More information about the sidecar configuration can be found in the [corresponding documentation](https://github.com/casper-network/casper-sidecar). Also, before the Mainnet upgrade, the Casper team will provide the upgrade instructions to the node operators with reasonable default configuration options.
 
-**Node Binary Port**
-
-The Casper 2.0 Node now exposes a pure Binary Port API, which allows connection over TCP/IP and pure binary serialization for your remote procedure calls. Depending on your use case, you may be interested in considering this option for interacting with Casper v2.0.
-
-- **Key Considerations:**</br>
+**Recommended Key Considerations:**</br>
   - Enabling Binary Port for Forward-Facing APIs
     - Sidecar Dependency: In Casper 2.0, the JSON-RPC service is moved to the casper-sidecar, which forwards requests to the node’s binary RPC port​. 
     - Operators who need a public-facing API must enable the binary port on the node (the sidecar is a consumer of this service​)
     - Binary Port doesn't need to be a public port (it only needs to be exposed to sidecar)
-
-**SSE (Server Side Events) Server**
-
-Casper 2.0 introduces a realtime API of events, emitted by the node when processing blocks and/or transactions.
 
 
 **Transactions in Casper 2.0**  
@@ -55,21 +51,28 @@ Transactions are a higher-order concept that encapsulate both **Deploys** and **
 
 A **Transaction** is a polymorphic data structure that, for now, can be either:  
 - A **Deploy**, which remains compliant with the **1.x definition**.  
-- A **V1 transaction**, representing the new standard moving forward.  
+- A **TransactionV1**, representing the new type of transaction, introduced alongside the `Deploy` type.   
 
 Secondly, Casper 2.0 includes new methods, renamed methods and methods with a change in response format. 
 
 At the same time, Casper 1.x deploys will continue to be accepted by Casper 2.0, hence if your entire integration comprises only the submission of Deploys (such as transfers in and out of accounts), you may want to take into account the below considerations prior to Mainnet activation of Casper 2.0. 
 
-### Preparing for Casper 2.0: Compatibility Considerations  
+<Placeholder requesting Core Team Jakub to share the details>
+Contents/details about list of changes in the RPC protocol divided into two parts:
 
-Exchanges **may not need to make immediate changes** before the mainnet activation of **Casper 2.0**; however, this depends on how they interact with the network.  
+- Change in types with correspondences between the semantically identical types (Deploy and TransactionV1, Block and BlockV2)
+- Changes in the RPC methods that clearly describe which methods are deprecated and what are their newer alternatives.
+<Placeholder>
 
-While the **account-put-deploy** JSON-RPC method continues to accept the same input structure as in **1.x**, the response format of **info_get_deploy** is **not backwards compatible** with **1.x**.  
+**Preparing for Casper 2.0: Compatibility Considerations**  
 
-If an exchange relies on the results of **info_get_deploy**, updates will be required to handle the new response format properly.  
+- Exchanges **may not need to make immediate changes** before the Mainnet activation of **Casper 2.0**; however, this depends on how they interact with the network.  
 
-Using 1.x Deploys in a 2.x Node:
+- While the **account-put-deploy** JSON-RPC method continues to accept the same input structure as in **1.x**, the response format of **info_get_deploy** is **not backwards compatible** with **1.x**.  
+
+- If an exchange relies on the results of **info_get_deploy**, updates will be required to handle the new response format properly.  
+
+- Using 1.x Deploys in a 2.x Node:
 
    - Casper 2.0 introduces a new Transaction model (replacing the old “Deploy”), but it will continue to accept and execute valid 1.x deploys for now​.
    
@@ -91,40 +94,42 @@ Therefore, Exchanges should review how they retrieve deploys/transactions and be
 
 #### **Action Required**  
 
-➡️ Exchanges should review their integration and assess whether their systems depend on **info_get_deploy** results. If so, necessary updates must be made to ensure compatibility with **Casper 2.0**.
+- ➡️ Exchanges should review their integration and assess whether their systems depend on **info_get_deploy** results. If so, necessary updates must be made to ensure compatibility with **Casper 2.0**.
 
-➡️ To assess your next steps, please evaluate your integration against the 1.x -> 2.0 JSON RPC changes detailed in the link [here](https://docs.casper.network/condor/jsonrpc#json-rpc-schema-definitions). 
+- ➡️ To assess your next steps, please evaluate your integration against the 1.x -> 2.0 JSON RPC changes detailed in the link [here](https://docs.casper.network/condor/jsonrpc#json-rpc-schema-definitions). 
 
 Please refer to this [page](https://docs.casper.network/condor/jsonrpc) for more details on **casper-sidecar** and **JSON RPC** changes.
 
 ### SDK Integration
-Depending on which SDK language (e.g. JavaScript, Go) you use, and which methods you interface with, you might not have to immediately migrate your integration. However, in order to be safe and future-proof, it is strongly recommended to upgrade your SDK to the latest version applicable to your stack. For most languages, this can be done immediately, as the SDKs maintain both forward (2.x) and backward (1.x) compatibility at the same time. 
+Casper 2.0 introduces changes essential for the network’s future evolution, which also include modifications to data structures that impact API responses. Since historical blockchain data cannot be altered due to cryptographic signatures, both legacy and new data structures will coexist in Casper 2.0 and be returned by the API.
 
-While it may not be strictly necessary to upgrade your integration if all you do is submit Deploys to the network (e.g. transfers in and out of accounts), it is STRONGLY RECOMMENDED to upgrade to the new SDK now, to experience a seamless upgrade to Casper 2.0 and beyond.
+To simplify the transition for developers, we prepared new backward and forward-compatible Casper SDKs that provide a uniform data interface across both Casper 1.5.x and Casper 2.0. This ensures that developers can work with consistent data types, regardless of the network version in which the data was created.
 
->[!IMPORTANT]
-> **Addressable Entity is not enabled in Casper 2.0.**
-> 
-> Updating to a Casper 2.0-compatible SDK will be necessary when the **addressable entity** is enabled.
-> 
-> Once the **addressable entity** is enabled, exchanges will be required to use an SDK compatible with the Entity.
-
+Upgrading to a new version of Casper SDKs makes it possible to have one integration that guarantees future compatibility with Casper 2.0 while maintaining the existing compatibility with Casper 1.5. The network upgrade will require no changes in the consumer code, ensuring no disruption in the service.
 
 Please see instructions below for your specific SDK language:
 
-| SDK    | Instructions | 
-|---------------------|-------------|
-| **JavaScript** | The appropriate SDK to upgrade to is the latest v5.x release can be found [here](https://github.com/casper-ecosystem/casper-js-sdk/releases). |
-| | Common use case examples (connect to RPC, send a transfer, etc.) can be found in [Casper JS SDK 5.0 README](https://github.com/casper-ecosystem/casper-js-sdk/tree/feat-5.0.0?tab=readme-ov-file#usage-examples) |
-| |To upgrade your integration, follow the detailed [V2 to V5 Migration Guide](https://github.com/casper-ecosystem/casper-js-sdk/blob/feat-5.0.0/resources/migration-guide-v2-v5.md) | 
-| **#C .NET** | The appropriate SDK to upgrade to is the latest v3.x release can be found [here](https://github.com/make-software/casper-net-sdk/releases).|
-| | Typical use case examples (connect to RPC, send a transfer, etc.) can be found in [the Examples folder](https://github.com/make-software/casper-net-sdk/tree/casper-2.0.0/Docs/Examples). |
-| |To upgrade your integration, follow the document [Migration from Casper .NET SDK v2.x to v3.0](https://github.com/make-software/casper-net-sdk/blob/casper-2.0.0/Docs/Articles/Casper20MigrationGuide.md) | 
-| **Go** | The appropriate SDK to upgrade to is the latest v2.x release found [here](https://github.com/make-software/casper-go-sdk/releases).|
-| |Typical use case examples (connect to RPC, send a transfer, etc.) can be found in the [README](https://github.com/make-software/casper-go-sdk/blob/master/README.md). | 
-| **Java** | The appropriate SDK to upgrade to is the latest v2.x release can be found [here](https://github.com/casper-network/casper-java-sdk/releases).|
-| |Casper Java SDK in Maven Repository can be found in the link [here](https://central.sonatype.com/artifact/network.casper/casper-java-sdk/2.7.0-BETA.4/overview). | 
-| **Other** | If you are using an SDK not listed in this chapter, please contact the Casper Exchange Support Team.|
+**JavaScript:**
+- The appropriate SDK to upgrade to is the latest v5.x release can be found [here](https://github.com/casper-ecosystem/casper-js-sdk/releases)
+- Common use case examples (connect to RPC, send a transfer, etc.) can be found in [Casper JS SDK 5.0 README](https://github.com/casper-ecosystem/casper-js-sdk/tree/feat-5.0.0?tab=readme-ov-file#usage-examples)
+- To upgrade your integration, follow the detailed [V2 to V5 Migration Guide](https://github.com/casper-ecosystem/casper-js-sdk/blob/feat-5.0.0/resources/migration-guide-v2-v5.md)
+
+**C# / .NET:**
+- The appropriate SDK to upgrade to is the latest v3.x release can be found [here](https://github.com/make-software/casper-net-sdk/releases).
+- Typical use case examples (connect to RPC, send a transfer, etc.) can be found in [the Examples folder](https://github.com/make-software/casper-net-sdk/tree/casper-2.0.0/Docs/Examples).
+- To upgrade your integration, follow the document [Migration from Casper .NET SDK v2.x to v3.0](https://github.com/make-software/casper-net-sdk/blob/casper-2.0.0/Docs/Articles/Casper20MigrationGuide.md).
+
+**Go:**
+- The appropriate SDK to upgrade to is the latest v2.x release found [here](https://github.com/make-software/casper-go-sdk/releases).
+- Typical use case examples (connect to RPC, send a transfer, etc.) can be found in the [README](https://github.com/make-software/casper-go-sdk/blob/master/README.md).
+
+**Java:**
+- The appropriate SDK to upgrade to is the latest v2.x release can be found [here](https://github.com/casper-network/casper-java-sdk/releases).
+- Casper Java SDK in Maven Repository can be found in the link [here](https://central.sonatype.com/artifact/network.casper/casper-java-sdk/2.7.0-BETA.4/overview).
+
+**Other:**
+- If you are using an SDK not listed in this chapter, please contact the Casper Exchange Support Team.
+
 
 ## Important changes/updates in Casper 2.0(Placeholder - Core Team input required)
 
@@ -179,7 +184,7 @@ Email: Casper Exchange Support: exchange-support@casper.network
 
 
 ## Summary
-Casper 2.0 is coming to mainnet in the very foreseeable future, and we're honored and excited that you and your user community are part of this massively consequential event in the history of the Casper blockchain. In order to make sure you and your users are prepared for the mainnet activation of Casper 2.0, please follow these steps:
+Casper 2.0 is coming to Mainnet in the very foreseeable future, and we're honored and excited that you and your user community are part of this massively consequential event in the history of the Casper blockchain. In order to make sure you and your users are prepared for the Mainnet activation of Casper 2.0, please follow these steps:
 
 Determine your [current type of integration](https://docs.make.software/exchange-migration-draft#should-i-migrate-my-integration) with Casper Network
 
