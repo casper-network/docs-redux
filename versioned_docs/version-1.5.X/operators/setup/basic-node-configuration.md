@@ -12,7 +12,7 @@ A node is usually run by executing the `casper-node-launcher`, which executes th
 
 The `casper-node-launcher` can be installed via a Debian package, which also creates the `casper` user and directory structures and sets up a `systemd` unit and logging.
 
-The `casper-node-launcher` Debian package can be obtained from [https://repo.casperlabs.io](https://repo.casperlabs.io). You only need to run the steps detailed there once.
+The `casper-node-launcher` Debian package can be obtained from [https://repo.casper.network](https://repo.casper.network). You only need to run the steps detailed there once.
 
 Then, proceed to install the `casper-node-launcher` by running these commands:
 
@@ -50,9 +50,6 @@ The default location for executables from the Debian package install is `/usr/bi
 
 This is the default location for configuration files. It can be overwritten with the `CASPER_CONFIG_DIR` environment variable. The paths in this document assume the default configuration file location of `/etc/casper`. The data is organized as follows:
 
-- `delete_local_db.sh` - Removes `*.lmdb*` files from `/var/lib/casper/casper-node`
-- `pull_casper_node_version.sh` - Pulls `bin.tar.gz` and `config.tar.gz` from [genesis.casperlabs.io](https://genesis.casperlabs.io/) for a specified protocol version and extracts them into `/var/lib/bin/<protocol_version>` and `/etc/casper/<protocol_version>`
-- `config_from_example.sh` - Gets external IP to replace and create the `config.toml` from `config-example.toml`
 - `node_util.py` - A script that will be replacing other scripts and is the preferred method of performing the actions of `pull_casper_node_version.sh`, `config_from_example.sh`, and `delete_local_db.sh`.  Other scripts will be deprecated in future releases of `casper-node-launcher`.
 - `casper-node-launcher-state.toml` - The local state for the `casper-node-launcher` which is created during the first run
 - `validator_keys/` - The default folder for node keys, containing:
@@ -129,7 +126,7 @@ When joining the network, the system will start from the hash of a recent block 
 Here is an example command for obtaining a trusted hash. Replace the node address with an updated address from a node on the network.
 
 ```bash
-sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 -b 20 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
+sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
 ```
 
 ### Known Addresses {#known-addresses}

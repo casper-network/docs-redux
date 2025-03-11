@@ -77,7 +77,7 @@ systemctl status casper-sidecar
 casper-sidecar.service - Casper Event Sidecar
      Loaded: loaded (/lib/systemd/system/casper-sidecar.service; enabled; vendor preset: enabled)
      Active: active (running) since Wed 2022-12-07 20:33:29 UTC; 1min 3s ago
-       Docs: https://docs.casperlabs.io
+       Docs: https://docs.casper.network
    Main PID: 16707 (casper-si)
       Tasks: 5 (limit: 9401)
      Memory: 7.1M

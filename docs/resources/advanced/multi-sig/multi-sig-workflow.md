@@ -78,7 +78,7 @@ casper-client account-address --public-key <INSERT_PUBLIC_KEY_HEX>
 Update the weight of the primary key to 3 by calling the `update_associated_keys.wasm`.
 
 ```bash
-casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
+casper-client put-deploy --node-address https://node.testnet.casper.network \
 --chain-name "casper-test" \
 --payment-amount 500000000 \
 --secret-key $PATH/secret_key.pem \
@@ -90,16 +90,16 @@ casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 Verify that the deploy ran successfully.
 
 ```bash
-casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+casper-client get-deploy --node-address https://node.testnet.casper.network <DEPLOY_HASH>
 ```
 
 Retrieve the latest state root hash and check the primary account details. 
 
 ```bash
-casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+casper-client get-state-root-hash --node-address https://node.testnet.casper.network
 
 casper-client query-global-state \
---node-address https://rpc.testnet.casperlabs.io/ \
+--node-address https://node.testnet.casper.network \
 --state-root-hash <STATE_ROOT_HASH> \
 --key account-hash-<PRIMARY_ACCOUNT_HASH>
 ```
@@ -143,7 +143,7 @@ Set up a multi-signature scheme for the account by updating the `deployment` and
 
 ```bash
 casper-client put-deploy \
---node-address https://rpc.testnet.casperlabs.io \
+--node-address https://node.testnet.casper.network \
 --chain-name casper-test \
 --payment-amount 500000000 \
 --secret-key $PATH/secret_key.pem \
@@ -155,16 +155,16 @@ casper-client put-deploy \
 Verify that the deploy ran successfully.
 
 ```bash
-casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+casper-client get-deploy --node-address https://node.testnet.casper.network <DEPLOY_HASH>
 ```
 
 Retrieve the latest state root hash and check the primary account details. 
 
 ```bash
-casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+casper-client get-state-root-hash --node-address https://node.testnet.casper.network
 
 casper-client query-global-state \
---node-address https://rpc.testnet.casperlabs.io/ \
+--node-address https://node.testnet.casper.network \
 --state-root-hash <STATE_ROOT_HASH> \
 --key account-hash-<PRIMARY_ACCOUNT_HASH>
 ```
@@ -217,7 +217,7 @@ The table below summarizes the updates.
 To add an associated key to the primary account, use the `add_account.wasm` provided. This example adds two keys to the primary account (`account-hash-d89c*`): `user_1` with `account-hash-e2d0*`, and `user_2` with `account-hash-04a9*`.
 
 ```bash
-casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
+casper-client put-deploy --node-address https://node.testnet.casper.network \
 --chain-name "casper-test" \
 --payment-amount 500000000 \
 --secret-key $PATH/secret_key.pem \
@@ -229,11 +229,11 @@ casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 Verify that the deploy ran successfully.
 
 ```bash
-casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+casper-client get-deploy --node-address https://node.testnet.casper.network <DEPLOY_HASH>
 ```
 
 ```bash
-casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
+casper-client put-deploy --node-address https://node.testnet.casper.network \
 --chain-name "casper-test" \
 --payment-amount 500000000 \
 --secret-key $PATH/secret_key.pem \
@@ -245,16 +245,16 @@ casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 Verify that the deploy ran successfully.
 
 ```bash
-casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+casper-client get-deploy --node-address https://node.testnet.casper.network <DEPLOY_HASH>
 ```
 
 Retrieve the latest state root hash and check the primary account details. 
 
 ```bash
-casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+casper-client get-state-root-hash --node-address https://node.testnet.casper.network
 
 casper-client query-global-state \
---node-address https://rpc.testnet.casperlabs.io/ \
+--node-address https://node.testnet.casper.network \
 --state-root-hash <STATE_ROOT_HASH> \
 --key account-hash-<PRIMARY_ACCOUNT_HASH>
 ```
@@ -325,16 +325,16 @@ casper-client put-deploy --chain-name casper-test \
 Verify that the deploy ran successfully.
 
 ```bash
-casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+casper-client get-deploy --node-address https://node.testnet.casper.network <DEPLOY_HASH>
 ```
 
 Retrieve the latest state root hash and check the primary account details. 
 
 ```bash
-casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+casper-client get-state-root-hash --node-address https://node.testnet.casper.network
 
 casper-client query-global-state \
---node-address https://rpc.testnet.casperlabs.io/ \
+--node-address https://node.testnet.casper.network \
 --state-root-hash <STATE_ROOT_HASH> \
 --key account-hash-<PRIMARY_ACCOUNT_HASH>
 ```
@@ -384,22 +384,22 @@ casper-client sign-deploy -i hello_world_one_signature -k $PATH/user_2_secret_ke
 The deploy can be sent to the network using the `send-deploy` command:
 
 ```bash
-casper-client send-deploy --node-address https://rpc.testnet.casperlabs.io -i hello_world_two_signatures
+casper-client send-deploy --node-address https://node.testnet.casper.network -i hello_world_two_signatures
 ```
 
 Verify that the deploy ran successfully.
 
 ```bash
-casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+casper-client get-deploy --node-address https://node.testnet.casper.network <DEPLOY_HASH>
 ```
 
 Retrieve the latest state root hash and check the primary account details. 
 
 ```bash
-casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+casper-client get-state-root-hash --node-address https://node.testnet.casper.network
 
 casper-client query-global-state \
---node-address https://rpc.testnet.casperlabs.io/ \
+--node-address https://node.testnet.casper.network \
 --state-root-hash <STATE_ROOT_HASH> \
 --key account-hash-<PRIMARY_ACCOUNT_HASH>
 ```
@@ -421,7 +421,7 @@ Before removing a key, ensure the remaining associated keys can combine their we
 Given the current setup, the primary account will add an associated key, and then remove it. In other use cases, associated keys may need to combine their signatures to send a multi-sig deploy that removes a key.
 
 ```bash
-casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
+casper-client put-deploy --node-address https://node.testnet.casper.network \
 --chain-name "casper-test" \
 --payment-amount 500000000 \
 --secret-key $PATH/secret_key.pem \
@@ -433,16 +433,16 @@ casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 Verify that the deploy ran successfully.
 
 ```bash
-casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+casper-client get-deploy --node-address https://node.testnet.casper.network <DEPLOY_HASH>
 ```
 
 Retrieve the latest state root hash and check the primary account details. 
 
 ```bash
-casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+casper-client get-state-root-hash --node-address https://node.testnet.casper.network
 
 casper-client query-global-state \
---node-address https://rpc.testnet.casperlabs.io/ \
+--node-address https://node.testnet.casper.network \
 --state-root-hash <STATE_ROOT_HASH> \
 --key account-hash-<PRIMARY_ACCOUNT_HASH>
 ```
@@ -496,7 +496,7 @@ The table below summarizes the updates after calling the `add_account.wasm`.
 The `remove_account.wasm` will remove the newly added account to demonstrate the possibility of removing associated keys that may have been compromised.
 
 ```bash
-casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
+casper-client put-deploy --node-address https://node.testnet.casper.network \
 --chain-name "casper-test" \
 --payment-amount 500000000 \
 --secret-key $PATH/secret_key.pem \
@@ -507,16 +507,16 @@ casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 Verify that the deploy ran successfully.
 
 ```bash
-casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+casper-client get-deploy --node-address https://node.testnet.casper.network/ <DEPLOY_HASH>
 ```
 
 Retrieve the latest state root hash and check the primary account details. 
 
 ```bash
-casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+casper-client get-state-root-hash --node-address https://node.testnet.casper.network/
 
 casper-client query-global-state \
---node-address https://rpc.testnet.casperlabs.io/ \
+--node-address https://node.testnet.casper.network/ \
 --state-root-hash <STATE_ROOT_HASH> \
 --key account-hash-<PRIMARY_ACCOUNT_HASH>
 ```
