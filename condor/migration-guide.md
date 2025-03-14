@@ -16,10 +16,11 @@ Whether you need to migrate before Casper 2.0’s Mainnet launch depends on your
 |---------------------|-------------|
 | **Indirect integration via 3rd party Partner [<sup>ⓘ<sup>](a "Exchanges that don’t directly integrate with Casper Network but use liquidity from other exchanges via APIs.")** | No migration required, assuming the partner updates their integration.| 
 | **[Running your own node](#) [<sup>ⓘ<sup>](a "Exchanges that run their own node and interface with its RPC methods")** | Node software upgrade is required |
-| **[Direct RPC API Integration](#) [<sup>ⓘ<sup>](a "Exchanges that use public node infrastructure and interface with those via RPC")** | Adjustments to new response structures is required. Deprecated methods should be replaced with their newer alternatives |
 | **[SDK Integration](#) [<sup>ⓘ<sup>](a "Exchanges that use the publicly available Casper SDKs(e.g. JavaScript SDK, C#.NET SDK, Go SDK, etc.)")** | Depending on the SDK language (e.g. JS, Go) and the methods you use, upgrade to a Casper 2.0 compatible version is required|
 
 More information about the specific changes in, and features introduced by Casper 2.0 can be found [here](https://docs.casper.network/condor/index).
+
+NOTE: If you have additional use cases or are using a different integration type, please contact us at exchange-support@casper.network for assistance.
 
 ## Integration Types
 
@@ -27,78 +28,6 @@ More information about the specific changes in, and features introduced by Caspe
 If you run your own node, your migration experience will likely involve two distinct paths. 
 
 On the one hand, as a node operator you will participate in the actual Mainnet upgrade of Casper Network, which will take place a specific date and time (you will have a number of days to stage the upgrade in advance of the activation point), while on the other hand you will have to possibly migrate the method by which you interface with your own node. Continue with the migration details provided for exchanges with direct RPC integration or SDK integration, depending on which applies to you.
-
-### Direct RPC API Integration
-
-In Casper 2.0, the JSON RPC API is moved from the node to an accompanying software called [Casper Sidecar](https://github.com/casper-network/casper-sidecar). The sidecar communicates with the node via a binary protocol and exposes a familiar JSON RPC interface to the end users. It's still possible to fetch information directly from the node using the binary protocol; however, at this moment, the required libraries exist only for the Rust language.
-
-The sidecar could be run on the same machine as the node or on a separate instance. Multiple sidecars could be run against one node to increase availability.
-
-SSE API users can optionally configure the sidecar to store the SSE events in an external database. The current options are SQLite or PostgreSQL.
-
-More information about the sidecar configuration can be found in the [corresponding documentation](https://github.com/casper-network/casper-sidecar). Also, before the Mainnet upgrade, the Casper team will provide the upgrade instructions to the node operators with reasonable default configuration options.
-
-**Recommended Key Considerations:**</br>
-  - Enabling Binary Port for Forward-Facing APIs
-    - Sidecar Dependency: In Casper 2.0, the JSON-RPC service is moved to the casper-sidecar, which forwards requests to the node’s binary RPC port​. 
-    - Operators who need a public-facing API must enable the binary port on the node (the sidecar is a consumer of this service​)
-    - Binary Port doesn't need to be a public port (it only needs to be exposed to sidecar)
-
-
-**Transactions in Casper 2.0**  
-
-Transactions are a higher-order concept that encapsulate both **Deploys** and **V1 transactions**.  
-
-A **Transaction** is a polymorphic data structure that, for now, can be either:  
-- A **Deploy**, which remains compliant with the **1.x definition**.  
-- A **TransactionV1**, representing the new type of transaction, introduced alongside the `Deploy` type.   
-
-Secondly, Casper 2.0 includes new methods, renamed methods and methods with a change in response format. 
-
-At the same time, Casper 1.x deploys will continue to be accepted by Casper 2.0, hence if your entire integration comprises only the submission of Deploys (such as transfers in and out of accounts), you may want to take into account the below considerations prior to Mainnet activation of Casper 2.0. 
-
-<Placeholder requesting Core Team Jakub to share the details>
-Contents/details about list of changes in the RPC protocol divided into two parts:
-
-- Change in types with correspondences between the semantically identical types (Deploy and TransactionV1, Block and BlockV2)
-- Changes in the RPC methods that clearly describe which methods are deprecated and what are their newer alternatives.
-<Placeholder>
-
-**Preparing for Casper 2.0: Compatibility Considerations**  
-
-- Exchanges **may not need to make immediate changes** before the Mainnet activation of **Casper 2.0**; however, this depends on how they interact with the network.  
-
-- While the **account-put-deploy** JSON-RPC method continues to accept the same input structure as in **1.x**, the response format of **info_get_deploy** is **not backwards compatible** with **1.x**.  
-
-- If an exchange relies on the results of **info_get_deploy**, updates will be required to handle the new response format properly.  
-
-- Using 1.x Deploys in a 2.x Node:
-
-   - Casper 2.0 introduces a new Transaction model (replacing the old “Deploy”), but it will continue to accept and execute valid 1.x deploys for now​.
-   
-   - Casper Sidecar's `account_put_deploy` will be compatible with 1.x node `account_put_deploy`
-   
-   - This means the sidecar’s deploy submission method (`account_put_deploy`) remains usable with Casper 2.0 nodes, preserving compatibility for existing integration code. (In the Casper 2.0 JSON-RPC, this method is formally renamed to `account_put_transaction`​)
-   
-   - However, Casper Sidecar's `info_get_deploy` isn't 100% compatible with 1.x nodes `info_get_deploy`. 
-
-Therefore, Exchanges should review how they retrieve deploys/transactions and be aware of the response schema changes when querying for transaction status or details. For schema changes please refer the link [here](https://docs.casper.network/condor/jsonrpc#json-rpc-schema-definitions). 
-
-
->[!IMPORTANT]
-> **Deprecation of 1.x Structures (e.g. Deploys)**
-> 
-> **1.x structures, such as Deploys, are being deprecated.** While they will continue to function in **Casper 2.0**, they are scheduled to be phased out.  
-> 
-> Exchanges should be aware of this evolution and prepare for the transition towards **TransactionV1** as the go-forward model.
-
-#### **Action Required**  
-
-- ➡️ Exchanges should review their integration and assess whether their systems depend on **info_get_deploy** results. If so, necessary updates must be made to ensure compatibility with **Casper 2.0**.
-
-- ➡️ To assess your next steps, please evaluate your integration against the 1.x -> 2.0 JSON RPC changes detailed in the link [here](https://docs.casper.network/condor/jsonrpc#json-rpc-schema-definitions). 
-
-Please refer to this [page](https://docs.casper.network/condor/jsonrpc) for more details on **casper-sidecar** and **JSON RPC** changes.
 
 ### SDK Integration
 Casper 2.0 introduces changes essential for the network’s future evolution, which also include modifications to data structures that impact API responses. Since historical blockchain data cannot be altered due to cryptographic signatures, both legacy and new data structures will coexist in Casper 2.0 and be returned by the API.
@@ -142,6 +71,19 @@ Casper 2.0 introduces new block structures, transaction formats and retrograde s
 
 
 ### 2. Transaction Formats
+
+**Transactions in Casper 2.0**  
+
+Transactions are a higher-order concept that encapsulate both **Deploys** and **V1 transactions**.  
+
+A **Transaction** is a polymorphic data structure that, for now, can be either:  
+- A **Deploy**, which remains compliant with the **1.x definition**.  
+- A **TransactionV1**, representing the new type of transaction, introduced alongside the `Deploy` type.   
+
+Secondly, Casper 2.0 includes new methods, renamed methods and methods with a change in response format. 
+
+At the same time, Casper 1.x deploys will continue to be accepted by Casper 2.0, hence if your entire integration comprises only the submission of Deploys (such as transfers in and out of accounts), you may want to take into account the below considerations prior to Mainnet activation of Casper 2.0. 
+
 - The new transaction format provides more efficient processing and additional features.
 - Exchanges must adapt new transaction formats.
 
@@ -150,6 +92,13 @@ Casper 2.0 introduces new block structures, transaction formats and retrograde s
 - How exchanges should update their transaction processing mechanisms.
 - New API endpoints and modifications to existing ones
 - Expected changes in response formats
+
+>[!IMPORTANT]
+> **Deprecation of 1.x Structures (e.g. Deploys)**
+> 
+> **1.x structures, such as Deploys, are being deprecated.** While they will continue to function in **Casper 2.0**, they are scheduled to be phased out.  
+> 
+> Exchanges should be aware of this evolution and prepare for the transition towards **TransactionV1** as the go-forward model.
 
 ### 3. Backward Compatibility/Retrograde Support
 
