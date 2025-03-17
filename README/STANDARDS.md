@@ -31,8 +31,6 @@ The Casper Writing and Editing Style Guide aims to establish a set of standards 
 
 * Use Casper not casper.
 
-* Use Casper Labs instead of CasperLabs, casper labs, casperLabs, casperlabs, or any other variation.
-
 * Use Casper Network (the initial letter of both words capitalized) while referring to the Casper blockchain network.
 
 * Use ERC-20 while referring to the ‘Ethereum request for comment’ standard.

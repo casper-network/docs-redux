@@ -20,9 +20,9 @@ Of these `35000` is the only port required to be open for your node to function,
 ## Operating System Requirements
 The recommended OS version is Ubuntu 20.04.
 
-### Using Ubuntu 22.04
+### Using Ubuntu 22.04 or 24.04
 
-Installing using Ubuntu 22.04 follows the same instructions as 20.04 with one exception:
+Installing using Ubuntu 22.04 or 24.04 follows the same instructions as 20.04 with one exception:
 
 If you try to install packages, you will receive:
 
@@ -33,8 +33,8 @@ casper-client : Depends: libssl1.1 (>= 1.1.0) but it is not installable
 This message is due to the default `openssl` moving to 3.* with Ubuntu 22.04. You need to install OpenSSL 1.* for prior versions of Ubuntu to use the Casper binaries with the following command:
 
 ```
-curl -f -JLO http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb
-sudo apt install ./libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb
+curl -f -JLO http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+sudo apt install ./libssl1.1_1.1.1f-1ubuntu2_amd64.deb
 ```
 
 ## Required Number of Open Files
@@ -46,25 +46,27 @@ Before beginning, [update the maximum open files limit](./open-files.md) for you
 If you were running a previous node on this box, this will clean up state. If packages are not installed, the `apt remove` may give errors, but this is not a problem.
 
 ```bash
-sudo systemctl stop casper-node-launcher.service
+sudo /etc/casper/node_util.py stop
 sudo apt remove -y casper-client
 sudo apt remove -y casper-node
 sudo apt remove -y casper-node-launcher
 sudo rm /etc/casper/casper-node-launcher-state.toml
 sudo rm -rf /etc/casper/1_*
+sudo rm -rf /etc/casper/2_*
 sudo rm -rf /var/lib/casper/*
 ```
 
 ## Required Packages
 
-The following commands will set up the Casper Labs repository for packages:
+The following commands will set up the Casper repository for packages:
 
 ```bash
-echo "deb [arch=amd64] https://repo.casperlabs.io/releases focal main" | sudo tee -a /etc/apt/sources.list.d/casper.list
-curl -O https://repo.casperlabs.io/casper-repo-pubkey.asc
-sudo apt-key add casper-repo-pubkey.asc
+sudo mkdir -m 0755 -p /etc/apt/keyrings/
+sudo curl https://repo.casper.network/casper-repo-pubkey.gpg --output /etc/apt/keyrings/casper-repo-pubkey.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/casper-repo-pubkey.gpg] https://repo.casper.network/releases focal main" | sudo tee -a /etc/apt/sources.list.d/casper.list
 sudo apt update
 ```
+We are creating /etc/apt/keyrings if needed, so we don't have the issue with this key being trusted by all APT requests if stored in /etc/apt/trusted.gpg.d.
 
 ## Required Tools
 
@@ -127,16 +129,16 @@ NODE_ADDR can be set to an IP of a trusted node, or to Casper Labs' public nodes
 
 You can find active peers at https://cspr.live/tools/peers or use the following Casper Labs public nodes:
 
-* Testnet - NODE_ADDR=https://rpc.testnet.casperlabs.io
+* Testnet - NODE_ADDR=https://node.testnet.casper.network
 
-* Mainnet - NODE_ADDR=https://rpc.mainnet.casperlabs.io
+* Mainnet - NODE_ADDR=https://node.mainnet.casper.network
 
 ### Protocol Version
 
-Protocol version should be set to the largest available protocol version you see in `ls /etc/casper`.  As of writing this, it was 1_5_2:
+Protocol version should be set to the largest available protocol version you see in `ls /etc/casper`.  As of writing this, it was 1_5_8:
 
 ```bash
-PROTOCOL=1_5_2
+PROTOCOL=1_5_8
 ```
 
 ### Load `trusted_hash` in Config.toml of the Protocol Version
@@ -144,8 +146,8 @@ PROTOCOL=1_5_2
 The following command uses the previously established NODE_ADDR and PROTOCOL to load the `trusted_hash`:
 
 ```bash
-NODE_ADDR=https://rpc.mainnet.casperlabs.io
-PROTOCOL=1_5_2
+NODE_ADDR=https://node.mainnet.casper.network
+PROTOCOL=1_5_8
 sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address $NODE_ADDR | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/$PROTOCOL/config.toml
 ```
 

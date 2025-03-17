@@ -60,9 +60,9 @@ sudo rm -rf /var/lib/casper/*
 The following commands will set up the Casper Labs repository for packages:
 
 ```bash
-echo "deb [arch=amd64] https://repo.casperlabs.io/releases focal main" | sudo tee -a /etc/apt/sources.list.d/casper.list
-curl -O https://repo.casperlabs.io/casper-repo-pubkey.asc
-sudo apt-key add casper-repo-pubkey.asc
+sudo mkdir -m 0755 -p /etc/apt/keyrings/
+sudo curl https://repo.casper.network/casper-repo-pubkey.gpg --output /etc/apt/keyrings/casper-repo-pubkey.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/casper-repo-pubkey.gpg] https://repo.casper.network/releases focal main" | sudo tee -a /etc/apt/sources.list.d/casper.list
 sudo apt update
 ```
 
@@ -127,7 +127,7 @@ NODE_ADDR can be set to an IP of a trusted node, or to Casper Labs' public nodes
 
 You can find active peers at https://cspr.live/tools/peers or use the following Casper Labs public nodes:
 
-* Testnet - NODE_ADDR=https://rpc.testnet.casperlabs.io
+* Testnet - NODE_ADDR=https://node.testnet.casper.network
 
 * Mainnet - NODE_ADDR=https://rpc.mainnet.casperlabs.io
 

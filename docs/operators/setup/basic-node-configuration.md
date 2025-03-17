@@ -12,7 +12,7 @@ A node is usually run by executing the `casper-node-launcher`, which executes th
 
 The `casper-node-launcher` can be installed via a Debian package, which also creates the `casper` user and directory structures and sets up a `systemd` unit and logging.
 
-The `casper-node-launcher` Debian package can be obtained from https://repo.casperlabs.io. You only need to run the steps detailed there once.
+The `casper-node-launcher` Debian package can be obtained from https://repo.casper.network. You only need to run the steps detailed there once.
 
 Then, proceed to install the `casper-node-launcher` by running these commands:
 
@@ -50,9 +50,6 @@ The default location for executables from the Debian package install is `/usr/bi
 
 This is the default location for configuration files. It can be overwritten with the `CASPER_CONFIG_DIR` environment variable. The paths in this document assume the default configuration file location of `/etc/casper`. The data is organized as follows:
 
-- `delete_local_db.sh` - Removes `*.lmdb*` files from `/var/lib/casper/casper-node`
-- `pull_casper_node_version.sh` - Pulls `bin.tar.gz` and `config.tar.gz` from [genesis.casperlabs.io](https://genesis.casperlabs.io/) for a specified protocol version and extracts them into `/var/lib/bin/<protocol_version>` and `/etc/casper/<protocol_version>`
-- `config_from_example.sh` - Gets external IP to replace and create the `config.toml` from `config-example.toml`
 - `node_util.py` - A script that will be replacing other scripts and is the preferred method of performing the actions of `pull_casper_node_version.sh`, `config_from_example.sh`, and `delete_local_db.sh`.  Other scripts will be deprecated in future releases of `casper-node-launcher`.
 - `casper-node-launcher-state.toml` - The local state for the `casper-node-launcher` which is created during the first run
 - `validator_keys/` - The default folder for node keys, containing:
@@ -98,15 +95,16 @@ sudo -u casper /etc/casper/node_util.py stage_protocols <NETWORK_CONFIG>
 
 For `<NETWORK_CONFIG>`, we use `casper.conf` for Mainnet and `casper-test.conf` for Testnet.  This will install all currently released protocols in one step.
 
-This command will do the following:
-- Create `/var/lib/casper/bin/1_0_2/` and expand the `bin.tar.gz` containing at a minimum `casper-node`
-- Create `/etc/casper/1_0_2/` and expand the `config.tar.gz` containing `chainspec.toml`, `config-example.toml`, and possibly `accounts.csv` and other files
-- Remove the archive files and run `/etc/casper/config_from_example.sh 1_0_2` to create a `config.toml` from the `config-example.toml`
+This command will do the following for each protocol not installed with `1_5_8` as example here:
+- Create `/var/lib/casper/bin/1_5_8/` and expand the `bin.tar.gz` containing at a minimum `casper-node`
+- Create `/etc/casper/1_5_8/` and expand the `config.tar.gz` containing `chainspec.toml`, `config-example.toml`, and possibly `accounts.csv` and other files
+- Remove the archive files
+- Run the equivalent of `/etc/casper/node_util.py config_from_example 1_5_8` to create a `config.toml` from the `config-example.toml`
 
 Release versions are invoked using the underscore format, such as:
 
 ```bash
-sudo -u casper /etc/casper/pull_casper_node_version.sh 1_0_2
+sudo -u casper /etc/casper/pull_casper_node_version.sh 1_5_8
 ```
 
 ## The Node Configuration File {#config-file}
@@ -126,11 +124,7 @@ When joining the network, the system will start from the hash of a recent block 
 - Obtain the hash of a block from the status endpoint
 - Update the `config.toml` for the node to include the trusted hash. There is a field dedicated to this near the top of the file
 
-Here is an example command for obtaining a trusted hash. Replace the node address with an updated address from a node on the network.
-
-```bash
-sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 -b 20 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
-```
+This page has an example of using [sed to automatically update the trusted hash](https://docs.casper.network/operators/setup/install-node#getting-a-trusted-hash)
 
 ### Known Addresses {#known-addresses}
 

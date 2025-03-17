@@ -12,7 +12,7 @@ A node is usually run by executing the `casper-node-launcher`, which executes th
 
 The `casper-node-launcher` can be installed via a Debian package, which also creates the `casper` user and directory structures and sets up a `systemd` unit and logging.
 
-The `casper-node-launcher` Debian package can be obtained from https://repo.casperlabs.io. You only need to run the steps detailed there once.
+The `casper-node-launcher` Debian package can be obtained from https://repo.casper.network. You only need to run the steps detailed there once.
 
 Then, proceed to install the `casper-node-launcher` by running these commands:
 
@@ -50,9 +50,6 @@ The default location for executables from the Debian package install is `/usr/bi
 
 This is the default location for configuration files. It can be overwritten with the `CASPER_CONFIG_DIR` environment variable. The paths in this document assume the default configuration file location of `/etc/casper`. The data is organized as follows:
 
-- `delete_local_db.sh` - Removes `*.lmdb*` files from `/var/lib/casper/casper-node`
-- `pull_casper_node_version.sh` - Pulls `bin.tar.gz` and `config.tar.gz` from [genesis.casperlabs.io](https://genesis.casperlabs.io/) for a specified protocol version and extracts them into `/var/lib/bin/<protocol_version>` and `/etc/casper/<protocol_version>`
-- `config_from_example.sh` - Gets external IP to replace and create the `config.toml` from `config-example.toml`
 - `node_util.py` - A script that will be replacing other scripts and is the preferred method of performing the actions of `pull_casper_node_version.sh`, `config_from_example.sh`, and `delete_local_db.sh`.  Other scripts will be deprecated in future releases of `casper-node-launcher`.
 - `casper-node-launcher-state.toml` - The local state for the `casper-node-launcher` which is created during the first run
 - `validator_keys/` - The default folder for node keys, containing:
@@ -98,15 +95,16 @@ sudo -u casper /etc/casper/node_util.py stage_protocols <NETWORK_CONFIG>
 
 For `<NETWORK_CONFIG>`, we use `casper.conf` for Mainnet and `casper-test.conf` for Testnet.  This will install all currently released protocols in one step.
 
-This command will do the following:
-- Create `/var/lib/casper/bin/1_0_2/` and expand the `bin.tar.gz` containing at a minimum `casper-node`
-- Create `/etc/casper/1_0_2/` and expand the `config.tar.gz` containing `chainspec.toml`, `config-example.toml`, and possibly `accounts.csv` and other files
-- Remove the archive files and run `/etc/casper/config_from_example.sh 1_0_2` to create a `config.toml` from the `config-example.toml`
+This command will do the following for each protocol not installed with `1_5_8` as example here:
+- Create `/var/lib/casper/bin/1_5_8/` and expand the `bin.tar.gz` containing at a minimum `casper-node`
+- Create `/etc/casper/1_5_8/` and expand the `config.tar.gz` containing `chainspec.toml`, `config-example.toml`, and possibly `accounts.csv` and other files
+- Remove the archive files
+- Run the equivalent of `/etc/casper/node_util.py config_from_example 1_5_8` to create a `config.toml` from the `config-example.toml`
 
 Release versions are invoked using the underscore format, such as:
 
 ```bash
-sudo -u casper /etc/casper/pull_casper_node_version.sh 1_0_2
+sudo -u casper /etc/casper/pull_casper_node_version.sh 1_5_8
 ```
 
 ## The Node Configuration File {#config-file}
@@ -126,11 +124,7 @@ When joining the network, the system will start from the hash of a recent block 
 - Obtain the hash of a block from the status endpoint
 - Update the `config.toml` for the node to include the trusted hash. There is a field dedicated to this near the top of the file
 
-Here is an example command for obtaining a trusted hash. Replace the node address with an updated address from a node on the network.
-
-```bash
-sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 -b 20 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
-```
+This page has an example of using [sed to automatically update the trusted hash](https://docs.casper.network/operators/setup/install-node#getting-a-trusted-hash)
 
 ### Known Addresses {#known-addresses}
 
@@ -156,58 +150,16 @@ Provide the path to the secret keys for the node. This path is set to `etc/caspe
 
 ### Networking and Gossiping {#networking--gossiping}
 
-The node requires a publicly accessible IP address. The `config_from_example.sh` and `node_util.py` both allow IP for network address translation (NAT) setup. Specify the public IP address of the node. If you use the `config_from_example.sh` external services are called to find your IP and this is inserted into the `config.toml` created.
+The node requires a publicly accessible IP address. `node_util.py` allows IP for network address translation (NAT) setup. 
+Specify the public IP address of the node with the `/etc/casper/node_util.py stage_protocols [config file] --ip 'my.ip.goes.here'`.
+This will use the IP given rather than query for the external IP automatically.
+
 
 The following default values are specified in the file if you want to change them:
 
 - The port that will be used for status and transactions
 - The port used for networking
-- Known_addresses - these are the bootstrap nodes (there is no need to change these)
-
-### Enabling Speculative Execution
-
-The `speculative_exec` endpoint provides a method to execute a transaction without committing its execution effects to global state. This can be used by developers to roughly estimate the gas costs of sending the transaction in question. By default, `speculative_exec` is disabled on a node.
-
-`speculative_exec` can be enabled within *config.toml* by changing `enable_server` to `true` under the configuration options for the speculative execution JSON-RPC HTTP server.
-
-Node operators may also change the incoming request port for speculative execution, which defaults to `7778`. Further, you can choose to alter the `qps_limit` and `max_body_bytes`, which limit the amount and size of requests to the speculative execution server.
-
-#### Example Config.toml configuration with speculative execution enabled
-    
-```
-# ========================================================================
-# Configuration options for the speculative execution JSON-RPC HTTP server
-# ========================================================================
-[speculative_exec_server]
-
-# Flag which enables the speculative execution JSON-RPC HTTP server.
-enable_server = true
-
-# Listening address for speculative execution JSON-RPC HTTP server.  If the port
-# is set to 0, a random port will be used.
-#
-# If the specified port cannot be bound to, a random port will be tried instead.
-# If binding fails, the speculative execution JSON-RPC HTTP server will not run,
-# but the node will be otherwise unaffected.
-#
-# The actual bound address will be reported via a log line if logging is enabled.
-address = '0.0.0.0:7778'
-
-# The global max rate of requests (per second) before they are limited.
-# Request will be delayed to the next 1 second bucket once limited.
-qps_limit = 1
-
-# Maximum number of bytes to accept in a single request body.
-max_body_bytes = 2_621_440
-
-# Specifies which origin will be reported as allowed by speculative execution server.
-#
-# If left empty, CORS will be disabled.
-# If set to '*', any origin is allowed.
-# Otherwise, only a specified origin is allowed. The given string must conform to the [origin scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
-cors_origin = ''
-
-```
+- Known_addresses - these are the bootstrap nodes you will build peers from
 
 ## Rust Client Installation {#client-installation}
 

@@ -18,7 +18,7 @@ Both the [`put_key`](https://docs.rs/casper-contract/latest/casper_contract/cont
 
 ### `storage::write` / `storage::read`
 
-[`storage::write`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.write.html) writes a given value to a previously established URef (created using [`storage::new_uref`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_uref.html)). Unlike `put_key`, this value is not one of the `Key` types listed above, but rather any of the potential [`CLType`](https://docs.casperlabs.io/developers/json-rpc/types_cl/#cltype)s as outlined. [`storage::read`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.read.html) provides a method to retrieve these values from the associated URef.
+[`storage::write`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.write.html) writes a given value to a previously established URef (created using [`storage::new_uref`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_uref.html)). Unlike `put_key`, this value is not one of the `Key` types listed above, but rather any of the potential [`CLType`](https://docs.casper.network/developers/json-rpc/types_cl)s as outlined. [`storage::read`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.read.html) provides a method to retrieve these values from the associated URef.
 
 ### `storage:dictionary_put` / `storage::dictionary_get`
 

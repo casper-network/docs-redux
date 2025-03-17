@@ -23,7 +23,7 @@ casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 **Example Query:**
 
 ```bash
-casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io 
+casper-client get-state-root-hash --node-address https://node.testnet.casper.network 
 ```
 
 <details>
@@ -89,7 +89,7 @@ The `-v` option generates verbose output, printing the RPC request and response 
 ```bash
 casper-client query-global-state -v \
 --id 3 \
---node-address https://rpc.testnet.casperlabs.io/  \
+--node-address https://node.testnet.casper.network  \
 --state-root-hash fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1 \
 --key transfer-ab3e11fd612ccf9ddf5ddb3e5c0b3d3b5e5c0921fd1b45e8c657a63f01d6adcb
 ```
@@ -172,7 +172,7 @@ casper-client query-global-state \
 ```bash
 casper-client query-global-state -v \
 --id 4 \
---node-address https://rpc.testnet.casperlabs.io/  \
+--node-address https://node.testnet.casper.network  \
 --state-root-hash fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1 \
 --key 0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf
 ```
@@ -237,7 +237,7 @@ Repeat the same step to query information about the _Target_ account:
 ```bash
 casper-client query-global-state -v \
 --id 5 \
---node-address https://rpc.testnet.casperlabs.io/  \
+--node-address https://node.testnet.casper.network  \
 --state-root-hash fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1 \
 --key 01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986
 ```
@@ -319,7 +319,7 @@ casper-client query-balance \
 
 ```bash
 casper-client query-balance -v --id 6 \
---node-address https://rpc.testnet.casperlabs.io/ \
+--node-address https://node.testnet.casper.network \
 --state-root-hash fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1 \
 --purse-identifier account-hash-e70dbca48c2d31bc2d754e51860ceaa8a1a49dc627b20320b0ecee1b6d9ce655
 ```
@@ -374,7 +374,7 @@ casper-client get-balance \
 
 ```bash
 casper-client query-balance -v --id 7 \
---node-address https://rpc.testnet.casperlabs.io/ \
+--node-address https://node.testnet.casper.network \
 --state-root-hash fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1 \
 --purse-identifier account-hash-1ed5a1c39bea93c105f2d22c965a84b205b36734a377d05dbb103b6bfaa595a7
 ```
