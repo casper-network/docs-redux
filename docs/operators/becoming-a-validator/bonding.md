@@ -66,7 +66,7 @@ Calling the `add_bid` entry point on the auction contract has a fixed cost of 2.
 
 **Example:**
 
-This example command uses the Casper Testnet to bid 10,000 CSPR for a validating slot:
+This example command uses the Casper Testnet to bid 100,000 CSPR for a validating slot:
 
 ```bash
 sudo -u casper casper-client put-deploy \
@@ -77,7 +77,7 @@ sudo -u casper casper-client put-deploy \
 --session-hash hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2 \
 --session-entry-point add_bid \
 --session-arg "public_key:public_key='01c297d2931fec7e22b2fb1ae3ca5afdfacc2c82ba501e8ed158eecef82b4dcdee'" \
---session-arg "amount:U512='$[100000000 * 1000000000]'" \
+--session-arg "amount:U512='$[100000 * 1000000000]'" \
 --session-arg "delegation_rate:u8='10'"
 ```
 
@@ -137,7 +137,7 @@ sudo -u casper casper-client put-deploy \
 --payment-amount 3000000000 \
 --session-path ~/casper-node/target/wasm32-unknown-unknown/release/add_bid.wasm \
 --session-arg "public_key:public_key='01c297d2931fec7e22b2fb1ae3ca5afdfacc2c82ba501e8ed158eecef82b4dcdee'" \
---session-arg "amount:U512='$[10000 * 1000000000]'" \
+--session-arg "amount:U512='$[100000 * 1000000000]'" \
 --session-arg "delegation_rate:u8='10'"
 ```
 
