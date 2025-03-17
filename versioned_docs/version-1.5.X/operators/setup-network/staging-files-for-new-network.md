@@ -43,32 +43,23 @@ This is a description of Mainnet protocol version hosting (with network name: `c
 
 At the root of the hosting server directory for a given network, a `protocol_versions` file exists.  This holds the valid protocol versions for a network.
 
-We can look at this manually on Mainnet using *curl*.  As of writing this, `1.4.6` is the latest version and the contents of this file will change.
+We can look at this manually on Mainnet using *curl*.  As of writing this, `1_5_8` is the latest version and the contents of this file will change.
 
 ```bash
 
-$ curl -s genesis.casperlabs.io/casper/protocol_versions
-1_0_0
-1_1_0
-1_1_2
-1_2_0
-1_2_1
-1_3_2
-1_3_4
-1_4_1
-1_4_3
-1_4_4
-1_4_5
-1_4_6
+$ curl -s genesis.casper.network/casper/protocol_versions
+1_5_8
 
 ```
 
 We should find `bin.tar.gz` and `config.tar.gz` in those directories under `casper`.
 
+Since 1.5 `casper-node` version, the network syncs with `fast-sync` protocol where historical nodes are not needed. The only time multiple protocols are needed is during and upgrade staging period. However, it is typical that `protocol_versions` is updated only when a new version is staged, so usually the current and previous version are help in `protocol_versions`.
+
 ## Protocol Version
 
-The protocol version of a network is not related to the `casper-node` version.  In Mainnet, these have often been the same. However, with a new network, you would use the latest `casper-node` version for your 
-`1.0.0` protocol.
+The protocol version of a network is not related to the `casper-node` version.  In Mainnet, these have often been the same. 
+However, with a new network, you would use the latest `casper-node` version for your `1.0.0` protocol.
 
 ## Network Configuration File
 

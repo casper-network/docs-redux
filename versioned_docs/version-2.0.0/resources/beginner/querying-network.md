@@ -92,7 +92,7 @@ casper-client query-global-state \
 ```bash
 casper-client query-global-state -v \
   --id 4 \
-  --node-address https://rpc.testnet.casperlabs.io/ \
+  --node-address https://node.testnet.casper.network \
   --state-root-hash a306a9cf869e52fe9eacdc28aade94215112cc04b6737b3669c35568a47a7dc2 \
   --key 01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986
 ```
@@ -219,7 +219,7 @@ The `-v` option generates verbose output, printing the RPC request and response 
 ```bash
 casper-client query-balance -v \
   --id 6 \
-  --node-address https://rpc.testnet.casperlabs.io/ \
+  --node-address https://node.testnet.casper.network \
   --state-root-hash a306a9cf869e52fe9eacdc28aade94215112cc04b6737b3669c35568a47a7dc2 \
   --purse-identifier 01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986
 ```

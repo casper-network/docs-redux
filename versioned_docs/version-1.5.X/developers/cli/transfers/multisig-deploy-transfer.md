@@ -246,12 +246,12 @@ Towards the end of the following output, you can observe that there is an **appr
 
 ### Sending the deploy {#sending-the-deploy}
 
-The next step is to send the deploy for processing on the network. As described in the [Prerequisites](#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node `https://rpc.testnet.casperlabs.io/` from the Testnet.
+The next step is to send the deploy for processing on the network. As described in the [Prerequisites](#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node `https://node.testnet.casper.network` from the Testnet.
 
 ```bash
 casper-client send-deploy \
 --input transfer2.deploy \
---node-address https://rpc.testnet.casperlabs.io/ 
+--node-address https://node.testnet.casper.network 
 ```
 
 | Parameter    | Description                                                          |

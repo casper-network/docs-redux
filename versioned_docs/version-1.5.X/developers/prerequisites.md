@@ -265,7 +265,7 @@ The node address is the IP address or URL of a peer node.
 Casper Labs provides public Casper node JSON-RPC endpoints for each network:
 
 * Mainnet: https://rpc.mainnet.casperlabs.io/rpc
-* Testnet: https://rpc.testnet.casperlabs.io/rpc
+* Testnet: https://node.testnet.casper.networkrpc
 * Integration network: https://rpc.integration.casperlabs.io/rpc
 
 Additionally, both the official Testnet and Mainnet provide block explorers that list the IP addresses of nodes on their respective networks.
