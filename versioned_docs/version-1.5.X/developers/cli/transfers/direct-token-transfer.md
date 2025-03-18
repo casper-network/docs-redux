@@ -61,7 +61,7 @@ Save the returned _deploy_hash_ from the output to query information about the t
 casper-client transfer -v \
 --id 3 \
 --transfer-id 11102023 \
---node-address https://rpc.testnet.casperlabs.io/  \
+--node-address https://node.testnet.casper.network  \
 --amount 5000000000 \
 --secret-key ~/KEYS/secret_key.pem \
 --chain-name casper-test \
@@ -188,7 +188,7 @@ Transfer addresses use a `transfer-` string prefix.
 
 ```bash
 casper-client get-deploy 
---node-address https://rpc.testnet.casperlabs.io 
+--node-address https://node.testnet.casper.network 
 1f17a0bdeaaf71abd03492c854cdf97f746432751721ce555e95b9cefe641e3c
 ```
 

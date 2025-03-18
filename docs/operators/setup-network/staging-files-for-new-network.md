@@ -47,17 +47,7 @@ We can look at this manually on Mainnet using *curl*.  As of writing this, `1.4.
 
 ```bash
 
-$ curl -s genesis.casperlabs.io/casper/protocol_versions
-1_0_0
-1_1_0
-1_1_2
-1_2_0
-1_2_1
-1_3_2
-1_3_4
-1_4_1
-1_4_3
-1_4_4
+$ curl -s genesis.casper.network/casper/protocol_versions
 1_4_5
 1_4_6
 
