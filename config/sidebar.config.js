@@ -124,8 +124,7 @@ module.exports = {
                 id: "developers/writing-onchain-code/index",
             },
             items: [
-                "developers/writing-onchain-code/getting-started",
-                "developers/writing-onchain-code/assembly-script",
+                "developers/writing-onchain-code/getting-started",                
                 "developers/writing-onchain-code/simple-contract",
                 "developers/writing-onchain-code/testing-contracts",
                 "developers/writing-onchain-code/upgrading-contracts",
