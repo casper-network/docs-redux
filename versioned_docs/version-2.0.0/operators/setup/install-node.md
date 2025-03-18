@@ -33,8 +33,8 @@ casper-client : Depends: libssl1.1 (>= 1.1.0) but it is not installable
 This message is due to the default `openssl` moving to 3.* with Ubuntu 22.04. You need to install OpenSSL 1.* for prior versions of Ubuntu to use the Casper binaries with the following command:
 
 ```
-curl -f -JLO http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.1.1f-1ubuntu2_amd64.deb
-sudo apt install ./openssl_1.1.1f-1ubuntu2_amd64.deb
+curl -f -JLO http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+sudo apt install ./libssl1.1_1.1.1f-1ubuntu2_amd64.deb
 ```
 
 ## Required Number of Open Files

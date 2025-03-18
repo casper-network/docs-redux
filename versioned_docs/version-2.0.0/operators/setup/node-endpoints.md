@@ -189,30 +189,15 @@ If this port is closed, the requests coming to this port will not be served, but
 
 ## Setting up Firewall Rules
 
-To limit inbound traffic to the node’s endpoints, you can set firewall rules similar to the `ufw` commands below:
+To limit inbound traffic to the node’s endpoints, you can set firewall rules.
 
-```bash
-sudo apt install ufw -y
-sudo ufw disable
-sudo ufw reset
-sudo ufw default allow outgoing
-sudo ufw default deny incoming
-sudo ufw limit ssh
-sudo ufw limit 7777/tcp
-sudo ufw limit 8888/tcp
-sudo ufw limit 35000/tcp
-sudo ufw enable
-```
+Two example files are available: [firewall.sh](https://genesis.casper.network/firewall.sh) and more restrictive [firewall_only_node_to_node.sh](https://genesis.casper.network/firewall_only_node_to_node.sh).
 
-These commands will limit requests to the available ports of your node. Port 35000 should be left open, although you can limit traffic, as it is crucial for node-to-node communication.
-
-If you have any concerns, questions, or issues, please [submit a request](https://support.casperlabs.io/hc/en-gb/requests/new) to the Casper support team.
-
+Both of these include `8888` access from casper-network-monitor IP for tracking status of the network. More information is included in the comments of the files.
 
 ## Restricting Access for Private Networks
 
 Any node can join Mainnet and Testnet and communicate with the nodes in the network. Private networks may wish to restrict access for new nodes joining the network as described [here](../setup-network/create-private.md#network-access-control).
-
 
 ## Summary of Related Links
 
@@ -229,5 +214,4 @@ Here is a summary of the links mentioned on this page:
 - [Confirming that the node is synchronized](./joining.md#step-7-confirm-the-node-is-synchronized)
 - [Monitoring and consuming events](../../developers/dapps/monitor-and-consume-events.md)
 - [Private network access control](../setup-network/create-private.md#network-access-control)
-- [FAQs for a basic validator node ](https://support.casperlabs.io/hc/en-gb/sections/6960448246683-Node-Operation-FAQ)
 - [External FAQs on Mainnet and Testnet validator node setup](https://docs.cspr.community/docs/faq-validator.html)
