@@ -86,7 +86,7 @@ sudo -u casper casper-client put-deploy \
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
 2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
 3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
-4. `payment-amount` - The payment for the Deploy in motes. You must check the network's chainspec. For example, this entry point call needs 10,000 motes for node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml)
+4. `payment-amount` - The payment for the Deploy in motes. You must check the network's chainspec. For example, this entry point call needs 2,500,000,000 motes for node version [1.5.8](https://github.com/casper-network/casper-node/blob/release-1.5.8/resources/production/chainspec.toml)
 5. `session-hash` - Hex-encoded hash of the stored auction contract, which depends on the network you are using. For Casper's Mainnet and Testnet, the hashes are:
 
 - **Testnet**: `hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2`
@@ -102,30 +102,44 @@ The command will return a deploy hash, which is needed to verify the deploy's pr
 
 :::tip
 
-Calling the `activate_bid` entry point on the auction contract has a fixed cost of 10,000 motes.
+Calling the `activate_bid` entry point on the auction contract has a fixed cost of 2,500,000,000 motes.
 
 :::
 
-**Example:**
+**Examples:**
 
 This example uses the Casper Testnet to reactivate a bid:
 
 ```bash
 sudo -u casper casper-client put-deploy \
---node-address http://65.21.75.254:7777  \
+--node-address https://node.testnet.casper.network  \
 --secret-key /etc/casper/validator_keys/secret_key.pem \
 --chain-name casper-test \
---payment-amount 10000 \
+--payment-amount 2500000000 \
 --session-hash hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2 \
 --session-entry-point activate_bid \
 --session-arg "validator_public_key:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
 ```
 
+This example uses the Casper Mainnet to reactivate a bid:
+
+```bash
+sudo -u casper casper-client put-deploy \
+--node-address https://node.mainnet.casper.network \
+--secret-key /etc/casper/validator_keys/secret_key.pem \
+--chain-name casper  \
+--payment-amount 2500000000 \
+--session-hash hash-ccb576d6ce6dec84a551e48f0d0b7af89ddba44c7390b690036257a04a3ae9ea \
+--session-entry-point activate_bid \
+--session-arg "validator_public_key:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
+```
+
+
 Next, [check the bid activation](#checking-the-bid-activation) status.
 
-### Method 2: Activating the Bid with Compiled Wasm {#activating-compiled-wasm}
+### Method 2: Activating the Bid with Compiled Wasm {#activating-compiled-wasm} (Not recommended)
 
-The second method to rejoin the network is to reactivate your bid using the `activate_bid.wasm`.
+The second method to rejoin the network is to reactivate your bid using the `activate_bid.wasm`. 
 
 
 ```bash
@@ -162,7 +176,7 @@ Here is an example that reactivates a bid using the `activate_bid.wasm`. You mus
 
 ```bash
 sudo -u casper casper-client put-deploy \
---node-address http://65.21.75.254:7777  \
+--node-address https://node.mainnet.casper.network  \
 --secret-key /etc/casper/validator_keys/secret_key.pem \
 --chain-name casper-test \
 --payment-amount 5000000000 \

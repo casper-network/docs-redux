@@ -8,6 +8,16 @@ It is recommended that a bonding request be sent once the node has completed the
 
 In the Testnet, era durations are approximately two hours. The entire process takes approximately 3 eras. Therefore, **the time for bid submission to inclusion in the validator set is a minimum of six hours**. Bonding requests (bids) are transactions like any other. Because they are generic transactions, they are more resistant to censorship.
 
+## Minimum Bid Amount
+
+There is a minimum defined bid amount in the `chainspec.toml`. This value is currently 100,000 CSPR as seen as the extract from `chainspec.toml` below.
+
+```toml
+# Minimum bid amount allowed in motes. Withdrawing one's bid to an amount strictly less than
+# the value specified will be treated as a full unbond of a validator and their associated delegators
+minimum_bid_amount = 100_000_000_000_000
+```
+
 ## Method 1: Bonding with the System Auction Contract {#bonding-system-auction}
 
 This method submits a bid using the system auction contract. Call the existing `add_bid` entry point from the system auction contract. Using this method, you do not need to build any contracts, reducing costs and complexity.
@@ -88,8 +98,8 @@ sudo -u casper casper-client put-deploy \
 --session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/add_bid.wasm \
 --session-arg "public_key:public_key='<PUBLIC_KEY_HEX>'" \
 --session-arg "amount:u512='<BID-AMOUNT>'" \
---session-arg "delegation_rate:u8='<PERCENT_TO_KEEP_FROM_DELEGATORS>'"
---session-arg "minimum_delegation_amount:u64='<MINIMUM_DELEGATION_AMOUNT>'"
+--session-arg "delegation_rate:u8='<PERCENT_TO_KEEP_FROM_DELEGATORS>'" \
+--session-arg "minimum_delegation_amount:u64='<MINIMUM_DELEGATION_AMOUNT>'" \
 --session-arg "maximum_delegation_amount:u64='<MAXIMUM_DELEGATION_AMOUNT>'"
 ```
 

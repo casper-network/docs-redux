@@ -86,7 +86,7 @@ sudo -u casper casper-client put-deploy \
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
 2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
 3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
-4. `payment-amount` - The payment for the Deploy in motes. You must check the network's chainspec. For example, this entry point call needs 2,500,000,000 motes for node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml)
+4. `payment-amount` - The payment for the Deploy in motes. You must check the network's chainspec. For example, this entry point call needs 2,500,000,000 motes for node version [1.5.8](https://github.com/casper-network/casper-node/blob/release-1.5.8/resources/production/chainspec.toml)
 5. `session-hash` - Hex-encoded hash of the stored auction contract, which depends on the network you are using. For Casper's Mainnet and Testnet, the hashes are:
 
 - **Testnet**: `hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2`
@@ -102,7 +102,7 @@ The command will return a deploy hash, which is needed to verify the deploy's pr
 
 :::tip
 
-Calling the `activate_bid` entry point on the auction contract has a fixed cost of 10,000 motes.
+Calling the `activate_bid` entry point on the auction contract has a fixed cost of 2,500,000,000 motes.
 
 :::
 
