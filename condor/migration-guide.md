@@ -60,9 +60,9 @@ Please see instructions below for your specific SDK language:
 - If you are using an SDK not listed in this chapter, please contact the Casper Exchange Support Team.
 
 
-## Important changes/updates in Casper 2.0(Placeholder - Core Team input required)
+## Important changes/updates in Casper 2.0
 
-Casper 2.0 introduces new block structures, transaction formats and retrograde support. More details can be found below/here (LINK or content below).
+Casper 2.0 introduces new block structures, transaction formats and retrograde support. More details can be found below.
 
 ### 1. New Block Structure
    
@@ -108,18 +108,13 @@ At the same time, Casper 1.x deploys will continue to be accepted by Casper 2.0,
 
 - Common scenarios where the sidecar may disconnect and how to mitigate them.
 
-## Minimal vs. Full Migration (Placeholder - Core Team input required)
+## Minimal vs. Full Migration
 
 It is highly recommended to switch entirely to new API endpoints and adopt new transaction formats.
 
 However, where full migration is not feasible in the short term, exchanges may choose to adapt minimal migration. 
 
 Minimal migration will be adapting new block and transaction structures.
-
-
-## Common Integration Issues (Placeholder - Core Team input required)
-
-Placeholder:  Cover anticipated issues, including transaction failures and undelegation nuances.
 
 
 ## Casper Exchange Support Team
