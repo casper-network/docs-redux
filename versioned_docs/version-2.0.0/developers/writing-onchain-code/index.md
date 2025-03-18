@@ -14,7 +14,6 @@ This section shows you how to write session code and smart contracts in Rust and
 | Title                                       | Description                     |
 | ------------------------------------------- | ------------------------------- |
 |[Getting Started with Rust](./getting-started.md)| An introduction to using Rust with the Casper Platform|
-|[Getting Started with AssemblyScript](./assembly-script.md) | An introduction to using AssemblyScript with the Casper Platform |
 |[Writing a Basic Smart Contract in Rust](./simple-contract.md)   | An example of a smart contract built in Rust|
 |[Unit Testing Smart Contracts](./testing-contracts.md)      | Steps to test contract code using the unit testing framework|
 |[Upgrading and Maintaining Smart Contracts](./upgrading-contracts.md)| An introduction to versioning smart contracts|
