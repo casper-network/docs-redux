@@ -80,7 +80,7 @@ sudo -u casper casper-client put-deploy \
 --payment-amount <PAYMENT_AMOUNT_IN_MOTES> \
 --session-hash <SESSION_HASH> \
 --session-entry-point activate_bid \
---session-arg "validator_public_key:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
+--session-arg "validator:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
 ```
 
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
@@ -118,7 +118,7 @@ sudo -u casper casper-client put-deploy \
 --payment-amount 2500000000 \
 --session-hash hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2 \
 --session-entry-point activate_bid \
---session-arg "validator_public_key:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
+--session-arg "validator:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
 ```
 
 This example uses the Casper Mainnet to reactivate a bid:
@@ -131,7 +131,7 @@ sudo -u casper casper-client put-deploy \
 --payment-amount 2500000000 \
 --session-hash hash-ccb576d6ce6dec84a551e48f0d0b7af89ddba44c7390b690036257a04a3ae9ea \
 --session-entry-point activate_bid \
---session-arg "validator_public_key:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
+--session-arg "validator:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
 ```
 
 
@@ -149,7 +149,7 @@ sudo -u casper casper-client put-deploy \
 --chain-name <CHAIN_NAME> \
 --payment-amount <PAYMENT_AMOUNT_IN_MOTES> \
 --session-path "$HOME/casper-node/target/wasm32-unknown-unknown/release/activate_bid.wasm" \
---session-arg "validator_public_key:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
+--session-arg "validator:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
 ```
 
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
@@ -181,7 +181,7 @@ sudo -u casper casper-client put-deploy \
 --chain-name casper-test \
 --payment-amount 5000000000 \
 --session-path "$HOME/casper-node/target/wasm32-unknown-unknown/release/activate_bid.wasm" \
---session-arg "validator_public_key:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
+--session-arg "validator:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
 ```
 
 Check that the deploy was successful with the `casper-client get-deploy <deploy_hash>` or by searching for the deploy hash on [https://cspr.live/](https://cspr.live/). Also, check the bid activation status as shown below.
