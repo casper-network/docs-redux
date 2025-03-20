@@ -131,11 +131,11 @@ Email: Casper Exchange Support: exchange-support@casper.network
 ## Summary
 Casper 2.0 is coming to Mainnet in the very foreseeable future, and we're honored and excited that you and your user community are part of this massively consequential event in the history of the Casper blockchain. In order to make sure you and your users are prepared for the Mainnet activation of Casper 2.0, please follow these steps:
 
-Determine your current type of integration with the Casper Network. Refer to the "Should I update my integration?" section to identify your integration type.
+Determine your current type of integration with the Casper Network. Refer to the "[Should I update my integration?](#should-i-update-my-integration)" section to identify your integration type.
 
 If your integration type requires a migration, follow the respective migration process for your integration as outlined in the sections above.
 
-Actively communicate with the [Casper Exchange Support Team](https://docs.casper.network/condor/migration-guide#casper-exchange-support-team), to receive support for a successful migration, and to allow Casper to track ecosystem readiness. 
+Actively communicate with the [Casper Exchange Support Team](#casper-exchange-support-team), to receive support for a successful migration, and to allow Casper to track ecosystem readiness. 
 
 
 
