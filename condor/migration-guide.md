@@ -14,9 +14,9 @@ Whether you need to migrate before Casper 2.0’s Mainnet launch depends on your
 
 | Integration Type     | Required actions |
 |---------------------|-------------|
-| **Indirect integration via 3rd party Partner [<sup>ⓘ<sup>](a "Exchanges that don’t directly integrate with Casper Network but use liquidity from other exchanges via APIs.")** | No migration required, assuming the partner updates their integration.| 
-| **[Running your own node](#) [<sup>ⓘ<sup>](a "Exchanges that run their own node and interface with its RPC methods")** | Node software upgrade is required |
-| **[SDK Integration](#) [<sup>ⓘ<sup>](a "Exchanges that use the publicly available Casper SDKs(e.g. JavaScript SDK, C#.NET SDK, Go SDK, etc.)")** | Depending on the SDK language (e.g. JS, Go) and the methods you use, upgrade to a Casper 2.0 compatible version is required|
+| **Indirect integration via 3rd party Partner <span title="Exchanges that don’t directly integrate with Casper Network but use liquidity from other exchanges via APIs."><sup>ⓘ</sup></span>** | No migration required, assuming the partner updates their integration.| 
+| **[Running your own node](#) <span title="Exchanges that run their own node and interface with its RPC methods."><sup>ⓘ</sup></span>** | Node software upgrade is required |
+| **[SDK Integration](#) <span title="Exchanges that use the publicly available Casper SDKs (e.g., JavaScript SDK, C#.NET SDK, Go SDK, etc.)."><sup>ⓘ</sup></span>** | Depending on the SDK language (e.g. JS, Go) and the methods you use, upgrade to a Casper 2.0 compatible version is required|
 
 More information about the specific changes in, and features introduced by Casper 2.0 can be found [here](https://docs.casper.network/condor/index).
 
@@ -93,7 +93,8 @@ At the same time, Casper 1.x deploys will continue to be accepted by Casper 2.0,
 - New API endpoints and modifications to existing ones
 - Expected changes in response formats
 
->[!IMPORTANT]
+> **IMPORTANT**
+>
 > **Deprecation of 1.x Structures (e.g. Deploys)**
 > 
 > **1.x structures, such as Deploys, are being deprecated.** While they will continue to function in **Casper 2.0**, they are scheduled to be phased out.  
@@ -130,11 +131,11 @@ Email: Casper Exchange Support: exchange-support@casper.network
 ## Summary
 Casper 2.0 is coming to Mainnet in the very foreseeable future, and we're honored and excited that you and your user community are part of this massively consequential event in the history of the Casper blockchain. In order to make sure you and your users are prepared for the Mainnet activation of Casper 2.0, please follow these steps:
 
-Determine your [current type of integration](https://docs.make.software/exchange-migration-draft#should-i-migrate-my-integration) with Casper Network
+Determine your current type of integration with the Casper Network. Refer to the "[Should I update my integration?](#should-i-update-my-integration)" section to identify your integration type.
 
-If your integration type requires a migration, follow the [Migration Documentation](https://docs.make.software/exchange-migration-draft#integration-specific-migration-documentation) for your integration
+If your integration type requires a migration, follow the respective migration process for your integration as outlined in the sections above.
 
-Actively communicate with the [Casper Exchange Support Team](https://docs.make.software/exchange-migration-draft#casper-exchange-support-team), to receive support for a successful migration, and to allow Casper to track ecosystem readiness. 
+Actively communicate with the [Casper Exchange Support Team](#casper-exchange-support-team), to receive support for a successful migration, and to allow Casper to track ecosystem readiness. 
 
 
 
