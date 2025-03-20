@@ -135,7 +135,7 @@ Determine your current type of integration with the Casper Network. Refer to the
 
 If your integration type requires a migration, follow the respective migration process for your integration as outlined in the sections above.
 
-Actively communicate with the [Casper Exchange Support Team](https://docs.make.software/exchange-migration-draft#casper-exchange-support-team), to receive support for a successful migration, and to allow Casper to track ecosystem readiness. 
+Actively communicate with the [Casper Exchange Support Team](https://docs.casper.network/condor/migration-guide#casper-exchange-support-team), to receive support for a successful migration, and to allow Casper to track ecosystem readiness. 
 
 
 
