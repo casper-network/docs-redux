@@ -136,6 +136,12 @@ The `get_state_item` RPC endpoint, while not yet deprecated, will be deprecated 
 
 ---
 
+### Comprehensive List of Casper 2.0 Updates
+
+A detailed list of all changes, updates, and deprecations introduced in Casper 2.0 is available on this [page](./all-prs.md).
+
+---
+
 ### Upcoming Features/updates
 - Activation of the Contract/Account unification feature.
 - Activation of Virtual Machine 2.0.

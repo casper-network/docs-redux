@@ -213,3 +213,220 @@ number|merged_at|url|title|Feature|Change Type
 4843|2024-09-05 12:44:34+00:00|https://github.com/casper-network/casper-node/pull/4843|Extend FFI for backwards compatibility|ExEng|Fix
 4844|2024-09-10 13:34:32+00:00|https://github.com/casper-network/casper-node/pull/4844|Port the changes related to handling of unbonds in `global-state-update-gen` to `feat-2.0`|1.X|Enhance
 4845|2024-09-06 16:38:30+00:00|https://github.com/casper-network/casper-node/pull/4845|Implement Entity and Package information requests (redux)|BinaryPort|Enhance
+5169|2025-03-24T22:28:03Z|https://github.com/casper-network/casper-node/pull/5169|Rework deploy lane logic||
+5170|2025-03-24T12:09:56Z|https://github.com/casper-network/casper-node/pull/5170|Updated logging to make it easier to debug issues with utilization sc…||
+5165|2025-03-18T18:13:23Z|https://github.com/casper-network/casper-node/pull/5165|Updating ci.json nctl-related definitions||
+5162|2025-03-14T20:31:17Z|https://github.com/casper-network/casper-node/pull/5162|[Enhancement] No refund of unspent gas if error detected while processing txn||
+5160|2025-03-13T19:11:25Z|https://github.com/casper-network/casper-node/pull/5160|[BUGFIX] Deploy native transfer entry point name resolution||
+5158|2025-03-13T18:11:47Z|https://github.com/casper-network/casper-node/pull/5158|Correcting minimum bid amount to 10_000 CSPR from 100_000 CSPR||
+5157|2025-03-13T12:36:26Z|https://github.com/casper-network/casper-node/pull/5157|[BUGFIX] extend transaction_acceptor coverage||
+5129|2025-03-11T21:17:01Z|https://github.com/casper-network/casper-node/pull/5129|[FEEDBACK-RESPONSE] address various feedback items||
+5153|2025-03-12T17:17:31Z|https://github.com/casper-network/casper-node/pull/5153|[CLEANUP] remove unused scheduling||
+5148|2025-03-12T13:55:19Z|https://github.com/casper-network/casper-node/pull/5148|Fix chainspec inconsistencies||
+5152|2025-03-12T14:10:59Z|https://github.com/casper-network/casper-node/pull/5152|Backfilling missing error variants in binary port error code enum||
+5122|2025-03-11T14:33:48Z|https://github.com/casper-network/casper-node/pull/5122|Port messages API for new Virtual Machine||
+5142|2025-03-10T19:43:27Z|https://github.com/casper-network/casper-node/pull/5142|Use EntityAddr in MessageAddr and EntityVersions||
+5143|2025-03-10T16:56:51Z|https://github.com/casper-network/casper-node/pull/5143|Disable default features in the prometheus crate||
+5123|2025-03-05T20:55:16Z|https://github.com/casper-network/casper-node/pull/5123|Bumping versions needed for crates publish.||
+5125|2025-03-04T15:02:47Z|https://github.com/casper-network/casper-node/pull/5125|[BUGFIX] in payment limited mode payment 0 should be rejected||
+5116|2025-02-28T14:39:39Z|https://github.com/casper-network/casper-node/pull/5116|Fix gas cost calculation in payment limited||
+5108|2025-02-28T12:08:54Z|https://github.com/casper-network/casper-node/pull/5108|Changed the json representation of StoredValue::Contract.entry_points…||
+5113|2025-02-27T14:58:27Z|https://github.com/casper-network/casper-node/pull/5113|Charge for host functions in VM2||
+5120|2025-02-27T05:37:26Z|https://github.com/casper-network/casper-node/pull/5120|[BUGFIX] in payment limited mode payment 0 should be rejected||
+5118|2025-02-26T19:16:24Z|https://github.com/casper-network/casper-node/pull/5118|Tweak logic for purse creation during contract upgrade||
+5111|2025-02-25T16:04:13Z|https://github.com/casper-network/casper-node/pull/5111|Raise unconsumed 0 to baseline||
+5114|2025-02-26T14:33:32Z|https://github.com/casper-network/casper-node/pull/5114|Update to rust 1.85.0||
+5110|2025-02-26T12:49:12Z|https://github.com/casper-network/casper-node/pull/5110|Update toolchain to 1.84.1||
+5107|2025-02-20T11:35:12Z|https://github.com/casper-network/casper-node/pull/5107|Fixed local config file: changed 'blocklist_retain_duration' into 'bl…||
+5106|2025-02-19T20:26:14Z|https://github.com/casper-network/casper-node/pull/5106|Added more logging, changed blocking mechanism to randomize a value i…||
+5105|2025-02-19T17:58:15Z|https://github.com/casper-network/casper-node/pull/5105|capturing invalid proposal scenarios for improved logging||
+5101|2025-02-14T04:21:07Z|https://github.com/casper-network/casper-node/pull/5101|Attempt of fix a Zug stall possibility. This can happen in a situatio…||
+5104|2025-02-14T04:21:05Z|https://github.com/casper-network/casper-node/pull/5104|Zug update scheduling fix||
+5099|2025-02-11T15:54:58Z|https://github.com/casper-network/casper-node/pull/5099|[CLEANUP] several small consistency & docu fixes||
+5098|2025-02-10T17:36:02Z|https://github.com/casper-network/casper-node/pull/5098|[BUGFIX] Custom payment processing||
+5097|2025-02-06T22:00:15Z|https://github.com/casper-network/casper-node/pull/5097|Updating resources/production/config-example.toml.||
+5096|2025-02-06T16:00:59Z|https://github.com/casper-network/casper-node/pull/5096|Fix binary port test||
+5086|2025-02-06T14:40:00Z|https://github.com/casper-network/casper-node/pull/5086|Rename SignedBlockHeader to BlockHeaderWithSignatures||
+5089|2025-02-06T00:36:14Z|https://github.com/casper-network/casper-node/pull/5089|Making a series of fixes to binary port:||
+5094|2025-02-05T22:34:16Z|https://github.com/casper-network/casper-node/pull/5094|[BUGFIX] penalized payment flow correction||
+5095|2025-02-05T21:03:45Z|https://github.com/casper-network/casper-node/pull/5095|Bump dependencies||
+5092|2025-02-05T21:01:48Z|https://github.com/casper-network/casper-node/pull/5092|[BUGFIX] Fix remove_associated_keys||
+5093|2025-02-05T20:31:55Z|https://github.com/casper-network/casper-node/pull/5093|[BUGFIX] Return intended error variants from several auction internal methods||
+5085|2025-02-04T13:01:14Z|https://github.com/casper-network/casper-node/pull/5085|Make the current protocol version availabe via the FFI||
+5084|2025-02-03T16:02:26Z|https://github.com/casper-network/casper-node/pull/5084|Execute two sets of installer code to extend coverage||
+5090|2025-02-03T15:19:06Z|https://github.com/casper-network/casper-node/pull/5090|Bump OpenSSL version||
+5083|2025-01-30T07:12:46Z|https://github.com/casper-network/casper-node/pull/5083|Rename `SignedBlock` struct to `BlockWithSignatures`||
+5076|2025-01-24T13:41:30Z|https://github.com/casper-network/casper-node/pull/5076|GH-5053: Remove unmaintained test contract||
+4694|2025-01-23T12:42:15Z|https://github.com/casper-network/casper-node/pull/4694|chore: remove repetitive words||
+5056|2025-01-23T12:34:25Z|https://github.com/casper-network/casper-node/pull/5056|CI update for GitHub actions in test.||
+5065|2025-01-21T23:28:45Z|https://github.com/casper-network/casper-node/pull/5065|[BUGFIX] Fix small wasm / big args lane assignment||
+5059|2025-01-21T20:18:26Z|https://github.com/casper-network/casper-node/pull/5059|Amend config compliance to check limit of largest wasm lane||
+5066|2025-01-21T19:13:40Z|https://github.com/casper-network/casper-node/pull/5066|[BUGFIX] Retrocompat for SeigniorageAllocation||
+5063|2025-01-21T14:40:41Z|https://github.com/casper-network/casper-node/pull/5063|GH-5058: Handle payment fix||
+5060|2025-01-17T17:19:57Z|https://github.com/casper-network/casper-node/pull/5060|Bump lanes config||
+5055|2025-01-10T15:14:25Z|https://github.com/casper-network/casper-node/pull/5055|Update wasm lane 5.||
+5049|2025-01-09T11:13:22Z|https://github.com/casper-network/casper-node/pull/5049|Fixing binary port decoder to bail out quickly when receiving a big mes…||
+5051|2025-01-03T20:26:23Z|https://github.com/casper-network/casper-node/pull/5051|Make get_package handle `Key::Hash`||
+5038|2024-12-21T01:58:30Z|https://github.com/casper-network/casper-node/pull/5038|feat-2.0 to dev||
+5048|2024-12-21T01:05:23Z|https://github.com/casper-network/casper-node/pull/5048|GH-5039: Tweak costs and chainspec settings||
+5041|2024-12-20T19:31:59Z|https://github.com/casper-network/casper-node/pull/5041|Remove 0_9_0 chainspec||
+5046|2024-12-20T18:25:20Z|https://github.com/casper-network/casper-node/pull/5046|Execution engine changelog||
+5045|2024-12-20T17:27:17Z|https://github.com/casper-network/casper-node/pull/5045|Custom Payment QoL||
+5040|2024-12-18T23:08:54Z|https://github.com/casper-network/casper-node/pull/5040|Added missing error codes for InvalidDeploy errors||
+5037|2024-12-18T00:16:04Z|https://github.com/casper-network/casper-node/pull/5037|Added missing error code for situation when we can't associate a tran…||
+5034|2024-12-17T21:43:57Z|https://github.com/casper-network/casper-node/pull/5034|Renaming StoredValue::LegacyTransfer to StoredValue::Transfer||
+5036|2024-12-17T20:15:02Z|https://github.com/casper-network/casper-node/pull/5036|Adjust transaction byte sizing||
+5021|2024-12-17T15:29:12Z|https://github.com/casper-network/casper-node/pull/5021|Added ""Isolated"" mode for the sync_handling. Running the node in this…||
+5024|2024-12-16T17:07:39Z|https://github.com/casper-network/casper-node/pull/5024|Changed the way transaction lanes are calculated if the transaction h…||
+5022|2024-12-16T16:13:23Z|https://github.com/casper-network/casper-node/pull/5022|Update wasm lanes and opcode costs||
+5020|2024-12-13T17:00:46Z|https://github.com/casper-network/casper-node/pull/5020|Remove `cargo-audit` ignores||
+5023|2024-12-13T15:58:55Z|https://github.com/casper-network/casper-node/pull/5023|Improve transactor acceptor logic.||
+5010|2024-12-11T17:01:35Z|https://github.com/casper-network/casper-node/pull/5010|Make prepayment naming consistent||
+5018|2024-12-11T16:07:10Z|https://github.com/casper-network/casper-node/pull/5018|Make it possible to query BidKind records in smart contracts||
+5016|2024-12-11T11:16:43Z|https://github.com/casper-network/casper-node/pull/5016|Fix invalid cancel_reservations args||
+4988|2024-12-10T15:18:48Z|https://github.com/casper-network/casper-node/pull/4988|GH-4985: Transaction vm2 settings||
+5013|2024-12-10T12:29:29Z|https://github.com/casper-network/casper-node/pull/5013|Fix withdraw bid unbonds||
+5015|2024-12-09T17:03:05Z|https://github.com/casper-network/casper-node/pull/5015|Audit error fix||
+5011|2024-12-05T23:32:37Z|https://github.com/casper-network/casper-node/pull/5011|Don't enforce spending limit when delegating with a purse||
+5014|2024-12-07T01:00:08Z|https://github.com/casper-network/casper-node/pull/5014|Update wasm lanes||
+5005|2024-12-05T09:34:32Z|https://github.com/casper-network/casper-node/pull/5005|Fixed arg_handling code which forced optional arguments to be passed …||
+5002|2024-12-04T22:57:29Z|https://github.com/casper-network/casper-node/pull/5002|[BUGFIX] contract staking context management||
+4990|2024-12-04T16:44:41Z|https://github.com/casper-network/casper-node/pull/4990|Removed TODOs||
+5003|2024-12-04T16:02:50Z|https://github.com/casper-network/casper-node/pull/5003|Use match statements to avoid runtime errors||
+4980|2024-11-27T03:46:38Z|https://github.com/casper-network/casper-node/pull/4980|Some types and enum variants were not properly json-serializing||
+4989|2024-12-03T12:18:57Z|https://github.com/casper-network/casper-node/pull/4989|Removing builder structs from public API of casper-types||
+4987|2024-11-29T11:55:06Z|https://github.com/casper-network/casper-node/pull/4987|Added json-deserialization code to other variants of Key::BidAddr. Al…||
+4982|2024-11-27T18:00:42Z|https://github.com/casper-network/casper-node/pull/4982|Fix visibility for transaction builder methods||
+4981|2024-11-27T17:07:17Z|https://github.com/casper-network/casper-node/pull/4981|Update chainspec gas fees related to bids||
+4960|2024-11-25T19:33:45Z|https://github.com/casper-network/casper-node/pull/4960|Follow up changes for new VM||
+4974|2024-11-25T21:09:07Z|https://github.com/casper-network/casper-node/pull/4974|Introduce cycle-based gas cost model.||
+4976|2024-11-25T17:47:44Z|https://github.com/casper-network/casper-node/pull/4976|[Test] contract staking test contract||
+4965|2024-11-25T18:39:34Z|https://github.com/casper-network/casper-node/pull/4965|Remove uncessary panics in storage||
+4977|2024-11-25T16:44:05Z|https://github.com/casper-network/casper-node/pull/4977|Changed json serialization for Message struct||
+4975|2024-11-23T21:43:53Z|https://github.com/casper-network/casper-node/pull/4975|Changing Transaction::V1 json serialization||
+4971|2024-11-25T12:15:13Z|https://github.com/casper-network/casper-node/pull/4971|Update transaction builder to handle new auction entrypoints||
+4956|2024-11-23T20:39:32Z|https://github.com/casper-network/casper-node/pull/4956|Introducing seigniorage proportion gauge||
+4967|2024-11-23T19:17:10Z|https://github.com/casper-network/casper-node/pull/4967|Contract staking||
+4969|2024-11-21T11:54:11Z|https://github.com/casper-network/casper-node/pull/4969|Fixed bug which caused calling entry points for smart contracts deplo…||
+4958|2024-11-19T19:17:59Z|https://github.com/casper-network/casper-node/pull/4958|Introduced keep alive monitor mechanism in the binary port. Introduce…||
+4961|2024-11-19T21:43:25Z|https://github.com/casper-network/casper-node/pull/4961|[BUGFIX]: Bugfix for add_contract_version post migration with entity enabled||
+4806|2024-11-12T16:56:47Z|https://github.com/casper-network/casper-node/pull/4806|VM2 MVP||
+4953|2024-11-07T17:49:28Z|https://github.com/casper-network/casper-node/pull/4953|Fixing issues with the node upgrading from 1.5.8 to 2.0.0||
+4948|2024-11-08T20:00:36Z|https://github.com/casper-network/casper-node/pull/4948|Host functions for signature verification and Secp256k1 PK Recovery||
+4934|2024-11-06T16:55:05Z|https://github.com/casper-network/casper-node/pull/4934|Misc cleanups||
+4943|2024-11-05T16:52:17Z|https://github.com/casper-network/casper-node/pull/4943|Add catch up & shutdown mode||
+4949|2024-11-05T10:03:00Z|https://github.com/casper-network/casper-node/pull/4949|Adding checks on GetRequest::Record check to make sure that we don't …||
+4944|2024-11-04T16:41:36Z|https://github.com/casper-network/casper-node/pull/4944|Avoid iterating through all rounds when determining validator participation||
+4945|2024-10-31T16:45:21Z|https://github.com/casper-network/casper-node/pull/4945|Fix timeouts growing in Zug when network is stalled||
+4942|2024-10-31T00:04:14Z|https://github.com/casper-network/casper-node/pull/4942|Adjusted binary port default config settings||
+4938|2024-10-30T16:05:44Z|https://github.com/casper-network/casper-node/pull/4938|Add `validate-config` subcommand||
+4937|2024-10-29T10:31:51Z|https://github.com/casper-network/casper-node/pull/4937|Fixed bug which caused install/upgrade transactions to not get added …||
+4932|2024-10-26T00:36:58Z|https://github.com/casper-network/casper-node/pull/4932|Fix handling zero bids in forced_undelegate||
+4933|2024-10-25T23:46:00Z|https://github.com/casper-network/casper-node/pull/4933|Metrics timings||
+4841|2024-10-25T15:47:03Z|https://github.com/casper-network/casper-node/pull/4841|Implement delegator slot reservation||
+4897|2024-10-23T21:52:48Z|https://github.com/casper-network/casper-node/pull/4897|Add chainspec setting to enable Addressable Entity||
+4928|2024-10-22T20:08:38Z|https://github.com/casper-network/casper-node/pull/4928|[BUGFIX]: Fix transfer recording||
+4903|2024-10-22T19:14:56Z|https://github.com/casper-network/casper-node/pull/4903|Implement generic_hash() host function to support hashing algorithms||
+4922|2024-10-22T13:54:03Z|https://github.com/casper-network/casper-node/pull/4922|Remove max_dependencies from chainspec||
+4921|2024-10-21T21:00:05Z|https://github.com/casper-network/casper-node/pull/4921|Nesting wasm config into ""v1"" field so that we can have clear separat…||
+4919|2024-10-21T16:41:25Z|https://github.com/casper-network/casper-node/pull/4919|Replace URLs with CasperLabs/... to casper-network/...||
+4901|2024-10-21T15:46:21Z|https://github.com/casper-network/casper-node/pull/4901|Changed  from enum to struct, moved  variant as a variant which allo…||
+4714|2024-10-21T09:21:35Z|https://github.com/casper-network/casper-node/pull/4714|Complete feature `std-fs-io` in casper-types for wasm compilation||
+4910|2024-10-17T20:17:05Z|https://github.com/casper-network/casper-node/pull/4910|Add minimum bid amount to add and withdraw bid||
+4909|2024-10-17T19:22:58Z|https://github.com/casper-network/casper-node/pull/4909|Backfilled changelog with types that were added, changed, removed||
+4890|2024-10-17T13:47:12Z|https://github.com/casper-network/casper-node/pull/4890|Changing `TransactionV1` structure. From now on a `TransactionV1` con…||
+4900|2024-10-09T20:31:26Z|https://github.com/casper-network/casper-node/pull/4900|Add block info support to EE and Casper VM (#4853)||
+4912|2024-10-11T15:56:15Z|https://github.com/casper-network/casper-node/pull/4912|[BUGFIX] misc payment edge cases||
+4916|2024-10-15T14:19:28Z|https://github.com/casper-network/casper-node/pull/4916|Key::from_formatted_str no longer produces f64 opcodes in wasm||
+4917|2024-10-16T14:35:10Z|https://github.com/casper-network/casper-node/pull/4917|Added QPS rate limiting mechanism to the binary port. The rate limiti…||
+4911|2024-10-14T16:39:35Z|https://github.com/casper-network/casper-node/pull/4911|GH-4164: Update comment||
+4907|2024-10-15T22:14:31Z|https://github.com/casper-network/casper-node/pull/4907|Remove unchecked arithmetic||
+4904|2024-10-10T21:07:00Z|https://github.com/casper-network/casper-node/pull/4904|Enable missing docs warning on EE and storage crates (#4106)||
+4906|2024-10-09T21:23:53Z|https://github.com/casper-network/casper-node/pull/4906|TransferTargetMode fix (#4192)||
+4894|2024-10-03T14:24:33Z|https://github.com/casper-network/casper-node/pull/4894|Bump casper-wasmi, add sign-ext support||
+435|2025-03-24T10:43:40Z|https://github.com/casper-network/casper-sidecar/pull/435|Test rate limiter||
+432|2025-03-21T16:56:00Z|https://github.com/casper-network/casper-sidecar/pull/432|Less cloning||
+430|2025-03-21T13:05:31Z|https://github.com/casper-network/casper-sidecar/pull/430|Fix action limiter by adjusting expiration time||
+433|2025-03-21T11:38:07Z|https://github.com/casper-network/casper-sidecar/pull/433|Revert ""Removing per action limiters""||
+431|2025-03-14T14:32:33Z|https://github.com/casper-network/casper-sidecar/pull/431|Bumping build version to 1.0.3||
+429|2025-03-14T11:54:09Z|https://github.com/casper-network/casper-sidecar/pull/429|Removing per action limiters||
+427|2025-03-12T20:29:24Z|https://github.com/casper-network/casper-sidecar/pull/427|Aligning sidecar with recent changes in the node||
+345|2024-10-25T14:41:07Z|https://github.com/casper-network/casper-sidecar/pull/345|Updating casper-node dependency to use new Transaction definition; up…||
+355|2024-11-14T08:13:35Z|https://github.com/casper-network/casper-sidecar/pull/355|Updating dependency to casper-node; fixing `state_get_auction_info` c…||
+392|2025-01-16T15:24:27Z|https://github.com/casper-network/casper-sidecar/pull/392|Introduced ""state_get_auction_info_v2"" json rpc method.||
+393|2025-01-17T22:44:36Z|https://github.com/casper-network/casper-sidecar/pull/393|Refactoring ""state_get_auction_info"" and ""state_get_auction_info_v2"" …||
+394|2025-01-21T10:18:18Z|https://github.com/casper-network/casper-sidecar/pull/394|Added missing error variants to handle error codes returned by the node.||
+395|2025-01-24T13:51:12Z|https://github.com/casper-network/casper-sidecar/pull/395|Refreshing casper-node dependency, refactoring tests for 'chain_get_e…||
+399|2025-01-29T16:03:41Z|https://github.com/casper-network/casper-sidecar/pull/399|Aligning timeouts to reflect real-world scenarios||
+402|2025-02-06T14:53:26Z|https://github.com/casper-network/casper-sidecar/pull/402|Aligning sidecar with various changes made to nodes binary port||
+417|2025-02-28T14:33:21Z|https://github.com/casper-network/casper-sidecar/pull/417|Updating casper-node dependency, aligning code with those changes||
+419|2025-03-11T17:50:39Z|https://github.com/casper-network/casper-sidecar/pull/419|Added sse example config in `default_debian_config.toml`. Made `limit…||
+418|2025-03-06T08:39:33Z|https://github.com/casper-network/casper-sidecar/pull/418|Update dependnecies; fix testing; apply some clippy suggestions||
+415|2025-02-27T13:30:11Z|https://github.com/casper-network/casper-sidecar/pull/415|Connection limiter||
+416|2025-02-28T14:03:58Z|https://github.com/casper-network/casper-sidecar/pull/416|Quick fix for event_sidecar testing and build||
+385|2025-01-02T13:57:09Z|https://github.com/casper-network/casper-sidecar/pull/385|Repointing casper-node dependency to dev; applying fixes to be aligne…||
+383|2025-02-21T16:17:41Z|https://github.com/casper-network/casper-sidecar/pull/383|Feat 2.0||
+412|2025-02-19T16:29:05Z|https://github.com/casper-network/casper-sidecar/pull/412|CI publish update||
+411|2025-02-18T20:47:33Z|https://github.com/casper-network/casper-sidecar/pull/411|public-read to private for repo ACL||
+410|2025-02-18T20:16:44Z|https://github.com/casper-network/casper-sidecar/pull/410|Removing --no-build from deb.||
+409|2025-02-18T20:11:29Z|https://github.com/casper-network/casper-sidecar/pull/409|Ci publish update||
+407|2025-02-18T17:12:54Z|https://github.com/casper-network/casper-sidecar/pull/407|Correcting aptly version.||
+406|2025-02-18T17:08:49Z|https://github.com/casper-network/casper-sidecar/pull/406|Update variables||
+405|2025-02-18T15:59:06Z|https://github.com/casper-network/casper-sidecar/pull/405|CI Repo Publish Initial Test||
+403|2025-02-11T13:55:18Z|https://github.com/casper-network/casper-sidecar/pull/403|Increase the rate of heartbeat checks across default configs||
+401|2025-01-31T07:33:09Z|https://github.com/casper-network/casper-sidecar/pull/401|Rename SignedBlock to BlockWithSignatures||
+389|2025-01-10T13:16:15Z|https://github.com/casper-network/casper-sidecar/pull/389|Cutting rc3||
+362|2024-11-19T15:20:51Z|https://github.com/casper-network/casper-sidecar/pull/362|updating dependencies to reflect newest ""casper-types""||
+366|2024-11-25T15:57:17Z|https://github.com/casper-network/casper-sidecar/pull/366|Aligning code with recent changes to casper-types, fixing auction_inf…||
+382|2024-12-18T01:31:57Z|https://github.com/casper-network/casper-sidecar/pull/382|aligning with node changes||
+369|2024-11-26T15:15:38Z|https://github.com/casper-network/casper-sidecar/pull/369|Repointing casper-node to v2.0.0-rc5||
+367|2024-11-26T12:20:56Z|https://github.com/casper-network/casper-sidecar/pull/367|Aligning sidecar to latest changes in casper-node||
+374|2024-12-04T12:19:58Z|https://github.com/casper-network/casper-sidecar/pull/374|Aligning code with recent changes in the node||
+378|2024-12-10T22:20:09Z|https://github.com/casper-network/casper-sidecar/pull/378|Bumping dependencies||
+375|2024-12-04T15:52:08Z|https://github.com/casper-network/casper-sidecar/pull/375|Handle standard interrupt signals||
+364|2024-12-03T11:52:10Z|https://github.com/casper-network/casper-sidecar/pull/364|Use local duplicate of `AuctionState` struct||
+357|2024-12-03T10:42:30Z|https://github.com/casper-network/casper-sidecar/pull/357|Validate network name if specified||
+368|2024-11-26T13:20:26Z|https://github.com/casper-network/casper-sidecar/pull/368|Implement keepalive checks||
+358|2024-11-19T15:56:31Z|https://github.com/casper-network/casper-sidecar/pull/358|Make IP & port config consistent across all node connections||
+353|2024-11-13T14:17:35Z|https://github.com/casper-network/casper-sidecar/pull/353|Add config typing for IP/socket addresses||
+349|2024-11-12T11:22:58Z|https://github.com/casper-network/casper-sidecar/pull/349|RPC client graceful reconnect||
+242|2025-03-13T15:55:26Z|https://github.com/casper-ecosystem/casper-client-rs/pull/242|Feat track node 2.0||
+240|2025-03-05T11:18:06Z|https://github.com/casper-ecosystem/casper-client-rs/pull/240|Bumping rust version, putting Cargo.lock into the repo||
+236|2025-02-24T15:09:30Z|https://github.com/casper-ecosystem/casper-client-rs/pull/236|Change default pricing mode||
+234|2025-02-20T17:55:42Z|https://github.com/casper-ecosystem/casper-client-rs/pull/234|Updating publish to new infra.||
+231|2025-02-13T09:04:40Z|https://github.com/casper-ecosystem/casper-client-rs/pull/231|Rename transaction-path arg to wasm-path||
+228|2025-01-24T16:05:07Z|https://github.com/casper-ecosystem/casper-client-rs/pull/228|Add `list-transactions` subcommand||
+224|2025-01-24T16:02:39Z|https://github.com/casper-ecosystem/casper-client-rs/pull/224|Add `put-deploy` deprecation warning||
+226|2025-01-23T15:38:05Z|https://github.com/casper-ecosystem/casper-client-rs/pull/226|Add contract package arg||
+220|2024-12-18T10:07:42Z|https://github.com/casper-ecosystem/casper-client-rs/pull/220|Pub DeployBuilder||
+216|2024-12-10T21:53:35Z|https://github.com/casper-ecosystem/casper-client-rs/pull/216|Applying arg_handling fixes to the client||
+215|2024-12-04T15:11:22Z|https://github.com/casper-ecosystem/casper-client-rs/pull/215|Reflecting clients code to the fact that ""arg_handling"" module is now…||
+218|2024-12-11T09:21:41Z|https://github.com/casper-ecosystem/casper-client-rs/pull/218|Aligning client code with recent node changes||
+219|2024-12-12T08:39:04Z|https://github.com/casper-ecosystem/casper-client-rs/pull/219|Fix cancel reservations args||
+204|2024-11-25T15:52:47Z|https://github.com/casper-ecosystem/casper-client-rs/pull/204|Aligning client with recent changes of casper-types||
+208|2024-11-27T17:28:34Z|https://github.com/casper-ecosystem/casper-client-rs/pull/208|Making transferred-value optional in the CLI. Also, if VM1 is the sel…||
+213|2024-12-03T11:23:16Z|https://github.com/casper-ecosystem/casper-client-rs/pull/213|Typo fixes||
+207|2024-11-29T14:30:10Z|https://github.com/casper-ecosystem/casper-client-rs/pull/207|Add support for new auction entrypoints||
+212|2024-11-29T12:20:57Z|https://github.com/casper-ecosystem/casper-client-rs/pull/212|Remove external transaction & deploy builder dependency||
+205|2024-11-25T20:23:03Z|https://github.com/casper-ecosystem/casper-client-rs/pull/205|Address refactor of Package to SmartContract||
+200|2024-11-19T17:15:44Z|https://github.com/casper-ecosystem/casper-client-rs/pull/200|Remove --gas-limit parameter||
+199|2024-11-19T16:10:01Z|https://github.com/casper-ecosystem/casper-client-rs/pull/199|New execution engine support||
+197|2024-11-07T02:56:43Z|https://github.com/casper-ecosystem/casper-client-rs/pull/197|Update types latest changes||
+196|2024-10-31T12:07:34Z|https://github.com/casper-ecosystem/casper-client-rs/pull/196|arg install-upgrade bug||
+184|2024-10-28T10:04:47Z|https://github.com/casper-ecosystem/casper-client-rs/pull/184|Interaction with Casper smart-contract source code verification service for feat-2.0 branch||
+195|2024-10-24T18:27:10Z|https://github.com/casper-ecosystem/casper-client-rs/pull/195|Fix for remove of `as_entity_addr`||
+153|2024-10-21T09:45:47Z|https://github.com/casper-ecosystem/casper-client-rs/pull/153|Complete feature std-fs-io in casper-client feat-2.0||
+191|2024-10-17T14:21:47Z|https://github.com/casper-ecosystem/casper-client-rs/pull/191|Changing TransactionV1 structure follwing https://github.com/casper-network/casper-node/pull/4890||
+193|2024-10-15T17:53:40Z|https://github.com/casper-ecosystem/casper-client-rs/pull/193|Add json-schema to casper types import||
+295|2025-03-25T16:17:04Z|https://github.com/casper-ecosystem/cep-78-enhanced-nft/pull/295|Update `casper-contract` crate  + Message topic fix||
+294|2025-03-05T20:56:45Z|https://github.com/casper-ecosystem/cep-78-enhanced-nft/pull/294|EntityEntryPoint update||
+291|2025-02-12T12:44:22Z|https://github.com/casper-ecosystem/cep-78-enhanced-nft/pull/291|Update Feat 2.0 branch||
+160|2025-03-11T11:10:05Z|https://github.com/casper-ecosystem/cep18/pull/160|Do not revert on upgrade with same events||
+158|2025-01-28T18:41:18Z|https://github.com/casper-ecosystem/cep18/pull/158|Update Feat 2.0 branch||
+1|2025-02-04T09:02:38Z|https://github.com/casper-ecosystem/casper-binary-port-client/pull/1|Enable wasm32 compilation and runtime of the binary-port-access lib||
+10|2025-03-25T15:11:35Z|https://github.com/casper-ecosystem/casper-binary-port-client/pull/10|Apply changes from https://github.com/casper-network/casper-node/pull/5089||
+11|2025-02-05T17:29:52Z|https://github.com/casper-ecosystem/casper-binary-port-client/pull/11|Make it possible to initialize COUNTER with a custom value||
+9|2025-02-04T15:11:44Z|https://github.com/casper-ecosystem/casper-binary-port-client/pull/9|Rename SignedBlock to BlockWithSignatures||
+7|2025-01-25T20:42:04Z|https://github.com/casper-ecosystem/casper-binary-port-client/pull/7|Implementation of ""raw"" command||
+3|2025-01-17T11:01:36Z|https://github.com/casper-ecosystem/casper-binary-port-client/pull/3|Update DelegatorKind||
+
