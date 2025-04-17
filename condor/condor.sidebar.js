@@ -18,8 +18,6 @@ const sidebars = {
     // But you can create a sidebar manually
     condorSidebar: [
         'index',
-        'addressable-entity',
-        'fee-elimination',
         'rpc-changes',
         'local-setup',
         'transactions',
