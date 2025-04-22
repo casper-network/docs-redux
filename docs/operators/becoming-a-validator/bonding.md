@@ -10,12 +10,12 @@ In the Testnet, era durations are approximately two hours. The entire process ta
 
 ## Minimum Bid Amount
 
-There is a minimum defined bid amount in the `chainspec.toml`. This value is currently 100,000 CSPR as seen as the extract from `chainspec.toml` below.
+There is a minimum defined bid amount in the `chainspec.toml`. This value is currently 10,000 CSPR as seen as the extract from `chainspec.toml` below.
 
 ```toml
 # Minimum bid amount allowed in motes. Withdrawing one's bid to an amount strictly less than
 # the value specified will be treated as a full unbond of a validator and their associated delegators
-minimum_bid_amount = 100_000_000_000_000
+minimum_bid_amount = 10_000_000_000_000
 ```
 
 ## Method 1: Bonding with the System Auction Contract {#bonding-system-auction}
