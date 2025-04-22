@@ -6,6 +6,8 @@ slug: /transactions-and-transaction-lifecycle
 # Transactions and the Transaction Lifecycle
 
 ## Transactions {#execution-semantics-transactions}
+[This is very not accurate, Transaction is not the same as V1 Transaction AND t
+he V1 Transaction does not look as presented in this document]
 
 A [transaction](./glossary/T.md#transaction) is a data structure containing Wasm and the requester's signature(s). Additionally, the transaction header contains additional metadata about the transaction itself. A transactions’s structure is as follows:
 

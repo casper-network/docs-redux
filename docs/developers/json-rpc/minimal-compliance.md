@@ -2,6 +2,8 @@
 
 The methods included in this document represent the most basic, fundamental endpoints for a viable and compliant Casper SDK. They allow the user to retrieve the information necessary to interact with a Casper network, as well as the means to interact.
 
+[This list for sure is missing `info_get_transaction` and probably `account_put_transaction`. I would also argue that `account_put_deploy` and `info_get_deploy` are no longer required for minimal compliance (since their functionality is covered by the transaction counterparts)]
+
 * [`chain_get_block`](./json-rpc-informational.md#chain_get_block) - This method returns the JSON representation of a Block from the network. The ongoing validity of the chain depends on block verification, which includes both a record of deploys and transfers.
 
 * [`info_get_deploy`](./json-rpc-informational.md#info_get_deploy) - This method allows retrieval of a Deploy from a Casper network. Without this method, users will be unable to verify any subsequent information relating to a sent Deploy.

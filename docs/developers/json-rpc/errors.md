@@ -1,5 +1,5 @@
 # Casper JSON-RPC Error Codes
-
+[I don't think we will have a casper-json-rpc]
 The following document expands on custom error codes provided by `casper-json-rpc` crate.
 
 ## Error Codes

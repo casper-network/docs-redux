@@ -119,6 +119,7 @@ The result contains the RPC API version and a [deploy_hash](./types_chain.md#dep
 </details>
 
 ## account_put_transaction
+[This is wrong]
 
 This is the recommended means by which users can send their compiled Wasm (as part of a Transaction) to a node on a Casper network. The request takes in the [transaction](./types_chain.md#transaction) as a parameter, prior to sending it to a node on a network for execution.
 

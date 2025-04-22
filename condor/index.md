@@ -26,13 +26,18 @@ We are excited to announce the release of **Casper v2.0 - formerly known as Cond
 
 Casper v2.0 introduces a number of improvements aimed at removing some limitations of the Casper platform and dealing with technical debt. Some of the limitations in Casper 1.X were due to architectural decisions that impeded efforts to introduce new features without breaking existing systems. 
 
-#### Casper Sidecar
-In Casper 2.0, the existing RPC service has been moved outside of the node software itself. In Casper 1.X, the RPC service existed as an HTTP server which was built into the node software itself. This meant that the RPC server was tightly coupled to the node software, could not be updated without updating the node software, and executed in the same process space as the node. The result of this was that any extension of the RPC surface necessitated a full network upgrade to deliver. 
 
-In Casper 2.0, the JSON RPC has been moved to a separate process, known as the [Sidecar](https://docs.casper.network/operators/setup/casper-sidecar/). This step brings a few improvements: 
- - It allows for better process isolation and makes it easier to run and debug node processes.
- - The Sidecar provides a way to surface Contract Level Events, which opens up some interesting possibilities for node interactions.
- - The separation of the Sidecar into a new codebase means that enhancements to the RPC API can now be accomplished without changing the node binary, necessitating a network upgrade. 
+#### Casper Sidecar
+
+In Casper 2.0, the existing JSON RPC service has been moved outside of the node software itself. In Casper 1.X, the JSON RPC service existed as an HTTP server which was built into the node software itself. This meant that the JSON RPC server was tightly coupled to the node software, could not be updated without updating the node software, and executed in the same process space as the node. The result of this was that any extension of the JSON RPC surface necessitated a full network upgrade to deliver.
+
+In Casper 2.0, the JSON RPC has been moved to a separate process, known as the [Sidecar](https://docs.casper.network/operators/setup/casper-sidecar/). This step brings a few improvements:
+
+- It allows for better process isolation and makes it easier to run and debug node processes.
+- The Sidecar provides a way to surface Contract Level Events, which opens up some interesting possibilities for node interactions. [What's this about? Did we mean that sidecar is a way to materialize and long-term store events via the ability to store sse events?]
+- The separation of the Sidecar into a new codebase means that enhancements to the RPC API can now be accomplished without changing the node binary, necessitating a network upgrade.
+- [Sidecar has also a SSE part that alows to broadcast and store/retrieve historic sse events, should we advertise that in this doc?]
+
 
 #### Expanded API Integration Options
 Casper 2.0 introduces some extensions to the ways in which you can interact with the Casper Network.
@@ -76,7 +81,9 @@ In cases where the network cannot reach consensus, for example, during a partiti
 A detailed discussion of the Zug consensus may be found in the [Casper documentation](http://docs.casper.network/). For a detailed description of the protocol, please refer to the [Zug Whitepaper](https://arxiv.org/abs/2205.06314)
 
 ### New Transaction Model
-Casper 2.0 introduces the concept of a [Transaction](https://docs.casper.network/transactions-and-transaction-lifecycle/#execution-semantics-transactions), which replaces the existing Deploy concept. Transactions are a new structure that allows several ways for users to make changes to global state. They allow for a variety of Wasm-less interactions with the blockchain. These new interactions are more efficient than Deploys and provide a level of convenience that was not previously available. More more details, see the list of available [Transaction Types](https://docs.casper.network/transactions/#transaction-types).
+
+Casper 2.0 introduces the concept of a [Transaction](https://docs.casper.network/transactions-and-transaction-lifecycle/#execution-semantics-transactions), which replaces the existing Deploy concept. Transactions are a new structure that allows several ways for users to make changes to global state. They allow for a variety of Wasm-less interactions with the blockchain. These new interactions are more efficient than Deploys and provide a level of convenience that was not previously available. More more details, see the list of available [Transaction Types](https://docs.casper.network/transactions/#transaction-types). [1. this link doesn't work - not sure if it should. 2. A deploy is currently a variant of transaction, I think that this whole paragraph conflates the idea of a Transaction and a V1 Transaction]
+
 
 The existing Deploy model is deprecated as of Casper 2.0, and support will be removed entirely in a future major release. However, Casper 2.0 will continue to accept valid Deploys and will attempt to execute them. Most existing deploys that function today will continue to do so. However, deploys that depend on a data type or FFI function that has been altered or removed will fail to execute.
 
@@ -95,7 +102,7 @@ There are three fundamental types of Addressable Entity:
 This feature is a fundamental change to the way that smart contracts interact with the network and each other. Moving to this feature requires that applications using smart contracts must analyse, rework and retest their code in order to ensure that their applications will work as intended. Therefore, the initial release of Casper 2.0 will not turn this feature on. At some point in the future, once agreed by the people participating in the network, an update to the network will be issued which activates this feature. This step will not be reversible. 
 
 ### Fee Elimination
-
+[I believe that we don't actually want to turn it on for the release of 2.0?]
 Scheduled along with the release of Casper 2.0 is a change in the configuration of the Casper Network to use a model known as **Fee Elimination** for gas payments. 
 
 > __Fee Elimination is the strategy of placing temporary holds on transactor balances corresponding to their incurred gas costs, instead of taking those costs from their on-chain balances__.

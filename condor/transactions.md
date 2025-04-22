@@ -10,12 +10,13 @@ hide_table_of_contents: false
 
 ## Transactions in Casper v2.0
 
-In this article we will examine user transactions (previously called deploys).  More specifically we will review the expanded set of transaction types and how they are processed by the node's execution engine.
+In this article we will examine user transactions (previously called deploys) [I AM NOT SURE ABOUT THIS WORDING].  More specifically we will review the expanded set of transaction types and how they are processed by the node's execution engine.
 
 <!-- truncate -->
 
 ## Transaction Types
 
+[I BELIEVE THIS DOCUMENT CONFLATES THE IDEA OF A TRANSACTION AND THE IDEA OF A SPECIFIV TRANSACTIONV1 VARIANT OF A TRANSACTION]
 Transactions encapsulate user intents.  For example, if Alice intends to transfer CSPR to Bob, she uses software (e.g. a wallet) to construct and sign a transaction that is subsequently dispatched to a trusted node for processing by the network.
 
 Transactions may be either 'native' or 'custom':
@@ -37,9 +38,12 @@ Casper 2.0 Native Transaction Types:
 - System.Auction.Delegation.Withdraw
 - System.Auction.Staking.Submit
 - System.Auction.Staking.Withdraw
+[THERE ARE MORE AUCTION TRANSFER V1 TYPES CURRENTLY]
 
 Not all work is identical, e.g. a base token (cspr) transfer differs from a smart contract execution.  
 
 Casper 1.0 supported a set of 6 transaction types, in Casper 2.0 the set is both refined and expanded.
 
 The Transaction stat type has a number of changes from its predecessor, the Deploy. For a detailed discussion of these differences you can see the casper documentation of this discussion of the JSON schema. 
+
+

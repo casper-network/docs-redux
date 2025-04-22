@@ -38,7 +38,7 @@ A necessary outcome of a safe consensus process over possible histories of the c
 
 This mutual knowledge is sufficient for validators to make further progress in building up the canonical history. However, for a user of the blockchain, establishing confidence in the correct operation of the protocol and the identity of the canonical history requires that the validators' knowledge of the canonical history be attested publicly.
 
-In Casper, validators create and distribute finality signatures, which are cryptographically secure witnesses of their belief in the finality of a particular block. Under 1.X, however, these are not easily verifiable by users and play no role in the reward mechanism, despite being a critical tool for building user confidence in the canonical history. In 2.0, we propose to allocate rewards for creation and publication of one's own and other validators' finality signatures.
+In Casper, validators create and distribute finality signatures, which are cryptographically secure witnesses of their belief in the finality of a particular block. [NOT SURE IF BELIEF IS A GOOD SALES CATCH. MAYBE "cryptographically secure attest" WOULD BE BETTER?] Under 1.X, however, these are not easily verifiable by users and play no role in the reward mechanism, despite being a critical tool for building user confidence in the canonical history. In 2.0, we propose to allocate rewards for creation and publication of one's own and other validators' finality signatures.
 
 ### Design
 
@@ -48,7 +48,7 @@ Rewards that promote public knowledge of finality naturally suggest rewarding pu
 * Signature creation
 * Signature publication
 
-Note that we expect very little, if any, rewards to be allocated for block proposals on mainnet, but the feature remains available.
+Note that we expect very little, if any, rewards to be allocated for block proposals on mainnet, but the feature remains available. [WHY DO WE VOLUNTARILY SPEND A BIG PORTION OF A DOCUMENT TALKING ABOUT A NEW FEATURE AND THEN ESSENTIALLY EVALUATE IT AS ALMOST POINTLESS? IMHO I WOULDN'T INCLUDE THIS SENTENCE IN THE DOCUMENT, SINCE WHAT IS "LITTLE" AND WHAT IS "A LOT" IS VERY SUBJECTIVE]
 
 The rewards apportioned to a block, under nominal operating conditions, are the same as they are under 1.X, that is, they amount to total supply at last era's end multiplied by an inflation factor derived from the chainspec. "Nominal" here means that all rounds result in a finalized block and that all finality signatures are collected and published.
 

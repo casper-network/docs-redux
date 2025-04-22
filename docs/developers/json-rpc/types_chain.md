@@ -1600,6 +1600,8 @@ One of:
 
 ## TransactionV1
 
+[This is not up to date, actually I think that this whole document isn't]
+
 A unit of work sent by a client to the network, which when executed can cause global state to be altered.
 
 Required Parameters:
