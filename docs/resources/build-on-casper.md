@@ -20,7 +20,6 @@ The Casper Ecosystem is growing every day through the addition of new dApps and 
 
 ### Wallets
 - [Ledger](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?docs=true)
-- [Tor.us](https://casper.tor.us)
 - [Casper Wallet](https://www.casperwallet.io)
 - [Metamask](https://metamask.io/) with [Casper Snap](https://github.com/casper-ecosystem/casper-manager)
 
