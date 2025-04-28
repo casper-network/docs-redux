@@ -52,9 +52,8 @@ In Casper 1.X, there was no native option for emitting contract-level events in 
 
 CES works by writing events to global state, and having clients consistently poll for new event data as it is emitted. While this approach *does* provide the full functionality of events, it is far from optimal. CES suffers from the following inherent limitations:
 
-* <u>Higher gas payments</u>: Gas must be spent to store event data in global state.
+* <u>Higher gas payments</u>: The current implementation happens as part of Wasm execution and doesn't benefit from the reduced cost of the native implementation.
 * <u>Reduced security</u>: It is possible in some cases for a malicious actor to overwrite events on the blockchain, leading to uncertainty about an event's reliability when queried off-chain.
-* <u>Permanence</u>: Since with CES events are written directly to global state, they are permanently queryable. Even if the data is deleted or overwritten, the data can be read by providing the [state root hash](https://docs.casper.network/concepts/global-state/) at the block of event emission.
 * <u>Resource intensity</u>: Under the CES, events being written to the blockchain causes the global state to increase in size over time. Additionally, more computation is required to write data to the network than to broadcast it, leading to more expensive transactions.
 
 In Casper 2.0, native contract-level events have been implemented under [CEP-88](https://github.com/casper-network/ceps/blob/master/text/0088-contract-level-messages.md). CEP-88 establishes a secure, one-way messaging channel between contracts and entities listening to a node's event stream. This standardized method of emitting contract-level events is built into the existing Casper Event Stream, requiring no additional features to Casper's SDKs.
@@ -84,12 +83,12 @@ The existing Deploy model is deprecated as of Casper 2.0, and support will be re
 > 
 > N.B. This feature is not activated yet. See below for details
 
-Casper 2.0 introduces significant changes in the representation and management of accounts and smart contracts, through the introduction of the `AddressableEntity` type. This new structure replaces the separate `AccountHash` and `ContractHash` used in Casper 1.x, bringing a unified approach to interaction with entities on the network. Contracts can now hold and manage funds directly through associated purses, similar to user accounts. They can also manage their own keys, enabling more sophisticated access control.
+Casper 2.0 introduces significant changes in the representation and management of accounts and smart contracts, through the introduction of the `AddressableEntity` type. This new structure merges the `Account` and `Contract` structures into one unified type Casper 1.x, bringing a unified approach to interaction with entities on the network. Contracts can now hold and manage funds directly through associated purses, similar to user accounts. They can also manage their own keys, enabling more sophisticated access control.
 
-There are three fundamental types of Addressable Entity: 
+There are three types of Addressable Entity: 
 - System Contracts
 - User Accounts
-- Deployed Smart Contracts
+- Smart Contracts
 
 ##### Account Unification upgrade path
 This feature is a fundamental change to the way that smart contracts interact with the network and each other. Moving to this feature requires that applications using smart contracts must analyse, rework and retest their code in order to ensure that their applications will work as intended. Therefore, the initial release of Casper 2.0 will not turn this feature on. At some point in the future, once agreed by the people participating in the network, an update to the network will be issued which activates this feature. This step will not be reversible. 
