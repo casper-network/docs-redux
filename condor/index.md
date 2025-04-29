@@ -28,7 +28,7 @@ Casper 2.0 represents a significant upgrade with a slew of new features as well 
 | [Zug Consensus Protocol](#zug-consensus-protocol)                 | [Whitepaper](https://arxiv.org/abs/2205.06314)                                                           |
 | [Multi-VM Support](#multi-virtual-machine-architecture)           |                                                                                                          |
 | [CSPR Burning  ](#cspr-burn-function)                             | [CEP-92](https://github.com/casper-network/ceps/blob/master/text/0092-cspr-burn.md)                      |
-| [Native Events](#native-events)                                   | [CEP-88](https://github.com/casper-network/ceps/blob/master/text/0088-contract-level-messages.md)        |
+| [Native Events](#contract-level-events)                           | [CEP-88](https://github.com/casper-network/ceps/blob/master/text/0088-contract-level-messages.md)        |
 | [FFI Enhancements](#ffi-enhancements)                             |                                                                                                          |
 | [New Transaction Model](#new-transaction-model)                   |                                                                                                          |
 | [Configurable Delegation Limits](#configurable-delegation-limits) | [CEP-90](https://github.com/casper-network/ceps/blob/master/text/0090-configurable-delegation-limits.md) |
@@ -55,7 +55,7 @@ In Casper 2.0, we are introducing a change to the execution engine which allows 
 ### CSPR Burn function
 In Casper 2.0 users can burn CSPR token ([CEP-92](https://github.com/casper-network/ceps/blob/master/text/0092-cspr-burn.md). This function is exposed as a `burn` function in the mint contract.
 
-### Native Events
+### Contract Level Events
 In Casper 1.X, there was no native option for emitting contract-level events in the node software. The best option available to developers looking to use this kind of functionality was the  [Casper Event Standard (CES)](https://github.com/make-software/casper-event-standard) created by MAKE and Odra. In Casper 2.0, We have provided host side support for the emission of events. Smart contract developers may still opt to use the CES standard, however, the native implementation is recommneded as the go-forward for the contract level events
 The CEP-88 refernce implementation provides the template for contract level events [CEP-88](https://github.com/casper-network/ceps/blob/master/text/0088-contract-level-messages.md). CEP-88 establishes a secure, one-way messaging channel between contracts and entities listening to a node's event stream. This standardized method of emitting contract-level events is built into the existing Casper Event Stream, requiring no additional features to Casper's SDKs.
 
