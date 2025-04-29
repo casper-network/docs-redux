@@ -2,7 +2,7 @@
 
 ## What is Devnet?
 
-The Casper Condor release is being rolled out in a phased fashion, allowing people to test their code, SDKs and smart contracts, before migrating to Mainnet. The first phase of this is rolling out to Devnet. 
+The Casper 2.0 release is being rolled out in a phased fashion, allowing people to test their code, SDKs and smart contracts, before migrating to Mainnet. The first phase of this is rolling out to Devnet. 
 
 This article/FAQ is a guide to the process for gaining access to Devnet, what to expect when you do access Devnet, and any other concerns.
 
