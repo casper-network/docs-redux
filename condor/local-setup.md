@@ -32,40 +32,104 @@ NCTL is your tool for managing the Casper network. We'll use a Dockerized versio
    ```bash
    git checkout feat-2.0
    ```
+   
+   Modify the casper-node's branch to dev inside casper-nctl-condor.Dockerfile
+
+   ```
+   ...
+   RUN git clone -b v2.0.0 https://github.com/casper-network/casper-node.git ~/casper-node
+   ...
+   ```
+
 
 3. **Clone the `casper-node` Repository:**
    ```bash
    git clone https://github.com/casper-network/casper-node.git
    cd casper-node
-   git checkout release-2.0.0-rc3
+   git checkout v2.0.0
    ```
    Ensure you're in the `casper-nctl-docker` directory when running this command
 
 4. **Build the Docker Image:**
    ```bash
-   docker build -f casper-nctl-condor.Dockerfile -t casper-nctl:rc3 .
+   docker build -f casper-nctl-condor.Dockerfile -t casper-nctl:v2.0.0 .
    ```
-   This may take a while
+   Ensure you're in the `casper-nctl-docker` directory when running this command
+
+   This may take a while.
 
 5. **Verify the Image:**
    ```bash
    docker image ls
    ```
-   Look for the `casper-nctl:rc3` image in the output
+   Look for the `casper-nctl:v2.0.0` image in the output
    ```
-   REPOSITORY                 TAG        IMAGE ID       CREATED        SIZE
-   casper-nctl                rc3        9fd1e7b25d42   40 hours ago   433MB
+   REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+   casper-nctl   v2.0.0    decdc9495181   3 minutes ago   442MB
    ```
 
 6. **Start the NCTL Docker Container:**
-   * **Docker Compose (Recommended):** If you're using the `docker-compose.yml` file, make sure that  the `image` under the `mynctl` service points to `casper-nctl:rc3`. Then run `docker-compose up`.
-   * **Manual Docker Command:** 
+
+   There are two ways to start the NCTL Docker containers.
+   Docker Compose brings up an additional NCTL Explorer container, while the manual command does not.
+   * **Docker Compose (Recommended):** 
+   
+      If you're using the `docker-compose.yml` file, make sure that the `image` under the `casper-nctl` service points to the image you just built (`casper-nctl:v2.0.0`) from the previous step, like this:  
+
+      docker-compose.yml
+
+      ```yaml
+      ...
+      services:
+      casper-nctl:
+         image: casper-nctl:v2.0.0
+         container_name: casper-nctl
+      ...
+      ```
+   
+      Start the containers. This will start an NCTL container and an NCTL Explorer container.
+
       ```bash
-      docker run -d --name mynctl -p 11101:11101 casper-nctl:rc3
+      docker-compose up
+      ```
+      "Ensure you're in the `casper-nctl-docker` directory when running this command.
+
+
+   * **Manual Docker Command:** 
+
+      Below is the command to start an NCTL container named `mynctl`.
+
+      ```bash
+      docker run -d --name mynctl -p 11101:11101 casper-nctl:v2.0.0
       ```
 
-      Once it is up and running you should see that there are 5 nodes and 5 sidecars running and another 5 nodes and 5 sidecars that are inactive:
-     ```
+
+7. **Activate nctl-\* commands:**
+
+   In a Linux or macOS terminal, run:
+   ```bash
+   source nctl-activate.sh <container_name>
+   ```
+   In a Powershell terminal, run:
+   ```
+   . .\nctl-activate.ps1 <container_name>
+   ```
+   Ensure you're in the `casper-nctl-docker` directory when running this command.
+
+
+
+7. **Confirm the nctl status**
+
+   ```bash
+   nctl-status
+   ```
+
+   Once it is up and running issue the command `nctl-status` then you should see that there are 5 nodes and 5 sidecars running and another 5 nodes and 5 sidecars that are inactive:
+
+   <details>
+   <summary>Click me</summary>
+   
+   ```json
       casper-nctl  | validators-1:casper-net-1-node-1       RUNNING   pid 996, uptime 0:00:03
       casper-nctl  | validators-1:casper-net-1-node-2       RUNNING   pid 998, uptime 0:00:03
       casper-nctl  | validators-1:casper-net-1-node-3       RUNNING   pid 1002, uptime 0:00:03
@@ -86,8 +150,9 @@ NCTL is your tool for managing the Casper network. We'll use a Dockerized versio
       casper-nctl  | validators-3:casper-net-1-sidecar-7    STOPPED   Not started
       casper-nctl  | validators-3:casper-net-1-sidecar-8    STOPPED   Not started
       casper-nctl  | validators-3:casper-net-1-sidecar-9    STOPPED   Not started
-     ```
+   ```
 
+   </details>
 
 ## Part 2: Casper Client (Rust)
 
@@ -95,7 +160,7 @@ To interact with your local Casper 2.0 network, we'll use the Casper Client. You
 
 **Option 1: Using the Casper Client from the Docker Image**
 
-* The `casper-nctl:rc3` Docker image already includes the `casper-client`.
+* The `casper-nctl:v2.0.0` Docker image already includes the `casper-client`.
 * You can skip the next two steps if you want to use the pre-installed client.
 
 **Option 2: Using Your Local Casper Client**
@@ -108,73 +173,102 @@ To interact with your local Casper 2.0 network, we'll use the Casper Client. You
 
 2. **Switch to the Casper 2.0-Compatible Branch  (Optional):**
    ```bash
-   git checkout feat-track-node-2.0
+   git checkout v3.0.1
    ```
 
-3. **Activate NCTL scripts:**
+3. **Build casper-client:**
+
+   Prerequisite: Install rustup
+
    ```bash
-   source nctl-activate.sh casper-nctl
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
    ```
 
-4 **Test Your Setup:**
+   Build the Casper Client:
+
    ```bash
-   nctl-view-node-status
+   cargo build --release
    ```
+
+4. **Test Your Setup:**
+   ```bash
+   casper-client get-block -n http://localhost:11101
+   ```
+
    This command should return the status of all the nodes running in your local network, indicating a successful setup. The output should look similar to this:
-   ```
-   ------------------------------------------------------------------------------------------------------------------------------------
-   2024-07-10T15:31:42.181535 [INFO] [2043] NCTL :: node #1 :: status:
+
+   <details>
+   <summary>Click me</summary>
+   
+
+   ```json
    {
-   "api_version": "2.0.0",
-   "peers": [
-      {
-         "node_id": "tls:05b5..7b39",
-         "address": "127.0.0.1:22103"
-      },
-      {
-         "node_id": "tls:527e..37d2",
-         "address": "127.0.0.1:22105"
-      },
-      {
-         "node_id": "tls:b1d0..870f",
-         "address": "127.0.0.1:22102"
-      },
-      {
-         "node_id": "tls:dcdf..e348",
-         "address": "127.0.0.1:22104"
+      "jsonrpc": "2.0",
+      "id": -2049464589362040719,
+      "result": {
+         "api_version": "2.0.0",
+         "block_with_signatures": {
+               "block": {
+                  "Version2": {
+                     "hash": "9e7c32760b6fefcd4e1a579a9dce0835e1d564e5a5aedaf06911d76f64af9e0c",
+                     "header": {
+                           "parent_hash": "ecd94fd34417032d4e7b77b0dce3c48164398d1946d95a57b50c73eaee59cf90",
+                           "state_root_hash": "ad53786aed35ef7e5a608552329ff0ab33055c4e4bf6764124a3603fce49990a",
+                           "body_hash": "18937e8cf4338b5f5fdc2581f8d7d6a47de736d2799e3f3bc9b0ff9f1e7cf106",
+                           "random_bit": false,
+                           "accumulated_seed": "1ce9cae18eccdea58c1a6b22474c6f98e4a4bf17d53a306390f528a18d264f59",
+                           "era_end": null,
+                           "timestamp": "2025-04-23T03:41:03.130Z",
+                           "era_id": 94,
+                           "height": 1028,
+                           "protocol_version": "2.0.0",
+                           "proposer": "0190664e16a17594ed2d0e3c279c4cf5894e8db0da15e3b91c938562a1caae32ab",
+                           "current_gas_price": 1,
+                           "last_switch_block_hash": "db222beace01c5c624cbd84a62c92feb0a23f3e0c3372dd5cba9e7ce51db63cf"
+                     },
+                     "body": {
+                           "transactions": {},
+                           "rewarded_signatures": [
+                              [
+                                 248
+                              ],
+                              [
+                                 0
+                              ],
+                              [
+                                 0
+                              ]
+                           ]
+                     }
+                  }
+               },
+               "proofs": [
+                  {
+                     "public_key": "01509254f22690fbe7fb6134be574c4fbdb060dfa699964653b99753485e518ea6",
+                     "signature": "01fbe5ca7584cd517b51cc2ee1c79c055eaccb523470b5f460f23c365d476dabf40d62d753b0f1c1003568dd555b64848cda2029d3f31bf9ee548ea6aefca72506"
+                  },
+                  {
+                     "public_key": "0190664e16a17594ed2d0e3c279c4cf5894e8db0da15e3b91c938562a1caae32ab",
+                     "signature": "014ebd115e50169c79dd469f6118df18869232839bc07c3cff079837657ba9d31d913d367da886442f1532fbef66e86985d693346037b4863ef0ec90c1476e3403"
+                  },
+                  {
+                     "public_key": "01c867ff3cf1d4e4e68fc00922fdcb740304def196e223091dee62012f444b9eba",
+                     "signature": "01d183f46c1a0af713c2f0629ea0436cb37c04ef300f8c25f84384607a91817e869956ccf47a4902f9d51c173cb8c3f6949391c792e343bc93968274b4c692e50c"
+                  },
+                  {
+                     "public_key": "01f58b94526d280881f79744effebc555426190950d5dfdd2f8aaf10ceaec010c6",
+                     "signature": "01308ad12b69bc92497ad3b9d169d685a436ee4194a0e291a14e022bc0e70e5ee881a2f0be5301752ad9888a790bd9c4a7cbff1481df472166f3dce29df9ec9d00"
+                  },
+                  {
+                     "public_key": "01fed662dc7f1f7af43ad785ba07a8cc05b7a96f9ee69613cfde43bc56bec1140b",
+                     "signature": "01bac3f6529816492daaa019a4ecf5bd3ef68757a266e4b4a0382a56268fdbc86a65ec037feb87cda554e244f25c3c9e525961a1a660b39ebd6f1aee2e64ce0006"
+                  }
+               ]
+         }
       }
-   ],
-   "build_version": "2.0.0-d5c0d238f",
-   "chainspec_name": "casper-net-1",
-   "starting_state_root_hash": "2d92cf9f3ff3eb70f40be598b61cbf747c1b5ea67df9596d84a88c5458028a80",
-   "last_added_block_info": {
-      "hash": "c1056e0e5978e725777f48e4488462d7794e6547f25b1fbcc4ba261ca2864395",
-      "timestamp": "2024-07-10T15:31:38.601Z",
-      "era_id": 19,
-      "height": 205,
-      "state_root_hash": "6c5502c3443f526e943fa5a5421349e938464c063c8dd0ada616c997e3805612",
-      "creator": "0190664e16a17594ed2d0e3c279c4cf5894e8db0da15e3b91c938562a1caae32ab"
-   },
-   "our_public_signing_key": "01fed662dc7f1f7af43ad785ba07a8cc05b7a96f9ee69613cfde43bc56bec1140b",
-   "round_length": "4s 96ms",
-   "next_upgrade": null,
-   "uptime": "13m 15s",
-   "reactor_state": "Validate",
-   "last_progress": "2024-07-10T15:18:26.354Z",
-   "available_block_range": {
-      "low": 0,
-      "high": 205
-   },
-   "block_sync": {
-      "historical": null,
-      "forward": null
-   },
-   "latest_switch_block_hash": "5192198c783ed8b66e206c37b34c5e268c84be2f4b78dd9899eecf5f37fb9f68"
    }
-   .
-   .
-   .
    ```
+   </details>
 
 ## Troubleshooting
 
@@ -182,18 +276,18 @@ To interact with your local Casper 2.0 network, we'll use the Casper Client. You
 
 **Solution:**
 1. Go to the `casper-node/ci/ci.json` file.
-2. Change the `casper-sidecar` branch under `external_deps` from:
+2. Change the `casper-sidecar` branch under `external_deps` to the casper-node's compatible branch:
    ```json
-   "branch": "feat-2.0"
+   "branch": "xxx"
    ``` 
    to:
    ```json
-   "branch": "release-1.0.0rc2_node-2.0.0rc3" 
+   "branch": "v1.0.4" 
    ```
 
-   This is because the `casper-node` we are using is `release-2.0.0-rc3`. The required combination of versions of `casper-sidecar` and `casper-node` may change in the future (rc4 etc.).
+   Make sure that `casper-node` and `casper-sidecar` are compatible.
 
-3. Rebuild the NCTL image: `docker build -f casper-nctl-condor.Dockerfile -t casper-nctl:rc3 .`
+3. Rebuild the NCTL image: `docker build -f casper-nctl-condor.Dockerfile -t casper-nctl:v2.0.0 .`
 
 ## Using the Casper Client
 
@@ -202,7 +296,9 @@ To interact with your local Casper 2.0 network, we'll use the Casper Client. You
 
 ## Accessing the NCTL Block Web Explorer
 
-The NCTL Docker setup includes a web-based block explorer.  You can access it in your browser at:
+This is only available if you started the container using `docker compose up`.
+
+The NCTL Docker setup using docker compose includes a web-based block explorer.  You can access it in your browser at:
 
 ```
 http://127.0.0.1:8080
@@ -216,4 +312,4 @@ This allows you to visually explore blocks, transactions, and other details of y
 
 ## Additional Tips
 
-* **Community Resources:** Join the [Casper Telegram](https://t.me/CSPRCondor) for help and discussion.
+* **Community Resources:** Join the [Casper Telegram](https://t.me/CSPRCondor) or [Casper Discord](https://discord.gg/caspernetwork) for help and discussion.
