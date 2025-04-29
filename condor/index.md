@@ -53,7 +53,7 @@ A detailed discussion of the Zug consensus may be found in the [Casper documenta
 In Casper 2.0, we are introducing a change to the execution engine which allows transactors to specify which of many possible VMs they wish to target with their transaction.
 
 ### CSPR Burn function
-In Casper 2.0 users can burn CSPR token [CEP-92](https://github.com/casper-network/ceps/blob/master/text/0092-cspr-burn.md). This function is exposed as a `burn` function in the mint contract.
+In Casper 2.0 users can burn CSPR token ([CEP-92](https://github.com/casper-network/ceps/blob/master/text/0092-cspr-burn.md)). This function is exposed as a `burn` function in the mint contract.
 
 ### Contract-Level Events
 In Casper 1.X, there was no option for emitting contract-level events in the node software. The best option available to developers looking to use this kind of functionality was the  [Casper Event Standard (CES)](https://github.com/make-software/casper-event-standard) created by MAKE and Odra. In Casper 2.0, We have provided host side support for the emission of events. Smart contract developers may still opt to use the CES standard, however, the native implementation is recommended as the go-forward for the contract-level events
