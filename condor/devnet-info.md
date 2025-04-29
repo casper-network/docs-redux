@@ -25,11 +25,11 @@ Once your request has been processed, you will be notified and provided with a l
 
 **casper-sidecar:**
   - Release Candidate   : `v1.0.4`
-  - Branch/Repo : [casper-sidecar-v1.0.4](https://github.com/casper-network/casper-sidecar/commit/a7b552832aa44390d90b96c3ace67fdefce24670)
+  - Branch/Repo : [casper-sidecar-v1.0.4](https://github.com/casper-network/casper-sidecar/tree/v1.0.4)
 
 **casper-client-rs:**
   - Release Candidate   : `v3.0.1`
-  - Branch/Repo : [casper-client-v3.0.1](https://github.com/casper-ecosystegitm/casper-client-rs/commit/305adf13a08d6b0dac016fa30cec77841ca0a8ca)
+  - Branch/Repo : [casper-client-v3.0.1](https://github.com/casper-ecosystem/casper-client-rs/commits/v3.0.1)
 
 **NCTL:**
   - New NCTL image with `v200-rc10` available on Docker Hub: 
@@ -54,17 +54,13 @@ Once your request has been processed, you will be notified and provided with a l
 
 - Go
   - Github release  : [casper-go-sdk-2.0.3-beta1](https://github.com/make-software/casper-go-sdk/releases/tag/v2.0.3-beta1)  
-- Java (WIP)
-- Python (WIP)
-- Rust (WIP)
-- PHP (WIP)
 
 NOTE: 
 The SDKs have a couple of known serialisation issues. We're working on patch updates to address these issues.
 
 ## How can I explore the transactions in Devnet?
 
-You can explore using the DevNet mini-explorer that points to the Devnet (RC6) at https://devnet.make.services/ 
+You can explore https://devnet.cspr.live/ 
 
 Please note that SSE is listening at 52.90.123.125.
 
