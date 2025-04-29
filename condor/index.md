@@ -53,11 +53,12 @@ A detailed discussion of the Zug consensus may be found in the [Casper documenta
 In Casper 2.0, we are introducing a change to the execution engine which allows transactors to specify which of many possible VMs they wish to target with their transaction.
 
 ### CSPR Burn function
-In Casper 2.0 users can burn CSPR token ([CEP-92](https://github.com/casper-network/ceps/blob/master/text/0092-cspr-burn.md). This function is exposed as a `burn` function in the mint contract.
+In Casper 2.0 users can burn CSPR token ([CEP-92](https://github.com/casper-network/ceps/blob/master/text/0092-cspr-burn.md)). This function is exposed as a `burn` function in the mint contract.
 
-### Contract Level Events
-In Casper 1.X, there was no native option for emitting contract-level events in the node software. The best option available to developers looking to use this kind of functionality was the  [Casper Event Standard (CES)](https://github.com/make-software/casper-event-standard) created by MAKE and Odra. In Casper 2.0, We have provided host side support for the emission of events. Smart contract developers may still opt to use the CES standard, however, the native implementation is recommneded as the go-forward for the contract level events
-The CEP-88 refernce implementation provides the template for contract level events [CEP-88](https://github.com/casper-network/ceps/blob/master/text/0088-contract-level-messages.md). CEP-88 establishes a secure, one-way messaging channel between contracts and entities listening to a node's event stream. This standardized method of emitting contract-level events is built into the existing Casper Event Stream, requiring no additional features to Casper's SDKs.
+### Contract-Level Events
+In Casper 1.X, there was no option for emitting contract-level events in the node software. The best option available to developers looking to use this kind of functionality was the  [Casper Event Standard (CES)](https://github.com/make-software/casper-event-standard) created by MAKE and Odra. In Casper 2.0, We have provided host side support for the emission of events. Smart contract developers may still opt to use the CES standard, however, the native implementation is recommended as the go-forward for the contract-level events
+
+The CEP-88 reference implementation provides the template for contract-level events [CEP-88](https://github.com/casper-network/ceps/blob/master/text/0088-contract-level-messages.md). CEP-88 establishes a secure, one-way messaging channel between contracts and entities listening to a node's event stream. This standardized method of emitting contract-level events is built into the existing Casper Event Stream, requiring no additional features to Casper's SDKs.
 
 Messages are passed by the execution engine to the node that sends them out on the event stream after execution is complete and committed. The messages sent out on the event stream contain the identity of the entity that emitted the message, the topic on which the message was emitted, the index of the message within the topic and the actual message payload. The contents of the event itself are *not* stored on-chain, but proofs are stored to allow for verification of events.
 
@@ -93,9 +94,9 @@ Casper v2.0 introduces a number of improvements aimed at removing some limitatio
 ### Casper Sidecar
 In Casper 2.0, the existing RPC service has been moved outside of the node software itself. In Casper 1.X, the RPC service existed as an HTTP server which was built into the node software itself. This meant that the RPC server was tightly coupled to the node software, could not be updated without updating the node software, and executed in the same process space as the node. The result of this was that any extension of the RPC surface necessitated a full network upgrade to deliver. 
 
-In Casper 2.0, the JSON RPC has been moved to a separate process, known as the [Sidecar](https://docs.casper.network/operators/setup/casper-sidecar/). This step brings a few improvements: 
- - It allows for better process isolation and makes it easier to run and debug node processes.
- - The Sidecar provides a way to surface Contract Level Events, which opens up some interesting possibilities for node interactions.
+In Casper 2.0, the JSON RPC has been moved to a separate application, known as the [Sidecar](https://docs.casper.network/operators/setup/casper-sidecar/). This step brings a few improvements: 
+ - It allows for better process isolation and makes it easier to run and debug node instances.
+ - The Sidecar provides a way to interact with Contract-Level Events produced by node, which opens up some interesting possibilities for node interactions.
  - The separation of the Sidecar into a new codebase means that enhancements to the RPC API can now be accomplished without changing the node binary, necessitating a network upgrade. 
 
 ### Binary Port
@@ -153,7 +154,7 @@ The effective amount of the hold is reduced linearly over the course of the hold
 ---
 
 ## Deprecations
-The `get_state_item` RPC endpoint, while not yet deprecated, will be deprecated in a future release cycle uin favour of the more flexible get_global_state endpoint. This endpoint was initially deprecated, but was left in to the v2.0 release to maintain backwards compatibility while downstream development teams upgrade their code to reflect this change. For more details please see [here](https://github.com/casper-network/condor-info/discussions/2).
+The `get_state_item` RPC endpoint is deprecated in favour of the more flexible `get_global_state` endpoint. The deprecated `get_state_item` endpoint will be removed in a future release. Downstream development teams can continue to use it in the interim; however, it is recommended that they upgrade their code to reflect this change before the deprecated endpoint is removed. For more details please see [here](https://github.com/casper-network/condor-info/discussions/2).
 
 ---
 
