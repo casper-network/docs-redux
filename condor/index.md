@@ -30,7 +30,6 @@ Casper 2.0 represents a significant upgrade with a slew of new features as well 
 | [CSPR Burning  ](#cspr-burn-function)                             | [CEP-92]()     |
 | [Native Events](#native-events)                                   | [CEP-88]()     |
 | [FFI Enhancements](#ffi-enhancements)                             |                |
-| [Expanded API Options](#expanded-api-integration-options)         |                |
 | [New Transaction Model](#new-transaction-model)                   |                |
 | [Configurable Delegation Limits](#configurable-delegation-limits) | [CEP-90]()     |
 | [Reserved Slots and Custom Fees](#reserved-slots-and-custom-fees) |                |
@@ -75,9 +74,6 @@ Events can be consumed client-side by listening to the event stream of an active
 
 ### FFI Enhancements
 Casper 2.0 FFI introduces access to some additional hashing algorithms, as well as providing access to information about the block info, including hash and parent block hash. This also enables increased entropy for the `casper_random_bytes` function, improving the unpredictability of random outputs. 
-
-### Expanded API Integration Options
-Casper 2.0 introduces some extensions to the ways in which you can interact with the Casper Network.
 
 ### New Transaction Model
 Casper 2.0 introduces the concept of a [Transaction](https://docs.casper.network/transactions-and-transaction-lifecycle/#execution-semantics-transactions), which replaces the existing Deploy concept. Transactions are a new structure that allows several ways for users to make changes to global state. They allow for a variety of Wasm-less interactions with the blockchain. These new interactions are more efficient than Deploys and provide a level of convenience that was not previously available. More more details, see the list of available [Transaction Types](https://docs.casper.network/transactions/#transaction-types).
