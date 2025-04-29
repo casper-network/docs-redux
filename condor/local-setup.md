@@ -37,7 +37,7 @@ NCTL is your tool for managing the Casper network. We'll use a Dockerized versio
 
    ```
    ...
-   RUN git clone -b dev https://github.com/casper-network/casper-node.git ~/casper-node
+   RUN git clone -b v2.0.0 https://github.com/casper-network/casper-node.git ~/casper-node
    ...
    ```
 
@@ -46,24 +46,26 @@ NCTL is your tool for managing the Casper network. We'll use a Dockerized versio
    ```bash
    git clone https://github.com/casper-network/casper-node.git
    cd casper-node
-   git checkout dev
+   git checkout v2.0.0
    ```
    Ensure you're in the `casper-nctl-docker` directory when running this command
 
 4. **Build the Docker Image:**
    ```bash
-   docker build -f casper-nctl-condor.Dockerfile -t casper-nctl:dev .
+   docker build -f casper-nctl-condor.Dockerfile -t casper-nctl:v2.0.0 .
    ```
+   Ensure you're in the `casper-nctl-docker` directory when running this command
+
    This may take a while.
 
 5. **Verify the Image:**
    ```bash
    docker image ls
    ```
-   Look for the `casper-nctl:dev` image in the output
+   Look for the `casper-nctl:v2.0.0` image in the output
    ```
    REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
-   casper-nctl   dev       0e3e3cd50a5a   11 hours ago   442MB
+   casper-nctl   v2.0.0    decdc9495181   3 minutes ago   442MB
    ```
 
 6. **Start the NCTL Docker Container:**
@@ -72,7 +74,7 @@ NCTL is your tool for managing the Casper network. We'll use a Dockerized versio
    Docker Compose brings up an additional NCTL Explorer container, while the manual command does not.
    * **Docker Compose (Recommended):** 
    
-      If you're using the `docker-compose.yml` file, make sure that the `image` under the `casper-nctl` service points to the image you just built (`casper-nctl:dev`) from the previous step, like this:  
+      If you're using the `docker-compose.yml` file, make sure that the `image` under the `casper-nctl` service points to the image you just built (`casper-nctl:v2.0.0`) from the previous step, like this:  
 
       docker-compose.yml
 
@@ -80,7 +82,7 @@ NCTL is your tool for managing the Casper network. We'll use a Dockerized versio
       ...
       services:
       casper-nctl:
-         image: casper-nctl:dev
+         image: casper-nctl:v2.0.0
          container_name: casper-nctl
       ...
       ```
@@ -98,7 +100,7 @@ NCTL is your tool for managing the Casper network. We'll use a Dockerized versio
       Below is the command to start an NCTL container named `mynctl`.
 
       ```bash
-      docker run -d --name mynctl -p 11101:11101 casper-nctl:dev
+      docker run -d --name mynctl -p 11101:11101 casper-nctl:v2.0.0
       ```
 
 
@@ -158,7 +160,7 @@ To interact with your local Casper 2.0 network, we'll use the Casper Client. You
 
 **Option 1: Using the Casper Client from the Docker Image**
 
-* The `casper-nctl:dev` Docker image already includes the `casper-client`.
+* The `casper-nctl:v2.0.0` Docker image already includes the `casper-client`.
 * You can skip the next two steps if you want to use the pre-installed client.
 
 **Option 2: Using Your Local Casper Client**
@@ -171,7 +173,7 @@ To interact with your local Casper 2.0 network, we'll use the Casper Client. You
 
 2. **Switch to the Casper 2.0-Compatible Branch  (Optional):**
    ```bash
-   git checkout dev
+   git checkout v3.0.1
    ```
 
 3. **Build casper-client:**
@@ -280,12 +282,12 @@ To interact with your local Casper 2.0 network, we'll use the Casper Client. You
    ``` 
    to:
    ```json
-   "branch": "dev" 
+   "branch": "v1.0.4" 
    ```
 
    Make sure that `casper-node` and `casper-sidecar` are compatible.
 
-3. Rebuild the NCTL image: `docker build -f casper-nctl-condor.Dockerfile -t casper-nctl:dev .`
+3. Rebuild the NCTL image: `docker build -f casper-nctl-condor.Dockerfile -t casper-nctl:v2.0.0 .`
 
 ## Using the Casper Client
 
