@@ -23,20 +23,18 @@ Casper 2.0 represents a significant upgrade with a slew of new features as well 
 
 ## New Features
 
-| Feature                                                           | CEP            |
-|-------------------------------------------------------------------|----------------|
-| [Zug Consensus Protocol](#zug-consensus-protocol)                 | [Whitepaper]() |
-| [Multi-VM Support](#multi-virtual-machine-architecture)           |                |
-| [CSPR Burning  ](#cspr-burn-function)                             | [CEP-92]()     |
-| [Native Events](#native-events)                                   | [CEP-88]()     |
-| [FFI Enhancements](#ffi-enhancements)                             |                |
-| [New Transaction Model](#new-transaction-model)                   |                |
-| [Configurable Delegation Limits](#configurable-delegation-limits) | [CEP-90]()     |
-| [Reserved Slots and Custom Fees](#reserved-slots-and-custom-fees) |                |
-| [Factory Contract Pattern](#factory-contract-pattern)             | [CEP-86]()     |
-| [Contract Access to Auction](#contract-access-to-auction)         |                |
-
-
+| Feature                                                           | CEP                                                                                                      |
+|-------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| [Zug Consensus Protocol](#zug-consensus-protocol)                 | [Whitepaper](https://arxiv.org/abs/2205.06314)                                                           |
+| [Multi-VM Support](#multi-virtual-machine-architecture)           |                                                                                                          |
+| [CSPR Burning  ](#cspr-burn-function)                             | [CEP-92](https://github.com/casper-network/ceps/blob/master/text/0092-cspr-burn.md)                      |
+| [Native Events](#native-events)                                   | [CEP-88](https://github.com/casper-network/ceps/blob/master/text/0088-contract-level-messages.md)        |
+| [FFI Enhancements](#ffi-enhancements)                             |                                                                                                          |
+| [New Transaction Model](#new-transaction-model)                   |                                                                                                          |
+| [Configurable Delegation Limits](#configurable-delegation-limits) | [CEP-90](https://github.com/casper-network/ceps/blob/master/text/0090-configurable-delegation-limits.md) |
+| [Reserved Slots and Custom Fees](#reserved-slots-and-custom-fees) |                                                                                                          |
+| [Factory Contract Pattern](#factory-contract-pattern)             | [CEP-86](https://github.com/casper-network/ceps/blob/master/text/0086-factory-pattern.md)                |
+| [Contract Access to Auction](#contract-access-to-auction)         |                                                                                                          |
 
 ### Zug Consensus Protocol
 Casper 2.0 introduces a new consensus model known as Zug ([Whitepaper](https://arxiv.org/abs/2205.06314)). The Highway protocol is effective and secure, but resource-heavy. Zug is simpler and leaner than the Highway protocol upon which Casper was originally conceived, and as such allows for improvements in network efficiency and cohesion. This in turn facilitates eventual extension of the validator list, and finer-grained control over block times.
