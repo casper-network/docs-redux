@@ -14,7 +14,7 @@ This FAQ addresses common questions from smart contract developers, dApp builder
 
 ### 1. How do I install `casper-sidecar` on Ubuntu/Debian?
 
-`casper-sidecar` is a service that allows developers to interact with the Casper network more efficiently. To install it on a Debian-based system, follow these steps:
+`casper-sidecar` is a companion service to a Casper node that improves performance and scalability by offloading event broadcasting and offering enhanced client-facing features. While typically run alongside a node, it can also operate remotely. To install it on a Debian-based system, follow these steps:
 
 ```bash
 sudo mkdir -m 0755 -p /etc/apt/keyrings/
@@ -28,7 +28,7 @@ sudo apt update
 sudo apt install casper-sidecar
 ```
 
-This sets up the public key, adds the Casper repository to your system, updates the package list, and installs the software.
+This sequence of commands downloads and stores the Casper repository’s public GPG key, adds the repository to your system’s sources list, updates your package index, and installs the `casper-sidecar` service.
 
 ---
 
