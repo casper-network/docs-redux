@@ -10,7 +10,7 @@ This FAQ addresses common questions from smart contract developers, dApp builder
 
 ---
 
-## 🧑‍💻 Developer & dApp FAQs
+## 🧑‍💻 Developer & dApp FAQ
 
 ### 1. How do I install `casper-sidecar` on Ubuntu/Debian?
 
@@ -100,9 +100,9 @@ It is recommended to use these for staging and test environments rather than pro
 
 ---
 
-## 📊 Node Operator & Validator FAQs
+## 📊 Node Operator & Validator FAQ
 
-### 9. When is a node considered fully synced?
+### 1. When is a node considered fully synced?
 
 A node transitions through states such as `CatchUp` and `KeepUp`. When a node's `reactor_state` becomes `KeepUp`, it means it has caught up with the latest state of the blockchain and is now participating in consensus.
 
@@ -110,7 +110,7 @@ You can check this in the node logs or via diagnostic endpoints.
 
 ---
 
-### 10. Where can I check staking rewards?
+### 2. Where can I check staking rewards?
 
 Use [cspr.live](https://cspr.live) to check staking rewards:
 
@@ -123,9 +123,9 @@ Example:
 
 ---
 
-## 👤 General User FAQs
+## 👤 General User FAQ
 
-### 11. What is delegation?
+### 1. What is delegation?
 
 Delegation lets you participate in network security by staking your tokens with a validator. You don’t need to run a node. Validators share a portion of the staking rewards with their delegators, keeping a small fee (commission).
 
@@ -133,13 +133,13 @@ This contributes to network decentralization and rewards you with passive income
 
 ---
 
-### 12. How frequently are staking rewards paid?
+### 2. How frequently are staking rewards paid?
 
 Staking rewards are distributed every **Era** (approximately every 2 hours). It may take up to 4 hours (2 Eras) for the first rewards to show after delegation.
 
 ---
 
-### 13. I’ve delegated my tokens but don’t see rewards?
+### 3. I’ve delegated my tokens but don’t see rewards?
 
 Staking rewards are added to your current stake and may not appear immediately as spendable balance. To view them:
 
@@ -148,19 +148,19 @@ Staking rewards are added to your current stake and may not appear immediately a
 
 ---
 
-### 14. Is there a lock period after delegation?
+### 4. Is there a lock period after delegation?
 
 There is no lock period when delegating. However, **undelegation** incurs a 7 Era (~14 hour) unbonding period. After this, the tokens are available in your account for transfer or re-delegation.
 
 ---
 
-### 15. Is there slashing? Can I lose tokens?
+### 5. Is there slashing? Can I lose tokens?
 
 Currently, Casper does **not** have slashing enabled. If a validator is evicted from the active set, you won’t receive rewards while they’re inactive. In future, when slashing is enabled, delegators may lose a portion of their stake if their validator misbehaves.
 
 ---
 
-### 16. What is the cost of delegation and undelegation?
+### 6. What is the cost of delegation and undelegation?
 
 Each delegation transaction costs approximately **3 CSPR**.  
 💡 Always keep extra tokens in your account to cover fees for transactions like delegation, undelegation, and transfers.
