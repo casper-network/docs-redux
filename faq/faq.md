@@ -106,15 +106,15 @@ It is recommended to use these for staging and test environments rather than pro
 
 ### 1. When is a node considered fully synced?
 
-A node transitions through states such as `CatchUp` and `KeepUp`. When a node's `reactor_state` becomes `KeepUp`, it means it has caught up with the latest state of the blockchain and is now participating in consensus.
+A node transitions through states such as `CatchUp`, `KeepUp`, and `Validate`. When a node's `reactor_state` becomes `KeepUp`, it means it has caught up with the latest state of the blockchain and is now keeping up with the rest of the network.
 
-You can check this in the node logs or via diagnostic endpoints.
+You can check this in the node logs, via diagnostic endpoints, or by using the `/etc/casper/node_util.py watch` command directly on the node's terminal through `ssh` connection.
 
 ---
 
 ### 2. Where can I check staking rewards?
 
-Use [cspr.live](https://cspr.live) to check staking rewards:
+Use [CSPR.live](https://cspr.live) to check staking rewards:
 
 1. Navigate to your account page.
 2. Click the "Staking Rewards" tab.
