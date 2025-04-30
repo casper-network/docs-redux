@@ -9,7 +9,7 @@ Individual value changes to data stored within the NamedKeys would require deser
 
 As a solution to this problem, the Casper platform provides the `Dictionary` feature, which allows users a more efficient and scalable means to aggregate data over time.
 
-Casper's Condor release shifts `NamedKeys` to a top-level key, removing this restriction and making them viable for data storage.
+Casper 2.0 release shifts `NamedKeys` to a top-level key, removing this restriction and making them viable for data storage.
 
 ## Seed URefs
 

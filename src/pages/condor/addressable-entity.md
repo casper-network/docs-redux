@@ -4,7 +4,7 @@ description: An introduction to the Addressable Entity concept.
 slug: addressable-entity
 date: 2024-07-17T18:00
 authors: [ sczembor, melpadden ]
-tags: [condor]
+tags: [condor, casper2.0]
 hide_table_of_contents: false
 ---
 
@@ -78,13 +78,13 @@ let contract_hash = match addressable_entity_key {
 };
 ```
 
-## The Address Merge in Condor
+## The Address Merge in Casper 2.0
 
-The "Address Merge" in the Condor upgrade of Casper is a foundational shift, impacting how accounts and smart contracts are identified and interacted with.  
+The "Address Merge" in the Casper 2.0 upgrade of Casper is a foundational shift, impacting how accounts and smart contracts are identified and interacted with.  
 
 **Global State Transformation:**
 
-Post-Condor, all accounts and smart contract addresses residing within the global state will be automatically migrated to the `AddressableEntity` structure. This means the network itself will recognize and handle these entities using the new format.
+Post-Casper 2.0, all accounts and smart contract addresses residing within the global state will be automatically migrated to the `AddressableEntity` structure. This means the network itself will recognize and handle these entities using the new format.
 
 **Smart Contract Compatibility Considerations:**
 

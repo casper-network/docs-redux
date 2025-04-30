@@ -273,23 +273,7 @@ module.exports = {
                 "operators/becoming-a-validator/recovering",
                 "operators/becoming-a-validator/inactive-vs-faulty",
             ],
-        },
-        {
-            type: "category",
-            label: "Private Networks",
-            collapsible: true,
-            collapsed: true,
-            link: {
-                type: "doc",
-                id: "operators/setup-network/index",
-            },
-            items: [
-                "operators/setup-network/genesis",
-                "operators/setup-network/chain-spec",
-                "operators/setup-network/create-private",
-                "operators/setup-network/staging-files-for-new-network",
-            ],
-        },
+        },        
         {
             type: "category",
             label: "Maintenance",

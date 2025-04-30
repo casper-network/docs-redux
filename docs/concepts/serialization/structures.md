@@ -2,7 +2,7 @@
 
 ## Account {#serialization-standard-account}
 
-An Account is a structure that represented a user on a legacy Casper network. Alongside the Condor protocol release, `Accounts` were replaced with `AddressableEntities` of the type `Account`. The account structure consists of the following fields:
+An Account is a structure that represented a user on a legacy Casper network. Alongside the Casper 2.0 protocol release, `Accounts` were replaced with `AddressableEntities` of the type `Account`. The account structure consists of the following fields:
 
 -   [`account_hash`](./types.md#account-hash)
 
@@ -55,7 +55,7 @@ A block is structurally defined as follows:
 
 Further, a block may consist of one of the following types:
 
-- `Version1`: A legacy block created prior to the Condor upgrade.
+- `Version1`: A legacy block created prior to the Casper 2.0 upgrade.
 
 - `Version2`: A modern block.
 
@@ -116,7 +116,7 @@ Note that `EraEndV2` is an optional field. Thus the above scheme only applies if
 
 ### BlockBodyV1 {#blockbodyV1}
 
-The body portion of a block, prior to the Condor upgrade, is structurally defined as:
+The body portion of a block, prior to the Casper 2.0 upgrade, is structurally defined as:
 
 -   `proposer`: The PublicKey which proposed this block.
 -   `deploy_hashes`: Is a vector of hex-encoded hashes identifying Deploys included in this block.

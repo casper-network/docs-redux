@@ -1,9 +1,9 @@
 ---
 title: Setting Up a Local Casper v2.0 Network for Development
-description: How to set up a local Casper v2.0 Network for Development using CCTL and the Rust Casper client.
+description: How to set up a local Casper v2.0 Network for Development using NCTL and the Rust Casper client.
 slug: local-setup
 date: 2024-07-16T18:00
-authors: [ sczembor ]
+authors: [ sczembor,jiu-hong ]
 tags: [v2, setup]
 hide_table_of_contents: false
 ---
