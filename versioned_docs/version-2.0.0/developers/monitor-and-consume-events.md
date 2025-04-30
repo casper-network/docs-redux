@@ -569,7 +569,7 @@ The intended use case is to allow a client consuming the event stream that loses
 
 :::
 
-# 1.5 vs 2.x compatibility note
+## 1.5 vs 2.x compatibility note
 
 The SSE events serve went through significant, backwards incompatible changes. Here are the most important ones of them that need to be taken into consideration:
 
@@ -580,3 +580,7 @@ The SSE events serve went through significant, backwards incompatible changes. H
 1. `TransactionProcessed` is an event analogous to `DeployProcessed`, but there is no backwards-compatibility guarantee - their structure differs.
 1. `TransactionExpired` is an event analogous to `DeployExpired`, but there is no backwards-compatibility guarantee - their structure differs.
 1. `FinalitySignature` has a 1.5 incompatible structure.
+
+## Sidecar and SSE events
+
+The Sidecar App offers some benefits and extensions to how the SSE of the node itself works. For instance it allows to store events to drive and query them with a separate REST API. It also allows the nodes SSE endpoint to be not-public since Sidecar has the ability to republish SSE events. For details on how it works please consult (Sidecar documentation)[https://github.com/casper-network/casper-sidecar/blob/dev/README.md]
