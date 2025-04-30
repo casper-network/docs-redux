@@ -84,7 +84,7 @@ These are the block gas and size limits for the Casper 2.0 release on Mainnet:
 # Maximum block size in bytes including transactions contained by the block.  0 means unlimited.
 max_block_size = 5_242_880
 # The upper limit of total gas of all transactions in a block.
-block_gas_limit = 3_300_000_000_000
+block_gas_limit = 1_625_000_000_000
 ```
 
 ## Dynamic Gas Pricing
