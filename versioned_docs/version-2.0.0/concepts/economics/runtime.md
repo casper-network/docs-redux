@@ -46,46 +46,12 @@ There are several platform parameters that delineate the sets of transactions th
    - The block size limit imposes an absolute ceiling on the total byte size of included transactions.
    - Individual transaction size limits are also enforced.
 
-These are the lane configuration settings for the Casper 2.0 release on Mainnet:
+The lane configuration settings for the Casper 2.0 release on Mainnet is available in the `[transactions.v1]` section of the [chainspec.toml](https://github.com/casper-network/casper-protocol-release/blob/casper/config/chainspec.toml#L202). 
 <!--TODO check and update these settings after the launch or link to the chainspec file directly.-->
 
-```toml
-[transactions.v1]
-# The configuration settings for the lanes of transactions including both native and Wasm based interactions.
-# Currently the node supports two native interactions the mint and auction and have the reserved identifiers of 0 and 1
-# respectively
-# The remaining wasm based lanes specify the range of configuration settings for a given Wasm based transaction
-# within a given lane.
-# The maximum length in bytes of runtime args per V1 transaction.
-# [0] -> Transaction lane label (apart from the reserved native identifiers these are simply labels)
-# Note: For the given mainnet implementation we specially reserve the label 2 for install and upgrades and
-# the lane must be present and defined.
-# Different casper networks may not impose such a restriction.
-# [1] -> Max serialized length of the entire transaction in bytes for a given transaction in a certain lane
-# [2] -> Max args length size in bytes for a given transaction in a certain lane
-# [3] -> Transaction gas limit for a given transaction in a certain lane
-# [4] -> The maximum number of transactions the lane can contain
-native_mint_lane = [0, 2048, 1024, 100_000_000, 650]
-native_auction_lane = [1, 3096, 2048, 2_500_000_000, 650]
-install_upgrade_lane = [2, 750_000, 2048, 1_000_000_000_000, 1]
-wasm_lanes = [
-    [3, 750_000, 2048, 1_000_000_000_000, 1],
-    [4, 131_072, 1024, 100_000_000_000, 2],
-    [5, 65_536, 512, 5_000_000_000, 80]
-]
-```
 
-These are the block gas and size limits for the Casper 2.0 release on Mainnet:
+The block gas and size limits for the Casper 2.0 release on Mainnet is available in the `[transactions]` section of the [chainspec.toml](https://github.com/casper-network/casper-protocol-release/blob/casper/config/chainspec.toml#L183).
 <!--TODO check and update these settings after the launch or link to the chainspec file directly.-->
-
-```toml
-[transactions]
-...
-# Maximum block size in bytes including transactions contained by the block.  0 means unlimited.
-max_block_size = 5_242_880
-# The upper limit of total gas of all transactions in a block.
-block_gas_limit = 1_625_000_000_000
-```
 
 ## Dynamic Gas Pricing
 
