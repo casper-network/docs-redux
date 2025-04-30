@@ -33,7 +33,7 @@ NCTL is your tool for managing the Casper network. We'll use a Dockerized versio
    git checkout feat-2.0
    ```
    
-   Modify the casper-node's branch to dev inside casper-nctl-condor.Dockerfile
+   Modify the casper-node's branch to 2.0.0 inside casper-nctl-condor.Dockerfile
 
    ```
    ...

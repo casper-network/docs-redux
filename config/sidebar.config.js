@@ -99,7 +99,6 @@ module.exports = {
             items: ["concepts/serialization/primitives", "concepts/serialization/structures", "concepts/serialization/types"],
         },
         "concepts/intro-to-dapps",
-        "concepts/addressable-entity",
         "concepts/accounts-and-keys",
         "concepts/key-types",
         "concepts/transactions",
