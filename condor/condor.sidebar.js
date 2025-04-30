@@ -22,6 +22,7 @@ const sidebars = {
         'local-setup',
         'transactions',
         'validator-rewards',
+        'block-lanes',
         'zug',
         'devnet-info',
         'migration-guide',
