@@ -34,7 +34,7 @@ This sequence of commands downloads and stores the Casper repository’s public 
 
 ### 2. Where can I learn about serialization of transaction payloads?
 
-Serialization is the process of converting complex data into a format that can be transmitted or stored and reconstructed later. Casper uses specific serialization methods for deploys and payloads.
+Serialization is the process of converting complex data into a format that can be transmitted or stored and reconstructed later. Casper uses specific serialization methods for transactions and payloads.
 
 You can explore serialization concepts in the official documentation:  
 🔗 [Serialization – Casper Docs](https://docs.casper.network/concepts/serialization)
@@ -44,11 +44,11 @@ You can also refer to the JavaScript SDK for practical examples:
 
 ---
 
-### 3. What causes an "invalid deploy" when using Casper Wallet?
+### 3. What causes an "invalid transaction" when using Casper Wallet?
 
-An "invalid deploy" error typically occurs when your system time is not synchronized with the standard internet time. 
+An "invalid transaction" error typically occurs when your system time is not synchronized with the standard internet time. 
 
-Casper's deploys include timestamps, and if the timestamp on your deploy is too far from the network's time, it will be rejected.
+Casper's transactions include timestamps, and if the timestamp on your transaction is too far from the network's time, it will be rejected.
 
 ✅ Make sure your system clock is set to automatically sync with an NTP (Network Time Protocol) server.
 
@@ -56,7 +56,7 @@ Casper's deploys include timestamps, and if the timestamp on your deploy is too 
 
 ### 4. How do I check if a transaction was successful?
 
-Once a deploy is submitted, you can check its status via the node RPC or via explorer tools.
+Once a transaction is submitted, you can check its status via the node RPC or via explorer tools.
 
 Look for the following field in the JSON response:
 
