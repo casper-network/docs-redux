@@ -58,13 +58,15 @@ Casper's transactions include timestamps, and if the timestamp on your transacti
 
 Once a transaction is submitted, you can check its status via the node RPC or via explorer tools.
 
-Look for the following field in the JSON response:
+Look for the following field in the JSON response when checking via the node RPC:
 
 ```json
 result.execution_info.execution_result.Version2.error_message
 ```
 
 If `error_message` is `null` or empty, it means the transaction executed successfully. If it's populated, it will provide the reason for failure.
+
+You can also search for the transaction by its hash on [CSPR.live](https://cspr.live)
 
 ---
 
@@ -90,7 +92,7 @@ The Casper Signer is deprecated and replaced by the Casper Wallet. To migrate:
 
 ---
 
-### 7. What are the integration endpoints for `cspr.cloud`?
+### 7. What are the Integration network endpoints for `CSPR.cloud`?
 
 These endpoints are used for developers building integrations or apps that require RPC access to the network.
 
