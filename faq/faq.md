@@ -162,8 +162,8 @@ Currently, Casper does **not** have slashing enabled. If a validator is evicted 
 
 ---
 
-### 6. What is the cost of delegation and undelegation?
+### 6. What is the cost of delegation (staking) and undelegation (unstaking)?
 
-Each delegation transaction costs approximately **3 CSPR**.  
+Each delegation transaction costs **2.5 CSPR**.  
 💡 Always keep extra tokens in your account to cover fees for transactions like delegation, undelegation, and transfers.
 
