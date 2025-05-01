@@ -118,7 +118,7 @@ Use [CSPR.live](https://cspr.live) to check staking rewards:
 
 1. Navigate to your account page.
 2. Click the "Staking Rewards" tab.
-3. You can view detailed reward history per Era.
+3. You can view detailed reward history per [Era](../docs/concepts/glossary/E#era).
 
 Example:  
 🔗 [Staking Rewards Example](https://cspr.live/account/02038baa714f1f45aaacb4443df31bf27a8990369c2f9d585f904ec5c5b85aeb231f)
