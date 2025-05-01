@@ -145,14 +145,14 @@ Staking rewards are distributed every **Era** (approximately every 2 hours). It 
 
 Staking rewards are added to your current stake and may not appear immediately as spendable balance. To view them:
 
-- Go to [cspr.live](https://cspr.live)
+- Go to [CSPR.live](https://cspr.live)
 - Look under your validator in the “Rewards” tab
 
 ---
 
 ### 4. Is there a lock period after delegation?
 
-There is no lock period when delegating. However, **undelegation** incurs a 7 Era (~14 hour) unbonding period. After this, the tokens are available in your account for transfer or re-delegation.
+There is no lock period when delegating. However, **undelegation** incurs a 7-Era (~14-hour) unbonding period. After this, the tokens are available in your account for transfer, spending, or re-delegation.
 
 ---
 
