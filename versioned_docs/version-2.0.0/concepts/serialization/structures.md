@@ -2,7 +2,7 @@
 
 ## Account {#serialization-standard-account}
 
-An Account is a structure that represented a user on a legacy Casper network. Alongside the Condor protocol release, `Accounts` were replaced with `AddressableEntities` of the type `Account`. The account structure consists of the following fields:
+An Account is a structure that represented a user on a legacy Casper network. Alongside the Casper 2.0 protocol release, `Accounts` were replaced with `AddressableEntities` of the type `Account`. The account structure consists of the following fields:
 
 -   [`account_hash`](./types.md#account-hash)
 
@@ -47,10 +47,12 @@ To byte-serialize a `Block` you first need to serialize it's binary prefix and t
 
 ## BlockV1 {#block-v1}
 
-This type encapsulates block data that used to be produced in versions of the nodes prior to 2.0.
-This type represents a historical block that was produced prior to 2.0
-Each block has a globally unique ID, achieved by hashing the contents of the block.
-Each block points to its parent. An exception is the first block, which has no parent.
+This type:
+* encapsulates block data that used to be produced in versions of the nodes prior to 2.0.
+* represents a historical block that was produced prior to 2.0
+Each block:
+* has a globally unique ID, achieved by hashing the contents of the block.
+* points to its parent. An exception is the first block, which has no parent.
 
 A block is structurally defined as follows:
 
@@ -97,7 +99,7 @@ Note that `EraEndV1` is an optional field. Thus the above scheme only applies if
 
 ### BlockBodyV1 {#blockbodyV1}
 
-The body portion of a block, prior to the Condor upgrade, is structurally defined as:
+The body portion of a block, prior to the Casper 2.0 upgrade, is structurally defined as:
 
 -   `proposer`: The PublicKey which proposed this block.
 -   `deploy_hashes`: Is a vector of hex-encoded hashes identifying Deploys included in this block.
@@ -134,7 +136,7 @@ The header portion of a block, structurally, is defined as follows:
 -   `body_hash` the hash of the block body. It serializes to the byte representation of the body hash. The serialized buffer of the `body_hash` is 32 bytes long.
 -   `random_bit` is a boolean needed for initializing a future era. It is serialized as a single byte; true maps to 1, while false maps to 0.
 -   `accumulated_seed` is a seed needed for initializing a future era. It serializes to the byte representation of the parent Hash. The serialized buffer of the `accumulated_hash` is 32 bytes long.
--   `era_end` contains equivocation and reward information to be included in the terminal finalized block. It is an optional field. Thus if the field is set as `None`, it serializes to _0_. The serialization of the other case is described in the `EraEndV1`.
+-   `era_end` contains equivocation and reward information to be included in the terminal finalized block. It is an optional field. Thus if the field is set as `None`, it serializes to _0_. The serialization of the other case is described in the `EraEndV2`.
 -   `timestamp` The timestamp from when the block was proposed. It serializes as a single `u64` value. The serialization of a `u64` value is described in the CLValues section.
 -   `era_id` Era ID in which this block was created. It serializes as a single `u64` value.
 -   `height` The height of this block, i.e., the number of ancestors. It serializes as a single `u64` value.
@@ -145,7 +147,7 @@ The header portion of a block, structurally, is defined as follows:
 
 ### EraEndV2 {#eraendV2}
 
-`EraEndV1` as represented within the block header, is a struct containing four fields.
+`EraEndV2` as represented within the block header, is a struct containing four fields.
 
 - `equivocators`: A vector of `PublicKey` listing equivocators for the era.
 - `inactive_validators`: A list of inactive validators for the era.
