@@ -113,6 +113,7 @@ module.exports = {
         "developers/index",
         "developers/prerequisites",
         "developers/essential-crates",
+        "developers/monitor-and-consume-events",
         {
             type: "category",
             label: "Writing On-Chain Code",
