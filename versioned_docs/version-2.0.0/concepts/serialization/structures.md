@@ -2,7 +2,7 @@
 
 ## Account {#serialization-standard-account}
 
-An Account is a structure that represented a user on a legacy Casper network. Alongside the Casper 2.0 protocol release, `Accounts` were replaced with `AddressableEntities` of the type `Account`. The account structure consists of the following fields:
+An Account is a structure that represented a user on a Casper network. The account structure consists of the following fields:
 
 -   [`account_hash`](./types.md#account-hash)
 
@@ -16,7 +16,12 @@ An Account is a structure that represented a user on a legacy Casper network. Al
 
 ## AddressableEntity {#addressable-entity}
 
-An Addressable Entity is a structure that represents an entity on a Casper network. The addressable entity consists of the following fields:
+An Addressable Entity is a structure that represents an entity on a Casper network. 
+
+**Important:** Addressable Entity is turned off in Casper 2.0 and will be enabled in a future release. 
+
+The addressable entity consists of the following fields:
+
 - [`package_hash`](./types.md#package-hash)
 
 - [`byte_code_hash`](./types.md#byte-code-hash)

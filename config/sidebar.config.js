@@ -99,7 +99,6 @@ module.exports = {
             items: ["concepts/serialization/primitives", "concepts/serialization/structures", "concepts/serialization/types"],
         },
         "concepts/intro-to-dapps",
-        "concepts/addressable-entity",
         "concepts/accounts-and-keys",
         "concepts/key-types",
         "concepts/transactions",
@@ -114,6 +113,7 @@ module.exports = {
         "developers/index",
         "developers/prerequisites",
         "developers/essential-crates",
+        "developers/monitor-and-consume-events",
         {
             type: "category",
             label: "Writing On-Chain Code",
@@ -273,23 +273,7 @@ module.exports = {
                 "operators/becoming-a-validator/recovering",
                 "operators/becoming-a-validator/inactive-vs-faulty",
             ],
-        },
-        {
-            type: "category",
-            label: "Private Networks",
-            collapsible: true,
-            collapsed: true,
-            link: {
-                type: "doc",
-                id: "operators/setup-network/index",
-            },
-            items: [
-                "operators/setup-network/genesis",
-                "operators/setup-network/chain-spec",
-                "operators/setup-network/create-private",
-                "operators/setup-network/staging-files-for-new-network",
-            ],
-        },
+        },        
         {
             type: "category",
             label: "Maintenance",

@@ -4,7 +4,7 @@ title: What is Casper?
 
 ## What is Casper? {#what-is-casper}
 
-Casper is a [Turing-complete](../concepts/glossary/T.md#turing-complete-blockchain) smart-contracting platform, backed by a Proof-of-Stake (PoS) consensus algorithm and WebAssembly (Wasm). The network is a [permissionless](../concepts/glossary/P.md#permissionless), decentralized, public blockchain.
+Casper is a [Turing-complete](../concepts/glossary/T.md#turing-complete-blockchain)(given the limitations of finite memory) smart-contracting platform, backed by a Proof-of-Stake (PoS) consensus algorithm and WebAssembly (Wasm). The network is a [permissionless](../concepts/glossary/P.md#permissionless), decentralized, public blockchain.
 
 The network's consensus protocol is called [Zug](./design/zug.md), and it has several benefits over classic Byzantine Fault Tolerant (BFT) consensus protocols. First, Zug allows networks to reach higher thresholds of _finality_, meaning that every block gets finalized within seconds, as fast as the network connections allow. Second, the protocol achieves flexibility by expressing block finality in ways not possible in BFT models. This protocol is built on the following research: [From Weakly-terminating Binary Agreement and Reliable Broadcast to Atomic Broadcast](https://arxiv.org/abs/2205.06314).
 
