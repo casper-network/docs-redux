@@ -61,6 +61,13 @@ module.exports = {
             label: "Casper 2.0",
             position: "right",
         },
+        {
+            type: "docSidebar",
+            sidebarId: "faqSidebar",
+            docsPluginId: 'faq',
+            label: "FAQ",
+            position: "right",
+        },
         // { 
         //     to: 'blog', 
         //     label: 'Blog Articles', 

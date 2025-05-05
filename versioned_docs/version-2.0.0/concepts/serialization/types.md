@@ -214,7 +214,7 @@ Hex-encoded bytes serialized as a `u32` value describing the length of the bytes
 
 ## ByteCodeKind
 
-The type of byte code, serialized as a single `u8` value. A `0` indicates empty byte code, while a `1` indicates a `V1CasperWasm` to be executed with the first version of the Casper execution engine.
+The type of byte code, serialized as a single `u8` value. A `0` indicates empty byte code. `1` indicates a `V1CasperWasm` to be executed with the first version of the Casper execution engine. `2` indicates a `V2CasperWasm` to be executed with the first version of the Casper execution engine
 
 ## Caller {#caller}
 
@@ -251,6 +251,9 @@ ChainspecRegistry is a unique key variant which contains a mapping of file names
 ## ChecksumRegistry {#checksum-registry}
 
 The checksum registry. It serializes as a `BTreeMap` where the first 4 bytes represent a `u32` value describing the number of checksum names as strings and [digests](#digest) held within. The remainder consists of a repeating pattern of serialized strings and then digests of the length dictated by the first four bytes.
+
+## ContractRuntimeTag {#contract-runtime-tag}
+A tag for the contracts runtime tag, serialized as a single `u8` tag of 0 for `VmCasperV1`, 1 for `VmCasperV2`.
 
 ## Delegator {#delegator}
 
@@ -368,7 +371,7 @@ An `enum` specifying who pays for the invocation and execution of an entry point
 
 -   `Caller`: Serializes as a 0 and indicates that the caller must cover the cost.
 
--   `SelfOnly`: Serializes as a 1 and indicates that the contract will pay the cost to execute itself, but no subsequent invoked contracts.
+-   `DirectInvocationOnly`: Serializes as a 1 and indicates that the contract will pay the cost to execute itself, but no subsequent invoked contracts.
 
 -   `SelfOnward`: Serializes as a 2 and indicates that the contract will pay for executing itself and any subsequent invocations.
 
@@ -378,9 +381,9 @@ The context of method execution. It serializes as one of the following:
 
 -   `Caller`: Serializes as a single `u8`, `0b00000000`
 
--   `Called`: Serializes as a single `u8`, `0b00000001`
+-   `DirectInvocationOnly`: Serializes as a single `u8`, `0b00000001`
 
--   `Factory`: Serializes as a single `u8`, `0b10000000`
+-   `SelfOnward`: Serializes as a single `u8`, `0b10000000`
 
 ## EntrypointV2
 
@@ -770,9 +773,9 @@ Entity types for system contracts, serialized as a single `u8` tag identifying t
 | Tag | System Contract |
 | --- | --------------- |
 | 0 | `Mint` |
-| 1 | `Auction` |
+| 1 | `HandlePayment` |
 | 2 | `StandardPayment` |
-| 3 | `HandlePayment` |
+| 3 | `Auction` |
 
 ## TimeDiff {#timediff}
 
