@@ -387,7 +387,7 @@ A `TransactionProcessed` event is emitted when a given Deploy has been executed.
 ```
 
 - [transaction_hash](../concepts/serialization/structures.md#transaction-hash) - The cryptographic hash of a Deploy.
-- [initiator_addr](../concepts/serialization/types.md#initiatoraddr) - Representation of the address that initiated this transaction.
+- [initiator_addr](../concepts/serialization/transaction.md#initiatoraddr) - Representation of the address that initiated this transaction.
 - [timestamp](../concepts/serialization/types.md#timestamp) - A timestamp type representing a concrete moment in time.
 - [block_hash](../concepts/serialization/structures.md#block-hash) - A cryptographic hash identifying a Block.
 - [execution_result](../concepts/serialization/types.md#execution-result) - The execution status of the transaction. It is a polymorphic type that can be either `Deploy` or `Version1`.
