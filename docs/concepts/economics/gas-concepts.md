@@ -10,7 +10,7 @@ title: Gas Cost
 
 Gas is a conceptual measure of resources used while executing transactions on the blockchain. Gas cost is the amount of gas consumed during the processing cycles that execute a transaction on the network. It correlates directly with the amount of computer processing a validator needs to provide to execute a transaction.
 
-Gas fees are consumed on the network irrespective of whether a transaction was successful or not. Even when a transaction fails, the network measures [computational work as gas](../design/casper-design.md#measuring-computational-work-execution-semantics-gas) because it consumes resources and space on the block as the validator attempts to execute it. Depending on how the network was configured, the transaction fee may or may not be refunded, or a hold may placed on the paying purse. 
+Gas fees are consumed on the network irrespective of whether a transaction was successful or not. Even when a transaction fails, the network measures [computational work as gas](../design/casper-design.md#measuring-computational-work-execution-semantics-gas) because it consumes resources and space on the block as the validator attempts to execute it. Depending on how the network was configured, the transaction fee may or may not be refunded, or a hold may be placed on the paying purse.
 
 ## How is gas cost determined?
 

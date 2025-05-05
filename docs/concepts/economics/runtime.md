@@ -47,11 +47,11 @@ There are several platform parameters that delineate the sets of transactions th
    - Individual transaction size limits are also enforced.
 
 The lane configuration settings for the Casper 2.0 release on Mainnet is available in the `[transactions.v1]` section of the [chainspec.toml](https://github.com/casper-network/casper-protocol-release/blob/casper/config/chainspec.toml#L202). 
-<!--TODO check and update these settings after the launch or link to the chainspec file directly.-->
+
 
 
 The block gas and size limits for the Casper 2.0 release on Mainnet is available in the `[transactions]` section of the [chainspec.toml](https://github.com/casper-network/casper-protocol-release/blob/casper/config/chainspec.toml#L183).
-<!--TODO check and update these settings after the launch or link to the chainspec file directly.-->
+
 
 
 ## Dynamic Gas Pricing
