@@ -313,7 +313,7 @@ The type of `Package`, serialized as a `u8` [`EntityKindTag`](#entity-kind-tag) 
 
 -   `Account`: A package associated with an Account hash, serialized as a `u8` of 1 followed by an [`account_hash`](#account-hash).
 
--   `SmartContract`: A package associated with Wasm stored on chain, serialized as a `u8` of 2 followed by a [`transaction_runtime`](./structures.md#transactionruntime).
+-   `SmartContract`: A package associated with Wasm stored on chain, serialized as a `u8` of 2 followed by a [`contract runtime tag`](./types.md#contractruntimetag-contract-runtime-tag).
 
 ## EntityKindTag {#entity-kind-tag}
 
@@ -488,10 +488,6 @@ A (labeled) "user group". Each method of a versioned contract may be associated 
 ## Groups {#groups}
 
 They are serialized as a `BTreeMap` where the first 4 bytes represent a `u32` value describing the number of user groups and `BTreeSets` of [`URef`](./primitives.md#clvalue-uref)s held within. The remainder consists of a repeating pattern of serialized user groups and `BTreeSets` of the length dictated by the first four bytes.
-
-## InitiatorAddr {#initiatoraddr}
-
-The address of the initiator of a [`TransactionV1`](./structures.md#transactionV1), which serializes as a `u8` of `0` followed by a [`PublicKey`](#publickey) or a `1` followed by an [`AccountHash`](#account-hash).
 
 ## Keys {#serialization-standard-state-keys}
 
@@ -689,23 +685,6 @@ The lock status of the package, serialized as a [`boolean`](./primitives.md#clva
 ## Parameter {#parameter}
 
 Parameter to a method, structured as a name followed by a `CLType`. It is serialized as a [`String`](./primitives.md#clvalue-string) followed by a [`CLType`](./primitives.md#clvalue-cltype).
-
-## PricingMode {#pricingmode}
-
-The pricing mode of a transaction, with two possible variants. It serializes as a `u8` tag followed by additional data based on the following table:
-
-| Tag | PricingMode| Description |
-| --- | ---------- | ----------- |
-| 0 | Classic | The original payment model, in which the creator of a transaction specifies how much they will pay and at which gas price. |
-| 1 | Fixed | The cost of the transaction is determined by the cost table, per the transaction kind. |
-
-### Classic {#pricingmode-classic}
-
-After the `0` tag, a `Classic` `PricingMode` serializes as the [`u64`](./primitives.md#clvalue-numeric) `payment_amount` followed by the `u64` value of the `gas_price`.
-
-### Fixed {#pricingmode-fixed}
-
-After the `1` tag, a `Fixed` `PricingMode` serializes as the [`u64`](./primitives.md#clvalue-numeric) `gas_price_tolerance`.
 
 ## ProtocolVersion {#protocolversion}
 
