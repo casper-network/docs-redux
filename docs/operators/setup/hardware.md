@@ -26,10 +26,27 @@ The following hardware specifications are recommended for the Casper [Mainnet](h
 
 Attempting to run a Casper node on older hardware can result in unexpected crashes. This is due to the CPU not supporting instructions used by our official binaries, including AVX2 and Intel SHA extensions.
 
+These are the list of CPU flags on x86_64 architecture, for reference;
+
+- AVX2
+- AVX
+- BMI
+- CMOV
+- MODE64
+- NOVLX
+- SHA
+- SSE1
+- SSE2
+- SSE3
+- SSE41
+- SSSE3
+
 To avoid these issues, we recommend a CPU running AMD Zen, Intel Ice Lake or newer architecture.
 
 :::note
 
 This only applies to official binaries released by Casper. If you are compiling your node from scratch, you may choose to disable the extensions in question.
+
+If you are using a non standard OS, you should compile from source instead of using released binaries.
 
 :::
