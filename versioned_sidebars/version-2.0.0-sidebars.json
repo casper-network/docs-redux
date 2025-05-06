@@ -53,6 +53,31 @@
         "concepts/economics/staking"
       ]
     },
+    "concepts/accounts-and-keys",
+    "concepts/key-types",
+    "concepts/transactions",
+    "concepts/transactions-and-transaction-lifecycle",
+    "concepts/global-state",
+    "concepts/smart-contracts",
+    "concepts/list-auth-keys",
+    "concepts/callstack",
+    "concepts/dictionaries",
+    {
+      "type": "category",
+      "label": "Binary Serialization Standard",
+      "collapsible": true,
+      "collapsed": true,
+      "link": {
+        "type": "doc",
+        "id": "concepts/serialization/index"
+      },
+      "items": [
+        "concepts/serialization/primitives",
+        "concepts/serialization/structures",
+        "concepts/serialization/types"
+      ]
+    },
+    "concepts/intro-to-dapps",
     {
       "type": "category",
       "label": "Glossary",
@@ -90,32 +115,7 @@
         "concepts/glossary/Y",
         "concepts/glossary/Z"
       ]
-    },
-    {
-      "type": "category",
-      "label": "Binary Serialization Standard",
-      "collapsible": true,
-      "collapsed": true,
-      "link": {
-        "type": "doc",
-        "id": "concepts/serialization/index"
-      },
-      "items": [
-        "concepts/serialization/primitives",
-        "concepts/serialization/structures",
-        "concepts/serialization/types"
-      ]
-    },
-    "concepts/intro-to-dapps",
-    "concepts/accounts-and-keys",
-    "concepts/key-types",
-    "concepts/transactions",
-    "concepts/transactions-and-transaction-lifecycle",
-    "concepts/global-state",
-    "concepts/smart-contracts",
-    "concepts/list-auth-keys",
-    "concepts/callstack",
-    "concepts/dictionaries"
+    }
   ],
   "developers": [
     "developers/index",
