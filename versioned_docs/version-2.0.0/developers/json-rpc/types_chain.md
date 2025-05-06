@@ -423,7 +423,7 @@ Required Parameters:
 
 ## ByteCodeHash
 
-The hex-encoded address of a smart contract [`AddressableEntity`](#addressableentity).
+A type wrapping a `HashAddr` which is the raw bytes of the ByteCodeHash. Serializes as `HashAddr`
 
 ## ByteCodeKind
 
@@ -723,7 +723,7 @@ One of:
 
 * [`Account`](#accounthash) Package associated with an Account hash.
 
-* [`SmartContract`](#transactionruntime) Packages associated with Wasm stored on chain.
+* [`SmartContract`](#transactionruntimetag) Packages associated with Wasm stored on chain.
 
 ## EntityOrAccount
 
@@ -1544,7 +1544,7 @@ One of:
 
     * `version` The package version. If `None`, the latest enabled version is implied.
 
-## TransactionRuntime
+## TransactionRuntimeTag
 
 Runtime used to execute a transaction.
 

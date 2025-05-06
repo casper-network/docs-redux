@@ -1413,15 +1413,10 @@ A common question frequently arises: "How do I know what the payment amount (gas
 
 We recommend installing your contracts in a test environment, making sure the cost tables match those of the production Casper network to which you want to send the transaction. If you plan on sending a transaction to [Mainnet](https://cspr.live/), you can use the [Testnet](https://testnet.cspr.live/) to estimate the payment amount needed for the transaction.
 
-:::note
-
-Casper's "Condor" release introduces a new payment system that includes the concept of [fee elimination](../../concepts/economics/fee-elimination.md).
-
-:::
 
 If your test configuration matches your production [chainspec](../../concepts/glossary/C.md#chainspec), you can check the transaction status and roughly see how much it would cost. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](../../concepts/economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
 
-Please be aware that sending a transaction always requires payment. This is true regardless of the validity of included Wasm. Depending on how the network was configured, the transaction payment may or may not be refunded, or a hold may placed on the paying purse. See [fee elimination](../../concepts/economics/fee-elimination.md) for more details.
+Please be aware that sending a transaction always requires payment. This is true regardless of the validity of included Wasm. Depending on how the network was configured, the transaction payment may or may not be refunded.
 
 If the transaction failure occurs after session execution begins, the penalty payment of 2.5 CSPR is included in the gas costs of the [failed execution](../../concepts/serialization/types.md#executionresultv2).
 

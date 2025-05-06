@@ -182,7 +182,7 @@ Assuming you have set up a small local network, you can speed up the process of 
 
 :::
 
-**Step 14.** Clone the _casper-sidecar_ software in your working directory. As part of Casper's Condor release, the sidecar is now necessary to interact with a Casper network and will handle any API requests.
+**Step 14.** Clone the _casper-sidecar_ software in your working directory. As part of Casper 2.0 release, the sidecar is now necessary to interact with a Casper network and will handle any API requests.
 
 Instructions for MacOS and Linux:
 

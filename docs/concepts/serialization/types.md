@@ -166,7 +166,7 @@ There are two possible versions for `BlockSignatures`, with a prefixed `u8` tag 
 
 ### BlockSignaturesV1 {#block-signatures-v1}
 
-`BlockSignaturesV1` is a legacy version of `BlockSignatures` that applies to blocks created before the Condor release. The structure is as follows:
+`BlockSignaturesV1` is a legacy version of `BlockSignatures` that applies to blocks created before the Casper 2.0 release. The structure is as follows:
 
 -   [`block_hash`](./structures.md#block-hash): The block hash of the associated block. It serializes as the byte representation of the hash itself.
 
@@ -176,7 +176,7 @@ There are two possible versions for `BlockSignatures`, with a prefixed `u8` tag 
 
 ### BlockSignaturesV2 {#block-signatures-v2}
 
-`BlockSignaturesV2` is the current version of `BlockSignatures` that applies to blocks created after the Condor release. The structure is as follows:
+`BlockSignaturesV2` is the current version of `BlockSignatures` that applies to blocks created after the Casper 2.0 release. The structure is as follows:
 
 -   [`block_hash`](./structures.md#block-hash): The block hash of the associated block. It serializes as the byte representation of the hash itself.
 
@@ -226,7 +226,7 @@ The type of byte code, serialized as a single `u8` value. A `0` indicates empty 
 
 ## CallStackElement {#call-stack-element}
 
-`CallStackElement` is a legacy `enum` created pre-Condor release that represents the origin of a sub-call in a call stack. It begins with a `u8` tag that describes the type of caller as follows:
+`CallStackElement` is a legacy `enum` created pre-Casper 2.0 release that represents the origin of a sub-call in a call stack. It begins with a `u8` tag that describes the type of caller as follows:
 
 -   `Session`: Session code, which serializes as a `u8` tag of 0 followed by the [`account_hash`](#account-hash) of the calling account.
 

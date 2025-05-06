@@ -137,9 +137,9 @@ Among the improvements in VM 2.0 are:
 
 ### Fee Elimination
 
-Subject to a governance vote by the Casper Network validators on behalf of their delegators, configuration changes in a future minor release of Casper 2.0 will activate a gas fee model known as **Fee Elimination**.
+Subject to a governance vote by the Casper Network validators on behalf of their delegators, configuration changes in a future minor release of Casper 2.0 could activate a gas fee model known as **Fee Elimination**.
 
-[Fee Elimination](/condor/fee-elimination.md) is the strategy of placing temporary holds on transactor balances corresponding to their incurred gas costs, instead of taking those costs from their on-chain balances.
+Fee Elimination is the strategy of placing temporary holds on transactor balances corresponding to their incurred gas costs, instead of taking those costs from their on-chain balances.
 
 Under 1.x, transactors must pay for gas directly from their purse balances. With Fee Elimination on Casper 2.0, a hold is placed on the calculated **Gas Cost** for a configurable period of time known as the **Hold Period**. Fees are therefore not forfeited by transactors, and funds are not spent to execute transactions. The scheduled release of funds placed under a hold in this way is governed by the configuration of the chainspec. There are two options:
 

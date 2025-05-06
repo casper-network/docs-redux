@@ -2,7 +2,7 @@
 
 ## Account {#serialization-standard-account}
 
-An Account is a structure that represented a user on a legacy Casper network. Alongside the Condor protocol release, `Accounts` were replaced with `AddressableEntities` of the type `Account`. The account structure consists of the following fields:
+An Account is a structure that represented a user on a Casper network. The account structure consists of the following fields:
 
 -   [`account_hash`](./types.md#account-hash)
 
@@ -16,25 +16,26 @@ An Account is a structure that represented a user on a legacy Casper network. Al
 
 ## AddressableEntity {#addressable-entity}
 
-An Addressable Entity is a structure that represents an entity on a Casper network. The addressable entity consists of the following fields:
+An Addressable Entity is a structure that represents an entity on a Casper network. 
+
+**Important:** Addressable Entity is turned off in Casper 2.0 and will be enabled in a future release. 
+
+The addressable entity consists of the following fields:
 
 - [`package_hash`](./types.md#package-hash)
 
 - [`byte_code_hash`](./types.md#byte-code-hash)
 
-- [`entry_points`](./types.md#entrypoints)
-
 - [`protocol_version`](./types.md#protocolversion)
 
-- `main_purse`: The entity's main purse `URef`. You may find information on `URef` serialization [here](./primitives.md#clvalue-uref).
+- [`main_purse`]: The entity's main purse `URef`. You may find information on `URef` serialization [here](./primitives.md#clvalue-uref).
 
 - [`associated_keys`](./types.md#associatedkey)
 
 - [`action_thresholds`](./types.md#entity-action-thresholds)
 
-- [`message_topics`](./types.md#message-topics)
-
 - [`entity_kind`](./types.md#entity-kind)
+
 
 ## Block {#serialization-standard-block}
 
@@ -43,27 +44,28 @@ A block is the core component of the Casper linear blockchain, used in two conte
 1.  A data structure containing a collection of transactions. Blocks form the primary structure of the blockchain.
 2.  A message that is exchanged between nodes containing the data structure as explained in (1).
 
-Each block has a globally unique ID, achieved by hashing the contents of the block.
+The block is a polymorphic structure that assumes one of the well-defined variants:
+* `V1` which type is `BlockV1` (it has a binary `prefix` of 0)
+* `V2` which type is `BlockV2` (it has a binary `prefix` of 1)
 
-Each block points to its parent. An exception is the first block, which has no parent.
+To byte-serialize a `Block` you first need to serialize it's binary prefix and then write the bytes of the byte-serialized representation of it's variant.
+
+## BlockV1 {#block-v1}
+
+This type:
+* encapsulates block data that used to be produced in versions of the nodes prior to 2.0.
+* represents a historical block that was produced prior to 2.0
+Each block:
+* has a globally unique ID, achieved by hashing the contents of the block.
+* points to its parent. An exception is the first block, which has no parent.
 
 A block is structurally defined as follows:
 
--   `hash`: A hash over the header of the block.
--   `header`: The header of the block that contains information about the contents of the block with additional metadata.
--   `body`: The block's body contains the proposer of the block and hashes of deploys and transfers contained within it.
+-   `hash`: A hash over the header of the block. It's type is `BlockHash`
+-   `header`: The header of the block that contains information about the contents of the block with additional metadata. It's type is `BlockHeaderV1`.
+-   `body`: The block's body contains the proposer of the block and hashes of deploys and transfers contained within it. It's type is `BlockBodyV1`.
 
-Further, a block may consist of one of the following types:
-
-- `Version1`: A legacy block created prior to the Condor upgrade.
-
-- `Version2`: A modern block.
-
-### BlockHash {#block-hash}
-
-The block hash is a `Digest` over the contents of the block Header. The `BlockHash` serializes as the byte representation of the hash itself.
-
-### BlockHeader {#block-header}
+### BlockHeaderV1 {#block-header-v1}
 
 The header portion of a block, structurally, is defined as follows:
 
@@ -72,15 +74,13 @@ The header portion of a block, structurally, is defined as follows:
 -   `body_hash` the hash of the block body. It serializes to the byte representation of the body hash. The serialized buffer of the `body_hash` is 32 bytes long.
 -   `random_bit` is a boolean needed for initializing a future era. It is serialized as a single byte; true maps to 1, while false maps to 0.
 -   `accumulated_seed` is a seed needed for initializing a future era. It serializes to the byte representation of the parent Hash. The serialized buffer of the `accumulated_hash` is 32 bytes long.
--   `era_end` contains equivocation and reward information to be included in the terminal finalized block. It is an optional field. Thus if the field is set as `None`, it serializes to _0_. The serialization of the other case is described in the EraEnd.
+-   `era_end` contains equivocation and reward information to be included in the terminal finalized block. It is an optional field. Thus if the field is set as `None`, it serializes to _0_. The serialization of the other case is described in the `EraEndV1`.
 -   `timestamp` The timestamp from when the block was proposed. It serializes as a single `u64` value. The serialization of a `u64` value is described in the CLValues section.
 -   `era_id` Era ID in which this block was created. It serializes as a single `u64` value.
 -   `height` The height of this block, i.e., the number of ancestors. It serializes as a single `u64` value.
 -   `protocol_version` The version of the Casper network when this block was proposed. It is 3-element tuple containing `u32` values. It serializes as a buffer containing the three `u32` serialized values. Refer to the CLValues section on how `u32` values are serialized.
 
-Both `BlockHeaderV1` and `BlockHeaderV2` serialize in the same way.
-
-### EraEndV1 {#eraendV1}
+#### EraEndV1 {#eraendV1}
 
 `EraEndV1` as represented within the block header, is a struct containing two fields.
 
@@ -102,21 +102,9 @@ When serializing the overarching struct of `EraEndV1`, we first allocate a buffe
 
 Note that `EraEndV1` is an optional field. Thus the above scheme only applies if there is an `EraEndV1`; if there is no era end, the field simply serializes to _0_.
 
-### EraEndV2 {#eraendV2}
-
-`EraEndV1` as represented within the block header, is a struct containing four fields.
-
-- `equivocators`: A vector of `PublicKey` listing equivocators for the era.
-- `inactive_validators`: A list of inactive validators for the era.
-- `next_era_validator_weights`: A map of validators and their weights for the era to follow.
-- `rewards`: A Binary Tree Map of `PublicKey` and `u64`.
-- `next_era_gas_price`: The next era's gas price as a `u8`.
-
-Note that `EraEndV2` is an optional field. Thus the above scheme only applies if there is an `EraEndV2`; if there is no era end, the field simply serializes to _0_.
-
 ### BlockBodyV1 {#blockbodyV1}
 
-The body portion of a block, prior to the Condor upgrade, is structurally defined as:
+The body portion of a block, prior to the Casper 2.0 upgrade, is structurally defined as:
 
 -   `proposer`: The PublicKey which proposed this block.
 -   `deploy_hashes`: Is a vector of hex-encoded hashes identifying Deploys included in this block.
@@ -128,6 +116,52 @@ When we serialize the `BlockBodyV1`, we create a buffer that contains the serial
 -   `deploy_hashes` serializes to the byte representation of all the deploy_hashes within the block header. Its length is `32 * n`, where n denotes the number of deploy hashes present within the body.
 -   `transfer_hashes` serializes to the byte representation of all the deploy_hashes within the block header. Its length is `32 * n`, where n denotes the number of transfers present within the body.
 
+## BlockV2 {#block-v2}
+
+This type represents a contemporary block that is produced by the network. A block is the core component of the Casper linear blockchain, used in two contexts:
+1.  A data structure containing a collection of transactions. Blocks form the primary structure of the blockchain.
+2.  A message that is exchanged between nodes containing the data structure as explained in (1).
+
+Each block has a globally unique ID, achieved by hashing the contents of the block.
+
+Each block points to its parent. An exception is the first block, which has no parent.
+
+A block is structurally defined as follows:
+
+-   `hash`: A hash over the header of the block. It's type is `BlockHash`
+-   `header`: The header of the block that contains information about the contents of the block with additional metadata. It's type is `BlockHeaderV2`.
+-   `body`: The block's body contains the proposer of the block and hashes of deploys and transfers contained within it. It's type is `BlockBodyV2`.
+
+### BlockHeaderV2 {#block-header-v2}
+
+The header portion of a block, structurally, is defined as follows:
+
+-   `parent_hash` is the hash of the parent block. It serializes to the byte representation of the parent hash. The serialized buffer of the `parent_hash` is 32 bytes long.
+-   `state_root_hash` is the global state root hash produced by executing this block's body. It serializes to the byte representation of the `state root hash`. The serialized buffer of the `state_root_hash` is 32 bytes long.
+-   `body_hash` the hash of the block body. It serializes to the byte representation of the body hash. The serialized buffer of the `body_hash` is 32 bytes long.
+-   `random_bit` is a boolean needed for initializing a future era. It is serialized as a single byte; true maps to 1, while false maps to 0.
+-   `accumulated_seed` is a seed needed for initializing a future era. It serializes to the byte representation of the parent Hash. The serialized buffer of the `accumulated_hash` is 32 bytes long.
+-   `era_end` contains equivocation and reward information to be included in the terminal finalized block. It is an optional field. Thus if the field is set as `None`, it serializes to _0_. The serialization of the other case is described in the `EraEndV2`.
+-   `timestamp` The timestamp from when the block was proposed. It serializes as a single `u64` value. The serialization of a `u64` value is described in the CLValues section.
+-   `era_id` Era ID in which this block was created. It serializes as a single `u64` value.
+-   `height` The height of this block, i.e., the number of ancestors. It serializes as a single `u64` value.
+-   `protocol_version` The version of the Casper network when this block was proposed. It is 3-element tuple containing `u32` values. It serializes as a buffer containing the three `u32` serialized values. Refer to the CLValues section on how `u32` values are serialized.
+-   `proposer` public key of the proposer of the block. It's type is `PublicKey`
+-   `current_gas_price` gas price of the block. It is an unsigned 8 bit number.
+-   `last_switch_block_hash` it is an optional block hash pointing to the last switch block. It's type is `BlockHash`, but since it's optional, rules of serializing (optional fields)[./primitives.md#clvalue-option] apply.
+
+### EraEndV2 {#eraendV2}
+
+`EraEndV2` as represented within the block header, is a struct containing four fields.
+
+- `equivocators`: A vector of `PublicKey` listing equivocators for the era.
+- `inactive_validators`: A list of inactive validators for the era.
+- `next_era_validator_weights`: A map of validators and their weights for the era to follow.
+- `rewards`: A Binary Tree Map of `PublicKey` and `u64`.
+- `next_era_gas_price`: The next era's gas price as a `u8`.
+
+Note that `EraEndV2` is an optional field. Thus the above scheme only applies if there is an `EraEndV2`; if there is no era end, the field simply serializes to _0_.
+
 ### BlockBodyV2 {blockbodyv2}
 
 A modern block is structurally defined as:
@@ -135,6 +169,20 @@ A modern block is structurally defined as:
 -   [`transactions`](#transaction): Is a `BTreeMap` of transaction hashes and their given categories. It is serialized as a `BTreeMap` where the first 4 bytes represent a `u32` value describing the number of values held within. The remainder consists of a repeating pattern of transaction categories as a `u8` value and then the associated `TransactionHash` the category tag describes.
 
 -   [`rewarded_signatures`](./types.md#rewarded-signatures): A list of identifiers for finality signatures for a particular past block. It serializes as a vector of `SingleBlockRewardedSignatures` which describes signatures for a single ancestor block. The first entry represents the signatures for the parent block, the second for the parent of the parent, and so on.
+
+
+## BlockHash {#block-hash}
+
+The block hash is a `Digest` over the contents of the block Header. The `BlockHash` serializes as the byte representation of the hash itself.
+
+
+## ByteCodeAddr {#byte-code-addr}
+
+An address for ByteCode records stored in global state. Comes in one of three variants:
+- `Empty`. It serializes as a `u8` tag of `0`.
+- `V1CasperWasm`. It serializes as a `u8` tag of `1` followed by 32 bytes interpreted as hex-encoded address.
+- `V2CasperWasm`. It serializes as a `u8` tag of `2` followed by 32 bytes interpreted as hex-encoded address.
+
 
 ## Contract {#contract}
 
@@ -238,7 +286,7 @@ The hash of the name of a message topic, serialized as a [`u8`](./primitives.md#
 
 ## Transaction {#transaction}
 
-A versioned wrapper for a transaction or deploy. It serializes as a `u8` tag of `0` followed by a [`Deploy`](#serialization-standard-deploy) or a `u8` tag of `1` followed by a [`TransactionV1`](#transactionV1).
+Please see the [Transaction serialization document](./transaction.md)
 
 ### Deploy {#serialization-standard-deploy}
 
@@ -303,60 +351,15 @@ A `struct` containing configuration values associated with `deploys`. The struct
 
 ### TransactionV1 {#transactionV1}
 
-A unit of work sent by a client to the network, which when executed can cause global state to be altered. It is structurally defined as follows:
+Please see the [Transaction serialization document](./transaction.md)
 
-- [`TransactionV1Hash`](#transactionv1hash)
+### TransactionHash {#transactionhash}
 
-- [`TransactionV1Header`](#transactionv1header)
-
-- [`TransactionV1Body`](#transactionv1body)
-
-- `approvals`: A list of signatures.
+A versioned wrapper for transaction hash or deploy hash. It serializes as either a `u8` tag of 0 followed by a [`DeployHash`](#deploy-hash) or a `u8` tag of 1 followed by a [`TransactionV1Hash`](#transactionv1hash).
 
 ### TransactionV1Hash
 
 The transaction hash is a digest over the contents of the transaction header. The transaction hash serializes as the byte representation of the hash itself.
-
-### TransactionV1Header
-
-The header portion of a transaction, structurally, is defined as follows:
-
--   `chain_name`: Chain name is a human-readable string describing the name of the chain as detailed in the chainspec. It is serialized as a [String](./primitives.md#clvalue-string).
--   `timestamp`: A timestamp is a struct that is a unary tuple containing a `u64` value. This value is a count of the milliseconds since the UNIX epoch. Thus the value `1603994401469` serializes as `0xbd3a847575010000`.
--   `ttl`: The **Time to live** is defined as the amount of time for which the transaction is considered valid. The `ttl` serializes in the same manner as the timestamp.
--   `body_hash`: Body hash is a hash over the contents of the [transaction body](#transactionv1body). It serializes as the byte representation of the hash itself.
--   [`pricing_mode`](./types.md#pricingmode)
--   [`initator_addr`](./types.md#initiatoraddr)
-
-### TransactionV1Body
-
-The body of a `TransactionV1`, consisting of the following:
-
-- [`args`](./types.md#runtimeargs)
-- [`target`](#transactiontarget)
-- [`entry_point`](#transactionentrypoint)
-- [`scheduling`](#transactionscheduling)
-
-### TransactionRuntime {#transactionruntime}
-
-The runtime used to execute a transaction, serialized as a [`u8`](./primitives.md#clvalue-numeric). Currently, only the `VmCasperV1` is available, which serializes as a `0`.
-
-### TransactionEntryPoint {#transactionentrypoint}
-
-An entry point of a transaction, serialized as a [`u8`](./primitives.md#clvalue-numeric) value based on the type of entry point. The following table outlines the available types:
-
-| Tag | Entry Point |
-| --- | ----------- |
-| 0 | Custom |
-| 1 | Transfer |
-| 2 | Add_Bid |
-| 3 | Withdraw_Bid |
-| 4 | Delegate |
-| 5 | Undelegate |
-| 6 | Redelegate |
-| 7 | Activate_Bid |
-| 8 | ChangePublicKey |
-| 9 | Call |
 
 ### TransactionConfig {#transactionconfig}
 
@@ -392,46 +395,7 @@ A `struct` containing configuration values associated with `TransactionV1s`. The
 
 A versioned wrapper for transaction hash or deploy hash. It serializes as either a `u8` tag of 0 followed by a [`DeployHash`](#deploy-hash) or a `u8` tag of 1 followed by a [`TransactionV1Hash`](#transactionv1hash).
 
-### TransactionHeader {#transactionheader}
-
-A versioned wrapper for transaction header or deploy header. It serializes as either a `u8` tag of 0 followed by a [`DeployHeader`](#deploy-header) or a `u8` tag of 1 followed by a [`TransactionV1Header`](#transactionv1header).
-
 ### TransactionId {#transactionid}
 
 The unique identifier of a `Transaction`, serialized as its [`TransactionHash`](#transactionhash) and [`ApprovalsHash`](#approvals-hash).
 
-### TransactionScheduling {#transactionscheduling}
-
-The scheduling mode of a transaction, serialized as a [`u8`](./primitives.md#clvalue-numeric) tag identifying the type:
-
-- `Standard` serializes as a `0`.
-
-- `FutureEra` serializes as a `1` followed by a future [`era_id`](./types.md#eraid).
-
-- `FutureTimestamp` serializes as a `2` followed by a future [`timestamp`](./types.md#timestamp).
-
-### TransactionInvocationTarget {#transactioninvocationtarget}
-
-The identifier of a `stored` transaction target, serialized as one of the following:
-
-- `InvocableEntity` serializes as a `u8` tag of `0` followed by the hex-encoded entity address serialized as the byte representation of itself.
-
-- `InvocableEntityAlias` serializes as a `u8` tag of `1` followed by the alias serialized as a [`string`](./primitives.md#clvalue-string).
-
-- `Package` serializes as a `u8` tag of `2` followed by the [`package hash`](./types.md#package-hash) and optionally the [`entity_version`](./types.md#entityversionkey).
-
-- `PackageAlias` serializes as a `u8` tag of `3` followed by the alias serialized as a [`string`](./primitives.md#clvalue-string) and optionally the [`entity_version`](./types.md#entityversionkey).
-
-### TransactionTarget {#transactiontarget}
-
-The execution target of a transaction, serializing as a [`u8`](./primitives.md#clvalue-numeric) that identifies the type, followed by any additional data.
-
-- `native` serializes as a `0`.
-
-- `stored` serializes as a `1` followed by the [`id`](#transactioninvocationtarget) and [`runtime`](#transactionruntime).
-
-- `session` serializes as a `2` followed by the [`kind`](#transactionsessionkind), [`module_bytes`](#payment--session) and [`runtime`](#transactionruntime).
-
-### TransactionWithExecutionInfo {#transaction-with-execution-info}
-
-A `struct` containing a`Transaction` with execution info. It serializes as a [`Transaction`](#transaction) followed by an [`Option`](./primitives.md#clvalue-option) of `ExecutionInfo`.

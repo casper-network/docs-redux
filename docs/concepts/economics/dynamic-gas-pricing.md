@@ -4,7 +4,7 @@ title: Dynamic Gas Pricing
 
 # Dynamic Gas Pricing on Mainnet
 
-The Condor release introduced a configurable capability to calculate dynamic gas prices based on block vacancy (or consumption). The network chainspec configures the `vacancy`, as shown below, which refers to this feature. This capability prevents malicious actors from filling the blocks with useless transactions and ensures network integrity.
+The Casper 2.0 release introduced a configurable capability to calculate dynamic gas prices based on block vacancy (or consumption). The network chainspec configures the `vacancy`, as shown below, which refers to this feature. This capability prevents malicious actors from filling the blocks with useless transactions and ensures network integrity.
 
 When dynamic gas pricing is enabled, a calculation runs at the end of each era to average block usage within that era. This calculation determines the gas price the network will use for the next era. If overall consumption rises above a threshold, the gas price increases by 1. If consumption falls below a threshold, the gas price decreases by 1. The gas price remains the same if overall consumption remains within those thresholds. The gas price will not go up or down by more than 1 in a given era and will not go above the maximum or below the minimum threshold.
 
@@ -16,9 +16,9 @@ The gas price is recorded in the block header and is easily discoverable for cur
 - `min_gas_price` - The minimum gas price
 
 
-### Mainnet Condor Configurations
+### Mainnet Casper 2.0 Configurations
 
-These are the block vacancy (dynamic gas pricing) settings for the Condor release on Mainnet. Before Condor, the gas price was 1, meaning 1 unit of gas cost 1 mote. With Condor, the multiple is configured to adjust between 1 and 3.
+These are the block vacancy (dynamic gas pricing) settings for the Casper 2.0 release on Mainnet. Before Casper 2.0, the gas price was 1, meaning 1 unit of gas cost 1 mote. With Casper 2.0, the multiple is configured to adjust between 1 and 3.
 
 <!--TODO check and update these settings after the launch or link to the chainspec file directly.-->
 

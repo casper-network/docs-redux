@@ -6,7 +6,6 @@ title: OpCode Costs Tables
 
 The following tables outline the cost, in motes, for a given operation on Casper's Mainnet. If you are building for a private network or other instance of Casper, you will need to verify these costs in the associated `chainspec.toml`.
 
-More information on `chainspec`s for private networks can be found [here](/operators/setup-network/chain-spec.md)
 
 :::note
 
@@ -14,13 +13,13 @@ All costs in this table are in [motes](/concepts/glossary/M/#motes), not CSPR, a
 <!--TODO update the link when 2.0 ships to Testnet/Mainnet. -->
 :::
 
-## Storage Costs
+## StorageCosts
 
 |Attribute         |Description                                    | Cost |
 |----------------- |-----------------------------------------------|-----------------|
 |gas_per_byte | Gas charged per byte stored in global state. | 1_117_587|
 
-## OpCode Costs
+## OpCodeCosts
 
 |Attribute         |Description                                    | Cost |
 |----------------- |-----------------------------------------------|-----------------|
@@ -40,7 +39,7 @@ All costs in this table are in [motes](/concepts/glossary/M/#motes), not CSPR, a
 |current_memory | Get the current memory operation multiplier. | 290|
 |grow_memory | Grow memory cost per page (64 kB). | 240_000|
 
-## Control Flow Operation Costs
+## ControlFlowCost
 
 |Attribute         |Description                                    | Cost |
 |----------------- |-----------------------------------------------|-----------------|
