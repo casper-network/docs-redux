@@ -92,7 +92,7 @@ NCTL is your tool for managing the Casper network. We'll use a Dockerized versio
       ```bash
       docker-compose up
       ```
-      "Ensure you're in the `casper-nctl-docker` directory when running this command.
+      Ensure you're in the `casper-nctl-docker` directory when running this command.
 
 
    * **Manual Docker Command:** 
@@ -161,7 +161,7 @@ To interact with your local Casper 2.0 network, we'll use the Casper Client. You
 **Option 1: Using the Casper Client from the Docker Image**
 
 * The `casper-nctl:v2.0.0` Docker image already includes the `casper-client`.
-* You can skip the next two steps if you want to use the pre-installed client.
+
 
 **Option 2: Using Your Local Casper Client**
 
@@ -190,9 +190,17 @@ To interact with your local Casper 2.0 network, we'll use the Casper Client. You
    cargo build --release
    ```
 
-4. **Test Your Setup:**
+**Test Your Setup:**
+
+  Option 1:
+
    ```bash
-   casper-client get-block -n http://localhost:11101
+   casper-client get-block --node-address http://127.0.0.1:11101
+   ```
+  Option 2:
+
+   ```bash
+   cargo run --release get-block --node-address http://127.0.0.1:11101
    ```
 
    This command should return the status of all the nodes running in your local network, indicating a successful setup. The output should look similar to this:
@@ -312,4 +320,4 @@ This allows you to visually explore blocks, transactions, and other details of y
 
 ## Additional Tips
 
-* **Community Resources:** Join the [Casper Telegram](https://t.me/CSPRCondor) or [Casper Discord](https://discord.gg/caspernetwork) for help and discussion.
+* **Community Resources:** Join the [Casper Telegram](https://t.me/casperblockchainsupport) or [Casper Discord](https://discord.gg/caspernetwork) for help and discussion.
