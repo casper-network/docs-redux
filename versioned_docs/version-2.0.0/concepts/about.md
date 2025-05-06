@@ -20,4 +20,4 @@ To understand the design further, read [this article](../concepts/design/casper-
 
 ## Disclaimer
 
-Read the [Legal Disclaimer](../disclaimer.md) regarding this CasperLabs Tech Spec (this "Whitepaper"). 
+Read the [Legal Disclaimer](../disclaimer.md) regarding this documentation. Use of this documentation and the Casper network is subject to this disclaimer.
