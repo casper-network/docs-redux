@@ -45,8 +45,8 @@ Once your request has been processed, you will be notified and provided with a l
 
 **SDKs:**
 - JavaScript/TypeScript
-  - Github release  : [casper-js-sdk-5.0.5](https://github.com/casper-ecosystem/casper-js-sdk/releases/tag/5.0.5)  
-  - npm : [casper-js-sdk-5.0.5](https://www.npmjs.com/package/casper-js-sdk/v/5.0.5)
+  - Github release  : [casper-js-sdk-5.0.6](https://github.com/casper-ecosystem/casper-js-sdk/releases/tag/5.0.6)  
+  - npm : [casper-js-sdk](https://www.npmjs.com/package/casper-js-sdk)
 
 - .NET
   - Github release  : [casper-net-sdk-v3.0.0](https://github.com/make-software/casper-net-sdk/releases/tag/v3.0.0)  
