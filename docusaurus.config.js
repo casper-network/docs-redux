@@ -126,6 +126,16 @@ const config = {
                 // ... other options
             },
         ],
+        [
+            '@docusaurus/plugin-content-docs',
+            {
+                id: 'faq',
+                path: './faq',
+                routeBasePath: '/faq',
+                sidebarPath: './faq/faq.sidebar.js',
+                // ... other options
+            },
+        ],
         // [
         //     'docusaurus-plugin-dotenv',
         //     {
