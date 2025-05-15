@@ -218,7 +218,7 @@ Followed by refreshing the bash session:
 Instructions for MacOS and Linux:
 
 ```bash
-$ source casper-node/utils/nctl/activate
+$ source activate
 ```
 
 **Step 17.** Compile the NCTL binary scripts. The following command compiles both the _casper-node_ and the _casper-client_ in release mode.
