@@ -149,4 +149,4 @@ The [Casper Sidecar Usage Guide](https://github.com/casper-network/casper-sideca
 
 ## Troubleshooting Tips
 
-For troubleshooting tips, visit [Github](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/USAGE.md#troubleshooting-tips).
+For troubleshooting tips, visit [Github](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/README.md#troubleshooting-tips).
