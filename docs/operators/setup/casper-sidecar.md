@@ -8,18 +8,18 @@ title: Sidecar Setup
 
 The Casper Sidecar is an application running alongside the node process. It allows subscribers to monitor a node's event stream, query stored events, and query the node's JSON-RPC API, thus receiving faster responses and reducing the load placed on the node. The Sidecar usually runs on the same machine as the node process, but it can be configured to run remotely if necessary. The Sidecar supports the following functionalities:
 
-* A [server-sent events (SSE) endpoint](https://github.com/casper-network/casper-sidecar/blob/release-1.0.2-rc8_node-2.0.0-rc8/README.md#the-sse-server) with an `/events` endpoint streaming events from all the connected nodes. The Sidecar also stores these events.
-* A [REST API server](https://github.com/casper-network/casper-sidecar/blob/release-1.0.2-rc8_node-2.0.0-rc8/README.md#the-rest-api-server) that allows clients to query stored events.
-* A [JSON-RPC API](https://github.com/casper-network/casper-sidecar/blob/release-1.0.2-rc8_node-2.0.0-rc8/README.md#the-rpc-api-server) to interact with a Casper node.
-* [Legacy emulation](https://github.com/casper-network/casper-sidecar/blob/feat-2.0/LEGACY_SSE_EMULATION.md) for clients using older versions of the SSE API.
+* A [server-sent events (SSE) endpoint](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/README.md#the-sse-server) with an `/events` endpoint streaming events from all the connected nodes. The Sidecar also stores these events.
+* A [REST API server](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/README.md#the-rest-api-server) that allows clients to query stored events.
+* A [JSON-RPC API](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/README.md#the-rpc-api-server) to interact with a Casper node.
+* [Legacy emulation](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/LEGACY_SSE_EMULATION.md) for clients using older versions of the SSE API.
 
-Visit GitHub for the latest source code and information on [system architecture](https://github.com/casper-network/casper-sidecar/blob/release-1.0.2-rc8_node-2.0.0-rc8/README.md#system-components-and-architecture), [configurations](https://github.com/casper-network/casper-sidecar/blob/release-1.0.2-rc8_node-2.0.0-rc8/README.md#configuring-the-sidecar), [testing](https://github.com/casper-network/casper-sidecar/blob/release-1.0.2-rc8_node-2.0.0-rc8/README.md#running-and-testing-the-sidecar) and [troubleshooting](https://github.com/casper-network/casper-sidecar/blob/release-1.0.2-rc8_node-2.0.0-rc8/README.md#troubleshooting-tips).
+Visit GitHub for the latest source code and information on [system architecture](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/README.md#system-components-and-architecture), [configurations](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/README.md#configuring-the-sidecar), [testing](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/README.md#running-and-testing-the-sidecar) and [troubleshooting](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/README.md#troubleshooting-tips).
 
 ![Sidecar components and architecture diagram](./_casper-sidecar/sidecar-diagram.png)
 
 ## Configuring the Sidecar Service {#configuring-the-sidecar}
 
-Operators need to update the Sidecar configuration file according to their needs. Detailed configuration instructions are available in [GitHub](https://github.com/casper-network/casper-sidecar/blob/release-1.0.2-rc8_node-2.0.0-rc8/resources/ETC_README.md). Further details regarding each [configuration option](https://github.com/casper-network/casper-sidecar/blob/release-1.0.2-rc8_node-2.0.0-rc8/README.md#configuring-the-sidecar) are available in GitHub.
+Operators need to update the Sidecar configuration file according to their needs. Detailed configuration instructions are available in [GitHub](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/resources/ETC_README.md). Further details regarding each [configuration option](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/README.md#configuring-the-sidecar) are available in GitHub.
 
 ## Installing the Sidecar {#installing-the-sidecar}
 
@@ -141,7 +141,7 @@ An OpenAPI schema is available at `http://localhost:PORT/api-doc.json/`. The `PO
 
 ## Using the Sidecar
 
-The [Casper Sidecar Usage Guide](https://github.com/casper-network/casper-sidecar/blob/release-1.0.2-rc8_node-2.0.0-rc8/USAGE.md) describes how to consume events and perform queries using the Sidecar, covering the following topics:
+The [Casper Sidecar Usage Guide](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/USAGE.md) describes how to consume events and perform queries using the Sidecar, covering the following topics:
 
 * Node-generated events emitted by the node(s) to which the Sidecar connects
 * Sidecar-generated events originating solely from the Sidecar service and not from a node
@@ -149,4 +149,4 @@ The [Casper Sidecar Usage Guide](https://github.com/casper-network/casper-sideca
 
 ## Troubleshooting Tips
 
-For troubleshooting tips, visit [Github](https://github.com/casper-network/casper-sidecar/blob/release-1.0.2-rc8_node-2.0.0-rc8/USAGE.md#troubleshooting-tips).
+For troubleshooting tips, visit [Github](https://github.com/casper-network/casper-sidecar/blob/v1.0.4/USAGE.md#troubleshooting-tips).
