@@ -89,8 +89,8 @@ module.exports = {
             dropdownActiveClassDisabled: true,
         },
         // {
-        //     href: "https://support.casperlabs.io/",
-        //     label: "Support",
+        //     href: "https://forum.casper.network/",
+        //     label: "Forum",
         //     position: "right",
         // },
         // {
