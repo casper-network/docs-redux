@@ -10,7 +10,7 @@ This documentation describes processes for the compression and decompression of 
 
 :::note
 
-The values presented in this document assume that the `trie-compact` tool was run on a Mainnet database for compression. Contact the [support team](https://support.casperlabs.io/hc/en-gb) if you have questions.
+The values presented in this document assume that the `trie-compact` tool was run on a Mainnet database for compression. Contact the support team on the [Casper Community and Governance Forum](https://forum.casper.network/c/ecosystem-support) if you have questions.
 
 :::
 

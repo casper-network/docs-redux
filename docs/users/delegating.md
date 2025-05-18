@@ -28,7 +28,7 @@ undelegate = 2_500_000_000
 
 Delegation fees may change over time, so it is essential to stay current. To do so, select the latest release in [Github](https://github.com/casper-network/casper-node) and navigate to the `resources/production/chainspec.toml` file.
 
-For further questions, please join the [Discord channel](https://discord.com/invite/casperblockchain).
+For further questions, please join the [Discord channel](https://discord.gg/caspernetwork).
 
 ## Delegation Limits
 

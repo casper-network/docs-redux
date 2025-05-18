@@ -4,7 +4,7 @@ import TabItem from '@theme/TabItem';
 
 # Development Prerequisites
 
-This page covers the necessary software for your Casper development environment. To develop comfortably, you should use `Linux Ubuntu 20.04`. Casper does not officially support `macOS`, but the commands are included for your convenience. If you encounter any problems, reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/casperblockchain). Developing on Windows is not advised.
+This page covers the necessary software for your Casper development environment. To develop comfortably, you should use `Linux Ubuntu 20.04`. Casper does not officially support `macOS`, but the commands are included for your convenience. If you encounter any problems, reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.gg/caspernetwork). Developing on Windows is not advised.
 
 ## Preparing your Development Environment
 
@@ -264,9 +264,9 @@ The node address is the IP address or URL of a peer node.
 
 Casper Labs provides public Casper node JSON-RPC endpoints for each network:
 
-* Mainnet: https://rpc.mainnet.casperlabs.io/rpc
-* Testnet: https://node.testnet.casper.networkrpc
-* Integration network: https://rpc.integration.casperlabs.io/rpc
+* Mainnet: https://node.mainnet.casper.network/rpc
+* Testnet: https://node.testnet.casper.network/rpc
+* Integration network: https://node.integration.casper.network/rpc
 
 Additionally, both the official Testnet and Mainnet provide block explorers that list the IP addresses of nodes on their respective networks.
 
