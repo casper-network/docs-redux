@@ -94,7 +94,7 @@ module.exports = {
         //     position: "right",
         // },
         // {
-        //     href: "https://discord.com/invite/casperblockchain",
+        //     href: "https://discord.gg/caspernetwork",
         //     label: "Discord",
         //     position: "right",
         // },
