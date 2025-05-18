@@ -17,7 +17,7 @@ A Ledger device is a hardware wallet considered one of the most secure ways to s
 
 :::note
 
-If you need help, contact us on [Twitter](https://twitter.com/Casper_Network), [Discord](https://discord.com/invite/casperblockchain), or [Telegram](https://t.me/casperblockchain).
+If you need help, contact us on [Twitter](https://twitter.com/Casper_Network), [Discord](https://discord.gg/caspernetwork), or [Telegram](https://t.me/casperblockchain).
 
 :::
 
