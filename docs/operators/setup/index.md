@@ -1,6 +1,6 @@
 # Setting up a Node
 
-The prerequisite for becoming a validator is to set up a node and join a network as described here.
+To participate as a validator, you must first set up a Casper node and join the network. Node setup instructions apply whether you're running a validator, an RPC node, or an archival node.
 
 | Title                                                                           | Description                 |
 | ----------------------------------------------------------- | ----------------------------------------------- |
