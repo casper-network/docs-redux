@@ -9,7 +9,6 @@ To participate as a validator, you must first set up a Casper node and join the 
 |[Node Endpoints](./node-endpoints.md) | Ports for communicating with other nodes and dApps |
 |[Installing a Node](./install-node.md) | Step-by-step instructions to install a Casper node |
 |[Setting the Open Files Limit](./open-files.md) | Required setting for the Casper node to run correctly |
-|[Upgrading the Node](./upgrade.md) | How to stage and verify protocol upgrades on your node |
 |[Joining a Running Network](./joining.md) | Steps to join an existing Casper network |
 |[Setting up a Non-Root User](./non-root-user.md) | Logging into the node remotely using a key |
 |[Node Events](./node-events.md) | Information on a node's events stream |
