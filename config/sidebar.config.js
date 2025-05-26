@@ -283,9 +283,9 @@ module.exports = {
                 id: "operators/maintenance/index",
             },
             items: [
+                "operators/maintenance/upgrade",
                 "operators/maintenance/archiving-and-restoring", 
                 "operators/maintenance/moving-node",
-                "operators/maintenance/upgrade",
             ],
         },
     ],
