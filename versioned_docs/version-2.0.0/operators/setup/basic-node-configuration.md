@@ -221,6 +221,12 @@ cors_origin = ''
 
 The [Prerequisites](../../developers/prerequisites.md#install-casper-client) page lists installation instructions for the Casper client, which is useful for generating keys and retrieving information from the network.
 
+If you have already setup the official Debian package repository of Casper, you can also install the `casper-client` package to interact with the node, without the Rust development environment dependency, by issuing the following command:
+
+```bash
+sudo apt install casper-client
+```
+
 ## Creating Keys and Funding Accounts {#create-fund-keys}
 
 The following command will create keys in the `/etc/casper/validator_keys` folder.
