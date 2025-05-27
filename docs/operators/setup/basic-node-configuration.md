@@ -164,7 +164,7 @@ Provide the path to the secret keys for the node. This path is set to `etc/caspe
 
 ### Networking and Gossiping {#networking--gossiping}
 
-The node requires a publicly accessible IP address. The `config_from_example.sh` and `node_util.py` both allow IP for network address translation (NAT) setup. Specify the public IP address of the node. If you use the `config_from_example.sh` external services are called to find your IP and this is inserted into the `config.toml` created.
+The node requires a publicly accessible IP address. The `node_util.py` script allows IP for network address translation (NAT) setup. Specify the public IP address of the node. If you use the `node_util.py`, external services are called to find your IP and this is inserted into the `config.toml` created.
 
 The following default values are specified in the file if you want to change them:
 
