@@ -142,7 +142,7 @@ For Casper Mainnet, you can also obtain the latest block hash from [CSPR.live](h
 
 ### Known Addresses {#known-addresses}
 
-For the node to connect to a network, the node needs a set of trusted peers for that network. For [Mainnet](https://cspr.live/), these are listed in the `config.toml` as `known_addresses`. For other networks, locate and update the list to include at least two trusted IP addresses for peers in that network. Here is an [example configuration](https://github.com/casper-network/casper-protocol-release/blob/main/config/config-example.toml). The [casper-protocol-release](https://github.com/casper-network/casper-protocol-release) repository stores configurations for various environments, which you can also use as examples.
+For the node to connect to a network, the node needs a set of trusted peers for that network. For [Mainnet](https://cspr.live/), these are listed in the `config.toml` as `known_addresses`. For other networks, locate and update the list to include at least two trusted IP addresses for peers in that network. Here is an [example configuration](https://github.com/casper-network/casper-protocol-release/blob/casper/config/config-example.toml). The [casper-protocol-release](https://github.com/casper-network/casper-protocol-release) repository stores configurations for various environments, which you can also use as examples.
 
 ### Updating the `config.toml` file {#updating-config-file}
 
