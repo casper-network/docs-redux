@@ -23,6 +23,12 @@ sudo apt install casper-node-launcher
 
 You can also build [from source](https://github.com/casper-network/casper-node-launcher). However, all the setup and pull of casper-node releases will be manual.
 
+:::note
+
+The `casper-sidecar` component is also typically installed alongside the node to provide additional APIs and event streaming. For more information, see the [Sidecar Setup](./casper-sidecar.md) page.
+
+:::
+
 ## File Locations {#file-locations}
 
 The `casper-node-launcher` Debian installation creates the directories and files needed to run `casper-node` versions and perform upgrades. A `casper` user and `casper` group are created during installation and used to run the software. Two main folders are relevant for our software: `/etc/casper` and `/var/lib/casper`.
