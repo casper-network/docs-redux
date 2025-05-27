@@ -50,7 +50,7 @@ The default location for executables from the Debian package install is `/usr/bi
 
 This is the default location for configuration files. It can be overwritten with the `CASPER_CONFIG_DIR` environment variable. The paths in this document assume the default configuration file location of `/etc/casper`. The data is organized as follows:
 
-- `node_util.py` - A script that will be replacing other scripts and is the preferred method of performing the actions of `pull_casper_node_version.sh`, `config_from_example.sh`, and `delete_local_db.sh`.  Other scripts will be deprecated in future releases of `casper-node-launcher`.
+- `node_util.py` - A unified script for managing configuration, logs, node status, protocol versions, and service operations. It is the preferred tool for interacting with the node and sidecar components.
 - `casper-node-launcher-state.toml` - The local state for the `casper-node-launcher` which is created during the first run
 - `validator_keys/` - The default folder for node keys, containing:
     - `README.md` - Instructions on how to create validator keys using the `casper-client`
