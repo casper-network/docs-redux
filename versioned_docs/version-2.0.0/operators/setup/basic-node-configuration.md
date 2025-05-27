@@ -113,11 +113,7 @@ This command will do the following for each protocol not installed with `1_5_8` 
 - Remove the archive files
 - Run the equivalent of `/etc/casper/node_util.py config_from_example 1_5_8` to create a `config.toml` from the `config-example.toml`
 
-Release versions are invoked using the underscore format, such as:
-
-```bash
-sudo -u casper /etc/casper/pull_casper_node_version.sh 1_5_8
-```
+Please observe that the release versions are invoked using the underscore format.
 
 ## The Node Configuration File {#config-file}
 
