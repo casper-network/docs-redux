@@ -105,7 +105,7 @@ Included with the `casper-node-launcher` is `node_util.py` for installing `caspe
 sudo -u casper /etc/casper/node_util.py stage_protocols <NETWORK_CONFIG>
 ```
 
-For `<NETWORK_CONFIG>`, we use `casper.conf` for Mainnet and `casper-test.conf` for Testnet.  This will install all currently released protocols in one step.
+For `<NETWORK_CONFIG>`, we use `casper.conf` for Mainnet and `casper-test.conf` for Testnet.  This will install the protocol versions that are currently relevant—typically the active version and any upcoming upgrade.
 
 This command will do the following for each protocol not installed with `1_5_8` as example here:
 - Create `/var/lib/casper/bin/1_5_8/` and expand the `bin.tar.gz` containing at a minimum `casper-node`
