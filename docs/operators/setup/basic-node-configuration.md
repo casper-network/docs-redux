@@ -73,6 +73,12 @@ This is the default location for configuration files. It can be overwritten with
     - `config-example.toml` - As per `1_0_0/config-example.toml`, but compatible with the `m.n.p` version of the node
     - `config.toml` - As per `1_0_0/config.toml`, but compatible with the `m.n.p` version of the node
 
+:::note
+
+If you are joining a running network and installing a node from scratch, you typically only need the latest upgrade. For example, if the current protocol version is `2.0.1`, only the `2_0_1` directory will be present under `/etc/casper`.
+
+:::
+
 ### `/var/lib/casper/` {#varlibcasper}
 
 This is the location for larger and variable data for the `casper-node`, organized in the following folders and files:
