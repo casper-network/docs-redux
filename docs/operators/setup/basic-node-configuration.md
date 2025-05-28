@@ -23,6 +23,12 @@ sudo apt install casper-node-launcher
 
 You can also build [from source](https://github.com/casper-network/casper-node-launcher). However, all the setup and pull of casper-node releases will be manual.
 
+:::note
+
+The `casper-sidecar` component is also typically installed alongside the node to provide additional APIs and event streaming. For more information, see the [Sidecar Setup](./casper-sidecar.md) page.
+
+:::
+
 ## File Locations {#file-locations}
 
 The `casper-node-launcher` Debian installation creates the directories and files needed to run `casper-node` versions and perform upgrades. A `casper` user and `casper` group are created during installation and used to run the software. Two main folders are relevant for our software: `/etc/casper` and `/var/lib/casper`.
@@ -50,7 +56,7 @@ The default location for executables from the Debian package install is `/usr/bi
 
 This is the default location for configuration files. It can be overwritten with the `CASPER_CONFIG_DIR` environment variable. The paths in this document assume the default configuration file location of `/etc/casper`. The data is organized as follows:
 
-- `node_util.py` - A script that will be replacing other scripts and is the preferred method of performing the actions of `pull_casper_node_version.sh`, `config_from_example.sh`, and `delete_local_db.sh`.  Other scripts will be deprecated in future releases of `casper-node-launcher`.
+- `node_util.py` - A unified script for managing configuration, logs, node status, protocol versions, and service operations. It is the preferred tool for interacting with the node and sidecar components.
 - `casper-node-launcher-state.toml` - The local state for the `casper-node-launcher` which is created during the first run
 - `validator_keys/` - The default folder for node keys, containing:
     - `README.md` - Instructions on how to create validator keys using the `casper-client`
@@ -66,6 +72,12 @@ This is the default location for configuration files. It can be overwritten with
     - `chainspec.toml` - Contains invariant network settings, with the `activation_point` as an era ID (the era at which this protocol version of the node became or will become active) 
     - `config-example.toml` - As per `1_0_0/config-example.toml`, but compatible with the `m.n.p` version of the node
     - `config.toml` - As per `1_0_0/config.toml`, but compatible with the `m.n.p` version of the node
+
+:::note
+
+If you are joining a running network and installing a node from scratch, you typically only need the latest upgrade. For example, if the current protocol version is `2.0.1`, only the `2_0_1` directory will be present under `/etc/casper`.
+
+:::
 
 ### `/var/lib/casper/` {#varlibcasper}
 
@@ -93,7 +105,7 @@ Included with the `casper-node-launcher` is `node_util.py` for installing `caspe
 sudo -u casper /etc/casper/node_util.py stage_protocols <NETWORK_CONFIG>
 ```
 
-For `<NETWORK_CONFIG>`, we use `casper.conf` for Mainnet and `casper-test.conf` for Testnet.  This will install all currently released protocols in one step.
+For `<NETWORK_CONFIG>`, we use `casper.conf` for Mainnet and `casper-test.conf` for Testnet.  This will install the protocol versions that are currently relevant—typically the active version and any upcoming upgrade.
 
 This command will do the following for each protocol not installed with `1_5_8` as example here:
 - Create `/var/lib/casper/bin/1_5_8/` and expand the `bin.tar.gz` containing at a minimum `casper-node`
@@ -101,11 +113,7 @@ This command will do the following for each protocol not installed with `1_5_8` 
 - Remove the archive files
 - Run the equivalent of `/etc/casper/node_util.py config_from_example 1_5_8` to create a `config.toml` from the `config-example.toml`
 
-Release versions are invoked using the underscore format, such as:
-
-```bash
-sudo -u casper /etc/casper/pull_casper_node_version.sh 1_5_8
-```
+Please observe that the release versions are invoked using the underscore format.
 
 ## The Node Configuration File {#config-file}
 
@@ -126,9 +134,15 @@ When joining the network, the system will start from the hash of a recent block 
 
 This page has an example of using [sed to automatically update the trusted hash](https://docs.casper.network/operators/setup/install-node#getting-a-trusted-hash)
 
+:::note
+
+For Casper Mainnet, you can also obtain the latest block hash from [CSPR.live](https://cspr.live/blocks).
+
+:::
+
 ### Known Addresses {#known-addresses}
 
-For the node to connect to a network, the node needs a set of trusted peers for that network. For [Mainnet](https://cspr.live/), these are listed in the `config.toml` as `known_addresses`. For other networks, locate and update the list to include at least two trusted IP addresses for peers in that network. Here is an [example configuration](https://github.com/casper-network/casper-protocol-release/blob/main/config/config-example.toml). The [casper-protocol-release](https://github.com/casper-network/casper-protocol-release) repository stores configurations for various environments, which you can also use as examples.
+For the node to connect to a network, the node needs a set of trusted peers for that network. For [Mainnet](https://cspr.live/), these are listed in the `config.toml` as `known_addresses`. For other networks, locate and update the list to include at least two trusted IP addresses for peers in that network. Here is an [example configuration](https://github.com/casper-network/casper-protocol-release/blob/casper/config/config-example.toml). The [casper-protocol-release](https://github.com/casper-network/casper-protocol-release) repository stores configurations for various environments, which you can also use as examples.
 
 ### Updating the `config.toml` file {#updating-config-file}
 
@@ -150,7 +164,7 @@ Provide the path to the secret keys for the node. This path is set to `etc/caspe
 
 ### Networking and Gossiping {#networking--gossiping}
 
-The node requires a publicly accessible IP address. The `config_from_example.sh` and `node_util.py` both allow IP for network address translation (NAT) setup. Specify the public IP address of the node. If you use the `config_from_example.sh` external services are called to find your IP and this is inserted into the `config.toml` created.
+The node requires a publicly accessible IP address. The `node_util.py` script allows IP for network address translation (NAT) setup. Specify the public IP address of the node. If you use the `node_util.py`, external services are called to find your IP and this is inserted into the `config.toml` created.
 
 The following default values are specified in the file if you want to change them:
 
@@ -206,6 +220,12 @@ cors_origin = ''
 ## Rust Client Installation {#client-installation}
 
 The [Prerequisites](../../developers/prerequisites.md#install-casper-client) page lists installation instructions for the Casper client, which is useful for generating keys and retrieving information from the network.
+
+If you have already setup the official Debian package repository of Casper, you can also install the `casper-client` package to interact with the node, without the Rust development environment dependency, by issuing the following command:
+
+```bash
+sudo apt install casper-client
+```
 
 ## Creating Keys and Funding Accounts {#create-fund-keys}
 
