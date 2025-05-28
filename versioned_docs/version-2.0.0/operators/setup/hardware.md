@@ -10,7 +10,7 @@ The following hardware specifications are recommended for the Casper [Mainnet](h
 
 -   4 Cores
 -   32 GB Ram
--   2 TB SSD or network SSD backed disk
+-   2 TB SSD
 -   Linux machine running Ubuntu 20.04
 
 
@@ -18,7 +18,7 @@ The following hardware specifications are recommended for the Casper [Mainnet](h
 
 - SSD is required because HDD cannot perform random writes at the performance needed to keep in sync with the full speed of the network.
 
-- For non-archival nodes, disc usage will drop once data recovery is implemented. It is safe to slowly increase the disc space as needed while monitoring on a server capable of this.
+- For non-archival nodes, current disc usage is significantly lower (e.g., ~500 GB is sufficient for at least 1 year). It is safe to start with lower capacity and scale up as needed.
 
 :::
 
