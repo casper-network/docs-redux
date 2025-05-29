@@ -258,8 +258,7 @@
         "operators/setup/node-endpoints",
         "operators/setup/install-node",
         "operators/setup/fast-sync",
-        "operators/setup/open-files",
-        "operators/setup/upgrade",
+        "operators/setup/open-files",        
         "operators/setup/joining",
         "operators/setup/non-root-user",
         "operators/setup/node-events",
@@ -292,6 +291,7 @@
         "id": "operators/maintenance/index"
       },
       "items": [
+        "operators/maintenance/upgrade",
         "operators/maintenance/archiving-and-restoring",
         "operators/maintenance/moving-node"
       ]

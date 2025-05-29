@@ -250,8 +250,7 @@ module.exports = {
                 "operators/setup/node-endpoints",
                 "operators/setup/install-node",
                 "operators/setup/fast-sync",
-                "operators/setup/open-files",
-                "operators/setup/upgrade",
+                "operators/setup/open-files",                
                 "operators/setup/joining",
                 "operators/setup/non-root-user",
                 "operators/setup/node-events",
@@ -283,7 +282,11 @@ module.exports = {
                 type: "doc",
                 id: "operators/maintenance/index",
             },
-            items: ["operators/maintenance/archiving-and-restoring", "operators/maintenance/moving-node"],
+            items: [
+                "operators/maintenance/upgrade",
+                "operators/maintenance/archiving-and-restoring", 
+                "operators/maintenance/moving-node",
+            ],
         },
     ],
     resources: [
