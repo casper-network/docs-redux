@@ -4,44 +4,106 @@ title: Funding Mainnet Accounts
 
 
 
-# Funding Mainnet Accounts from an Exchange
+# Funding Your Casper Account
 
-To send CSPR tokens from an exchange to a Mainnet account, you need the **Mainnet account's public key**. Then, you can set up a withdrawal request from the exchange using this public key. The transfer will take a few minutes. 
+Your Casper account is your personal address on the Casper blockchain. It’s identified by a public key, which you can use to receive CSPR tokens or interact with Casper smart contracts.
 
-This guide demonstrates a withdrawal from [Coinlist](https://coinlist.co/) to the Casper Mainnet using the [cspr.live](https://cspr.live/) block explorer. You need to contact the exchange for instructions if you are working with a different exchange.
+There are several ways to fund your Casper account. This guide covers the most common methods and what you should know before using them.
 
-## Prerequisites
+## Purchase via CSPR.live
 
-Before starting, copy the public key where you wish to transfer funds. The screenshot below shows the account page on https://cspr.live/ and the field you need to specify in the withdrawal request from Coinlist.
+You can easily purchase CSPR tokens via [CSPR.live](https://cspr.live).
 
-![Account public key from CSPR.Live](./_funding-from-exchanges/1.account-public-key.png)
+1. From the top right corner, connect your Casper Wallet, MetaMask, or Ledger account. Once your public key appears, select "Buy CSPR".
+![CSPR.live top right account menu](./_funding-from-exchanges/01-CSPR-live-top-right-menu.png)
 
-## Transfers from Coinlist to Casper Mainnet
+2. Specify the amount and the currency you’d like to use and select "Next."
+![CSPR.live top Buy CSPR screen](./_funding-from-exchanges/02-CSPR-live-Buy-CSPR-screen.png)
 
-Try these steps with a small amount of CSPR first. After one successful transfer, you will be more comfortable transferring larger amounts.
+3. Select your preferred On-ramp provider, and you will be directed to their platform.
+![CSPR.live select onramp provider screen](./_funding-from-exchanges/03-CSPR-live-select-onramp-provider-screen.png)
 
-1. Log into your [https://coinlist.co](https://coinlist.co) account.
-2. Go to the "Wallet" tab.
+4. Follow the instructions of the on-ramp provider.
 
-![Coinlist Wallet tab](./_funding-from-exchanges/2.coinlist-wallet.png)
+## Purchase via Casper Wallet
 
-3. Click on the "CSPR" section.
+1. After unlocking your wallet, select "Buy".
+![Casper Wallet main screen after login](./_funding-from-exchanges/04-Casper-Wallet-main-screen-after-login.png)
 
-![CSPR on Coinlist](./_funding-from-exchanges/3.cspr-section-coinlist.png)
+2. Select your recipient account and specify your country.
+![Casper Wallet Pick Country screen](./_funding-from-exchanges/05-Casper-Wallet-Pick-Country-screen.png)
 
-4. Click on the "Withdraw" button.
+3. Then, specify the amount and the currency you’d like to use and select "Next."
+![Casper Wallet Enter Amount screen](./_funding-from-exchanges/06-Casper-Wallet-Enter-Amount-screen.png)
 
-![Withdraw on Coinlist](./_funding-from-exchanges/4.withdraw-coinlist.png)
+4. Select your preferred On-ramp provider, and you will be directed to their platform.
+![Casper Wallet Pick Onramp Provider screen](./_funding-from-exchanges/07-Casper-Wallet-Pick-Onramp-Provider-screen.png)
 
-5. Enter the public key of the Mainnet account in the "Recipient Address" field of the withdrawal request.
+5. Follow the instructions of the on-ramp provider.
 
-![Withdrawal fields on Coinlist](./_funding-from-exchanges/5.withdraw-fields-coinlist.png)
+## Funding from a Centralized Exchange
 
-6. Enter 0 in the "Transfer ID" field or another value that is meaningful to you. **You MUST enter a value, or the transfer will fail!**
+You can buy CSPR tokens on a centralized exchange (CEX) and withdraw them to your Casper account. Here is an example using KuCoin.
 
-7. Enter the CSPR amount you wish to transfer.
+> Note: Page names and buttons may vary from platform to platform. For example, on KuCoin the wallet is called a "Funding Account," while other platforms may label it "Spot Wallet" or simply "Wallet".
 
-8. Click "Review".
+Before starting, copy the public key where you wish to transfer funds.
 
-9. Submit the transfer request. Wait approximately 5 minutes, and then go to the [https://cspr.live/](https://cspr.live/) site to verify your account details. On the account page, you should see that the "Liquid Account Balance" reflects the amount you have transferred.
+You can copy it from your account on [CSPR.live](https://cspr.live) if you connected your Casper Wallet.
+![CSPR.live account drop down menu](./_funding-from-exchanges/08-CSPR-live-account-drop-down-menu.png)
 
+You can also copy your public key directly from your Casper Wallet.
+![Casper Wallet copy public key button](./_funding-from-exchanges/09-Casper-Wallet-copy-public-key-button.png)
+
+### Transfers from KuCoin to Casper Mainnet
+
+We recommend trying these steps with a small amount of CSPR first.
+
+1. Log in to your KuCoin account.
+2. From the "Assets" menu, select "Funding Account".
+![KuCoin Assets menu](./_funding-from-exchanges/10-Kucoin-Assets-menu.png)
+
+3. Find CSPR and select "Withdraw".
+![KuCoin Funding Account Withdraw CSPR option](./_funding-from-exchanges/11-Kucoin-Funding-Account-Withdraw-CSPR-option.png)
+
+4. Enter your public key (wallet address), select "Casper Network," and specify the amount.
+![KuCoin Withdraw Crypto screen for CSPR](./_funding-from-exchanges/12-Kucoin-Withdraw-Crypto-screen-for-CSPR.png)
+
+5. Click "Withdraw," then review and confirm your withdrawal.
+
+> Note: Transaction time may vary depending on the CEX you are using.
+
+### Things to Keep in Mind
+
+* Only use your **public key**. Never share your **private key** or **recovery phrase**.
+* Always double-check the address. Blockchain transactions are **irreversible**.
+* Confirm network type. Withdraw **only to Casper Mainnet**, not to an EVM chain or unsupported network.
+
+## Funding from a Decentralized Exchange (DEX)
+
+You **cannot** directly fund your Casper account from a DEX if your account does not already hold any CSPR tokens. All transactions on the Casper blockchain require CSPR for gas fees.
+
+If this is your first time funding your Casper account, you must first acquire CSPR from a CEX, CSPR.live, or Casper Wallet.
+
+### Prerequisites
+
+To fund your account via a DEX like [Friendly Market](https://www.friendly.market/swap):
+
+* You must have a Casper Wallet already set up.
+* Your wallet must contain some CSPR tokens for gas fees.
+* You must also have another supported Casper-native token (e.g., dUSDC) to swap.
+
+### Steps:
+
+1. Go to [Friendly Market](https://www.friendly.market/swap)
+2. Click "Connect Wallet" and approve the connection using Casper Wallet.
+3. Choose the token you want to swap (e.g., dUSDC, dUSDT, Fatso).
+![Friendly Market Swap Token screen](./_funding-from-exchanges/13-Friendly-Market-Swap-Token-screen.png)
+
+> Note: Friendly Market supports swaps only between tokens available on the Casper network.
+
+4. Input the amount you want to swap.
+5. Click "Swap." Sign the transaction with your wallet.
+6. After a few seconds, your wallet balance will reflect the new amount of CSPR.
+
+> Note: The transaction will not succeed if you don’t have sufficient tokens to pay for gas.
