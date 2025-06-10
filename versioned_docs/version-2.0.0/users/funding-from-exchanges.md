@@ -30,14 +30,16 @@ You can easily purchase CSPR tokens via [CSPR.live](https://cspr.live).
 1. After unlocking your wallet, select "Buy".
 ![Casper Wallet main screen after login](./_funding-from-exchanges/04-Casper-Wallet-main-screen-after-login.png)
 
-2. Select your recipient account and specify your country. Then, specify the amount and the currency you’d like to use and select "Next."
+2. Select your recipient account and specify your country.
 ![Casper Wallet Pick Country screen](./_funding-from-exchanges/05-Casper-Wallet-Pick-Country-screen.png)
+
+3. Then, specify the amount and the currency you’d like to use and select "Next."
 ![Casper Wallet Enter Amount screen](./_funding-from-exchanges/06-Casper-Wallet-Enter-Amount-screen.png)
 
-3. Select your preferred On-ramp provider, and you will be directed to their platform.
+4. Select your preferred On-ramp provider, and you will be directed to their platform.
 ![Casper Wallet Pick Onramp Provider screen](./_funding-from-exchanges/07-Casper-Wallet-Pick-Onramp-Provider-screen.png)
 
-4. Follow the instructions of the on-ramp provider.
+5. Follow the instructions of the on-ramp provider.
 
 ## Funding from a Centralized Exchange
 
@@ -45,7 +47,9 @@ You can buy CSPR tokens on a centralized exchange (CEX) and withdraw them to you
 
 > Note: Page names and buttons may vary from platform to platform. For example, on KuCoin the wallet is called a "Funding Account," while other platforms may label it "Spot Wallet" or simply "Wallet".
 
-Before starting, copy the public key where you wish to transfer funds. You can copy it from your account on [CSPR.live](https://cspr.live) if you connected your Casper Wallet.
+Before starting, copy the public key where you wish to transfer funds.
+
+You can copy it from your account on [CSPR.live](https://cspr.live) if you connected your Casper Wallet.
 ![CSPR.live account drop down menu](./_funding-from-exchanges/08-CSPR-live-account-drop-down-menu.png)
 
 You can also copy your public key directly from your Casper Wallet.
