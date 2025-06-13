@@ -1,80 +1,145 @@
 # Delegating Tokens
 
-A feature of Proof-of-Stake protocols is that token holders can actively participate in the protocol through a mechanism known as **delegating** or **staking** with a validator. CSPR holders can stake their tokens with any validator on a Casper network. Alternatively, it is possible to stake tokens via an exchange or custody provider.
+Casper is a proof-of-stake blockchain, which means CSPR holders can earn rewards by staking their tokens with validators. This process is called delegation, a form of staking, and allows you to participate in securing the network without running a validator node yourself.
 
-Node operators stake their tokens to earn eligibility to propose and approve blocks on the network. They also run and maintain servers connected to the network. If they win a validator slot, they become validators and help enable the Proof-of-Stake aspect of the network, a process different from mining tokens. Validators thus earn rewards for participating and for securing the network.
+You maintain custody of your tokens. The validator never controls your funds. Instead, you delegate your stake to a validator of your choice, and you earn a share of their rewards.  
+  
+  
 
-Anyone can participate in the protocol to earn rewards without maintaining a Casper node (a server that stores a copy of the blockchain). One can delegate or allocate CSPR tokens to a chosen validator on the network. Validators retain a percentage of the rewards generated from staked tokens. Participating in the protocol this way, the community can help improve the network's decentralization and security and earn rewards in return. Block explorers connected to the network usually post the base annual reward rate.
+## Selecting a Node for Delegating
 
-Casper does not treat validator stake differently than delegator stake for security reasons.
+  
 
-## Delegation Cost
+It is essential to select a validating node that you can trust.
 
-This section provides a detailed explanation of the delegation cost mechanism, how the gas cost relates to delegations, and where to find more details. Please note that the cost amounts are likely to change over time, and you may have to check the latest release details to get the most up-to-date and accurate delegation cost.
+  
 
-The delegation cost is defined in the chainspec.toml file of a Casper network. In this [example chainspec](https://github.com/casper-network/casper-node/blob/release-2.0.0-rc1/resources/production/chainspec.toml), the delegation is set to cost 2.5 CSPR. However, `when you perform the delegation, you see that it costs a little more` than what is specified in the chainspec. Let's discuss why this happens.
+Block explorers such as [CSPR.live](https://cspr.live/) provide [validator performance statistics](https://cspr.live/validators), including a performance score, total stake, number of delegators, and fees. Please do your due diligence before staking tokens with a validator.
 
-When you delegate, the system automatically charges some gas to set up related data in the global state of the network to track your delegation. This cost is added to the delegation cost defined in the chainspec file. Ensure you have extra CSPR in your account's main purse apart from the amount you are delegating; otherwise, the transaction will fail. For example, if you want to delegate 1000 CSPR, you need to have at least 1003 CSPR in your account's main purse.
+![CSPR.live Validators table](./_delegating/01-CSPR-live-Validators-list.png)
 
-For example, the chainspec file in release 2.0.0 contains the following information. Notice the delegation cost specified with `delegate`.
+## What’s New with Delegation in Casper 2.0
 
-```toml
-[system_costs.auction_costs]
-...
-delegate = 2_500_000_000
-undelegate = 2_500_000_000
-...
-```
+Casper 2.0 introduced Zug Consensus, a major upgrade that changed how validator rewards (and therefore delegator rewards) are calculated.
 
-Delegation fees may change over time, so it is essential to stay current. To do so, select the latest release in [Github](https://github.com/casper-network/casper-node) and navigate to the `resources/production/chainspec.toml` file.
+Under the previous consensus model (Highway), rewards were distributed based on network-wide participation. If even one large validator underperformed, it could lower the rewards of every other validator and their delegators.
 
-For further questions, please join the [Discord channel](https://discord.gg/caspernetwork).
+Under Zug, this is no longer the case. Now validator rewards are now individualized per block. Each validator earns rewards based on their own actions, specifically:
 
-## Delegation Limits
+•  Block proposals
 
-The chainspec specifies delegation limits, such as the minimum and maximum amount allowed to be delegated. Also, each validator can have a maximum number of delegators.
+•  Finality signature creation
 
-```toml
-# Minimum allowed delegation amount in motes
-minimum_delegation_amount = 500_000_000_000
-# Maximum allowed delegation amount in motes
-maximum_delegation_amount = 1_000_000_000_000_000_000
-# The maximum amount of delegators per validator.
-max_delegators_per_validator = 1200
-```
+•  Finality signature publication
 
-## Selecting a Node for Delegating {#selecting-a-node-for-delegating}
+Poor performance affects only that validator. If a validator misses blocks or doesn’t publish signatures, they simply earn less. It does not impact others. Delegators are rewarded proportionally to their validator’s performance.
 
-As a prospective delegator, it is essential to select a validating node that you can trust. Block explorers such as [cspr.live](https://cspr.live) provide [validator performance statistics](https://cspr.live/validators), including a performance score, total stake, number of delegators, and fees. Please do your due diligence before staking tokens with a validator.
+If you’re seeing lower rewards, it no longer means the whole network is underperforming, it likely means your validator didn’t reach full participation in that era (an era equals 2 hours).
 
-![Validators](./_delegating/1.validators.png) 
+**Rewards now fluctuate by design.**
 
-## First-time Delegation
+Under Highway, rewards were stable. Delegators received the same amount per era. Under Zug, rewards can vary up to ~20% per era on mid to large size validators, depending on validator activity. The fluctuations in rewards may be higher on lower-weight validators.
 
-If you perform a delegation for the first time, the system charges some motes to create a purse to hold the delegated tokens. We recommend that you try out delegations on the [Casper Testnet](https://testnet.cspr.live/) before making transactions on the [Casper Mainnet](https://cspr.live/). This will help you understand the costs involved in delegating tokens.
+Note that this variability is intentional. It creates stronger incentives for validators to consistently participate and boosts the network’s long-term security.
 
-**Example:** The system can charge 0.5 CSPR in addition to the base delegation fee of 2.5 CSPR, resulting in a delegation cost of 3 CSPR on [Mainnet](https://cspr.live/).
+Over time, as validator behavior stabilizes, these fluctuations are expected to narrow.
 
-When you set up a delegation transaction, it is essential to have enough funds in your account's main purse. Otherwise, the transaction will fail, and you will lose the delegation cost. For example, if you have 200 CSPR in your purse, delegate at most 197 CSPR and leave at least 3 CSPR for the delegation cost. Another option is to delegate 195 CSPR and leave some additional buffer.
+For a deeper explanation of how the Casper 2.0 reward system works, read: [Validator Rewards in Casper 2.0](https://docs.casper.network/condor/validator-rewards)
 
-As a result, when performing a [delegation using the command line](../developers/cli/delegate.md), we recommend you specify a little more than the base transaction payment to ensure that the transaction will go through without failure.
+You can always check live validator performance and estimated rewards at [CSPR.live](https://cspr.live). The explorer has been updated to reflect Casper 2.0’s reward logic.
 
-![**Figure 2** : On Testnet or Mainnet, the transaction fee for a delegation is a little bit higher than 2.5 CSPR.](./_delegating/economic-delegationDetails.png)
-<p align="center">
-**Figure 2** : On Testnet or Mainnet, the transaction fee for a delegation is a little bit higher than 2.5 CSPR.
-</p>
+## Why You Should Delegate Your CSPR & Things to Consider Before Choosing a Validator
 
-:::note
+Casper is a Proof-of-Stake blockchain, meaning the network is secured, governed, and maintained by validators, and the delegators who support them.
 
-Transaction costs depend on each Casper network and the cost tables defined in the chainspec. Most of these examples are from the Casper Mainnet or Testnet.
+When you delegate your CSPR tokens to a validator, you are not only earning rewards, but you are also actively participating in the security and governance of the Casper blockchain.
 
-:::
+Validators participate in on-chain governance votes, and by delegating to them, you are indirectly expressing your voice on network decisions.
 
-## Monitoring Rewards {#monitoring-rewards}
+### What to Look for When Choosing a Validator
 
-It's recommended that you check in on how your stake is performing from time to time. If the validator you staked with decides to unbond, your stake will also be unbonded and you will not earn rewards. Ensure that the validator you selected performs as per your expectations.
+Before delegating your tokens via [CSPR.live](https://cspr.live), here are the key metrics you should pay attention to:
 
-Validators have to win a staking auction by competing for a validator slot with prospective and current validators. This process is permissionless, meaning validators can join and leave the auction without restrictions, except for the unbonding wait period, which lasts 14 hours.
+1. Validator Performance
+
+Check their performance score. This score shows how consistently the validator participates in block production and finality, which directly affects your staking rewards.  
+  
+The performance indicator is based on on-chain metrics and conveys each validator’s success at consensus participation, as measured over the last 360 eras, which is approximately equal to a 30-day time frame. A validator that performed perfectly the last 360 eras, will have a 100% score. (Please note that it is very hard to achieve 100% due to the nature of distributed systems, and a performance value over 99% is considered excellent.)
+
+2. Commission Fee
+
+Each validator sets a commission rate — a percentage deducted from the staking rewards earned by delegators. This fee helps cover the validator’s operational costs and incentivizes their continued participation in securing the network. Reasonable commission rates are essential to maintaining a reliable, decentralized, and sustainable validator ecosystem.
+
+3. Total Stake and Decentralization
+
+Avoid delegating only to the top validators with very large stakes. Decentralization matters.
+
+Supporting smaller but high-performing validators helps keep the network healthy and decentralized.
+
+4. Validator’s Governance Participation
+
+Validators vote on-chain on protocol-level decisions. Delegating to a validator means you trust them to represent your interests on the network. If you care about how the network evolves, this matters.
+
+5. Validator Minimum Stake Requirements
+
+Some validators set a custom minimum delegation amount (e.g., 1,000 CSPR). Make sure to check this before delegating.
+
+6. Support Channels
+
+It’s recommended to choose a validator that will be available for questions or support when needed.
+
+----------
+
+## Monitoring Your Stake
+
+With Zug, rewards are now more directly tied to validator output. Check periodically to make sure your validator is still active and performing well.
+
+If your validator stops producing blocks or unbonds, your rewards will stop, and you may need to redelegate once the unbonding period is over.
+
+You can monitor your staking performance via [CSPR.live](https://cspr.live) or any updated block explorer.
+
+## Minimum Stake Amounts and Enforcement
+
+Casper 2.0 enforces a protocol-level minimum delegation amount of 500 CSPR. Any delegation below this amount will be rejected. This change aims to prevent inactive or negligible delegations from occupying validator slots, which are limited to 1,200 per validator.
+
+Additionally, validators can now define their own minimum acceptable delegation amount. A validator may choose to only accept delegations of 1,000 CSPR or more.
+
+If you attempt to delegate below a validator’s custom minimum, the transaction will not succeed.
+
+The entire delegation will be automatically undelegated if the remaining delegated amount drops below the validator's minimum stake threshold, which can be 500 CSPR or above, based on the validator's config.
+
+Note: Always leave enough staked to stay above the minimum enforcement level. If you’re unsure what the validator’s minimum is, check their listing on [CSPR.live](https://cspr.live/validators).
+
+
+## FAQ
+
+### How often do I get staking rewards?
+
+You get staking rewards every 2 hours. This is called an "Era". After you stake your tokens, your first reward may take up to 4 hours (2 Eras) to show up.
+
+### I’ve staked my tokens but don’t see any rewards. What’s wrong?
+
+That’s normal at first. Rewards don’t go directly to your wallet. They’re added to your existing stake with the validator. You can see them under the Rewards tab on [CSPR.live](https://cspr.live). It may take up to 6 hours (3 Eras) for the first rewards to appear.
+
+### Is there a lock-up period after I stake my tokens?
+
+No, your tokens aren’t locked when you stake. You can undelegate them anytime. But after undelegating, you’ll need to wait about 14 hours (7 Eras) for your tokens to become available again.
+
+### Can I lose my tokens while staking?
+
+Currently, no, slashing is not enabled on the Casper Mainnet, and there are no plans to enable it in the near future. If a validator behaves poorly on the network, they may be evicted from the auction, and you will not earn rewards during the period that the validator is evicted. If slashing is ever enabled in the future—which would require approval through a governance vote—tokens could be removed as a penalty for poor or malicious behavior on the network. In that case, you could lose tokens delegated to that validator.
+
+### How much does it cost to stake and unstake?
+
+To stake, you need 2.5 extra CSPR in your wallet (for network fees). To unstake, the cost is 2.5 CSPR as well.
+
+### How much can I earn from staking?
+
+Right now, the average yearly return is around 15%. This can change over time as more people stake. The base reward rate is 8% of the total token supply, but since not everyone stakes, those who do earn a higher percentage.
+
+### What does a 100% commission rate mean for a validator?
+
+It means the validator keeps all the rewards. If you stake with them, you will earn nothing. These validators usually don’t want to offer staking services or are not allowed to.
 
 ## Tutorials
 
