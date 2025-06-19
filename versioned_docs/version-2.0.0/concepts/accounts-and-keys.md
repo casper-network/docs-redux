@@ -9,8 +9,15 @@ The Casper blockchain uses an on-chain [account-based model](./design/casper-des
 By default, a transactional interaction with the blockchain takes the form of a `Transaction` cryptographically signed by the key-pair corresponding to the `PublicKey` used to create the account.
 
 The Casper platform supports two types of keys for creating accounts and signing transactions: 
-- [Ed25519](#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66 bytes long
-- [Secp256k1](#ecdsa-keys) keys, which use the  Elliptic Curve Digital Signature Algorithm (ECDSA) with the P-256 curve; they are 68 bytes long and are also found on the Ethereum blockchain
+- [Ed25519](#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66 characters / 33 bytes long and comprising of;
+  - - `01` - 1 byte prefix (indicates `Ed25519` key type in Casper)
+  - 32 bytes of actual `Ed25519` public key data
+  - Example: [`01a0d23e084a95cdee9c2fb226d54033d645873a7c7c9739de2158725c7dfe672f`](https://cspr.live/account/01a0d23e084a95cdee9c2fb226d54033d645873a7c7c9739de2158725c7dfe672f)
+  
+- [Secp256k1](#ecdsa-keys) keys, which use the  Elliptic Curve Digital Signature Algorithm (ECDSA) with the P-256 curve; they are 68 characters / 34 bytes long and are also found on the Ethereum blockchain. It comprises of;
+  - `02` - 1 byte prefix (indicates `Secp266k1` key type in Casper)
+  - 33 bytes of actual `Secp256k1` compressed public key data
+  - Example: [`02038baa714f1f45aaacb4443df31bf27a8990369c2f9d585f904ec5c5b85aeb231f`](https://cspr.live/account/0203f3f44c9e80e2cedc1a2909631a3adea8866ee32187f74d0912387359b0ff36a2)
 
 You can generate keys using both formats, and it is also possible to [work with existing Ethereum keys](#working-with-existing-ethereum-keys).
 
@@ -55,7 +62,7 @@ Here are some details about the files generated:
 2. `public_key_hex` is a hexadecimal-encoded string of the public key
 3. `secret_key.pem` is the *PEM*-encoded secret key
 
-The public-key-hex for `Ed25519` keys starts with 01 and is 66 bytes long:
+The public-key-hex for `Ed25519` keys starts with 01 and is 66 characters / 32 bytes long:
 
 ```bash
 cat ed25519-keys/public_key_hex
@@ -82,7 +89,7 @@ secp256k1-keys/
 0 directories, 3 files
 ```
 
-The public-key-hex for `Secp256k1` keys starts with 02 and is 68 bytes long:
+The public-key-hex for `Secp256k1` keys starts with 02 and is 68 characters / 33 bytes long:
 
 ```bash
 cat secp256k1-keys/public_key_hex
@@ -238,7 +245,8 @@ casper-client get-account-info \
 --public-key <FORMATTED STRING or PATH>
 ```
 
-1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
+1. `node-address` - An IP address of a peer on the network. The default port for JSON-RPC server, which is now served by Casper Sidecar from Casper 2.0 onwards on Mainnet and Testnet, is 7777. (Refer to [RPC Changes in Casper 2.0](../../condor/rpc-changes.md) for details)
+   
 2. `public-key` - This must be a properly formatted public key. The public key may instead be read in from a file, in which case, enter the path to the file as the argument. The file should be one of the two public key files generated via the `keygen` subcommand; "public_key_hex" or "public_key.pem"
 
 <details>
@@ -246,27 +254,28 @@ casper-client get-account-info \
 
 ```bash
 casper-client get-account-info --node-address http://65.21.75.254:7777  --public-key 0202ceafc0aa35f5a7bdda22f65c046b9b30b858459e18d3670f035839ad887fe5db
+
 {
-  "id": -2018234245556346849,
   "jsonrpc": "2.0",
+  "id": -4442861421270275102,
   "result": {
+    "api_version": "2.0.0",
     "account": {
       "account_hash": "account-hash-0ea7998b2822afe5b62b08a21d54c941ad791279b089f3f7ede0d72b477eca34",
-      "action_thresholds": {
-        "deployment": 1,
-        "key_management": 1
-      },
+      "named_keys": [],
+      "main_purse": "uref-974019c976b5f26412ce486158d2431967af35d91387dae8cbcd43c20fce6452-007",
       "associated_keys": [
         {
           "account_hash": "account-hash-0ea7998b2822afe5b62b08a21d54c941ad791279b089f3f7ede0d72b477eca34",
           "weight": 1
         }
       ],
-      "main_purse": "uref-974019c976b5f26412ce486158d2431967af35d91387dae8cbcd43c20fce6452-007",
-      "named_keys": []
+      "action_thresholds": {
+        "deployment": 1,
+        "key_management": 1
+      }
     },
-    "api_version": "1.4.15",
-    "merkle_proof": "[29712 hex chars]"
+    "merkle_proof": "[32920 hex chars]"
   }
 }
 
