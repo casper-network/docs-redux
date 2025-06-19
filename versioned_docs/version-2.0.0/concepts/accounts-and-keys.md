@@ -62,7 +62,7 @@ Here are some details about the files generated:
 2. `public_key_hex` is a hexadecimal-encoded string of the public key
 3. `secret_key.pem` is the *PEM*-encoded secret key
 
-The public-key-hex for `Ed25519` keys starts with 01 and is 66 characters / 32 bytes long:
+The public-key-hex for `Ed25519` keys starts with 01 and is 66 characters / 33 bytes long:
 
 ```bash
 cat ed25519-keys/public_key_hex
@@ -89,7 +89,7 @@ secp256k1-keys/
 0 directories, 3 files
 ```
 
-The public-key-hex for `Secp256k1` keys starts with 02 and is 68 characters / 33 bytes long:
+The public-key-hex for `Secp256k1` keys starts with 02 and is 68 characters / 34 bytes long:
 
 ```bash
 cat secp256k1-keys/public_key_hex
