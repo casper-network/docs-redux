@@ -2,9 +2,7 @@
 
 ## Account {#serialization-standard-account}
 
-An Account is a structure that represented a user on a legacy Casper network. Alongside the Casper 2.0 protocol release, `Accounts` were replaced with `AddressableEntities` of the type `Account`. 
-
-**Important:** Addressable Entity is turned off in Casper 2.0 and will be enabled in a future release. 
+An Account is a structure that represented a user on Casper network. 
 
 The account structure consists of the following fields:
 
