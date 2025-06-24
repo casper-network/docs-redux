@@ -10,7 +10,7 @@ By default, a transactional interaction with the blockchain takes the form of a 
 
 The Casper platform supports two types of keys for creating accounts and signing transactions: 
 - [Ed25519](#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66 characters / 33 bytes long and comprising of;
-  - - `01` - 1 byte prefix (indicates `Ed25519` key type in Casper)
+  - `01` - 1 byte prefix (indicates `Ed25519` key type in Casper)
   - 32 bytes of actual `Ed25519` public key data
   - Example: [`01a0d23e084a95cdee9c2fb226d54033d645873a7c7c9739de2158725c7dfe672f`](https://cspr.live/account/01a0d23e084a95cdee9c2fb226d54033d645873a7c7c9739de2158725c7dfe672f)
   

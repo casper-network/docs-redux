@@ -11,7 +11,7 @@ Ensure the requirements listed in the following sections are met before you star
 The following ports are used by the node:
 
 - 35000 (required to be externally visible)
-- 7777 RPC endpoint for interaction with JSON-RPC API
+- 7777 RPC endpoint for interaction with JSON-RPC API. (The default port for JSON-RPC server, is now served by Casper Sidecar from Casper 2.0 onwards)
 - 8888 REST endpoint for status and metrics (having this accessible allows your node to be part of network status)
 - 9999 SSE endpoint for event stream
 
@@ -125,9 +125,9 @@ In the past, we have used a lower `trusted_hash`. Connecting at the tip, we now 
 
 ### Node Address
 
-NODE_ADDR can be set to an IP of a trusted node, or to Casper Labs' public nodes
+NODE_ADDR can be set to an IP of a trusted node, or to Casper Association public nodes
 
-You can find active peers at https://cspr.live/tools/peers or use the following Casper Labs public nodes:
+You can find active peers at https://cspr.live/tools/peers or use the following Casper Association's public nodes:
 
 * Testnet - NODE_ADDR=https://node.testnet.casper.network
 
