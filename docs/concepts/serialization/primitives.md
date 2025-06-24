@@ -21,7 +21,7 @@ enum CLType {
    String, // e.g. "Hello, World!"
    URef, // unforgeable reference (see above)
    Key, // global state key (see above)
-   PublicKey // A Casper system PublicKey type
+   PublicKey, // A Casper system PublicKey type
    Option(CLType), // optional value of the given type
    List(CLType), // list of values of the given type (e.g. Vec in rust)
    ByteArray(CLType, u32), // same as `List` above, but number of elements
