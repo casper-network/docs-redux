@@ -2,7 +2,9 @@
 
 ## Account {#serialization-standard-account}
 
-An Account is a structure that represented a user on a Casper network. The account structure consists of the following fields:
+An Account is a structure that represented a user on Casper network. 
+
+The account structure consists of the following fields:
 
 -   [`account_hash`](./types.md#account-hash)
 

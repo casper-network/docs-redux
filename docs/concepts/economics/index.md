@@ -59,7 +59,7 @@ The fee elimination model will be different from the refund model introduced on 
 
 ## Ecosystem {#ecosystem}
 
-The ecosystem layer encompasses dApp design and operation. Casper Labs maintains multiple partnerships with prospective dApp developers, and we anticipate devoting significant resources to research the economics of prospective dApps.
+The ecosystem layer encompasses dApp design and operation. Casper Association maintains multiple partnerships with prospective dApp developers, and we anticipate devoting significant resources to research the economics of prospective dApps.
 
 ## Macroeconomy {#macroeconomy}
 
