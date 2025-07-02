@@ -214,7 +214,7 @@ Hex-encoded bytes serialized as a `u32` value describing the length of the bytes
 
 ## ByteCodeKind
 
-The type of byte code, serialized as a single `u8` value. A `0` indicates empty byte code. `1` indicates a `V1CasperWasm` to be executed with the first version of the Casper execution engine. `2` indicates a `V2CasperWasm` to be executed with the first version of the Casper execution engine.
+The type of byte code, serialized as a single `u8` value. A `0` indicates empty byte code. `1` indicates a `V1CasperWasm` to be executed with the first version of the Casper execution engine. `2` indicates a `V2CasperWasm` to be executed with the second version of the Casper execution engine.
 
 ## Caller {#caller}
 
