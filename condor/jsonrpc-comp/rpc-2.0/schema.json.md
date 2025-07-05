@@ -6,8 +6,8 @@
     "title": "Client API of Casper Node",
     "description": "This describes the JSON-RPC 2.0 API of a node on the Casper network.",
     "contact": {
-      "name": "Casper Labs",
-      "url": "https://casperlabs.io"
+      "name": "Casper Association",
+      "url": "https://docs.casper.network"
     },
     "license": {
       "name": "APACHE LICENSE, VERSION 2.0",
