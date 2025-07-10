@@ -5,7 +5,7 @@
 | [Deploy](#deploy)     |
 | [Version1](#version1) |
 
-A transaction is an enum-type whose variants represent atomic units of work that can be sent to the node for execution.
+A transaction is an tagged-union type whose variants represent atomic units of work that can be sent to the node for execution.
 
 Currently it consists of two possible variants:
 
@@ -23,7 +23,8 @@ Serializing a `Transaction` of variant `Deploy`:
 
 ## Version1
 
-Transaction::Version1 is the new way that work can be proposed to a node. It's nature is more amorphic than Transaction::Deploy. This type of Transaction uses a self-describing binary serialization scheme (comparing to other [Binary Serialization Standard](./index.md) types). The self-describing scheme is called `Calltable serialization` in this document. An in-depth description of how this self-describing standard works is in the [calltable serialization](./calltable-serialization.md) document. We will be using `serialization_index` and `variant discriminator` terms, their interpretation is explained in the [calltable serialization](./calltable-serialization.md) document also.
+Transaction::Version1 is the new way that work can be proposed to a node. It's nature is more amorphic than Transaction::Deploy. This type of Transaction uses a self-describing binary serialization scheme (comparing to other [Binary Serialization Standard](./index.md) types). The self-describing scheme is called `Calltable serialization` in this document. In general, the layout of this new style of transaction is ["tagged-union"](https://en.wikipedia.org/wiki/Tagged_union) oriented. An in-depth description of how this self-describing standard works is in the [calltable serialization](./calltable-serialization.md) document.
+In the scope of this documentation, for abbreviation, we will call these "tagged-unions". Tagged unions are data structures that can define very different internal fields depending on which variant is currently being used. For serialization we denote the variant (effectively - "which variant of the union was created for this instance of the union type") and serialize it alongside the fields. This "variant marking" is stored as a one byte unsigned [number](./primitives.md#numeric-clvalue-numeric) and will be referred to in this document as `variant discriminator`. The terms `serialization_index` and `variant discriminator` (which we use in this document) are also explained in the [calltable serialization](./calltable-serialization.md) document also.
 
 Serializing a `Transaction` of variant `Version1`:
 
@@ -38,7 +39,7 @@ Serializing a `Transaction` of variant `Version1`:
 - `payload`- of type [`TransactionV1Payload`](#transactionv1payload), contains all the actual data that the transaction sends to node. It's `serialization_index` is `1`
 - `approvals` - collection of [Approvals](./structures.md#approval) being signatures over `hash`. It's `serialization_index` is `2`
 
-### TransactionV1Payload
+#### TransactionV1Payload
 
 `TransactionV1Payload` (serialized using calltable scheme) consists of:
 
@@ -49,7 +50,7 @@ Serializing a `Transaction` of variant `Version1`:
 - `pricing_mode` - [PricingMode](#pricingmode) declaration of how the transaction should be payed for. It's `serialization_index` is `4`
 - `fields` - please see [v1.payload.fields](#v1payloadfields) section. It's `serialization_index` is `5`
 
-#### InitiatorAddr
+##### InitiatorAddr
 
 `InitiatorAddr` (serialized using calltable scheme) consists of:
 
@@ -60,7 +61,7 @@ Serializing a `Transaction` of variant `Version1`:
   - variant discriminator of value `1`
   - [`AccountHash`](./types.md#account-hash-account-hash) serialized under serialization key `1`
 
-#### PricingMode
+##### PricingMode
 
 `PricingMode` (serialized using calltable scheme) consists of:
 
@@ -77,9 +78,9 @@ Serializing a `Transaction` of variant `Version1`:
   - variant discriminator of value `2`
   - field `receipt` of type [Digest](./types.md#digest-digest) with serialization index `1`
 
-### V1.payload.fields
+#### Version1.payload.fields
 
-This is an amorphous data holder. It is serialized as an [ordered collection](./primitives.md#list-clvalue-list) of [tuples](./primitives.md#tuple-clvalue-tuple) holding (u16, [Bytes](./types.md#bytes-bytes)). By u16 we understand an unsigned 2 byte number (see [numeric](./primitives.md#numeric-clvalue-numeric)).
+This is an amorphous data holder. It is serialized as a [map](./primitives.md#map) of key `u16` and value `Byte`. By u16 we understand an unsigned 2 byte number (see [numeric](./primitives.md#numeric-clvalue-numeric)). `Byte` a [collection of bytes](./primitives.md#list-clvalue-list).
 The invariants for this field are:
 
 - keys (first tuple entries) are unique
@@ -91,23 +92,12 @@ This field is design in this amorphous way to facilitate the possibility of resh
 
 _Currently_ the "keys" (first tuple entries) of the `fields` map are interpreted as:
 
-- payload with key `0`: an instance of [`TransactionArgs`](#transactionargs)
+- payload with key `0`: an instance of [`TransactionArgs`](./types.md#transactionargs-transaction-args)
 - payload with key `1`: an instance of [`TransactionTarget`](#transactiontarget)
 - payload with key `2`: an instance of [`TransactionEntryPoint`](#transactionentrypoint)
 - payload with key `3`: an instance of [`TransactionScheduling`](#transactionscheduling)
 
-#### TransactionArgs
-
-`TransactionArgs` (serialized using calltable scheme) consists of:
-
-- in variant `Named`
-  - variant discriminator of value `0`
-  - [RuntimeArgs](./types.md#runtimeargs-runtimeargs) with serialization index `1`
-- in variant `Bytesrepr`
-  - variant discriminator of value `1`
-  - [Bytes](./types.md#bytes-bytes) with serialization index `1`
-
-#### TransactionTarget
+##### TransactionTarget
 
 `TransactionTarget` (serialized using calltable scheme) consists of:
 
@@ -123,7 +113,7 @@ _Currently_ the "keys" (first tuple entries) of the `fields` map are interpreted
   - field `module_bytes` of type `Bytes` with serialization index `2`
   - field `runtime` of type [TransactionRuntimeParams](#transactionruntimeparams) with serialization index `2`
 
-#### TransactionInvocationTarget
+##### TransactionInvocationTarget
 
 `TransactionInvocationTarget` (serialized using calltable scheme) consists of:
 
@@ -137,12 +127,14 @@ _Currently_ the "keys" (first tuple entries) of the `fields` map are interpreted
   - variant discriminator of value `2`
   - field `addr` which is a 32 bytes hash digest with serialization index `1`
   - field `version` of type `Option<u32>` ([option](./primitives.md#option-clvalue-option) of 4 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)) with serialization index `2`
+  - field `protocol_version_major` of type `u32` (4 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)). It's serialization index is `3`. This field is not mandatory - in fact in the reference rust implementation it is defined as `Option<u32>`. If it is present it should be serialized as `u32` under index `3`. But if it's not present, there will be no entry for it at all (both in the calltable section of `TransactionInvocationTarget` or payload)
 - in variant `ByPackageName`
   - variant discriminator of value `3`
   - field `name` of type `String` with serialization index `1`
   - field `version` of type `Option<u32>` ([option](./primitives.md#option-clvalue-option) of 4 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)) with serialization index `2`
+  - field `protocol_version_major` of type `u32` (4 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)). It's serialization index is `3`. This field is not mandatory - in fact in the reference rust implementation it is defined as `Option<u32>`. If it is present it should be serialized as `u32` under index `3`. But if it's not present, there will be no entry for it at all (both in the calltable section of `TransactionInvocationTarget` or payload)
 
-#### TransactionRuntimeParams
+##### TransactionRuntimeParams
 
 `TransactionRuntimeParams` (serialized using calltable scheme) consists of:
 
@@ -153,7 +145,7 @@ _Currently_ the "keys" (first tuple entries) of the `fields` map are interpreted
   - field `transferred_value` of type `u64` (8 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)) with serialization index `1`
   - field `seed` of type `Option<[u8; 32]>` ([option](./primitives.md#option-clvalue-option) of 32 bytes [Byte array](./primitives.md#bytearray-clvalue-bytearray)) with serialization index `2`
 
-#### TransactionEntryPoint
+##### TransactionEntryPoint
 
 `TransactionEntryPoint` (serialized using calltable scheme) consists of:
 
@@ -185,9 +177,17 @@ _Currently_ the "keys" (first tuple entries) of the `fields` map are interpreted
 - in variant `Burn`:
   - variant discriminator of value `12`
 
-#### TransactionScheduling
+##### TransactionScheduling
 
 `TransactionScheduling` (serialized using calltable scheme) consists of:
 
 - in variant `Standard`:
   - variant discriminator of value `0`
+
+## Serialization example
+
+Please see [this document](./transaction-serialization-example.md) to see an in-depth step-by-step example of deserializing a transaction
+
+## Deserialization example
+
+Please see [this document](./transaction-deserialization-example.md) to see an in-depth step-by-step example of deserializing a transaction
