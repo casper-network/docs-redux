@@ -153,14 +153,15 @@ sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-
 
 ## Syncing to Genesis
 
-In the latest protocol version's *Config.toml*, you will find the option `sync_to_genesis`. By default, this value will be set to `true`.
+In the latest protocol version's *Config.toml*, you will find the option `sync_handling`. By default, this value will be set to `ttl`, which means the node will attempt to acquire all block data to comply with time to live enforcement, but will not attempt to sync all the way back to genesis.
 
-If you are planning to run a validator node, it is better to not sync your node to genesis. This will increase node performance. In this case, the option should be changed to:
+**If you are planning to run a validator node, leave this option at the default value of `ttl`**; this will increase node performance.
+
+If you are using the node for historical data and want to query back to genesis, then this option should be changed to:
 
 ```bash
-sync_to_genesis = false
+sync_handling = genesis
 ```
-If you are using the node for historical data and want to query back to genesis, you can leave the default value in place.
 
 ## Starting the Node
 
