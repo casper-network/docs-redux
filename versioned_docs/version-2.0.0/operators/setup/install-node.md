@@ -148,7 +148,7 @@ The following command uses the previously established NODE_ADDR and PROTOCOL to 
 ```bash
 NODE_ADDR=https://node.mainnet.casper.network/rpc
 PROTOCOL=2_0_0
-sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address $NODE_ADDR | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/$PROTOCOL/config.toml
+sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address $NODE_ADDR | jq -r .result.block_with_signatures.block.Version2.hash | tr -d '\n')'" /etc/casper/$PROTOCOL/config.toml
 ```
 
 ## Syncing to Genesis
