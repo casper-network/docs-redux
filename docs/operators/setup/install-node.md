@@ -71,7 +71,7 @@ We are creating /etc/apt/keyrings if needed, so we don't have the issue with thi
 ## Required Tools
 
 ```bash
-sudo apt install -y casper-client casper-node-launcher jq
+sudo apt install -y casper-client casper-node-launcher casper-sidecar jq
 ```
 
 ## Enable Bash Auto-Completion for `casper-client` (Optional)
