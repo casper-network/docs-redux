@@ -129,9 +129,9 @@ NODE_ADDR can be set to an IP of a trusted node, or to Casper Association's publ
 
 You can find active peers at https://cspr.live/tools/peers or use the following Casper Association public nodes:
 
-* Testnet - NODE_ADDR=https://node.testnet.casper.network
+* Testnet - NODE_ADDR=https://node.testnet.casper.network/rpc
 
-* Mainnet - NODE_ADDR=https://node.mainnet.casper.network
+* Mainnet - NODE_ADDR=https://node.mainnet.casper.network/rpc
 
 ### Protocol Version
 
