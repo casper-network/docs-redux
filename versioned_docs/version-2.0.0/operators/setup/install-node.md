@@ -71,7 +71,7 @@ We are creating /etc/apt/keyrings if needed, so we don't have the issue with thi
 ## Required Tools
 
 ```bash
-sudo apt install -y casper-client casper-node-launcher jq
+sudo apt install -y casper-client casper-node-launcher casper-sidecar jq
 ```
 
 ## Enable Bash Auto-Completion for `casper-client` (Optional)
@@ -129,16 +129,16 @@ NODE_ADDR can be set to an IP of a trusted node, or to Casper Association public
 
 You can find active peers at https://cspr.live/tools/peers or use the following Casper Association's public nodes:
 
-* Testnet - NODE_ADDR=https://node.testnet.casper.network
+* Testnet - NODE_ADDR=https://node.testnet.casper.network/rpc
 
-* Mainnet - NODE_ADDR=https://node.mainnet.casper.network
+* Mainnet - NODE_ADDR=https://node.mainnet.casper.network/rpc
 
 ### Protocol Version
 
-Protocol version should be set to the largest available protocol version you see in `ls /etc/casper`.  As of writing this, it was 1_5_8:
+Protocol version should be set to the largest available protocol version you see in `ls /etc/casper`.  As of writing this, it was 2_0_0:
 
 ```bash
-PROTOCOL=1_5_8
+PROTOCOL=2_0_0
 ```
 
 ### Load `trusted_hash` in Config.toml of the Protocol Version
@@ -146,21 +146,22 @@ PROTOCOL=1_5_8
 The following command uses the previously established NODE_ADDR and PROTOCOL to load the `trusted_hash`:
 
 ```bash
-NODE_ADDR=https://node.mainnet.casper.network
-PROTOCOL=1_5_8
-sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address $NODE_ADDR | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/$PROTOCOL/config.toml
+NODE_ADDR=https://node.mainnet.casper.network/rpc
+PROTOCOL=2_0_0
+sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address $NODE_ADDR | jq -r .result.block_with_signatures.block.Version2.hash | tr -d '\n')'" /etc/casper/$PROTOCOL/config.toml
 ```
 
 ## Syncing to Genesis
 
-In the latest protocol version's *Config.toml*, you will find the option `sync_to_genesis`. By default, this value will be set to `true`.
+In the latest protocol version's *Config.toml*, you will find the option `sync_handling`. By default, this value will be set to `ttl`, which means the node will attempt to acquire all block data to comply with time to live enforcement, but will not attempt to sync all the way back to genesis.
 
-If you are planning to run a validator node, it is better to not sync your node to genesis. This will increase node performance. In this case, the option should be changed to:
+**If you are planning to run a validator node, leave this option at the default value of `ttl`**; this will increase node performance.
+
+If you are using the node for historical data and want to query back to genesis, then this option should be changed to:
 
 ```bash
-sync_to_genesis = false
+sync_handling = genesis
 ```
-If you are using the node for historical data and want to query back to genesis, you can leave the default value in place.
 
 ## Starting the Node
 
