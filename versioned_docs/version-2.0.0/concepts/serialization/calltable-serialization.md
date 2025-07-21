@@ -9,7 +9,7 @@ As mentioned before, the `calltable serialization approach` requires serializing
 - `fields` - field which is an ordered collection of [Field](#field). This collection is serialized as a Vec&lt;Field&gt; in the "regular" `Binary Serialization Standard` schema. The invariants for `fields` are:
   - for each f<sub>i</sub>, f<sub>j</sub> given `i` < `j` implies f<sub>i</sub>.index < f<sub>j</sub>.index
   - for each f<sub>i</sub>, f<sub>j</sub> given `i` < `j` implies f<sub>i</sub>.offset < f<sub>j</sub>.offset
-- `bytes` - field which is an amorphous blob of bytes serialized as `Bytes` in the "regular" `Binary Serialization Standard` schema.
+- `bytes` - field which is an amorphous blob of bytes serialized as `Bytes` in the "regular" `Binary Serialization Standard` schema. Bear in mind that this field will be serialized by appending first a `u32` integer (number of bytes) than the raw bytes payload.
 
 A <span id="field">`Field`</span> consists of:
 
@@ -79,6 +79,9 @@ Once we have the `fields` and `bytes` we can proceed to serialize those in the "
       for i in range(0, len(fields)):
           bytes_arr += fields[i]["index"].to_bytes(2, byteorder = 'little')
           bytes_arr += fields[i]["offset"].to_bytes(4, byteorder = 'little')
+      concatenated_serialized_fields_len = len(concatenated_serialized_fields)
+      print(f"{concatenated_serialized_fields_len}")
+      bytes_arr += concatenated_serialized_fields_len.to_bytes(4, byteorder = 'little')
       bytes_arr += concatenated_serialized_fields
       return bytes_arr
 ```
@@ -88,7 +91,7 @@ and once we have all that we can apply the scripts to example:
 ```python
     I = [0, 1, 3, 5]
     B = [bytes([0, 1, 255]), bytes([55, 12, 110, 60, 15]), bytes([7, 149, 1]), bytes([55])]
-    envelope = buildCalltableData(I, B)
+    envelope = build_calltable_data(I, B)
     serialized_calltable_representation = serialize_calltable_representation(envelope["fields"], envelope["bytes"])
     print(f"{serialized_calltable_representation.hex()}")
 ```
@@ -96,15 +99,15 @@ and once we have all that we can apply the scripts to example:
 which produces:
 
 ```
-0400000000000000000001000300000003000800000005000b0000000001ff370c6e3c0f07950137
+0400000000000000000001000300000003000800000005000b0000000c0000000001ff370c6e3c0f07950137
 ```
 
 In the above hex:
-| Serialized length of `fields` collection | field[0].index | field[0].offset | field[1].index | field[1].offset | field[2].index | field[2].offset | field[3].index | field[3].offset | bytes |
-| ---------------------------------------- | -------------- | --------------- | -------------- | --------------- | -------------- | --------------- | -------------- | --------------- | ----- |
-| 04000000 | 0000 | 00000000 | 0100 | 03000000 | 0300 | 08000000 | 0500 | 0b000000 | 0001ff370c6e3c0f07950137
+| Serialized length of `fields` collection | field[0].index | field[0].offset | field[1].index | field[1].offset | field[2].index | field[2].offset | field[3].index | field[3].offset | number of bytes in `bytes` field | raw bytes of `bytes` field |
+| ---------------------------------------- | -------------- | --------------- | -------------- | --------------- | -------------- | --------------- | -------------- | --------------- | ----- | -- |
+| 04000000 | 0000 | 00000000 | 0100 | 03000000 | 0300 | 08000000 | 0500 | 0b000000 | 0c000000 | 0001ff370c6e3c0f07950137
 
-This concludes how we construct and byte-serialize an `envelope`. In the next paragraphs we will explain what are the assumptions and conventions when dealing with `struct`s and `enum`s.
+This concludes how we construct and byte-serialize an `envelope`. In the next paragraphs we will explain what are the assumptions and conventions when dealing with `struct`s and `tagged-union`s.
 
 ## Serializing uniform data structures
 
@@ -120,15 +123,15 @@ struct A {
 
 In the above example we could assign `a` index `0`, `b` index `1` and `c` index `2`. Knowing this and assuming that we know how to byte-serialize `OtherStruct` we should be able to create an `envelope` for this struct and serialize it in the `calltable` scheme.
 
-## Serializing enums
+## Serializing tagged-unions
 
-By `enums` we understand polymorphic, but limited (an instance of an enum can be only one of N known `variants`) data structures that are unions of structures and/or other enums. An enum variant can be:
+By `tagged-union` we understand polymorphic, but limited (an instance of an tagged-union can be only one of N known `variants`) data structures that are unions of structures and/or other tagged-unions. An tagged-union variant can be:
 
 - empty (tag variant)
 - a struct
-- a nested enum
+- a nested tagged-union
 
-As mentioned, there is a polymorphic aspect to these kinds of enums and we handle them by convention - `serialization index` `0` is always reserved for a 1 byte discriminator number which defines which enum variant is being serialized, the next indices are used to serialize the fields of specific variants (for empty tag variants there will be no more indices). So, given an enum:
+As mentioned, there is a polymorphic aspect to these kinds of tagged-union and we handle them by convention - `serialization index` `0` is always reserved for a 1 byte discriminator number which defines which tagged-union variant is being serialized. The value of this specific pseudo-field will be called `variant discriminator`. Subsequent indices are used to serialize the fields of specific variants (for empty tag variants there will be no more indices). So, given an example tagged-union (implemented in rust, rust equivalent of tagged-union is `enum`):
 
 ```rust
   enum X {
@@ -138,13 +141,13 @@ As mentioned, there is a polymorphic aspect to these kinds of enums and we handl
   }
 ```
 
-First we need to chose variant discriminator values for each of the enum variants, let's select:
+First we need to chose variant discriminator values for each of the tagged-union variants, let's select:
 
 - if variant `A` - the variant discriminator will be `0`
 - if variant `B` - the variant discriminator will be `1`
 - if variant `C` - the variant discriminator will be `2`
 
-Again, as with fields in `Serializing enums` the variant discriminator values don't need to start from `0` and don't need to be contiguous, but that is our convention and any "holes" in the definition would indicate a retired enum variant.
+Again, as with fields in `Serializing tagged-unions` the variant discriminator values does not need to start from `0` and does not need to be contiguous, but that is our convention and any "discontinuities" in the value set for variant disciminator would indicate a retired tagged-union variant or variants.
 
 Next we need to assign field `serialization indices` for each variant:
 
@@ -157,8 +160,8 @@ Next we need to assign field `serialization indices` for each variant:
   - `2` for the second tuple element (of type u32),
   - `3` for the second tuple element (of type u64),
 
-As you can see, `serialization indices` for fields need to be unique in scope of a particular enum variant.
-Knowing the above, let's see how the `I` and `B` collections would look like for different instances of this enum:
+As you can see, `serialization indices` for fields need to be unique in scope of a particular tagged-union variant.
+Knowing the above, let's see how the `I` and `B` collections would look like for different instances of this tagged-union:
 
 - when serializing variant `X::A` (assuming python notation):
   ```python
