@@ -424,6 +424,18 @@
         "resources/advanced/storage-workflow",
         "resources/advanced/cross-contract"
       ]
+    },
+    {
+      "type": "category",
+      "label": "Security Audit Reports",
+      "collapsible": true,
+      "collapsed": true,
+      "link": {
+        "type": "doc",
+        "id": "resources/audit-reports/index"
+      },
+      "items": [        
+      ]
     }
   ],
   "users": [
@@ -542,6 +554,6 @@
         "resources/advanced/storage-workflow",
         "resources/advanced/cross-contract"
       ]
-    }
+    }    
   ]
 }

@@ -414,6 +414,18 @@ module.exports = {
                 //"resources/advanced/list-cspr",
             ],
         },
+        {
+            type: "category",
+            label: "Security Audit Reports",
+            collapsible: true,
+            collapsed: true,
+            link: {
+                type: "doc",
+                id: "resources/audit-reports/index",
+            },
+            items: [                
+            ],
+        },
     ],
     users: [
         "users/index",
