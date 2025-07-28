@@ -6,7 +6,7 @@ title: Unbonding
 
 Once a bid is placed, it will remain in the state of the auction contract, even if the bid fails to win a slot immediately. New slots may become available if bonded validators leave the network or reduce their bond amounts. Therefore, a bid must be explicitly withdrawn to remove it from the auction.
 
-## Method 1: Unbonding with the System Auction Contract {#withdraw-system-auction}
+## Unbonding with the System Auction Contract {#withdraw-system-auction}
 
 This method withdraws a bid using the system auction contract. Call the existing `withdraw_bid` entry point from the system auction contract. Using this method, you do not need to build any contracts, reducing costs and complexity.
 
@@ -46,6 +46,15 @@ Calling the `withdraw_bid` entry point on the auction contract has a fixed cost 
 
 :::
 
+## `withdraw-bid` Guardrails
+
+There are additional guardrails in place to ensure accidental full withdrawal/unstaking of the stakes.
+
+- `withdraw-bid` will check if the withdraw bid will not result in a Validator's stake dropping below the Validator minimum bid threshold. It will return an error if a Validator's staked amount will fall below the minimum bid amount for Validators when executing the transaction.
+- `withdraw-bid-all` is a sub-command that takes in a public key of a Validator and produces a withdraw bid transaction that will completely unbond the Validator.
+- A minimum-bid override flag `min-bid-override` is available for Validators to log a warning to the standard output and produce/send the withdraw bid transaction.
+- The withdraw-bid guardrails have been extended to `put-transaction` and `put-deploy` subcommands that invoke the entry point via stored contract by hash/name and package by hash/name.
+
 **Example:**
 
 This example command uses the Casper Testnet to withdraw 5 CSPR from the bid:
@@ -74,55 +83,6 @@ sudo -u casper casper-client put-deploy \
 --session-entry-point withdraw_bid \
 --session-arg "public_key:public_key='01c297d2931fec7e22b2fb1ae3ca5afdfacc2c82ba501e8ed158eecef82b4dcdee'" \
 --session-arg "amount:U512='$[5 * 1000000000]'"
-```
-
-## Method 2: Unbonding with Compiled Wasm {#withdraw-compiled-wasm}
-
-There is a second way to withdraw a bid, using the compiled Wasm `withdraw_bid.wasm`. The process is the same as bonding but uses a different contract.
-
-```bash
-sudo -u casper casper-client put-deploy \
---node-address <HOST:PORT> \
---secret-key <PATH> \
---chain-name <CHAIN_NAME> \
---payment-amount <PAYMENT_AMOUNT> \
---session-path <PATH>/casper-node/target/wasm32-unknown-unknown/release/withdraw_bid.wasm \
---session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
---session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'"
-```
-
-1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
-2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
-3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
-4. `payment-amount` - The payment for the Deploy in motes estimated
-5. `session-path` - The path to the compiled Wasm on your computer
-
-The `withdraw_bid.wasm` expects two arguments, while the third one is optional:
-
-6. `public key`: The hexadecimal public key of the account's purse to withdraw. This key must match the secret key that signs the deploy and has to match the public key of a bid in the auction contract
-7. `amount`: The amount being withdrawn
-
-The command will return a deploy hash, which is needed to verify the deploy's processing results.
-
-:::note
-
-This method is more expensive than calling the `withdraw_bid` entrypoint in the system auction contract, which has a fixed cost of 2.5 CSPR.
-
-:::
-
-**Example:**
-
-Here is an example request to unbond stake using the `withdraw_bid.wasm`. The payment amount specified is 4 CSPR. You must modify the payment and other values in the deploy based on the network's [chainspec.toml](../../concepts/glossary/C.md#chainspec).
-
-```bash
-sudo -u casper casper-client put-deploy \
---node-address http://65.21.75.254:7777 \
---secret-key /etc/casper/validator_keys/secret_key.pem \
---chain-name casper-test \
---session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/withdraw_bid.wasm \
---payment-amount 4000000000 \
---session-arg="public_key:public_key='01c297d2931fec7e22b2fb1ae3ca5afdfacc2c82ba501e8ed158eecef82b4dcdee'" \
---session-arg="amount:u512='1000000000000'"
 ```
 
 

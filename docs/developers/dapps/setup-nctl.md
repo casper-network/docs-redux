@@ -268,5 +268,5 @@ $ nctl-clean
 
 ## Next Steps {#next-steps}
 
-1.  Explore the [various NCTL commands](https://github.com/casper-network/casper-node/blob/master/utils/nctl/docs/commands.md).
-2.  Explore the [NCTL usage guide](https://github.com/casper-network/casper-node/blob/master/utils/nctl/docs/usage.md).
+1.  Explore the [various NCTL commands](https://github.com/casper-network/casper-nctl/blob/dev/docs/commands-ctl.md).
+2.  Explore the [NCTL usage guide](https://github.com/casper-network/casper-nctl/blob/dev/docs/usage.md).
