@@ -52,8 +52,32 @@ There are additional guardrails in place to ensure accidental full withdrawal/un
 
 - `withdraw-bid` will check if the withdraw bid will not result in a Validator's stake dropping below the Validator minimum bid threshold. It will return an error if a Validator's staked amount will fall below the minimum bid amount for Validators when executing the transaction.
 - `withdraw-bid-all` is a sub-command that takes in a public key of a Validator and produces a withdraw bid transaction that will completely unbond the Validator.
-- A minimum-bid override flag `min-bid-override` is available for Validators to log a warning to the standard output and produce/send the withdraw bid transaction.
+- A minimum-bid override flag `min-bid-override` is available for Validators to use it when they want to override the minimum bid staking amount check to the standard output when they produce/send the withdraw bid transaction.
 - The withdraw-bid guardrails have been extended to `put-transaction` and `put-deploy` subcommands that invoke the entry point via stored contract by hash/name and package by hash/name.
+
+**Guardrails Example :**
+
+| Case         | Stake Scenario       | Transaction       | Result |
+|--------------|----------------------|-------------------|--------|
+| **When the withdraw-bid transaction will result in remaining stake falling below the minimum bid threshold - i.e. <10,000,000,000,000 motes** | <br/>Staked: 17,536,609,871,045 motes<br/><br/>Withdraw: 17,536,609,871,045 motes <br/><br/>Remaining Stake: 0 motes | `withdraw-bid` <br/>without<br/>`--min-bid-override` | Client guardrail prevents execution with <br/>"**Attempting to withdraw bid will reduce stake below the minimum amount.**" error |
+| **When the withdraw-bid transaction will result in remaining stake being equal to or over the minimum bid threshold - i.e. >=10,000,000,000,000 motes** | <br/>Staked: 17,536,609,871,045 motes<br/><br/>Withdraw: 7,536,609,871,045 motes <br/><br/>Remaining Stake: 10,000,000,000,000 motes | `withdraw-bid` <br/>without<br/>`--min-bid-override` | Transaction will execute successfully |
+| **When the withdraw-bid transaction with min-bid-override flag will result in remaining stake being less than minimum bid threshold - i.e. <10,000,000,000,000 motes** | <br/>Before: 17,536,609,871,045 motes<br/><br/>Withdraw: 17,536,609,871,044 motes | `withdraw-bid` <br/>with<br/>`--min-bid-override` | Transaction will execute with a warning `Execution of this withdraw bid will result in unbonding of all stake` |
+| **When the withdraw-bid transaction with min-bid-override flag will result in remaining stake being equal to or greater than minimum bid threshold - i.e. >=10,000,000,000,000 motes** | <br/>Before: 17,536,609,871,045 motes<br/><br/>Withdraw: 7,536,609,871,044 motes | `withdraw-bid` <br/>with<br/>`--min-bid-override` | Transaction will execute successfully |
+
+**How to use the `min-bid-override` flag in a transaction?**
+
+Example transaction with `min-bid-override` flag:
+```bash
+casper-client put-transaction withdraw-bid \
+--public-key 01733fe8a5d57837e404fb994da618d8a1757c9b8290fb331db28b9df61423f038 \
+--transaction-amount  119999596675466 \
+--min-bid-override \
+--chain-name casper-test \
+ --secret-key /etc/casper/validator_keys/secret_key.pem \
+ --standard-payment true \
+ --gas-price-tolerance 1 \
+--payment-amount 2500000000
+```
 
 **Example:**
 
