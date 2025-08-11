@@ -23,11 +23,14 @@ The standardized audit reports provide comprehensive insights into security asse
 
 ## Audit Information
 
-| Project | Prepared by | Last Updated |  Remediation Status | Full Report |
+| Project | Prepared by | Report Date/Last Updated |  Remediation Status | Full Report |
 |---------|-------------|--------------|---------------------|-------------|
+| Bridge Contracts | HALBORN | 07/17/2024 | 100% of all REPORTED Findings have been addressed | [Link](https://www.halborn.com/audits/casper-association/casper---allbridge-fa8c33) |
+| Shiboo Token - Simplified | HALBORN | 08/21/2024 | 100% of all REPORTED Findings have been addressed | [Link](https://www.halborn.com/audits/casper-association/casper---shiboo-token---simplified-assessment-70b767) |
 | Casper 2.0 - Casper Association | HALBORN | 04/17/2025 | 100% of all REPORTED Findings have been addressed | [Link](https://www.halborn.com/audits/casper-association/casper-20-12a8fb) |
-| Liquid Staking | HALBORN |  05/27/2025 | 100% of all REPORTED Findings have been addressed | [Link](https://www.halborn.com/audits/casper-association/odra---liquid-staking-231379) |
-
+| Odra - Liquid Staking | HALBORN |  05/27/2025 | 100% of all REPORTED Findings have been addressed | [Link](https://www.halborn.com/audits/casper-association/odra---liquid-staking-231379) |
+| MAKE CSPR.name | HALBORN |  07/03/2025 | 100% of all REPORTED Findings have been addressed | [Link](https://www.halborn.com/audits/casper-association/make-csprname-7b1108) |
+| CEP18 | HALBORN |  07/21/2025 | 100% of all REPORTED Findings have been addressed | [Link](https://www.halborn.com/audits/casper-association/cep18-799d0b) |
 
 ## Important Notice 
 
