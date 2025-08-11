@@ -20,7 +20,7 @@ Transactions encapsulate user intents.  For example, if Alice intends to transfe
 
 Transactions may be either 'native' or 'WASM':
 
-- Native transactions are those that interact with system contracts such as mint and/or auction.  They do not require any Web Assembly(WASM) payload to be constructed,  are normally compact in size, and are processed directly on the metal, i.e. host-side.
+- Native transactions are those that interact with system contracts such as `mint` and/or `auction`.  They do not require any Web Assembly(WASM) payload to be constructed,  are normally compact in size, and are processed directly on the metal, i.e. host-side.
 
 - Web Assembly(WASM) transactions are those that interact with the system via either on-chain smart contracts or session logic.  All such interactions are based upon user-defined WASM binaries, and are executed within one of the node's supported virtual machines.
 
@@ -30,9 +30,9 @@ Casper 2.0 Native Transaction Types:
 
 |Type|Description|
 |--------|---------------------------------|
-| `add-bid` | To create a bid purse |
+| `add-bid` | To create a bid purse or or increase an existing bidder's bid amount |
 | `activate-bid` | To reactivate an inactive bid |
-| `withdraw-bid` | Used to decrease a validator's stake |
+| `withdraw-bid` | Used to decrease a validator's stake or remove their bid completely if the remaining stake is below the minimum required amount |
 | `delegate` | Used to add a new delegator or increase an existing delegator's stake |
 | `undelegate` | To reduce a delegator's stake or remove the delegator if the remaining stake is zero |
 | `redelegate` | To reduce a delegator's stake or remove the delegator if the remaining stake is zero. After the unbonding delay, it will automatically delegate to a new validator |
@@ -50,7 +50,7 @@ The Deploy model is deprecated as of Casper 2.0, and support will be removed ent
 
 ## How to create a transaction
 
-A transaction, such as transferring CSPR tokens from one user's purse to another, can be created and sent to the Casper Network for processing using any of three methods.
+A transaction, such as transferring CSPR tokens from one user's purse to another, can be created and sent to the Casper Network for processing using any of three methods:
 
 1. CSPR.Live
 2. SDK [e.g JavaScript/TypeScript SDK]
