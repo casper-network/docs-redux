@@ -10,8 +10,11 @@ The following hardware specifications are recommended for the Casper [Mainnet](h
 
 -   4 Cores
 -   32 GB Ram
--   2 TB SSD
--   Linux machine running Ubuntu 20.04
+-   Storage (SSD)  
+  - 2 TB (Archival Nodes)
+  - 500 GB (TTL Nodes)
+-   Linux machine running Ubuntu 22.04, 24.04 or Debian 13
+  - Binaries are build on 22.04 and will run on Linux having same or higher Clib version.
 
 
 :::note Notes
@@ -20,6 +23,7 @@ The following hardware specifications are recommended for the Casper [Mainnet](h
 
 - For non-archival nodes, current disc usage is significantly lower (e.g., ~500 GB is sufficient for at least 1 year). It is safe to start with lower capacity and scale up as needed.
 
+- LMDB is a memory backed database. More RAM than recommended will help read performance after data is cached.
 :::
 
 ### CPU Requirements {#cpu-requirements}
