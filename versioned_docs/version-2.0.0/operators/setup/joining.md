@@ -14,111 +14,47 @@ Visit the [Hardware Specifications](./hardware.md) section and provision your no
 
 Follow the instructions on the [Node Setup](./install-node.md) page. 
 
-## Step 3: Building the Required Contracts {#step-3-build-contracts}
+## Step 3: Creating and Fund Keys for Bonding {#step-3-create--fund-keys-for-bonding}
 
-Use the commands below to build all the necessary contracts for bonding, retrieving rewards, and unbonding.
+See the [Node Setup](./basic-node-configuration.md#create-fund-keys) instructions if you have not generated a validator key. This lives in `/etc/casper/validator_keys`.
+This will need funded to allow bonding.
 
-1. Clone the casper-node repository. 
-
-```bash
-git clone https://github.com/casper-network/casper-node
-```
-
-2. Install these prerequisites, which are also listed [here](https://github.com/casper-network/casper-node#pre-requisites-for-building).
-
-- [Rust](../../developers/writing-onchain-code/getting-started.md#installing-rust)
-- [CMake](https://cgold.readthedocs.io/en/latest/first-step/installation.html)
-- `pkg-config` - On Ubuntu, use `sudo apt-get install pkg-config`
-- `openssl` - On Ubuntu, use `sudo apt-get install openssl`
-- `libssl-dev` - On Ubuntu, use `sudo apt-get install libssl-dev`
-
-3. Install the [Rust casper-client](../../developers/prerequisites.md#install-casper-client) and fund the [keys](../setup/basic-node-configuration.md#create-fund-keys) you will use for bonding.
-
-4. Use the following commands to build the contracts in release mode. Make sure you have [installed Rust](../../developers/writing-onchain-code/getting-started.md#installing-rust).
-
-```bash
-cd casper-node
-make setup-rs
-make build-client-contracts
-```
-
-These commands will build all the necessary Wasm contracts for operating as a validator:
-- `activate_bid.wasm` - Reactivates an ejected validator
-- `add_bid.wasm` - Enables bonding for validator stake
-- `delegate.wasm` - Delegates stake
-- `undelegate.wasm` - Undelegates stake
-- `withdraw_bid.wasm` - Enables unbonding for validator stake
-
-## Step 4: Creating and Fund Keys for Bonding {#step-4-create--fund-keys-for-bonding}
-
-See the [Node Setup](./basic-node-configuration.md#create-fund-keys) instructions if you have not generated and funded your validator keys.
-
-## Step 5: Updating the Trusted Hash {#step-5-update-the-trusted-hash}
+## Step 4: Updating the Trusted Hash {#step-5-update-the-trusted-hash}
 
 The node's `config.toml` needs to be updated with a recent trusted hash. 
 
 See the [Trusted Hash for Synchronizing](./basic-node-configuration.md#trusted-hash-for-synchronizing) instructions if you have not set up a trusted hash during node installation.
 
-## Step 6: Starting the Node {#step-6-start-the-node}
+## Step 5: Setting sync mode
 
-Start the node with the `casper-node-launcher`:
+The default mode in config for sync is `ttl`. Available options are listed as comments in the `config.toml`. The only sync modes for an operating node are `nosync`, `ttl`, or `genesis`.
 
-```bash
-sudo systemctl start casper-node-launcher
-```
+`ttl` syncs the Time To Live data, which is the minimum history needed to operate as a validator. `nosync` would need to wait for the ttl period to get this history until possible to transition into `Validate`.
 
-The above Debian package installs a casper-node service for systemd. 
+The sync condition needs to be met before it is possible to transition from `KeepUp` to `Validate`. There are two reasons why `ttl` is recommended for a validator.
 
-For more information, visit [GitHub](https://github.com/casper-network/casper-node/wiki#node-operators).
+### Improved performance of caching
 
-## Step 7: Confirming the Node is Synchronized {#step-7-confirm-the-node-is-synchronized}
+`ttl` sync reduces disk space drastically compared to a `genesis` sync archive mode. This improves performance of LMDB DB as it is memory cached and gives higher probablity of cache hits.
 
-While the node is synchronizing, the `/status` endpoint is available. You will be able to compare this to another node's status endpoint `era_id` and `height` to determine if you are caught up. You will not be able to perform any `casper-client` calls to your `7777` RPC port until your node is fully caught up.
+### Dangers of `genesis` sync archival validators
 
-Towards the end of the following output, notice the `era_id` and `height` that you can use to determine if your node has completed synchronizing.
+A node must sync to the tip of the chain and be in `KeepUp` state before transitioning to `Validate` state. However, prior to this transition, the historical sync operation must complete.
 
-<details>
-<summary>Sample output of the <code>/status</code> endpoint</summary>
+With a `ttl` node this is the minimum state required to operate as a validator. Even if a node has been shut down for some time, acquiring this data is generally fast.
 
-```json
-{
-  "api_version": "1.4.3",
-  "chainspec_name": "casper-test",
-  "starting_state_root_hash": "e2218b6bdb8137a178f242e9de24ef5db06af7925e8e4c65fa82d41df38f4576",
-  "peers": [
-    {
-      "node_id": "tls:0097..b253",
-      "address": "18.163.249.168:35000"
-    },
-    ...
-    ...
-    ...
-    {
-      "node_id": "tls:ff95..c014",
-      "address": "93.186.201.14:35000"
-    }
-  ],
-  "last_added_block_info": {
-    "hash": "8280de05cb34071f276fbe7c69a07cb325ddd373f685877911238b614bdcc5b1",
-    "timestamp": "2022-01-04T15:33:08.224Z",
-    "era_id": 3240,
-    "height": 430162,
-    "state_root_hash": "ec4ff5c4d0a9021984b56e2b6de4a57188101c24e09b765c3fee740353690076",
-    "creator": "01ace6578907bfe6eba3a618e863bbe7274284c88e405e2857be80dd094726a223"
-  },
-  "our_public_signing_key": "01cb41ee07d1827e243588711d45040fe46402bf3901fb550abfd08d1341700270",
-  "round_length": null,
-  "next_upgrade": null,
-  "build_version": "1.4.3-a44bed1fd-casper-mainnet",
-  "uptime": "25days 1h 48m 22s 47ms"
-}
-```
-</details>
+If a node is in `genesis` sync mode, the historical state required is all the way back to the highest block previously synced. The node cannot transition to `Validate` mode until the full historical sync is complete. Historical sync is deprioritized, so this can cause a considerable delay in getting back operational as a validator after prolonged downtime.
 
-## Step 8: Sending the Bonding Request {#step-7-send-the-bonding-request}
+## Step 5: Confirming the Node is Synchronized {#step-5-confirm-the-node-is-synchronized}
+
+The `casper-node-util watch` command gives display of current node status. And example output is given on the  [Node Setup](./basic-node-configuration.md#create-fund-keys) page.
+
+The node has a reactor state machine displayed as `Reactor State:` in the `watch` command. This is coming from the `localhost:8888/status` endpoint.
+
+Full status endpoint output can be seen with: `curl localhost:8888/status | jq`. We are piping to `jq` for clean `json` output.
+
+## Step 6: Sending the Bonding Request {#step-6-send-the-bonding-request}
 
 You can submit a [bonding request](../becoming-a-validator/bonding.md) to change your synchronized node to a validating node.
 
 The bonding request must be sent after the node has synchronized the protocol state and linear blockchain to avoid being ejected for liveness failures.
-
-

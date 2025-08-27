@@ -18,28 +18,8 @@ The following ports are used by the node:
 Of these `35000` is the only port required to be open for your node to function, however, opening `8888` will allow others to know general network health. For more details, see the additional information on [Node Endpoints](./node-endpoints.md).
 
 ## Operating System Requirements
-The recommended OS version is Ubuntu 20.04.
-
-### Using Ubuntu 22.04 or 24.04
-
-Installing using Ubuntu 22.04 or 24.04 follows the same instructions as 20.04 with one exception:
-
-If you try to install packages, you will receive:
-
-```
-casper-client : Depends: libssl1.1 (>= 1.1.0) but it is not installable
-```
-
-This message is due to the default `openssl` moving to 3.* with Ubuntu 22.04. You need to install OpenSSL 1.* for prior versions of Ubuntu to use the Casper binaries with the following command:
-
-```
-curl -f -JLO http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
-sudo apt install ./libssl1.1_1.1.1f-1ubuntu2_amd64.deb
-```
-
-## Required Number of Open Files
-
-Before beginning, [update the maximum open files limit](./open-files.md) for your system. Specifically, update the node's `/etc/security/limits.conf` file as described [here](./open-files.md#updating-limits-conf), to ensure proper node operation.
+The recommended OS version is Ubuntu 22.04, Ubuntu 24.04 or Debian 13.
+The current binary build OS is Ubuntu 22.04 and a Debian based system with Clib equal to or newer than the build system will work.
 
 ## Required Clean Up
 
@@ -63,10 +43,10 @@ The following commands will set up the Casper repository for packages:
 ```bash
 sudo mkdir -m 0755 -p /etc/apt/keyrings/
 sudo curl https://repo.casper.network/casper-repo-pubkey.gpg --output /etc/apt/keyrings/casper-repo-pubkey.gpg
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/casper-repo-pubkey.gpg] https://repo.casper.network/releases focal main" | sudo tee -a /etc/apt/sources.list.d/casper.list
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/casper-repo-pubkey.gpg] https://repo.casper.network/releases jammy main" | sudo tee -a /etc/apt/sources.list.d/casper.list
 sudo apt update
 ```
-We are creating /etc/apt/keyrings if needed, so we don't have the issue with this key being trusted by all APT requests if stored in /etc/apt/trusted.gpg.d.
+We are creating `/etc/apt/keyrings` if needed, so we don't have the issue with this key being trusted by all APT requests if stored in `/etc/apt/trusted.gpg.d`.
 
 ## Required Tools
 
@@ -85,7 +65,7 @@ It defaults to `bash` but can be changed with the `--shell` argument:
 --shell <STRING>    The type of shell to generate the completion script for [default: bash]  [possible values:
                             zsh, bash, fish, powershell, elvish]
 
-sudo casper-client generate-completion --shell powershell
+sudo casper-client generate-completion --shell bash
 ```
 
 You need to source the new auto completion script or log out and log in again to activate it for the current shell:
@@ -95,18 +75,22 @@ source /usr/share/bash-completion/completions/casper-client
 
 Now you can use `casper-client` and press the `tab` key to get auto completion for your commands.
 
+## Required Number of Open Files
+
+Before beginning, [update the maximum open files limit](./open-files.md) for your system. Specifically, update the node's `/etc/security/limits.conf` file as described [here](./open-files.md#updating-limits-conf), to ensure proper node operation.
+
 ## Installing All Protocols
 
 On **Mainnet**, run:
 
 ```bash
-sudo -u casper /etc/casper/node_util.py stage_protocols casper.conf
+sudo -u casper casper-node-util stage_protocols casper.conf
 ```
 
 On **Testnet**, run:
 
 ```bash
-sudo -u casper /etc/casper/node_util.py stage_protocols casper-test.conf
+sudo -u casper casper-node-util stage_protocols casper-test.conf
 ```
 
 ## Validator Keys
@@ -163,44 +147,48 @@ If you are using the node for historical data and want to query back to genesis,
 sync_handling = genesis
 ```
 
+DB archives are made of networks and if you are launching an archival node, requesting these from Casper will make node setup much faster. Historical block syncing is the lowest priority in network operation and take more time as the chain grows.
+
 ## Starting the Node
 
 Start the node using the following commands:
 
 ```bash
-sudo /etc/casper/node_util.py rotate_logs
-sudo /etc/casper/node_util.py start
-```
+sudo casper_node_util start
+``` 
 
 ### Monitoring the Synchronization Process
 
 The following command will display the node synchronization details:
 
 ```bash
-/etc/casper/node_util.py watch
+casper_node_util watch
 ```
 
-When you first run the watch command, you may see the message `RPC: Not Ready`. Once the node is synchronized, the status will change to `RPC: Ready` and a similar output:
-
 ```bash
-Last Block: 630151 (Era: 4153)
-Peer Count: 297
-Uptime: 4days 6h 40m 18s 553ms
-Build: 1.4.5-a7f6a648d-casper-mainnet
-Key: 0147b4cae09d64ab6acd02dd0868722be9a9bcc355c2fdff7c2c244cbfcd30f158
+Last Block: 5473886 (Era: 19015)
+Peer Count: 125
+Uptime: 7days 15h 52m 32s
+Build: 2.0.3-4c7068d
+Key: 01b08d9184ec9daed7f1d2766674746d6cd8460ca6e0274fa48d01c3ded165da4c
 Next Upgrade: None
 
-RPC: Ready
+Reactor State: KeepUp
+Available Block Range - Low: 0  High: 5473886
 
 ● casper-node-launcher.service - Casper Node Launcher
-   Loaded: loaded (/lib/systemd/system/casper-node-launcher.service; enabled; vendor preset: enabled)
-   Active: active (running) since Wed 2022-03-16 21:08:50 UTC; 4 days ago
-     Docs: https://docs.casper.network
- Main PID: 2934 (casper-node-lau)
-    Tasks: 12 (limit: 4915)
-   CGroup: /system.slice/casper-node-launcher.service
-           ├─ 2934 /usr/bin/casper-node-launcher
-           └─16842 /var/lib/casper/bin/1_4_5/casper-node validator /etc/casper/1_4_5/config.toml
+     Loaded: loaded (/usr/lib/systemd/system/casper-node-launcher.service; enabled; preset: enabled)
+     Active: active (running) since Wed 2025-08-13 20:41:05 UTC; 1 week 0 days ago
+       Docs: https://docs.casper.network
+   Main PID: 76968 (casper-node-lau)
+      Tasks: 8 (limit: 18921)
+     Memory: 10.2G (peak: 11.0G)
+        CPU: 1d 17h 2min 43.802s
+     CGroup: /system.slice/casper-node-launcher.service
+             ├─76968 /usr/bin/casper-node-launcher
+             └─76971 /var/lib/casper/bin/2_0_3/casper-node validator /etc/casper/2_0_3/config.toml
+
+Aug 13 20:41:05 ip-10-0-5-211 systemd[1]: Started casper-node-launcher.service - Casper Node Launcher.
 ```
 
 The reactor state will be in CatchUp mode until it acquires the full tip state, at which point it will shift to KeepUp mode. If you left `sync_to_genesis` as `true`, it will begin syncing back history at this time.
@@ -224,6 +212,7 @@ trie_or_chunk_timeouts 0
 ```
 
 If the node is not showing active (running) status, it is either stopped or in the process of restarting.
+Indexing of the DB on startup can take some time if the node is archival.
 
 ### Monitoring the Running Node
 
