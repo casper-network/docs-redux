@@ -6,33 +6,21 @@ title: Move a Node
 
 This guide is for active validators who want to move their node to another machine.
 
-:::note
+## Setup two nodes running in parallel
 
-Starting with node version 1.5, operators need to move the unit files at the database level. This step allows moving the node with nearly zero rewards loss.
+This method limits downtime and enables a smooth transition from the old to the new node. It keeps the node in sync with the tip of the chain. 
 
-:::
+Existing node should be running and in sync with network. We will call this `old node`. It is using your active `validator key`. 
+Create a second node (`new node`) on another machine. This should sync with the network as `ttl`. This server needs a new key when started, we will call this `backup key`.
 
-## Swapping Keys with a Hot Backup
+Important: You NEVER want to run two nodes using the same validator key. Our swap procedure will always stop a node running validator key first.
 
-This method limits downtime and enables a smooth transition from the old to the new node. It keeps the node in sync with the tip of the chain.
+### Preparation of keys on both nodes
 
-1. Once a node is running (`current_node`), create a second node (`backup_node`) on another machine. These two nodes will run in parallel.
-2. When the `backup_node` is up to date, stop the `current_node`.
-3. Move the unit files at the DB level using `rsync`. This step allows moving the node with nearly zero rewards loss.
-4. Stop the `backup_node`.
-5. Swap keys on the `backup_node`, now the new validator.
-6. Restart the `backup_node`.
-7. Swap keys on the `current_node`, now the new backup.
-8. Restart the `current_node`.
-
-### Preparation for swapping
-
-1. Let both nodes synchronize to the tip of the blockchain. Keep the current validating node running with the original validator keyset.
-
-2. Prepare to swap keys by following these steps:
+Prepare to swap keys by following these steps:
 
     - Create the following folder structure on both nodes under the `/etc/casper/validator_keys/` directory.
-    - Create subdirectories for the `current_node` and `backup_node`.
+    - Create subdirectories for the `validator` and `backup`.
     - Copy each node's keyset under the corresponding directories.
 
 ```bash
@@ -40,57 +28,105 @@ This method limits downtime and enables a smooth transition from the old to the 
     ├── public_key.pem
     ├── public_key_hex
     ├── secret_key.pem
-    ├── current_node
+    ├── validator
     │   ├── public_key.pem
     │   ├── public_key_hex
     │   └── secret_key.pem
-    └── backup_node
+    └── backup
     |   ├── public_key.pem
     |   ├── public_key_hex
     |   └── secret_key.pem
 ```
 
+By having both keys available, we can swap back if we have any issues.
+
 This setup allows key swapping by running the `sudo -u casper cp * ../` command, as shown below.
 
-### Swapping the nodes
+After creating the keys, check and fix file permissions by running `casper-node-util check_premissions` and use `sudo casper-node-util fix_permissions` if needed.
 
-1. When the `backup_node` is up to date, stop the `current_node`.
+### Swapping the keys
 
-2. On the `backup_node` (the future validator), use `rsync` to move the unit files from the `current_node`, located in `/var/lib/casper/casper-node/[NETWORK_NAME]/unit_files`.
+To swap keys, we want the node to be stopped first. 
 
-3. On the `backup_node`, run these commands to stop the node, swap keys, and restart the node:
+```bash
+sudo /etc/casper/node_util.py stop
+```
 
-    ```bash
-    sudo systemctl stop casper-node-launcher
-    cd /etc/casper/validator_keys/current_node
+To enable a node to run as validator, we want to copy keys from `validator` directory.
+
+```bash
+    cd /etc/casper/validator_keys/validator
     sudo -u casper cp * ../
-    sudo systemctl start casper-node-launcher
-    ```
+```
 
-4. On the `current_node`, run these commands to stop the node and swap keys:
+To enable a node to run as backup, we want to copy keys from `backup` directory.
 
-    ```bash
-    sudo systemctl stop casper-node-launcher
-    cd /etc/casper/validator_keys/backup_node
+```bash
+    cd /etc/casper/validator_keys/backup
     sudo -u casper cp * ../
-    ```
+```
 
-5. Restart the original validator node (`current_node`), which is now the new backup:
+### Timing of swap for consensus
 
-    ```bash
-    sudo systemctl start casper-node-launcher 
-    ```
+With Zug consensus, all needed state is persisted to the DB. This allows full network resume if all validators were stopped and started again. This does not
+allow moving consensus state as easy as moving unit_files. We are working on a utility to export this and allow importing on new node.
 
-### Understanding rewards impact
+If a node is moved without this data and started too soon, we get a situation where the new node signs blocks previously signed. This causes issues.
 
-After swapping, the new validator node shows no round length until an era transition occurs and will lose all rewards from the point of the switch until the end of that era. The validator is not ejected but will receive rewards starting with the next era. 
+The best method to swap currently uses the Era boundaries to isolate finality signature sending.
 
-:::tip
+This will describe how to manually find the last switch block time. 
 
-You could time the swap right before the era ends to minimize reward losses.
+We will use the `get-era-summary` command in the `casper-client` to find the last switch block. Then get the block to find the time. 
+The commands will be shown separated, in case the give errors. If everything works, the single command at the end will give you the time.
 
-:::
+```bash
+$ casper-client get-era-summary | jq -r .result.era_summary.block_hash
+2487f80a5b1aed5bd36e19f1ccad075a277d5159319da14b07c3d3d954d269dc
+```
 
-### Checking file permissions
+We can take the block_hash (2487f80a5b1aed5bd36e19f1ccad075a277d5159319da14b07c3d3d954d269dc) to get that block and timestamp.
 
-After the swap, check and fix file permissions by running the `/etc/casper/node_util.py` utility.
+```bash
+$ casper-client get-block -b 2487f80a5b1aed5bd36e19f1ccad075a277d5159319da14b07c3d3d954d269dc | jq -r .result.block_with_signatures.block.Version2.header.timestamp
+2025-09-03T13:15:58.738Z
+```
+
+This can be combined into a single command:
+
+`casper-client get-block -b $(casper-client get-era-summary | jq -r .result.era_summary.block_hash | tr -d '/n') | jq -r .result.block_with_signatures.block.Version
+2.header.timestamp`
+
+Time of the era will be 2 hours after this time.  Current time in the same format can be shown with `date -Is`.
+
+We want to start the change over just before the era transition.
+
+### Swap operation
+
+Starting at 5 minutes before era transition.  Stop both nodes with:
+
+`sudo /etc/casper/node_util.py stop`
+
+We do not want to start again until after the Era transition, but we can prepare.
+
+On the `old node` we replace the validator key, so if it restarts we do not have two of the same keys running.
+
+```bash
+    cd /etc/casper/validator_keys/backup
+    sudo -u casper cp * ../
+```
+
+On the `new node` we setup the validator key.
+
+```bash
+    cd /etc/casper/validator_keys/validator
+    sudo -u casper cp * ../
+```
+
+Wait until the era transitions past the switch block. This can be monitored using the appropriate `cspr.live` website for the network.
+
+Start the `new node`:
+
+`sudo /etc/casper/node_util.py start`
+
+Start the `old node` if you want it as a backup.
