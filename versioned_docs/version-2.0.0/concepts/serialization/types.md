@@ -898,3 +898,11 @@ A purse used for unbonding, replaced in 1.5 by [UnbondingPurse](#unbondingpurse)
 
 -   `amount` The unbonding amount, serialized as a [`U512`](./primitives.md#clvalue-numeric) value.
 
+
+## TransactionArgs {#transaction-args}
+
+Arguments passed to execution of a `Transaction::Version1`, serialized as a `u8` identifying tag followed by additional bytes as follows:
+
+-   `Named`: Serializes as a `u8` tag of 0 followed by [`RuntimeArgs`](#runtimeargs).
+
+-   `Bytesrepr`: Serializes as a `u8` tag of 1 followed by [`bytes`](#bytes).

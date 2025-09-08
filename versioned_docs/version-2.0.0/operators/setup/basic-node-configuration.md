@@ -23,6 +23,8 @@ sudo apt install casper-node-launcher
 
 You can also build [from source](https://github.com/casper-network/casper-node-launcher). However, all the setup and pull of casper-node releases will be manual.
 
+`casper-node-util` is a helper script for managing a `casper-node` and installed as a debian package dependency of `casper-node-launcher`
+
 :::note
 
 The `casper-sidecar` component is also typically installed alongside the node to provide additional APIs and event streaming. For more information, see the [Sidecar Setup](./casper-sidecar.md) page.
