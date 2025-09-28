@@ -154,7 +154,7 @@ DB archives are made of networks and if you are launching an archival node, requ
 Start the node using the following commands:
 
 ```bash
-sudo casper_node_util start
+sudo casper-node-util start
 ``` 
 
 ### Monitoring the Synchronization Process
@@ -162,7 +162,7 @@ sudo casper_node_util start
 The following command will display the node synchronization details:
 
 ```bash
-casper_node_util watch
+casper-node-util watch
 ```
 
 ```bash
