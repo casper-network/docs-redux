@@ -423,7 +423,7 @@ Required Parameters:
 
 ## ByteCodeHash
 
-The hex-encoded address of a smart contract [`AddressableEntity`](#addressableentity).
+A type wrapping a `HashAddr` which is the raw bytes of the ByteCodeHash. Serializes as `HashAddr`
 
 ## ByteCodeKind
 

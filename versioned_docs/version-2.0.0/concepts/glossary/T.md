@@ -12,7 +12,7 @@ A type of cryptocurrency that represents an asset. See [CSPR](./C.md#cspr).
 
 ## Transaction {#transaction}
 
-Transactions are a unit of work sent by a client to the network, which when executed can cause global state to be altered. They were introduced with Casper's Condor release and supersede the concept of a [Deploy](./D.md#deploy). Transactions offer more efficient means of interacting with a Casper network, but legacy deploys will continue to function, in most cases. More information on transactions can be found [here](../transactions.md).
+Transactions are a unit of work sent by a client to the network, which when executed can cause global state to be altered. They were introduced with Casper 2.0 release and supersede the concept of a [Deploy](./D.md#deploy). Transactions offer more efficient means of interacting with a Casper network, but legacy deploys will continue to function, in most cases. More information on transactions can be found [here](../transactions.md).
 
 
 ## Turing-complete blockchain {#turing-complete-blockchain}

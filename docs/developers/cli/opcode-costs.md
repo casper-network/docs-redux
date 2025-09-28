@@ -2,25 +2,16 @@
 title: OpCode Costs Tables
 ---
 
-# OpCode Costs Tables
+# OpCode Costs
 
-The following tables outline the cost, in motes, for a given operation on Casper's Mainnet. If you are building for a private network or other instance of Casper, you will need to verify these costs in the associated `chainspec.toml`.
+The [list](https://github.com/casper-network/casper-protocol-release/blob/casper/config/chainspec.toml#L240) in the [chainspec.toml](https://github.com/casper-network/casper-protocol-release/blob/casper/config/chainspec.toml) outline the cost, in motes, for a given operation on Casper's Mainnet. 
 
-More information on `chainspec`s for private networks can be found [here](/operators/setup-network/chain-spec.md)
+For each opcode cost there exists a static cost and a dynamic cost.
+The static cost is a **fixed cost for each opcode that is hardcoded** and **validated by benchmarks**.
 
-:::note
+If you are building for a private network or other instance of Casper, you will need to verify these costs in the associated `chainspec.toml`.
 
-All costs in this table are in [motes](/concepts/glossary/M/#motes), not CSPR, and the corresponding chainspec is [here](https://github.com/casper-network/casper-node/blob/53dd33865c2707c29284ccc0e8485f22ddd6fbe3/resources/production/chainspec.toml#L129).
-<!--TODO update the link when 2.0 ships to Testnet/Mainnet. -->
-:::
-
-## Storage Costs
-
-|Attribute         |Description                                    | Cost |
-|----------------- |-----------------------------------------------|-----------------|
-|gas_per_byte | Gas charged per byte stored in global state. | 1_117_587|
-
-## OpCode Costs
+## OpCodeCosts
 
 |Attribute         |Description                                    | Cost |
 |----------------- |-----------------------------------------------|-----------------|
@@ -40,7 +31,7 @@ All costs in this table are in [motes](/concepts/glossary/M/#motes), not CSPR, a
 |current_memory | Get the current memory operation multiplier. | 290|
 |grow_memory | Grow memory cost per page (64 kB). | 240_000|
 
-## Control Flow Operation Costs
+## ControlFlowCost
 
 |Attribute         |Description                                    | Cost |
 |----------------- |-----------------------------------------------|-----------------|
@@ -174,3 +165,16 @@ These settings manage the costs of calling entrypoints on the `standard_payment`
 |Entrypoint        |Description                                    | Cost |
 |----------------- |-----------------------------------------------|-----------------|
 |pay| Cost of calling the `pay` entrypoint and sending an amount to a payment purse. |10_000|
+
+## StorageCosts
+
+|Attribute         |Description                                    | Cost |
+|----------------- |-----------------------------------------------|-----------------|
+|gas_per_byte | Gas charged per byte stored in global state. | 1_117_587|
+
+:::note
+
+All costs in this table are in [motes](/concepts/glossary/M/#motes), not CSPR.
+<!--TODO update the link when 2.0 ships to Testnet/Mainnet. -->
+:::
+

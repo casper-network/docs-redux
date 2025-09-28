@@ -13,7 +13,7 @@ module.exports = {
     copyright: `Copyright © ${new Date().getFullYear()} Casper Association. Built with Docusaurus.`,
     links: [
         {
-            href: "https://discord.com/invite/casperblockchain",
+            href: "https://discord.gg/caspernetwork",
             label: "Discord",
             position: "right",
         },

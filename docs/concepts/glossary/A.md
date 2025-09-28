@@ -8,7 +8,7 @@
 
 ## Account {#account}
 
-An Account is a structure that represents a user on a Casper network. Information on creating an account can be found [here](../design/casper-design.md#accounts-head). Casper's Condor release introduces the concept of an [addressable entity](#addressable-entity), which contains an account entity type that supersedes legacy accounts.
+An Account is a structure that represents a user on a Casper network. Information on creating an account can be found [here](../design/casper-design.md#accounts-head). 
 
 ## Account Hash {#account-hash}
 

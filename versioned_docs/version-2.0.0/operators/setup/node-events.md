@@ -30,7 +30,7 @@ curl -sN http://HOST:PORT/events?start_from=ID
 **Example:**
 
 ```bash
-curl -sN http://65.21.235.219:9999/events?start_from=29267508
+curl -sN http://localhost:9999/events?start_from=29267508
 ```
 
 :::note

@@ -154,16 +154,6 @@ For user convenience and compatibility, we expect the delivery of hashes, keys, 
 |---|---|---|
 |Key::Package | package- | package-2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a|
 
-### AddressableEntity
-
-`Key::AddressableEntity` is a `Key` under which an [`AddressableEntity`](../developers/json-rpc/types_chain.md#addressableentity) is stored. It may be one of three variants: `Account`, `System` or `SmartContract`.
-
-|Type|Prefix|Example|
-|---|---|---|
-| `Account` | addressable-entity-account- |addressable-entity-account-2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a |
-| `System` | addressable-entity-system- | addressable-entity-system-2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a |
-| `SmartContract` | addressable-entity-contract- | addressable-entity-contract-2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a|
-
 ### ByteCode
 
 `Key::ByteCode` is a `Key` under which a byte code record is stored. It may be one of two variants: `v1-wasm` or `empty`.

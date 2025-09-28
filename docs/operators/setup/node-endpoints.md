@@ -50,7 +50,7 @@ address = '0.0.0.0:8888'
 
 Opening port 8888 is recommended but not required. This port allows the node to be included in the general network health metrics, thus giving a more accurate picture of overall network health. If this port is closed, the requests coming to this port will not be served, but the node remains unaffected.
 
-One may use this port to [get a trusted hash](./basic-node-configuration.md#trusted-hash-for-synchronizing), [verify successful staging](./upgrade.md#verifying-successful-staging) during an upgrade, or to [confirm that the node is synchronized](./joining.md#step-7-confirm-the-node-is-synchronized).
+One may use this port to [get a trusted hash](./basic-node-configuration.md#trusted-hash-for-synchronizing), [verify successful staging](../maintenance/upgrade.md#verifying-successful-staging) during an upgrade, or to [confirm that the node is synchronized](./joining.md#step-7-confirm-the-node-is-synchronized).
 
 
 ### Example usage
@@ -210,7 +210,7 @@ Here is a summary of the links mentioned on this page:
 - [Interacting with the network using CLI](../../developers/cli/index.md)
 - [Bonding](../becoming-a-validator/bonding.md#example-bonding-transaction) or [unbonding](../becoming-a-validator/unbonding.md) as a validator
 - [Getting a trusted node hash](./basic-node-configuration.md#trusted-hash-for-synchronizing)
-- [Verifying successful staging](./upgrade.md#verifying-successful-staging)
+- [Verifying successful staging](../maintenance/upgrade.md#verifying-successful-staging)
 - [Confirming that the node is synchronized](./joining.md#step-7-confirm-the-node-is-synchronized)
 - [Monitoring and consuming events](../../developers/dapps/monitor-and-consume-events.md)
 - [Private network access control](../setup-network/create-private.md#network-access-control)

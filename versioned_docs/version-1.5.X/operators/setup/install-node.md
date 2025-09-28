@@ -127,9 +127,9 @@ NODE_ADDR can be set to an IP of a trusted node, or to Casper Labs' public nodes
 
 You can find active peers at https://cspr.live/tools/peers or use the following Casper Labs public nodes:
 
-* Testnet - NODE_ADDR=https://node.testnet.casper.network
+* Testnet - NODE_ADDR=https://node.testnet.casper.network/rpc
 
-* Mainnet - NODE_ADDR=https://rpc.mainnet.casperlabs.io
+* Mainnet - NODE_ADDR=https://node.mainnet.casper.network/rpc
 
 ### Protocol Version
 
@@ -144,7 +144,7 @@ PROTOCOL=1_5_2
 The following command uses the previously established NODE_ADDR and PROTOCOL to load the `trusted_hash`:
 
 ```bash
-NODE_ADDR=https://rpc.mainnet.casperlabs.io
+NODE_ADDR=https://node.mainnet.casper.network/rpc
 PROTOCOL=1_5_2
 sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address $NODE_ADDR | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/$PROTOCOL/config.toml
 ```

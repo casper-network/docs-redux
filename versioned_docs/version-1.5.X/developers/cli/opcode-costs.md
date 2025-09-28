@@ -6,8 +6,6 @@ title: OpCode Costs Tables
 
 The following tables outline the cost, in motes, for a given operation on Casper's Mainnet. If you are building for a private network or other instance of Casper, you will need to verify these costs in the associated `chainspec.toml`.
 
-More information on `chainspec`s for private networks can be found [here](/operators/setup-network/chain-spec.md)
-
 :::note
 
 All costs in this table are in [motes](/concepts/glossary/M/#motes), not CSPR, and the corresponding chainspec is [here](https://github.com/casper-network/casper-node/blob/53dd33865c2707c29284ccc0e8485f22ddd6fbe3/resources/production/chainspec.toml#L129).

@@ -4,7 +4,7 @@ description: A discussion of validator rewards under Casper 2.0
 slug: condor-validator-rewards
 date: 2024-08-20T18:00
 authors: [ melpadden, alexanderlimonov ]
-tags: [condor, validators]
+tags: [condor, casper2.0, validators]
 hide_table_of_contents: false
 ---
 

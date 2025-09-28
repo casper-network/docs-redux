@@ -17,6 +17,9 @@ Node operators can modify a node's configuration options, including the port set
 
 The default endpoints for Mainnet and Testnet are open by default and are described below in more detail. If the node connects to a different network, the ports may differ depending on how the network was set up.
 
+## Default IP bonding
+
+On all defaults given in `config-example.toml` which generates `config.toml` have the bond all interfaces `0.0.0.0` address. If you wish to restrict interfaces, provide the correct IP for these config locations.
 
 ## Default Networking Port: 35000 {#35000}
 
@@ -28,17 +31,24 @@ bind_address = '0.0.0.0:35000'
 
 If the networking port is closed, the node becomes unreachable, and the node won't be discoverable in the network. If this is a validator, it will face eviction. A read-only node will be considered to be offline.
 
-
 ## Default JSON-RPC HTTP Server Port: 7777 {#7777}
 
-The configuration options for the JSON-RPC HTTP server are under the `rpc_server` section in the `config.toml` file. The `address` using port 7777 is the listening address for JSON-RPC HTTP server. 
+The configuration options for the JSON-RPC HTTP server is now in `/etc/casper-sidecar/config.toml`, as the RPC service has moved outside of the node.
 
 ```md
-address = '0.0.0.0:7777'
+ip_address = '0.0.0.0'
+port = 7777
 ```
 
-DApps would use this address to [interact with the Casper JSON-RPC API](../../developers/json-rpc/index.md). Users would use this address to [interact with the network using CLI](../../developers/cli/index.md). Validators would use this address to [bond](../becoming-a-validator/bonding.md#example-bonding-transaction) or [unbond](../becoming-a-validator/unbonding.md). If this port is closed, the requests coming to this port will not be served, but the node remains unaffected.
+DApps would use this address to [interact with the Casper JSON-RPC API](../../developers/json-rpc/index.md). Users would use this address to [interact with the network using CLI](../../developers/cli/index.md). Validators would use this address to [bond](../becoming-a-validator/bonding.md#example-bonding-transaction) or [unbond](../becoming-a-validator/unbonding.md). If this port is closed or the `casper-sidecar` is not installed, the requests coming to this port will not be served, but the node remains unaffected.
 
+## Default Binary-RPC HTTP Server Port: 7779 {#7779}
+
+The node RPC moved to the `casper-sidecar` and was replaced with the binary RPC interface. This can be exposed externally if desired for direct calling to node in binary format, which is more efficient than JSON-RPC. However, single RPC calls can involve multiple binary port calls to build up expected data. 
+
+```md
+address = '0.0.0.0:7779'
+```
 
 ## Default REST HTTP Server Port: 8888 {#8888}
 
@@ -50,8 +60,9 @@ address = '0.0.0.0:8888'
 
 Opening port 8888 is recommended but not required. This port allows the node to be included in the general network health metrics, thus giving a more accurate picture of overall network health. If this port is closed, the requests coming to this port will not be served, but the node remains unaffected.
 
-One may use this port to [get a trusted hash](./basic-node-configuration.md#trusted-hash-for-synchronizing), [verify successful staging](./upgrade.md#verifying-successful-staging) during an upgrade, or to [confirm that the node is synchronized](./joining.md#step-7-confirm-the-node-is-synchronized).
+One may use this port to [get a trusted hash](./basic-node-configuration.md#trusted-hash-for-synchronizing), [verify successful staging](../maintenance/upgrade.md#verifying-successful-staging) during an upgrade, or to [confirm that the node is synchronized](./joining.md#step-7-confirm-the-node-is-synchronized).
 
+If restricting port 8888, it is requested that access is allowed from `3.21.239.186` for the casper-network-monitor to track overall health of the network.
 
 ### Example usage
 
@@ -210,7 +221,7 @@ Here is a summary of the links mentioned on this page:
 - [Interacting with the network using CLI](../../developers/cli/index.md)
 - [Bonding](../becoming-a-validator/bonding.md#example-bonding-transaction) or [unbonding](../becoming-a-validator/unbonding.md) as a validator
 - [Getting a trusted node hash](./basic-node-configuration.md#trusted-hash-for-synchronizing)
-- [Verifying successful staging](./upgrade.md#verifying-successful-staging)
+- [Verifying successful staging](../maintenance/upgrade.md#verifying-successful-staging)
 - [Confirming that the node is synchronized](./joining.md#step-7-confirm-the-node-is-synchronized)
 - [Monitoring and consuming events](../../developers/dapps/monitor-and-consume-events.md)
 - [Private network access control](../setup-network/create-private.md#network-access-control)

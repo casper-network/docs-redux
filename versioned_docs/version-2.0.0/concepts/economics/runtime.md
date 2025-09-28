@@ -5,9 +5,8 @@ slug: /runtime
 
 # Runtime Economics
 
-The economics of the runtime layer should incentivize efficient allocation of computational resources, primarily CPU time, to users. The Condor release has introduced several new economic features:
+The economics of the runtime layer should incentivize efficient allocation of computational resources, primarily CPU time, to users. The Casper 2.0 release has introduced several new economic features:
 
-- A new mode of paying for computation in Mainnet, where tokens previously assessed as fees are now held for a predetermined period. Held tokens become available to users at the expiry of a predetermined time, or on a linear schedule over a specified period. Note: Increasing the duration of holds reduces the long-run equilibrium average available CSPR balance for an attacker. See [Fee Elimination](./fee-elimination.md) for more details.
 - A form of [dynamic pricing](#dynamic-gas-pricing) that increments or decrements the gas price in motes for a new era depending on blockchain utilization in the previous era.
 - Blocks are structured into [lanes](#lanes-lanes) that can only hold a particular number of transactions of specified types.
 
@@ -47,46 +46,15 @@ There are several platform parameters that delineate the sets of transactions th
    - The block size limit imposes an absolute ceiling on the total byte size of included transactions.
    - Individual transaction size limits are also enforced.
 
-These are the lane configuration settings for the Condor release on Mainnet:
+The lane configuration settings for the Casper 2.0 release on Mainnet is available in the `[transactions.v1]` section of the [chainspec.toml](https://github.com/casper-network/casper-protocol-release/blob/casper/config/chainspec.toml#L202). 
 <!--TODO check and update these settings after the launch or link to the chainspec file directly.-->
 
-```toml
-[transactions.v1]
-# The configuration settings for the lanes of transactions including both native and Wasm based interactions.
-# Currently the node supports two native interactions the mint and auction and have the reserved identifiers of 0 and 1
-# respectively
-# The remaining wasm based lanes specify the range of configuration settings for a given Wasm based transaction
-# within a given lane.
-# The maximum length in bytes of runtime args per V1 transaction.
-# [0] -> Transaction lane label (apart from the reserved native identifiers these are simply labels)
-# Note: For the given mainnet implementation we specially reserve the label 2 for install and upgrades and
-# the lane must be present and defined.
-# Different casper networks may not impose such a restriction.
-# [1] -> Max transaction size in bytes for a given transaction in a certain lane
-# [2] -> Max args length size in bytes for a given transaction in a certain lane
-# [3] -> Transaction gas limit size in bytes for a given transaction in a certain lane
-# [4] -> The maximum number of transactions the lane can contain
-native_mint_lane = [0, 1024, 1024, 65_000_000_000, 650]
-native_auction_lane = [1, 2048, 2048, 362_500_000_000, 145]
-wasm_lanes = [[2, 1_048_576, 2048, 1_000_000_000_000, 1], [3, 344_064, 1024, 500_000_000_000, 3], [4, 172_032, 1024, 50_000_000_000, 7], [5, 12_288, 512, 1_500_000_000, 15]]
-```
 
-These are the block gas and size limits for the Condor release on Mainnet:
+The block gas and size limits for the Casper 2.0 release on Mainnet is available in the `[transactions]` section of the [chainspec.toml](https://github.com/casper-network/casper-protocol-release/blob/casper/config/chainspec.toml#L183).
 <!--TODO check and update these settings after the launch or link to the chainspec file directly.-->
-
-```toml
-[transactions]
-...
-# Maximum block size in bytes including transactions contained by the block.  0 means unlimited.
-max_block_size = 5_242_880
-# The upper limit of total gas of all transactions in a block.
-block_gas_limit = 3_300_000_000_000
-```
 
 ## Dynamic Gas Pricing
 
 A [dynamic gas pricing](./dynamic-gas-pricing.md) system assigns the gas price based on block vacancy (or consumption), preventing malicious actors from flooding the network with useless transactions and ensuring network integrity. Dynamic gas pricing acts as a supply and demand-based check on the cost of network usage. If usage is low, the price multiple drifts down over time, incentivizing casual usage. If usage is high, the price multiple climbs up, incentivizing prioritized usage. Dynamic gas pricing also protects against long-range consumption attacks. An attacker attempting to fill blocks to deny usage drives the price up, which requires them to have increasing amounts of tokens available to cover rising gas costs to maintain their attack.
 
-## Eliminating Gas Fees {#gas-fees}
-
-See [Gas](./gas-concepts.md) and [Fee Elimination](./fee-elimination.md) for more details.
+See [Gas](./gas-concepts.md) for more details.

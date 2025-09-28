@@ -182,7 +182,7 @@ Assuming you have set up a small local network, you can speed up the process of 
 
 :::
 
-**Step 14.** Clone the _casper-sidecar_ software in your working directory. As part of Casper's Condor release, the sidecar is now necessary to interact with a Casper network and will handle any API requests.
+**Step 14.** Clone the _casper-sidecar_ software in your working directory. As part of Casper 2.0 release, the sidecar is now necessary to interact with a Casper network and will handle any API requests.
 
 Instructions for MacOS and Linux:
 
@@ -218,7 +218,7 @@ Followed by refreshing the bash session:
 Instructions for MacOS and Linux:
 
 ```bash
-$ source casper-node/utils/nctl/activate
+$ source activate
 ```
 
 **Step 17.** Compile the NCTL binary scripts. The following command compiles both the _casper-node_ and the _casper-client_ in release mode.
@@ -268,5 +268,5 @@ $ nctl-clean
 
 ## Next Steps {#next-steps}
 
-1.  Explore the [various NCTL commands](https://github.com/casper-network/casper-node/blob/master/utils/nctl/docs/commands.md).
-2.  Explore the [NCTL usage guide](https://github.com/casper-network/casper-node/blob/master/utils/nctl/docs/usage.md).
+1.  Explore the [various NCTL commands](https://github.com/casper-network/casper-nctl/blob/dev/docs/commands-ctl.md).
+2.  Explore the [NCTL usage guide](https://github.com/casper-network/casper-nctl/blob/dev/docs/usage.md).

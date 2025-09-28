@@ -4,32 +4,28 @@ title: Block Explorers
 
 # Block Explorers
 
-The Casper blockchain is available as the Mainnet and Testnet.
-The Mainnet is the Casper blockchain that utilizes Casper tokens (CSPR).
-The Testnet is an alternate Casper blockchain used to test applications without spending CSPR tokens on the Casper Mainnet.
+The Casper blockchain is available in Mainnet and Testnet. The Mainnet is the live network where real CSPR tokens are used. The Testnet, on the other hand, is a separate environment for experimentation and testing, allowing developers to try out applications and features without spending real tokens.
 
-You can use block explorers to explore the Casper blockchain such as : 
-- [cspr.live](https://cspr.live/)
-- [Casper.info](https://casper-trench.vercel.app/)
-- [Div3.in](https://div3.in)
+Block explorers are web-based tools that make blockchain data accessible and searchable. They can be used to explore activity on both the Testnet and the Mainnet.
 
-## What is a Block Explorer
+One of the most popular explorers for the Casper Network is [CSPR.live](https://cspr.live)
 
-A block explorer is a search engine for the blockchain. It allows you to find information such as the transactions executed on the blockchain, the transaction statistics, the validators on the network, and similar blockchain activity. A block explorer gives you information on your account and all the transactions carried out using the account. You can use it to find a specific transaction or view the blockchain's transaction history. 
+## What is a Block Explorer?
 
-##  Using a Block Explorer
+A block explorer is a search engine for the blockchain. It allows users to track transactions, monitor validator performance, view account activity, and explore blocks and node operations. Essentially, block explorers provide a transparent window into everything happening on the blockchain.
 
-You can use a block explorer to view the blockchain statistics, list of validators, list of blocks executed on the blockchain, list of transactions, and the nodes operating on the blockchain. You can also transfer CSPR tokens, delegate tokens to a validator to earn rewards or undelegate tokens from a validator.
+Since the introduction of Zug Consensus in Casper 2.0, validator performance is tracked on a per-block basis. Rewards are now calculated based solely on each validator’s individual participation, therefore block explorers are even more useful for users who want to monitor staking rewards and validator reliability with greater precision.
 
-The following topics link you to detailed instructions on using the [cspr.live](https://cspr.live/) block explorer to access and work with your CSPR tokens.
+## Using a Block Explorer
 
-- Learn how to access your Casper account using the [Casper Wallet](https://www.casperwallet.io/)
-- Understand the process of [Transferring Tokens using a Block Explorer](./csprlive/token-transfer.md)
-- Explore the concepts and the process of [Delegating](./csprlive/delegate-ui.md) and [Undelegating](./csprlive/undelegate-ui.md) CSPR tokens
+Block explorers allow you to:
 
-:::note
+* Track token transfers and account balances
+* View live data on blocks, transactions, and validator activity
+* Monitor staking rewards and undelegation schedules
+* Verify smart contract deployments
+* Explore Testnet behavior before Mainnet features go live
 
-To perform actions using the [cspr.live](https://cspr.live/) block explorer, you must sign in to your Casper account using one of the wallets provided.
+You can transfer tokens, manage your stake, delegate, and undelegate to validators directly through explorers.
 
-:::
-
+To do so, you’ll need to sign in with a supported wallet (e.g. [Casper Wallet](https://www.casperwallet.io), Ledger, or other integrations).

@@ -61,6 +61,13 @@ module.exports = {
             label: "Casper 2.0",
             position: "right",
         },
+        {
+            type: "docSidebar",
+            sidebarId: "faqSidebar",
+            docsPluginId: 'faq',
+            label: "FAQ",
+            position: "right",
+        },
         // { 
         //     to: 'blog', 
         //     label: 'Blog Articles', 
@@ -82,12 +89,12 @@ module.exports = {
             dropdownActiveClassDisabled: true,
         },
         // {
-        //     href: "https://support.casperlabs.io/",
-        //     label: "Support",
+        //     href: "https://forum.casper.network/",
+        //     label: "Forum",
         //     position: "right",
         // },
         // {
-        //     href: "https://discord.com/invite/casperblockchain",
+        //     href: "https://discord.gg/caspernetwork",
         //     label: "Discord",
         //     position: "right",
         // },

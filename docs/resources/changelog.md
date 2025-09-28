@@ -1,10 +1,10 @@
 # Documentation Updates by Protocol Release
 
-## Condor (2.0)
+## Casper 2.0
 
 ### Concepts
 
-The following are changes introduced alongside release of the Condor network upgrade.
+The following are changes introduced alongside release of the Casper 2.0 network upgrade.
 
 [Understanding Key Types](../concepts/key-types.md) - Additional Key Types and document restructuring.
 
@@ -26,6 +26,3 @@ The following are changes introduced alongside release of the Condor network upg
 
 [Writing On-Chain Code -> Factory Contracts](../developers/writing-onchain-code/factory-pattern.md) - Guide to the new factory pattern for smart contracts.
 
-### Operators
-
-[Private Network -> The Chainspec](../operators/setup-network/chain-spec.md) - Updates to the `chainpsec` relating to contract-level events.

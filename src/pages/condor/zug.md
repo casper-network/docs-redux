@@ -4,7 +4,7 @@ description: A discussion of the Zug consensus model
 slug: condor-zug
 date: 2024-10-03T18:00
 authors: [ alexanderlimonov ]
-tags: [condor, consensus]
+tags: [condor, casper2.0, consensus]
 hide_table_of_contents: false
 ---
 

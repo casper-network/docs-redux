@@ -206,7 +206,7 @@ sudo ufw enable
 
 These commands will limit requests to the available ports of your node. Port 35000 should be left open, although you can limit traffic, as it is crucial for node-to-node communication.
 
-If you have any concerns, questions, or issues, please [submit a request](https://support.casperlabs.io/hc/en-gb/requests/new) to the Casper support team.
+If you have any concerns, questions, or issues, please [submit a request](https://forum.casper.network/c/ecosystem-support) to the Casper support team.
 
 
 ## Restricting Access for Private Networks
@@ -229,5 +229,5 @@ Here is a summary of the links mentioned on this page:
 - [Confirming that the node is synchronized](./joining.md#step-7-confirm-the-node-is-synchronized)
 - [Monitoring and consuming events](../../developers/dapps/monitor-and-consume-events.md)
 - [Private network access control](../setup-network/create-private.md#network-access-control)
-- [FAQs for a basic validator node ](https://support.casperlabs.io/hc/en-gb/sections/6960448246683-Node-Operation-FAQ)
+- [Node Operator & Validator FAQ](https://docs.casper.network/faq/faq#-node-operator--validator-faq)
 - [External FAQs on Mainnet and Testnet validator node setup](https://docs.cspr.community/docs/faq-validator.html)

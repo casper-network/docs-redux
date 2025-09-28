@@ -4,9 +4,9 @@ title: Transactions
 
 # Transactions
 
-Transactions are [a new structure](../developers/json-rpc/types_chain.md#transaction) that allows users to enact changes in global state on a Casper network. Introduced with the Condor release, Transactions supersede legacy [Deploys](./glossary/D.md#deploy), allowing for a variety of Wasm-less interactions with the blockchain. These new interactions are more efficient than Deploys and provide a level of convenience that was not previously available.
+Transactions are [a new structure](../developers/json-rpc/types_chain.md#transaction) that allows users to enact changes in global state on a Casper network. Introduced with the Casper 2.0 release, Transactions supersede legacy [Deploys](./glossary/D.md#deploy), allowing for a variety of Wasm-less interactions with the blockchain. These new interactions are more efficient than Deploys and provide a level of convenience that was not previously available.
 
-The existing Deploy model is deprecated as of Condor, and support will be removed entirely in a future major release. However, Condor will continue to accept valid Deploys and will attempt to execute them. Most existing deploys that function today will continue to do so. However, deploys that depend on a data type or FFI function that has been altered or removed will fail to execute.
+The existing Deploy model is deprecated as of Casper 2.0, and support will be removed entirely in a future major release. However, Casper 2.0 will continue to accept valid Deploys and will attempt to execute them. Most existing deploys that function today will continue to do so. However, deploys that depend on a data type or FFI function that has been altered or removed will fail to execute.
 
 ## Transaction Types
 

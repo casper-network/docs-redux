@@ -49,11 +49,35 @@
         "concepts/economics/consensus",
         "concepts/economics/runtime",
         "concepts/economics/gas-concepts",
-        "concepts/economics/dynamic-gas-pricing",
-        "concepts/economics/fee-elimination",
+        "concepts/economics/dynamic-gas-pricing",        
         "concepts/economics/staking"
       ]
     },
+    "concepts/accounts-and-keys",
+    "concepts/key-types",
+    "concepts/transactions",
+    "concepts/transactions-and-transaction-lifecycle",
+    "concepts/global-state",
+    "concepts/smart-contracts",
+    "concepts/list-auth-keys",
+    "concepts/callstack",
+    "concepts/dictionaries",
+    {
+      "type": "category",
+      "label": "Binary Serialization Standard",
+      "collapsible": true,
+      "collapsed": true,
+      "link": {
+        "type": "doc",
+        "id": "concepts/serialization/index"
+      },
+      "items": [
+        "concepts/serialization/primitives",
+        "concepts/serialization/structures",
+        "concepts/serialization/types"
+      ]
+    },
+    "concepts/intro-to-dapps",
     {
       "type": "category",
       "label": "Glossary",
@@ -91,38 +115,13 @@
         "concepts/glossary/Y",
         "concepts/glossary/Z"
       ]
-    },
-    {
-      "type": "category",
-      "label": "Binary Serialization Standard",
-      "collapsible": true,
-      "collapsed": true,
-      "link": {
-        "type": "doc",
-        "id": "concepts/serialization/index"
-      },
-      "items": [
-        "concepts/serialization/primitives",
-        "concepts/serialization/structures",
-        "concepts/serialization/types"
-      ]
-    },
-    "concepts/intro-to-dapps",
-    "concepts/addressable-entity",
-    "concepts/accounts-and-keys",
-    "concepts/key-types",
-    "concepts/transactions",
-    "concepts/transactions-and-transaction-lifecycle",
-    "concepts/global-state",
-    "concepts/smart-contracts",
-    "concepts/list-auth-keys",
-    "concepts/callstack",
-    "concepts/dictionaries"
+    }
   ],
   "developers": [
     "developers/index",
     "developers/prerequisites",
     "developers/essential-crates",
+    "developers/monitor-and-consume-events",
     {
       "type": "category",
       "label": "Writing On-Chain Code",
@@ -191,8 +190,7 @@
             "developers/dapps/sdk/client-library-usage",
             "developers/dapps/sdk/script-sdk",
             "developers/dapps/sdk/csharp-sdk",
-            "developers/dapps/sdk/go-sdk",
-            "developers/dapps/sdk/python-sdk"
+            "developers/dapps/sdk/go-sdk"
           ]
         },
         "developers/dapps/technology-stack",
@@ -260,8 +258,7 @@
         "operators/setup/node-endpoints",
         "operators/setup/install-node",
         "operators/setup/fast-sync",
-        "operators/setup/open-files",
-        "operators/setup/upgrade",
+        "operators/setup/open-files",        
         "operators/setup/joining",
         "operators/setup/non-root-user",
         "operators/setup/node-events",
@@ -283,23 +280,7 @@
         "operators/becoming-a-validator/recovering",
         "operators/becoming-a-validator/inactive-vs-faulty"
       ]
-    },
-    {
-      "type": "category",
-      "label": "Private Networks",
-      "collapsible": true,
-      "collapsed": true,
-      "link": {
-        "type": "doc",
-        "id": "operators/setup-network/index"
-      },
-      "items": [
-        "operators/setup-network/genesis",
-        "operators/setup-network/chain-spec",
-        "operators/setup-network/create-private",
-        "operators/setup-network/staging-files-for-new-network"
-      ]
-    },
+    },    
     {
       "type": "category",
       "label": "Maintenance",
@@ -310,6 +291,7 @@
         "id": "operators/maintenance/index"
       },
       "items": [
+        "operators/maintenance/upgrade",
         "operators/maintenance/archiving-and-restoring",
         "operators/maintenance/moving-node"
       ]
@@ -442,6 +424,18 @@
         "resources/advanced/storage-workflow",
         "resources/advanced/cross-contract"
       ]
+    },
+    {
+      "type": "category",
+      "label": "Security Audit Reports",
+      "collapsible": true,
+      "collapsed": true,
+      "link": {
+        "type": "doc",
+        "id": "resources/audit-reports/index"
+      },
+      "items": [        
+      ]
     }
   ],
   "users": [
@@ -560,6 +554,6 @@
         "resources/advanced/storage-workflow",
         "resources/advanced/cross-contract"
       ]
-    }
+    }    
   ]
 }

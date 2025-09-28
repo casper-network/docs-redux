@@ -14,7 +14,6 @@ This section of the documentation covers the core concepts underpinning the Casp
 | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | [Introduction to the Casper Blockchain](./about.md) | High-level details about the Casper blockchain |
 | [Introduction to dApps](./intro-to-dapps.md) | Developing distributed applications on the Casper blockchain |
-| [Addressable Entities](./addressable-entity.md) | Learn about addressable entities and how they relate to accounts and smart contracts. |
 | [Accounts and Cryptographic Keys](./accounts-and-keys.md) | The Casper programming model is account-based. Learn how Casper accounts work and how they are secured | 
 | [Key Types](./key-types.md) | Hashes/Keys are used throughout the Casper ecosystem for addresses, packaging data, and more | 
 | [Global State](./global-state.md) | Learn about the storage layer for the Casper blockchain. All accounts, contracts, and data are stored in global state | 

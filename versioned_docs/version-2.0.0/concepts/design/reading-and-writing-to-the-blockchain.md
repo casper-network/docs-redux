@@ -8,7 +8,7 @@ Casper features several means of reading and writing data to global state, depen
 
 :::note
 
-Casper's Condor release shifts `NamedKeys` to a top-level key type, making them more viable for larger data sets.
+Casper 2.0 release shifts `NamedKeys` to a top-level key type, making them more viable for larger data sets.
 
 :::
 
