@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is the documentation repository for the [Casper Network](https://casper.network/). 
+This is the documentation repository for the [Casper Network](https://casper.network/).
 
 The documentation site itself may be viewed at this address: https://docs.casper.network/.
 
@@ -33,7 +33,7 @@ To run the documentation site locally, follow these steps:
     ALGOLIA_API_KEY=your_algolia_api_key
     ```
 
-    *(Note: Replace `your_algolia_app_id`, `your_algolia_index_name`, and `your_algolia_api_key` with actual values if you intend to use Algolia search; otherwise, placeholders are sufficient for local development.)*
+    _(Note: Replace `your_algolia_app_id`, `your_algolia_index_name`, and `your_algolia_api_key` with actual values if you intend to use Algolia search; otherwise, placeholders are sufficient for local development.)_
 
 3.  **Install dependencies, build, and serve:**
 
