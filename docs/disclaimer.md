@@ -4,7 +4,7 @@ title: Disclaimer
 ---
 # Legal Disclaimer {#disclaimer}
 
-This disclaimer applies to all users of the Casper documentation and any releated use of the Casper network, including but not limited to Developers, Operators, Users, and researchers ("you"). It governs your use of any and all information, tools, code samples, APIs, SDKs, specifications, and other materials provided by or on behalf of the Casper Association or its contributors ("we", "us", or "our") in this documentation. 
+This disclaimer applies to all users of the Casper documentation and any related use of the Casper network, including but not limited to Developers, Operators, Users, and researchers ("you"). It governs your use of any and all information, tools, code samples, APIs, SDKs, specifications, and other materials provided by or on behalf of the Casper Association or its contributors ("we", "us", or "our") in this documentation. 
 
 By accessing, browsing, or using this documentation in any way, you agree to be legally bound by the terms of this disclaimer in full. If you do not agree, you must not use this documentation.
 
