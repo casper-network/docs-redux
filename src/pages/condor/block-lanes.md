@@ -1,7 +1,7 @@
 ---
 title: Casper v2.0 Block Lanes
 description: Introduction to Block Lanes in the Casper v2.0 Release 
-slug: index
+slug: block-lanes
 date: 2025-04-28T22:00
 authors: [ core-team ]
 tags: [v2]
