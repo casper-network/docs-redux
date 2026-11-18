@@ -25,7 +25,7 @@ The Nav bar is along the top of your screen and contains the following elements 
   This classification covers people who simply want to use the Casper blockchain, and have no plans to develop an app, write code or run a node.
 
 - **Resources**  
-  This The Resources section contains general information that is useful to many users of the chain.
+  The Resources section contains general information that is useful to many users of the chain.
 
 - **Search**  
   Standard text-based Search facility, searches both the Blog and the Casper Docs for your search queries.
