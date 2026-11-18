@@ -4,7 +4,7 @@
 import puppeteer from "puppeteer";
 import core from "@actions/core";
 import style from "ansi-styles";
-import glob from "glob";
+import { globSync } from "glob";
 import fs from "fs";
 
 //----------------------------------
@@ -23,7 +23,7 @@ let browser;
  */
 class MarkdownExternalUrlChecker {
     static async execute() {
-        const files = glob.sync("./docs/**/@(*.md|*.mdx)", {
+        const files = globSync("./docs/**/@(*.md|*.mdx)", {
             ignore: excludedFolders,
         });
         console.log(`Found ${files.length} markdown files. Collecting all external urls...`);
