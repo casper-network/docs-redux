@@ -31,7 +31,7 @@
     "clsx": "^2.0.0",
     "docusaurus-plugin-dotenv": "^1.0.1",
     "dotenv": "^16.4.5",
-    "glob": "^11.1.0",
+    "glob": "^14.0.2",
     "prism-react-renderer": "^2.3.0",
     "puppeteer": "^24.15.0",
     "react": "^18.0.0",
