@@ -123,7 +123,7 @@ Contract methods are:
 
 ## Installing the Contract
 
-After customizing your instance of the CEP-18 token contract, it's time to install it in global state. Installing the Fungible Token contract is similar to installing other smart contracts, while only the Wasm files and parameters will differ. Refer to the [Sending Deploys to a Casper network using the Rust Client](/developers/cli/sending-deploys/) section to learn more about install contracts.
+After customizing your instance of the CEP-18 token contract, it's time to install it in global state. Installing the Fungible Token contract is similar to installing other smart contracts, while only the Wasm files and parameters will differ. Refer to the [Sending Deploys to a Casper network using the Rust Client](../../../developers/cli/sending-deploys.md) section to learn more about install contracts.
 
 ### Deploy Prerequisites {#deploy-prerequisites}
 
