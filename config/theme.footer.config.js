@@ -23,7 +23,7 @@ module.exports = {
             position: "right",
         },
         {
-            href: "./disclaimer",
+            href: "/disclaimer",
             label: "Disclaimer",
             position: "right",
         },
