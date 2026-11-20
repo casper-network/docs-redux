@@ -246,9 +246,9 @@ A `BlockAdded` event is emitted when a new block is added to the blockchain and 
 }
 ```
 
-- [Version1.hash](../concepts/serialization/hash-types.md) - The blake2b hash of the Transaction.
-- [Version1.payload](../concepts/serialization/serialization-standard.md#serialization-standard-account) - Internal data of the Version1 Transaction.
-- [Version1.approvals](../concepts/serialization/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
+- [Version1.hash](../concepts/key-types.md) - The blake2b hash of the Transaction.
+- [Version1.payload](../concepts/serialization/index.md) - Internal data of the Version1 Transaction.
+- [Version1.approvals](./json-rpc/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
 
 </details>
 
@@ -312,13 +312,13 @@ A `BlockAdded` event is emitted when a new block is added to the blockchain and 
 ```
 
 - [Deploy.hash](../concepts/serialization/structures.md#deploy-hash) - The blake2b hash of the Deploy.
-- [Deploy.body_hash](../concepts/serialization/hash-types.md) - The blake2b hash of the Deploy body.
-- [Deploy.session](./developers/writing-onchain-code/contract-hash-vs-package-hash.md#what-is-session-code) - The session logic defining the Deploy's functionality.
-- [Deploy.approvals](../json-rpc/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
+- [Deploy.body_hash](../concepts/key-types.md) - The blake2b hash of the Deploy body.
+- [Deploy.session](./writing-onchain-code/contract-hash-vs-package-hash.md#what-is-session-code) - The session logic defining the Deploy's functionality.
+- [Deploy.approvals](./json-rpc/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
 
 </details>
 
-For details on custom serializations, check the [Serialization Standard](../../concepts/serialization-standard.md). Also, the [Types](../json-rpc/types_chain.md) page defines the terms used in the event stream output.
+For details on custom serializations, check the [Serialization Standard](../concepts/serialization/index.md). Also, the [Types](./json-rpc/types_chain.md) page defines the terms used in the event stream output.
 
 ### TransactionProcessed
 
