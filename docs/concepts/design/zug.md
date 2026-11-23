@@ -10,7 +10,7 @@ The Casper node was designed with a pluggable consensus protocol in mind. So far
 
 The Zug protocol requires that at most one-third of the validator weight could be attributed to faulty validators. It also assumes that there exists an upper bound for the network delay, which is the duration for a correct validator to deliver a message. The value of the upper bound may be unknown, but it exists. Under these conditions, all correct nodes will reach agreement on a chain of finalized blocks.
 
-Of course, all nodes in a network have to run the same protocol to work together, but when starting a new network or upgrading an existing one, either `Highway` or `Zug` can now be selected as the `consensus_protocol` in the chainspec file. The Casper Mainnet will switch to Zug.
+Of course, all nodes in a network have to run the same protocol to work together, but when starting a new network or upgrading an existing one, either `Highway` or `Zug` can now be selected as the `consensus_protocol` in the chainspec file. Casper Mainnet uses Zug.
 
 ## How Zug Works
 
