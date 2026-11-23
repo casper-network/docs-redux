@@ -1295,13 +1295,36 @@ Map of peer IDs to network addresses.
 
 The pricing mode of a transaction.
 
+The `PricingMode` JSON value is externally tagged. For example:
+
+```json
+{
+  "PaymentLimited": {
+    "payment_amount": 100000000,
+    "gas_price_tolerance": 1,
+    "standard_payment": true
+  }
+}
+```
+
+The corresponding chainspec `pricing_handling` value for `PaymentLimited` is `payment_limited`.
+
 One of:
 
-* `Classic` The original payment model, where the creator of the transaction specifies how much they will pay, at what gas price.
+* `PaymentLimited` The original payment model, where the creator specifies the payment amount and gas price tolerance.
+  Required Parameters:
+  * `payment_amount` User-specified payment amount. The node uses this value as the transaction's gas limit.
+  * `gas_price_tolerance` User-specified gas price tolerance (minimum 1). The transaction is not included in a block if the current gas price exceeds this value.
+  * `standard_payment` Whether standard payment logic is used.
 
-* `Fixed` The cost of the transaction is determined by the cost table, per the transaction category.
+* `Fixed` The cost of the transaction is determined by the cost table for its transaction category.
+  Required Parameters:
+  * `additional_computation_factor` Additional computation factor applied to the WASM lane's size bucket (minimum 0).
+  * `gas_price_tolerance` User-specified gas price tolerance (minimum 1). The transaction is not included in a block if the current gas price exceeds this value.
 
-* `Reserved` The payment for this transaction was previously reserved (Not currently implemented).
+* `Prepaid` Payment for this transaction was previously made, as proven by a receipt digest. This mode is for future use and is not currently implemented.
+  Required Parameters:
+  * `receipt` Digest of the prepaid receipt.
 
 ## ProtocolVersion
 
