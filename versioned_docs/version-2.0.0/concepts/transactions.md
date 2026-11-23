@@ -142,7 +142,7 @@ casper-client put-txn redelegate
 
 ### Invocable Entity
 
-`invocable-entity` allows a user to invoke an entry point on the given [`AddressableEntity`](./addressable-entity.md) directly using an [`Entity Address`](./key-types.md#addressableentity).
+`invocable-entity` allows a user to invoke an entry point on the given [`AddressableEntity`](./glossary/A.md#addressable-entity) directly using an [`Entity Address`](./key-types.md#addressableentity).
 
 <details>
 <summary><b>Casper Client Command</b></summary>
@@ -165,7 +165,7 @@ casper-client put-txn invocable-entity
 
 ### Invocable Entity Alias
 
-`invocable-entity-alias` allows a user to invoke an entry point on the given [`AddressableEntity`](./addressable-entity.md) directly using an alias stored in their [`named keys`](./glossary/N.md#named-keys).
+`invocable-entity-alias` allows a user to invoke an entry point on the given [`AddressableEntity`](./glossary/A.md#addressable-entity) directly using an alias stored in their [`named keys`](./glossary/N.md#named-keys).
 
 <details>
 <summary><b>Casper Client Command</b></summary>

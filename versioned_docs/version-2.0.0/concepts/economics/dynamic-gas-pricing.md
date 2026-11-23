@@ -52,7 +52,7 @@ min_gas_price = 1
 
 ## Fixed Transaction Costs vs. Dynamic Gas Prices
 
-The current gas price and the slot’s maximum gas cost determine how much CSPR gets locked up for a transaction. Thus, the transaction price is predictable and fixed but has a dynamic component in that it’s pegged to the gas price. The system is designed this way to protect the network, adjusting the gas price as needed. Read more about lanes and gas cost [here](./runtime.md#lanes-and-gas-costs-lanes). Also, the `pricing_handling = { type = 'fixed' }` setting is described [here](./fee-elimination.md).
+The current gas price and the slot’s maximum gas cost determine how much CSPR gets locked up for a transaction. Thus, the transaction price is predictable and fixed but has a dynamic component in that it’s pegged to the gas price. The system is designed this way to protect the network, adjusting the gas price as needed. Read more about lanes and gas cost [here](./runtime.md#lanes-and-gas-costs-lanes). Also, the `pricing_handling = { type = 'fixed' }` setting is described [here](./index.md#incentives-runtime-layer).
 
 ## Gas Tolerance
 

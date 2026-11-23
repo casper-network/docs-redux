@@ -288,7 +288,7 @@ The hash of the name of a message topic, serialized as a [`u8`](./primitives.md#
 
 ## Transaction {#transaction}
 
-Please see the [Transaction serialization document](./transaction.md)
+Please see the [Transaction type definition](../../developers/json-rpc/types_chain.md#transaction)
 
 ### Deploy {#serialization-standard-deploy}
 
@@ -353,7 +353,7 @@ A `struct` containing configuration values associated with `deploys`. The struct
 
 ### TransactionV1 {#transactionV1}
 
-Please see the [Transaction serialization document](./transaction.md)
+Please see the [Transaction type definition](../../developers/json-rpc/types_chain.md#transaction)
 
 ### TransactionHash {#transactionhash}
 

@@ -4,7 +4,7 @@ title: Overview
 
 # Concepts Overview
 
-The Casper blockchain is a [Turing-complete](./glossary/T.md#turing-complete-blockchain) smart-contracting platform using a Proof-of-Stake (PoS) consensus algorithm and WebAssembly (Wasm). The [Casper Mainnet](https://cspr.live/) is permissionless, decentralized, and public. Network administrators can also create private or hybrid Casper networks as described [here](../operators/setup-network/index.md).
+The Casper blockchain is a [Turing-complete](./glossary/T.md#turing-complete-blockchain) smart-contracting platform using a Proof-of-Stake (PoS) consensus algorithm and WebAssembly (Wasm). The [Casper Mainnet](https://cspr.live/) is permissionless, decentralized, and public. Network administrators can also create private or hybrid Casper networks as described [here](../operators/setup/index.md).
 
 ## Concepts
 

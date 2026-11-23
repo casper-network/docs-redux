@@ -245,7 +245,7 @@ casper-client get-account-info \
 --public-key <FORMATTED STRING or PATH>
 ```
 
-1. `node-address` - An IP address of a peer on the network. The default port for JSON-RPC server, which is now served by Casper Sidecar from Casper 2.0 onwards on Mainnet and Testnet, is 7777. (Refer to [RPC Changes in Casper 2.0](../../condor/rpc-changes.md) for details)
+1. `node-address` - An IP address of a peer on the network. The default port for JSON-RPC server, which is now served by Casper Sidecar from Casper 2.0 onwards on Mainnet and Testnet, is 7777. (Refer to [RPC Changes in Casper 2.0](../../condor/jsonrpc) for details)
    
 2. `public-key` - This must be a properly formatted public key. The public key may instead be read in from a file, in which case, enter the path to the file as the argument. The file should be one of the two public key files generated via the `keygen` subcommand; "public_key_hex" or "public_key.pem"
 
