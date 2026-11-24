@@ -57,7 +57,33 @@ casper-client put-txn add-bid
   --maximum-delegation-amount <INTEGER>
 /// The maximum gas price that the user is willing to pay for this transaction.
   --gas-price-tolerance <INTEGER>
-/// The path to the local secret key file, or the [`initiator address`](../developers/json-rpc/types_chain.md#initiatoraddr) sending the transaction.
+/// The path to the local secret key file, or the initiator address sending the transaction.
+  <--secret-key <PATH>|--initiator-address <HEX STRING>>
+
+```
+</details>
+
+### Activate Bid
+
+`activate-bid` reactivates an inactive validator bid.
+
+<details>
+<summary><b>Casper Client Command</b></summary>
+
+```json
+
+casper-client put-txn activate-bid
+/// The validator's public key.
+  --validator <FORMATTED STRING>
+/// The name of the chain.
+  --chain-name <STRING>
+/// The amount passed to the standard-payment contract.
+  --payment-amount <INTEGER>
+/// The maximum gas price that the user is willing to pay for this transaction.
+  --gas-price-tolerance <INTEGER>
+/// Whether to use standard payment.
+  --standard-payment <BOOLEAN>
+/// The path to the local secret key file, or the initiator address sending the transaction.
   <--secret-key <PATH>|--initiator-address <HEX STRING>>
 
 ```
