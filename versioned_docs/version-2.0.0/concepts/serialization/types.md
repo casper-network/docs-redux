@@ -132,7 +132,7 @@ Auction bid variants. It serializes as a single [`u8` value](./primitives.md#clv
 | --------- | -- | ----------- |
 | [Unified](#bid)   | 0  | Legacy data that contains all delegators for a given validator. |
 | [Validator](#validatorbid) | 1  | A bid record containing only validator data. |
-| [Delegator](#delegatorbid) | 2  | A bid record containing only delegator data. |
+| [Delegator](#delegator) | 2  | A bid record containing only delegator data. |
 
 ## BlockGlobalAddr {#blockglobaladdr}
 
@@ -313,7 +313,7 @@ The type of `Package`, serialized as a `u8` [`EntityKindTag`](#entity-kind-tag) 
 
 -   `Account`: A package associated with an Account hash, serialized as a `u8` of 1 followed by an [`account_hash`](#account-hash).
 
--   `SmartContract`: A package associated with Wasm stored on chain, serialized as a `u8` of 2 followed by a [`contract runtime tag`](./types.md#contractruntimetag-contract-runtime-tag).
+-   `SmartContract`: A package associated with Wasm stored on chain, serialized as a `u8` of 2 followed by a [`contract runtime tag`](./types.md#contract-runtime-tag).
 
 ## EntityKindTag {#entity-kind-tag}
 

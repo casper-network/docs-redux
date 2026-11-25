@@ -36,7 +36,7 @@ Although the network measures costs in `Gas`, payment for computation occurs in 
 
 :::note
 
-Casper networks support configurable fee, refund, and pricing strategies to incentivize the [Casper Runtime Economics](../economics/runtime.md#runtime-economics) by efficiently allocating computational resources. The [consensus-before-execution model](../economics/runtime.md#consensus-before-execution-basics-of-payment) implements the mechanism to encourage optimized gas consumption from users and to prevent the overuse of block space by poorly handled transactions.
+Casper networks support configurable fee, refund, and pricing strategies to incentivize the [Casper Runtime Economics](../economics/runtime.md#gas-allocation) by efficiently allocating computational resources. The [consensus-before-execution model](../economics/runtime.md#consensus-before-execution-basics-of-payment) implements the mechanism to encourage optimized gas consumption from users and to prevent the overuse of block space by poorly handled transactions.
 
 :::
 
@@ -171,7 +171,7 @@ The `block_hash` is the `blake2b256` hash of the block header.
 
 #### Header {#header}
 
-The [block header](../serialization/structures.md#block-header) contains the following fields:
+The [block header](../serialization/structures.md#block-header-v2) contains the following fields:
 
 * `parent_hash`
 

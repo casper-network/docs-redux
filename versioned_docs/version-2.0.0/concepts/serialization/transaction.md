@@ -24,7 +24,7 @@ Serializing a `Transaction` of variant `Deploy`:
 ## Version1
 
 Transaction::Version1 is the new way that work can be proposed to a node. It's nature is more amorphic than Transaction::Deploy. This type of Transaction uses a self-describing binary serialization scheme (comparing to other [Binary Serialization Standard](./index.md) types). The self-describing scheme is called `Calltable serialization` in this document. In general, the layout of this new style of transaction is ["tagged-union"](https://en.wikipedia.org/wiki/Tagged_union) oriented. An in-depth description of how this self-describing standard works is in the [calltable serialization](./calltable-serialization.md) document.
-In the scope of this documentation, for abbreviation, we will call these "tagged-unions". Tagged unions are data structures that can define very different internal fields depending on which variant is currently being used. For serialization we denote the variant (effectively - "which variant of the union was created for this instance of the union type") and serialize it alongside the fields. This "variant marking" is stored as a one byte unsigned [number](./primitives.md#numeric-clvalue-numeric) and will be referred to in this document as `variant discriminator`. The terms `serialization_index` and `variant discriminator` (which we use in this document) are also explained in the [calltable serialization](./calltable-serialization.md) document also.
+In the scope of this documentation, for abbreviation, we will call these "tagged-unions". Tagged unions are data structures that can define very different internal fields depending on which variant is currently being used. For serialization we denote the variant (effectively - "which variant of the union was created for this instance of the union type") and serialize it alongside the fields. This "variant marking" is stored as a one byte unsigned [number](./primitives.md#clvalue-numeric) and will be referred to in this document as `variant discriminator`. The terms `serialization_index` and `variant discriminator` (which we use in this document) are also explained in the [calltable serialization](./calltable-serialization.md) document also.
 
 Serializing a `Transaction` of variant `Version1`:
 
@@ -35,7 +35,7 @@ Serializing a `Transaction` of variant `Version1`:
 
 `TransactionV1` (serialized using calltable scheme) consists of:
 
-- `hash` - hash calculated over binary serialization of `payload`. It's `serialization_index` is `0`. In the sense of binary serialization it is a [Digest](./types.md#digest-digest)
+- `hash` - hash calculated over binary serialization of `payload`. It's `serialization_index` is `0`. In the sense of binary serialization it is a [Digest](./types.md#digest)
 - `payload`- of type [`TransactionV1Payload`](#transactionv1payload), contains all the actual data that the transaction sends to node. It's `serialization_index` is `1`
 - `approvals` - collection of [Approvals](./structures.md#approval) being signatures over `hash`. It's `serialization_index` is `2`
 
@@ -46,9 +46,9 @@ Serializing a `Transaction` of variant `Version1`:
 - `initiator_addr` - of type [InitiatorAddr](#initiatoraddr) identifies the initiator of this Transaction. It's `serialization_index` is `0`
 - `timestamp` - [Timestamp](./types.md#timestamp) identifying the self-declared time of creation for this transaction. It's `serialization_index` is `1`
 - `ttl` - [TimeDiff](./types.md#timediff) self-declared period in which the transaction should be included in a block and executed. It's `serialization_index` is `2`
-- `chain_name` - [`String`](./primitives.md#string-clvalue-string) identifying the network name on which this transaction should be executed. It's `serialization_index` is `3`
+- `chain_name` - [`String`](./primitives.md#clvalue-string) identifying the network name on which this transaction should be executed. It's `serialization_index` is `3`
 - `pricing_mode` - [PricingMode](#pricingmode) declaration of how the transaction should be payed for. It's `serialization_index` is `4`
-- `fields` - please see [v1.payload.fields](#v1payloadfields) section. It's `serialization_index` is `5`
+- `fields` - please see [v1.payload.fields](#version1payloadfields) section. It's `serialization_index` is `5`
 
 ##### InitiatorAddr
 
@@ -56,10 +56,10 @@ Serializing a `Transaction` of variant `Version1`:
 
 - in variant InitiatorAddr::PublicKey
   - variant discriminator of value `0`
-  - [`PublicKey`](./types.md#publickey-publickey) serialized under serialization key `1`
+  - [`PublicKey`](./types.md#publickey) serialized under serialization key `1`
 - in variant InitiatorAddr::AccountHash
   - variant discriminator of value `1`
-  - [`AccountHash`](./types.md#account-hash-account-hash) serialized under serialization key `1`
+  - [`AccountHash`](./types.md#account-hash) serialized under serialization key `1`
 
 ##### PricingMode
 
@@ -67,20 +67,20 @@ Serializing a `Transaction` of variant `Version1`:
 
 - in variant `PaymentLimited`
   - variant discriminator of value `0`
-  - field `payment_amount` of type `u64` (8 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)) with serialization index `1`
-  - field `gas_price_tolerance` of type `u8` (1 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)) with serialization index `2`
-  - field `standard_payment` of type [bool](./primitives.md#boolean-clvalue-boolean) with serialization index `3`
+  - field `payment_amount` of type `u64` (8 bytes unsigned [number](./primitives.md#clvalue-numeric)) with serialization index `1`
+  - field `gas_price_tolerance` of type `u8` (1 bytes unsigned [number](./primitives.md#clvalue-numeric)) with serialization index `2`
+  - field `standard_payment` of type [bool](./primitives.md#clvalue-boolean) with serialization index `3`
 - in variant `Fixed`
   - variant discriminator of value `1`
-  - field `additional_computation_factor` of type `u8` (1 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)) with serialization index `1`
-  - field `gas_price_tolerance` of type `u8` (1 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)) with serialization index `2`
+  - field `additional_computation_factor` of type `u8` (1 bytes unsigned [number](./primitives.md#clvalue-numeric)) with serialization index `1`
+  - field `gas_price_tolerance` of type `u8` (1 bytes unsigned [number](./primitives.md#clvalue-numeric)) with serialization index `2`
 - in variant `Prepaid`
   - variant discriminator of value `2`
-  - field `receipt` of type [Digest](./types.md#digest-digest) with serialization index `1`
+  - field `receipt` of type [Digest](./types.md#digest) with serialization index `1`
 
 #### Version1.payload.fields
 
-This is an amorphous data holder. It is serialized as a [map](./primitives.md#map) of key `u16` and value `Byte`. By u16 we understand an unsigned 2 byte number (see [numeric](./primitives.md#numeric-clvalue-numeric)). `Byte` a [collection of bytes](./primitives.md#list-clvalue-list).
+This is an amorphous data holder. It is serialized as a [map](./primitives.md#clvalue-map) of key `u16` and value `Byte`. By u16 we understand an unsigned 2 byte number (see [numeric](./primitives.md#clvalue-numeric)). `Byte` a [collection of bytes](./primitives.md#clvalue-list).
 The invariants for this field are:
 
 - keys (first tuple entries) are unique
@@ -92,7 +92,7 @@ This field is design in this amorphous way to facilitate the possibility of resh
 
 _Currently_ the "keys" (first tuple entries) of the `fields` map are interpreted as:
 
-- payload with key `0`: an instance of [`TransactionArgs`](./types.md#transactionargs-transaction-args)
+- payload with key `0`: an instance of [`TransactionArgs`](./types.md#transaction-args)
 - payload with key `1`: an instance of [`TransactionTarget`](#transactiontarget)
 - payload with key `2`: an instance of [`TransactionEntryPoint`](#transactionentrypoint)
 - payload with key `3`: an instance of [`TransactionScheduling`](#transactionscheduling)
@@ -126,13 +126,13 @@ _Currently_ the "keys" (first tuple entries) of the `fields` map are interpreted
 - in variant `ByPackageHash`
   - variant discriminator of value `2`
   - field `addr` which is a 32 bytes hash digest with serialization index `1`
-  - field `version` of type `Option<u32>` ([option](./primitives.md#option-clvalue-option) of 4 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)) with serialization index `2`
-  - field `protocol_version_major` of type `u32` (4 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)). It's serialization index is `3`. This field is not mandatory - in fact in the reference rust implementation it is defined as `Option<u32>`. If it is present it should be serialized as `u32` under index `3`. But if it's not present, there will be no entry for it at all (both in the calltable section of `TransactionInvocationTarget` or payload)
+  - field `version` of type `Option<u32>` ([option](./primitives.md#clvalue-option) of 4 bytes unsigned [number](./primitives.md#clvalue-numeric)) with serialization index `2`
+  - field `protocol_version_major` of type `u32` (4 bytes unsigned [number](./primitives.md#clvalue-numeric)). It's serialization index is `3`. This field is not mandatory - in fact in the reference rust implementation it is defined as `Option<u32>`. If it is present it should be serialized as `u32` under index `3`. But if it's not present, there will be no entry for it at all (both in the calltable section of `TransactionInvocationTarget` or payload)
 - in variant `ByPackageName`
   - variant discriminator of value `3`
   - field `name` of type `String` with serialization index `1`
-  - field `version` of type `Option<u32>` ([option](./primitives.md#option-clvalue-option) of 4 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)) with serialization index `2`
-  - field `protocol_version_major` of type `u32` (4 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)). It's serialization index is `3`. This field is not mandatory - in fact in the reference rust implementation it is defined as `Option<u32>`. If it is present it should be serialized as `u32` under index `3`. But if it's not present, there will be no entry for it at all (both in the calltable section of `TransactionInvocationTarget` or payload)
+  - field `version` of type `Option<u32>` ([option](./primitives.md#clvalue-option) of 4 bytes unsigned [number](./primitives.md#clvalue-numeric)) with serialization index `2`
+  - field `protocol_version_major` of type `u32` (4 bytes unsigned [number](./primitives.md#clvalue-numeric)). It's serialization index is `3`. This field is not mandatory - in fact in the reference rust implementation it is defined as `Option<u32>`. If it is present it should be serialized as `u32` under index `3`. But if it's not present, there will be no entry for it at all (both in the calltable section of `TransactionInvocationTarget` or payload)
 
 ##### TransactionRuntimeParams
 
@@ -142,8 +142,8 @@ _Currently_ the "keys" (first tuple entries) of the `fields` map are interpreted
   - variant discriminator of value `0`
 - in variant `VmCasperV2`:
   - variant discriminator of value `1`
-  - field `transferred_value` of type `u64` (8 bytes unsigned [number](./primitives.md#numeric-clvalue-numeric)) with serialization index `1`
-  - field `seed` of type `Option<[u8; 32]>` ([option](./primitives.md#option-clvalue-option) of 32 bytes [Byte array](./primitives.md#bytearray-clvalue-bytearray)) with serialization index `2`
+  - field `transferred_value` of type `u64` (8 bytes unsigned [number](./primitives.md#clvalue-numeric)) with serialization index `1`
+  - field `seed` of type `Option<[u8; 32]>` ([option](./primitives.md#clvalue-option) of 32 bytes [Byte array](./primitives.md#clvalue-ByteArray)) with serialization index `2`
 
 ##### TransactionEntryPoint
 

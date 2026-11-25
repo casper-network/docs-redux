@@ -13,7 +13,7 @@ Calling a contract on a Casper network requires the use of a transaction. When u
 
 However, you can also use `ModuleBytes` to deploy session code that calls a contract.
 
-Further information on the structure of `ModuleBytes` can be found in [here](../json-rpc/types_chain.md#modulebytes).
+Further information on the structure of `ModuleBytes` can be found in [here](../../concepts/serialization/types.md#executable-deploy-item).
 
 ### StoredContractByHash
 
@@ -21,7 +21,7 @@ Further information on the structure of `ModuleBytes` can be found in [here](../
 
 While there is no Wasm associated with this variant, it is still a deploy sent to a node that invokes an installed contract.
 
-Further information on the structure of `StoredContractByHash` can be found [here](../json-rpc/types_chain.md#storedcontractbyhash).
+Further information on the structure of `StoredContractByHash` can be found [here](../../concepts/serialization/types.md#executable-deploy-item).
 
 ### StoredContractByName
 
@@ -29,7 +29,7 @@ Further information on the structure of `StoredContractByHash` can be found [her
 
 This allows the caller to more easily reference a contract stored on-chain for later use but requires pre-planning to store the name within their account's `NamedKeys`.
 
-### StoredVersionedContractByHash
+### StoredVersionedContractByHash {#stored-versioned-contract-by-hash}
 
 `StoredVersionedContractByHash` is a deploy variant that invokes on-chain Wasm based on the contract package hash rather than the contract hash directly. This variant allows the caller to specify a version within the contract package, but if a specific version is not supplied, it will use the most recent version of the contract within the package.
 
@@ -37,13 +37,13 @@ This makes `StoredVersionedContractByHash` more stable than `StoredContractByHas
 
 DApp developers that use contracts developed by other parties can use `StoredVersionedContractByHash` to avoid interruptions from contract version changes.
 
-Further information on the structure of `StoredVersionedContractByHash` can be found [here](../json-rpc/types_chain.md#storedversioncontractbyhash).
+Further information on the structure of `StoredVersionedContractByHash` can be found [here](../../concepts/serialization/types.md#executable-deploy-item).
 
-### StoredVersionedContractByName
+### StoredVersionedContractByName {#stored-versioned-contract-by-name}
 
 `StoredVersionedContractByName` combines the functionality of `StoredContractByName` and `StoredVersionedContractByHash`. It allows a developer to store a reference string as a `NamedKey` within their account context that references a contract by its contract package hash.
 
-Further information on the structure of `StoredVersionedContractByName` can be found [here](../json-rpc/types_chain.md#storedversioncontractbyname).
+Further information on the structure of `StoredVersionedContractByName` can be found [here](../../concepts/serialization/types.md#executable-deploy-item).
 
 ### Transfer
 

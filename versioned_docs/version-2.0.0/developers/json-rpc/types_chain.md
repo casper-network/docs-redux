@@ -140,7 +140,7 @@ Required Parameters:
 
 * [`account_hash`](#accounthash)
 
-* [`weight`](#weight)
+* [`weight`](#accountassociatedkeyweight)
 
 ## AuctionState
 
@@ -925,7 +925,7 @@ Required Parameters:
 
 * [`era_id`](#eraid) The era id.
 
-* [`merkle_proof`](#merkle-proof) The merkle proof.
+* `merkle_proof` The merkle proof.
 
 * [`state_root_hash`](#digest) Hex-encoded hash of the state root.
 
@@ -957,7 +957,7 @@ Required Parameters:
 
 * [`operations`](#operation)
 
-* [`transforms`](#transformentry)
+* [`transforms`](#transformv1)
 
 ## ExecutionResult
 
@@ -1424,7 +1424,7 @@ List of identifiers for finality signatures for a particular past block. That pa
 
 Representation of a value stored in global state.
 
-* [`CLValue`](#clvalue) A Casper-specific value.
+* [`CLValue`](../../concepts/serialization/primitives.md#clvalue) A Casper-specific value.
 
 * [`Account`](#account) An Account.
 
@@ -1611,7 +1611,7 @@ One of:
 
     * [`id`](#transactioninvocationtarget)
 
-    * [`runtime`](#transactionruntime)
+    * [`runtime`](#transactionruntimetag)
 
 * `session` The execution target is the included module bytes.
 
@@ -1619,7 +1619,7 @@ One of:
 
     * [`module_bytes`](#bytes)
 
-    * [`runtime`](#transactionruntime)
+    * [`runtime`](#transactionruntimetag)
 
 ## TransactionV1
 
@@ -1629,11 +1629,11 @@ Required Parameters:
 
 * [`approvals`](#approval)
 
-* [`body`](#transactionV1body)
+* [`body`](#transactionv1body)
 
-* [`hash`](#transactionV1hash)
+* [`hash`](#transactionv1hash)
 
-* [`header`](#transactionV1header)
+* [`header`](#transactionv1header)
 
 ## TransactionV1Body
 

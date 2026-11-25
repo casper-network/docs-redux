@@ -495,7 +495,7 @@ casper-client get-transaction --node-address http://localhost:11101 [TRANSACTION
 ```
 </details>
 
-Note the contract entity address in the above sample output. You will need this to [query the contract](./querying-global-state.md#query-the-contract) installed. In this example, the address is `entity-contract-a1d0bf9d96f3efc9ea67f627df3a7cba390bfc582956032db91060ca5d413e68`.
+Note the contract entity address in the above sample output. You will need this to [query the contract](./querying-global-state.md#querying-a-contract) installed. In this example, the address is `entity-contract-a1d0bf9d96f3efc9ea67f627df3a7cba390bfc582956032db91060ca5d413e68`.
 
 Next, [query global state](./querying-global-state.md) to see more details about the successfully installed contract.
 

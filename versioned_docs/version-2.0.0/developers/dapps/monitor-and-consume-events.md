@@ -99,7 +99,7 @@ curl -s http://NODE_ADDRESS:PORT/events/
 
 You can find node addresses of active online peers to replace `NODE_ADDRESS`, by navigating to [cspr.live](https://cspr.live/tools/peers) for Mainnet and [testnet.cspr.live](https://testnet.cspr.live/tools/peers) for Testnet.
 
-Replace `EVENT_NAME` with one of the event types listed [below](#event-types).
+Replace `EVENT_NAME` with the name of an event type emitted by the node.
 
 
 ### Detecting Contract-Level Events {#contract-level-events}
@@ -153,7 +153,7 @@ es.unsubscribe(EventName.EVENT_NAME)
 
 </Tabs>
 
-- `EVENT_NAME` - One of the different [event types](#event-types) emitted by a Casper node.
+- `EVENT_NAME` is the name of an event type emitted by a Casper node.
 
 ### Stopping the Event Stream
 

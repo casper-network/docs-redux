@@ -37,7 +37,7 @@ The configuration options for the JSON-RPC HTTP server are under the `rpc_server
 address = '0.0.0.0:7777'
 ```
 
-DApps would use this address to [interact with the Casper JSON-RPC API](../../developers/json-rpc/index.md). Users would use this address to [interact with the network using CLI](../../developers/cli/index.md). Validators would use this address to [bond](../becoming-a-validator/bonding.md#example-bonding-transaction) or [unbond](../becoming-a-validator/unbonding.md). If this port is closed, the requests coming to this port will not be served, but the node remains unaffected.
+DApps would use this address to [interact with the Casper JSON-RPC API](../../developers/json-rpc/index.md). Users would use this address to [interact with the network using CLI](../../developers/cli/index.md). Validators would use this address to [bond](../becoming-a-validator/bonding.md#bonding-system-auction) or [unbond](../becoming-a-validator/unbonding.md). If this port is closed, the requests coming to this port will not be served, but the node remains unaffected.
 
 
 ## Default REST HTTP Server Port: 8888 {#8888}
@@ -208,7 +208,7 @@ Here is a summary of the links mentioned on this page:
 - [The node configuration file](./basic-node-configuration.md#config-file)
 - [Interacting with the Casper JSON-RPC API](../../developers/json-rpc/index.md)
 - [Interacting with the network using CLI](../../developers/cli/index.md)
-- [Bonding](../becoming-a-validator/bonding.md#example-bonding-transaction) or [unbonding](../becoming-a-validator/unbonding.md) as a validator
+- [Bonding](../becoming-a-validator/bonding.md#bonding-system-auction) or [unbonding](../becoming-a-validator/unbonding.md) as a validator
 - [Getting a trusted node hash](./basic-node-configuration.md#trusted-hash-for-synchronizing)
 - [Verifying successful staging](../maintenance/upgrade.md#verifying-successful-staging)
 - [Confirming that the node is synchronized](./joining.md#step-7-confirm-the-node-is-synchronized)
