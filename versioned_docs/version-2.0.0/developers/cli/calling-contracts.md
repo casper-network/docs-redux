@@ -65,7 +65,7 @@ The payment amount varies based on each deploy and network [chainspec](../../con
 
 :::
 
-The following sample response contains a `deploy_hash`, needed to verify the changes in global state, as described [here](./querying-global-state.md#querying-a-contract).
+The following sample response contains a `deploy_hash`, needed to verify the changes in global state, as described [here](./transfers/direct-token-transfer.md#verify-deploy).
 
 <details>
 <summary>Sample response</summary>
@@ -253,7 +253,7 @@ casper-client put-deploy \
     --session-entry-point "counter_inc"
 ```
 
-The sample response will contain a `deploy_hash`, which you need to use as described [here](./querying-global-state.md#querying-a-contract) to verify the changes in global state.
+The sample response will contain a `deploy_hash`, which you need to use as described [here](./transfers/direct-token-transfer.md#verify-deploy) to verify the changes in global state.
 
 **Example 2 - Calling the Auction contract using a named key:**
 

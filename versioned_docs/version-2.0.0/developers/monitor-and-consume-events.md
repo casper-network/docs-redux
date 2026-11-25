@@ -386,7 +386,7 @@ A `TransactionProcessed` event is emitted when a given Deploy has been executed.
 }
 ```
 
-- [transaction_hash](../concepts/serialization/structures.md#transactionhash) - The cryptographic hash of a Deploy.
+- [transaction_hash](./json-rpc/types_chain.md#transactionhash) - The cryptographic hash of a Deploy.
 - [initiator_addr](../concepts/serialization/transaction.md#initiatoraddr) - Representation of the address that initiated this transaction.
 - [timestamp](../concepts/serialization/types.md#timestamp) - A timestamp type representing a concrete moment in time.
 - [block_hash](../concepts/serialization/structures.md#block-hash) - A cryptographic hash identifying a Block.
@@ -411,7 +411,7 @@ A `TransactionExpired` event is emitted when the Deploy is no longer valid for p
 }
 ```
 
-- [transaction_hash](../concepts/serialization/structures.md#transactionhash) - The cryptographic hash of a Transaction.
+- [transaction_hash](./json-rpc/types_chain.md#transactionhash) - The cryptographic hash of a Transaction.
 
 </details>
 

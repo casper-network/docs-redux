@@ -1611,7 +1611,7 @@ One of:
 
     * [`id`](#transactioninvocationtarget)
 
-    * [`runtime`](#transactionruntimetag)
+    * [`runtime`](../../concepts/serialization/transaction.md#transactionruntimeparams)
 
 * `session` The execution target is the included module bytes.
 
@@ -1619,7 +1619,7 @@ One of:
 
     * [`module_bytes`](#bytes)
 
-    * [`runtime`](#transactionruntimetag)
+    * [`runtime`](../../concepts/serialization/transaction.md#transactionruntimeparams)
 
 ## TransactionV1
 
