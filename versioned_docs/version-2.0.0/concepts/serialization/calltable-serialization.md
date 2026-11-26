@@ -11,7 +11,9 @@ As mentioned before, the `calltable serialization approach` requires serializing
   - for each f<sub>i</sub>, f<sub>j</sub> given `i` < `j` implies f<sub>i</sub>.offset < f<sub>j</sub>.offset
 - `bytes` - field which is an amorphous blob of bytes serialized as `Bytes` in the "regular" `Binary Serialization Standard` schema. Bear in mind that this field will be serialized by appending first a `u32` integer (number of bytes) than the raw bytes payload.
 
-A <span id="field">`Field`</span> consists of:
+### Field {#field}
+
+A `Field` consists of:
 
 - `index` - field (`u16`),
 - `offset` - field (`u32`),

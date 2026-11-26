@@ -51,7 +51,7 @@ The `no_fee` mode means the token is put on hold instead of being taken from the
 
 The `no_refund` mode means no refund is handled when fees are eliminated.
 
-Fixed pricing means the gas costs are determined using a cost table, and transactions are put in the appropriate lanes for execution. You can find more details about lanes [here](./runtime.md#lanes-lanes).
+Fixed pricing means the gas costs are determined using a cost table, and transactions are put in the appropriate lanes for execution. You can find more details about lanes [here](./runtime.md#lanes).
 
 When fees are eliminated, the block proposer receives validator credits instead of transaction fees. These credits contribute to the validator's total weight, determining their chances of winning a slot in the next era. Validators get rewards for proposing a block and creating and publishing finality signatures. In essence, gas/balance holds ensure that the network still compensates validators for their computations.
 

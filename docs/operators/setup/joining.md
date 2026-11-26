@@ -26,7 +26,7 @@ git clone https://github.com/casper-network/casper-node
 
 2. Install these prerequisites, which are also listed [here](https://github.com/casper-network/casper-node#pre-requisites-for-building).
 
-- [Rust](../../developers/writing-onchain-code/getting-started.md#installing-rust)
+- [Rust](../../developers/prerequisites.md#install-rust)
 - [CMake](https://cgold.readthedocs.io/en/latest/first-step/installation.html)
 - `pkg-config` - On Ubuntu, use `sudo apt-get install pkg-config`
 - `openssl` - On Ubuntu, use `sudo apt-get install openssl`
@@ -34,7 +34,7 @@ git clone https://github.com/casper-network/casper-node
 
 3. Install the [Rust casper-client](../../developers/prerequisites.md#install-casper-client) and fund the [keys](../setup/basic-node-configuration.md#create-fund-keys) you will use for bonding.
 
-4. Use the following commands to build the contracts in release mode. Make sure you have [installed Rust](../../developers/writing-onchain-code/getting-started.md#installing-rust).
+4. Use the following commands to build the contracts in release mode. Make sure you have [installed Rust](../../developers/prerequisites.md#install-rust).
 
 ```bash
 cd casper-node
@@ -120,5 +120,4 @@ Towards the end of the following output, notice the `era_id` and `height` that y
 You can submit a [bonding request](../becoming-a-validator/bonding.md) to change your synchronized node to a validating node.
 
 The bonding request must be sent after the node has synchronized the protocol state and linear blockchain to avoid being ejected for liveness failures.
-
 

@@ -25,8 +25,8 @@ In this document when we do signing of the hash it has beed done with a secret k
       - `pricing_mode`: `PricingMode` of case `Fixed` with values:
         - `additional_computation_factor`: `2`
         - `gas_price_tolerance`: `3`
-      - `fields`: A [map](./primitives.md#map-clvalue-map). This `fields` instance will have the following key-value mappings:
-        - key `0`; => binary-serialized [`TransactionArgs`](./types.md#transactionargs-transaction-args) of variant `Named` with the inner RuntimeArgs being a map of "a" => "xyz". When serialized, this transaction args structure is 0x1600000000010000000100000061070000000300000078797a0a. An explanation how it was binary serialized see [`serializing transaction args`](#serializing-transaction-args)
+      - `fields`: A [map](./primitives.md#clvalue-map). This `fields` instance will have the following key-value mappings:
+        - key `0`; => binary-serialized [`TransactionArgs`](./types.md#transaction-args) of variant `Named` with the inner RuntimeArgs being a map of "a" => "xyz". When serialized, this transaction args structure is 0x1600000000010000000100000061070000000300000078797a0a. An explanation how it was binary serialized see [`serializing transaction args`](#serializing-transaction-args)
         - key `1`; value as binary serialized [`TransactionTarget`](./transaction.md#transactiontarget) of variant `Native`. When serialized, this transaction args structure is 0x0d00000001000000000000000100000000. An explanation how it was binary serialized see [`serializing transaction target`](#serializing-transaction-target)
         - key `2`; value as binary serialized [`TransactionEntryPoint`](./transaction.md#transactionentrypoint) of variant `AddBid`. When serialized, this transaction args structure is 0x0f000000010000000000000000000100000003. An explanation how it was binary serialized see [`serializing transaction entry point`](#serializing-transaction-target)
         - key `3`; value as binary serialized [`TransactionScheduling`](./transaction.md#transactionentrypoint) of variant `Standard`. When serialized, this transaction args structure is 0x0d00000001000000000000000100000000. An explanation how it was binary serialized see [`serializing transaction scheduling`](#serializing-transaction-scheduling)
@@ -154,7 +154,7 @@ This particular `TransactionV1Payload` consists of six fields:
 - `ttl`: it's binary serialization is: `0x00dd6d0000000000` (see [here](#serializing-ttl))
 - `chain_name`: it's binary serialization is: `0x03000000616263` , (see [here](./primitives.md#clvalue-string))
 - `pricing_mode`: it's binary serialization is: `0x0300000000000000000001000100000002000200000003000000010302` , (see [here](#serializing-pricing-mode))
-- `fields`: it's binary serialization is: `0x0400000000001600000000010000000100000061070000000300000078797a0a01000f00000001000000000000000000010000000002000f00000001000000000000000000010000000303000f000000010000000000000000000100000000` , (see [here](#serializing-fields))
+- `fields`: it's binary serialization is: `0x0400000000001600000000010000000100000061070000000300000078797a0a01000f00000001000000000000000000010000000002000f00000001000000000000000000010000000303000f000000010000000000000000000100000000` , (see [here](#serializing-payloadfields))
 
 | Calltable segment | Hex-fmt representation                                                                                                                                                                           | Description                                                                                                           |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
@@ -211,7 +211,7 @@ Which concatenates to:
 
 #### Serializing payload.fields
 
-Fields is a [map](./primitives.md#map-clvalue-map) which keys are u16 and values are collections of bytes. We can assemble the binary serialization as follows:
+Fields is a [map](./primitives.md#clvalue-map) which keys are u16 and values are collections of bytes. We can assemble the binary serialization as follows:
 
 | hex-encoded bytes                                      | Explanation                                                                          |
 | ------------------------------------------------------ | ------------------------------------------------------------------------------------ |
@@ -236,11 +236,11 @@ Which concatenates to:
 
 #### Serializing Timestamp
 
-Value of this field is serialized as explained [here](./types.md#timestamp-timestamp). It's binary serialization is: `0x8366de0798010000`
+Value of this field is serialized as explained [here](./types.md#timestamp). It's binary serialization is: `0x8366de0798010000`
 
 #### Serializing Ttl
 
-Value of this field is serialized as explained [here](./types.md#timediff-timediff). It's binary serialization is: `0x00dd6d0000000000`
+Value of this field is serialized as explained [here](./types.md#timediff). It's binary serialization is: `0x00dd6d0000000000`
 
 #### Serializing InitiatorAddr
 
@@ -267,7 +267,7 @@ And the concatenated version is:
 ### Serializing Transaction Args
 
 To recap, the structure of `TransactionArgs` which we want to serialize is `TransactionArgs` of variant `Named`, the inner `RuntimeArgs`being a mapping of `"a" => "xyz"`.
-Firstly let's serialize `RuntimeArgs`. It will be a collection of [NamedArg](./types.md#namedarg-namedarg). The collection has one element, so the first 4 bytes will be `0x010000`, followed by the first argumentname ("a") which binary reprentation is `0x0100000061`, followed by cl-value representation of `xyz` string which is `0x070000000300000078797a0a`. This gives binary representation of `RuntimeArgs`: `0x010000000100000061070000000300000078797a0a` By looking at [TransactionArgs doc](./types.md#transactionargs-transaction-args) we see that the binary represenation will be `0x00` followed by serialization of the RuntimeArgs, which gives `0x00010000000100000061070000000300000078797a0a`. We also should notice that the value that we will be putting into the `fields` map is going to be a binary representation of a collection of bytes. We will need to prepend the raw payload with the bytes-length of the payload (as described [here](./types.md#bytes-bytes)). The payload consists of 22 bytes, so the u32 representation of it's length is going to be `0x16000000` So the final "blob" of bytes that we will be putting into the `fields` map will be: `0x1600000000010000000100000061070000000300000078797a0a`.
+Firstly let's serialize `RuntimeArgs`. It will be a collection of [NamedArg](./types.md#namedarg). The collection has one element, so the first 4 bytes will be `0x010000`, followed by the first argumentname ("a") which binary reprentation is `0x0100000061`, followed by cl-value representation of `xyz` string which is `0x070000000300000078797a0a`. This gives binary representation of `RuntimeArgs`: `0x010000000100000061070000000300000078797a0a` By looking at [TransactionArgs doc](./types.md#transaction-args) we see that the binary represenation will be `0x00` followed by serialization of the RuntimeArgs, which gives `0x00010000000100000061070000000300000078797a0a`. We also should notice that the value that we will be putting into the `fields` map is going to be a binary representation of a collection of bytes. We will need to prepend the raw payload with the bytes-length of the payload (as described [here](./types.md#bytes)). The payload consists of 22 bytes, so the u32 representation of it's length is going to be `0x16000000` So the final "blob" of bytes that we will be putting into the `fields` map will be: `0x1600000000010000000100000061070000000300000078797a0a`.
 
 ### Serializing Transaction Target
 
@@ -282,7 +282,7 @@ To recap, the TransactionTarget which we want to serialize is a `Native` one. To
 | PAYLOAD           | 0x00                   | first field (variant discriminator) value serialized (`TransactionTarget::Native`) serialized as u8                    |
 
 Which gives a binary representation of: `0x010000000000000000000100000000`
-We also should notice that the value that we will be putting into the `fields` map is going to be a binary representation of a collection of bytes. We will need to prepend the raw payload with the bytes-length of the payload (as described [here](./types.md#bytes-bytes)). The payload consists of 15 bytes, so the u32 representation of it's length is going to be `0x0f000000` So the final "blob" of bytes that we will be putting into the `fields` map will be: `0x0f000000010000000000000000000100000000`.
+We also should notice that the value that we will be putting into the `fields` map is going to be a binary representation of a collection of bytes. We will need to prepend the raw payload with the bytes-length of the payload (as described [here](./types.md#bytes)). The payload consists of 15 bytes, so the u32 representation of it's length is going to be `0x0f000000` So the final "blob" of bytes that we will be putting into the `fields` map will be: `0x0f000000010000000000000000000100000000`.
 
 ### Serializing Transaction Entry Point
 
@@ -297,7 +297,7 @@ To recap, the TransactionEntryPoint which we want to serialize is a `AddBid` one
 | PAYLOAD           | 0x03                   | first field (variant discriminator) value serialized (`TransactionEntryPoint::AddBid`) serialized as u8                    |
 
 Which gives a binary representation of: `0x010000000000000000000100000003`
-We also should notice that the value that we will be putting into the `fields` map is going to be a binary representation of a collection of bytes. We will need to prepend the raw payload with the bytes-length of the payload (as described [here](./types.md#bytes-bytes)). The payload consists of 15 bytes, so the u32 representation of it's length is going to be `0x0f000000` So the final "blob" of bytes that we will be putting into the `fields` map will be: `0x0f000000010000000000000000000100000003`.
+We also should notice that the value that we will be putting into the `fields` map is going to be a binary representation of a collection of bytes. We will need to prepend the raw payload with the bytes-length of the payload (as described [here](./types.md#bytes)). The payload consists of 15 bytes, so the u32 representation of it's length is going to be `0x0f000000` So the final "blob" of bytes that we will be putting into the `fields` map will be: `0x0f000000010000000000000000000100000003`.
 
 ### Serializing Transaction Scheduling
 
@@ -312,4 +312,4 @@ To recap, the TransactionScheduling which we want to serialize is a `Standard` o
 | PAYLOAD           |  0x00                  | raw payload                                                                                                                |
 
 Which gives a binary representation of: `0x010000000000000000000100000000`
-We also should notice that the value that we will be putting into the `fields` map is going to be a binary representation of a collection of bytes. We will need to prepend the raw payload with the bytes-length of the payload (as described [here](./types.md#bytes-bytes)). The payload consists of 15 bytes, so the u32 representation of it's length is going to be `0x0f000000` So the final "blob" of bytes that we will be putting into the `fields` map will be: `0x0f000000010000000000000000000100000000`.
+We also should notice that the value that we will be putting into the `fields` map is going to be a binary representation of a collection of bytes. We will need to prepend the raw payload with the bytes-length of the payload (as described [here](./types.md#bytes)). The payload consists of 15 bytes, so the u32 representation of it's length is going to be `0x0f000000` So the final "blob" of bytes that we will be putting into the `fields` map will be: `0x0f000000010000000000000000000100000000`.

@@ -85,7 +85,8 @@ Next, [check the status of the auction](#check-the-status-of-the-bid-in-the-auct
 
 ## Method 2: Bonding with Compiled Wasm {#bonding-compiled-wasm}
 
-Another way to send a bonding transaction to the network is via a deploy containing the compiled `add_bid.wasm`. For details, refer to [Building the Required Contracts](../setup/joining.md#step-3-build-contracts).
+Another way to send a bonding transaction to the network is via a deploy containing the compiled `add_bid.wasm`. For details, refer to [Building the Required Contracts](../../developers/cli/delegate.md#delegati
+ng-compiled-wasm).
 
 The following deploy is a template for sending a bonding request:
 

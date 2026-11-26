@@ -40,7 +40,7 @@ Before getting started, you need to complete two prerequisite steps:
 
 ### Receive Tokens from an External Source
 
-This portion will vary slightly depending on where your funds are currently stored. However, the process will require that you send tokens to your public key as described in the [documentation](./ledger-setup.md#receive-tokens).
+This portion will vary slightly depending on where your funds are currently stored. However, the process will require that you send tokens to your public key as described in the [documentation](./ledger-setup.md#sending-and-receiving-tokens).
 
 ### Staking Tokens
 

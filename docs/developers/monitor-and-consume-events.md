@@ -313,7 +313,7 @@ A `BlockAdded` event is emitted when a new block is added to the blockchain and 
 
 - [Deploy.hash](../concepts/serialization/structures.md#deploy-hash) - The blake2b hash of the Deploy.
 - [Deploy.body_hash](../concepts/key-types.md) - The blake2b hash of the Deploy body.
-- [Deploy.session](./writing-onchain-code/contract-hash-vs-package-hash.md#what-is-session-code) - The session logic defining the Deploy's functionality.
+- [Deploy.session](./writing-onchain-code/contract-vs-session.md#what-is-session-code) - The session logic defining the Deploy's functionality.
 - [Deploy.approvals](./json-rpc/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
 
 </details>
@@ -386,11 +386,11 @@ A `TransactionProcessed` event is emitted when a given Deploy has been executed.
 }
 ```
 
-- [transaction_hash](../concepts/serialization/structures.md#transaction-hash) - The cryptographic hash of a Deploy.
-- [initiator_addr](../concepts/serialization/types.md#initiatoraddr) - Representation of the address that initiated this transaction.
+- [transaction_hash](./json-rpc/types_chain.md#transactionhash) - The cryptographic hash of a Deploy.
+- [initiator_addr](./json-rpc/types_chain.md#initiatoraddr) - Representation of the address that initiated this transaction.
 - [timestamp](../concepts/serialization/types.md#timestamp) - A timestamp type representing a concrete moment in time.
 - [block_hash](../concepts/serialization/structures.md#block-hash) - A cryptographic hash identifying a Block.
-- [execution_result](../concepts/serialization/types.md#execution-result) - The execution status of the transaction. It is a polymorphic type that can be either `Deploy` or `Version1`.
+- [execution_result](./json-rpc/types_chain.md#executionresult) - The execution status of the transaction. It is a polymorphic type that can be either `Deploy` or `Version1`.
 
 </details>
 
@@ -411,7 +411,7 @@ A `TransactionExpired` event is emitted when the Deploy is no longer valid for p
 }
 ```
 
-- [transaction_hash](../concepts/serialization/types.md#transactionhash) - The cryptographic hash of a Transaction.
+- [transaction_hash](./json-rpc/types_chain.md#transactionhash) - The cryptographic hash of a Transaction.
 
 </details>
 

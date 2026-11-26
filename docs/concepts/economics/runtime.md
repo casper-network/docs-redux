@@ -8,7 +8,7 @@ slug: /runtime
 The economics of the runtime layer should incentivize efficient allocation of computational resources, primarily CPU time, to users. The Casper 2.0 release has introduced several new economic features:
 
 - A form of [dynamic pricing](#dynamic-gas-pricing) that increments or decrements the gas price in motes for a new era depending on blockchain utilization in the previous era.
-- Blocks are structured into [lanes](#lanes-lanes) that can only hold a particular number of transactions of specified types.
+- Blocks are structured into [lanes](#lanes) that can only hold a particular number of transactions of specified types.
 
 These economic features are configurable using chainspec parameters.
 
@@ -28,7 +28,7 @@ Additionally, a minimal amount of CSPR must be present in the user account or co
 
 ### Costs and limits {#costs-and-limits}
 
-Gas cost is a measure of the relative time used by different primitive operations of the execution engine, which is also assumed to be additive. By additivity, we mean that the time to execute a program is approximately proportional to the sum of gas expended by the opcodes and functions called within the program. Casper assigns gas costs to primitive execution engine opcodes and specific, more complex _host-side_ functions that are callable from within the execution engine context. Gas costs for opcodes and host-side functions are specified in the [chainspec](../glossary/C.md#chainspec) and may vary according to arguments. Read more about how Casper measures computational work [here](../../concepts/design/casper-design.md#measuring-computational-work-execution-semantics-gas).
+Gas cost is a measure of the relative time used by different primitive operations of the execution engine, which is also assumed to be additive. By additivity, we mean that the time to execute a program is approximately proportional to the sum of gas expended by the opcodes and functions called within the program. Casper assigns gas costs to primitive execution engine opcodes and specific, more complex _host-side_ functions that are callable from within the execution engine context. Gas costs for opcodes and host-side functions are specified in the [chainspec](../glossary/C.md#chainspec) and may vary according to arguments. Read more about how Casper measures computational work [here](../../concepts/design/casper-design.md#execution-semantics-gas).
 
 We expect to refine the current gas cost table to more closely reflect time use, with updates introduced in future upgrades.
 

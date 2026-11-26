@@ -109,7 +109,7 @@ Dec 05 17:24:53 user systemd[1]: Started Casper Event Sidecar.
 
 <br></br>
 
-If you see any errors, you may need to [update the configuration](#configuring-the-service) and restart the service with the commands below.
+If you see any errors, you may need to [update the configuration](#configuring-the-sidecar) and restart the service with the commands below.
 
 **Stopping the service:**
 
