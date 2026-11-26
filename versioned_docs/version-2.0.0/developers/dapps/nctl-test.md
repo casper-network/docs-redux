@@ -44,7 +44,7 @@ You will need the following information to use the `put-transaction session` com
 
 * The **pricing mode** for this transaction. In this case, we are using the `fixed` pricing mode.
 
-* The **gas price tolerance** in CSPR, which is the maximum amount of gas you are willing to pay for execution. This will appear in our example put-transaction as `--gas-price-tolerance 10`. **NCTL tests are not an accurate representation of potential gas costs on a live network. Please see our [note about gas prices](../../developers/cli/sending-transactions.md#a-note-about-gas-price).**
+* The **gas price tolerance** in CSPR, which is the maximum amount of gas you are willing to pay for execution. This will appear in our example put-transaction as `--gas-price-tolerance 10`. **NCTL tests are not an accurate representation of potential gas costs on a live network. Please see our [note about gas prices](../../developers/cli/sending-transactions.md#gas-cost-for-transactions).**
 
 * The **path** to your `Transaction` that you wish to send to the NCTL network. This will appear in our example put-transaction as `--transaction-path <PATH>` and will require you to define the path to your specific `Transaction` Wasm.
 
@@ -155,7 +155,7 @@ $(get_path_to_client) put-transaction package \
 
 ## Verifying Correct Contract Behavior
 
-After calling your installed contract, you can verify that the contract behaved as expected by observing the associated change in [global state](../../developers/cli/installing-contracts.md#querying-global-state). Depending on how your contract functions, this can have different meanings and results. If we use our counter contract from the [basic counter contract tutorial](../../resources/beginner/counter/walkthrough.md), the NCTL process would have the following flow:
+After calling your installed contract, you can verify that the contract behaved as expected by observing the associated change in [global state](../../developers/cli/querying-global-state.md#querying-a-contract). Depending on how your contract functions, this can have different meanings and results. If we use our counter contract from the [basic counter contract tutorial](../../resources/beginner/counter/walkthrough.md), the NCTL process would have the following flow:
 
 1) Send a `Transaction` to install the "Counter" smart contract.
 

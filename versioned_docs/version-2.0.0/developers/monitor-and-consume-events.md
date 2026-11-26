@@ -246,9 +246,9 @@ A `BlockAdded` event is emitted when a new block is added to the blockchain and 
 }
 ```
 
-- [Version1.hash](../concepts/serialization/hash-types.md) - The blake2b hash of the Transaction.
-- [Version1.payload](../concepts/serialization/serialization-standard.md#serialization-standard-account) - Internal data of the Version1 Transaction.
-- [Version1.approvals](../concepts/serialization/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
+- [Version1.hash](../concepts/key-types.md) - The blake2b hash of the Transaction.
+- [Version1.payload](../concepts/serialization/index.md) - Internal data of the Version1 Transaction.
+- [Version1.approvals](./json-rpc/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
 
 </details>
 
@@ -312,13 +312,13 @@ A `BlockAdded` event is emitted when a new block is added to the blockchain and 
 ```
 
 - [Deploy.hash](../concepts/serialization/structures.md#deploy-hash) - The blake2b hash of the Deploy.
-- [Deploy.body_hash](../concepts/serialization/hash-types.md) - The blake2b hash of the Deploy body.
-- [Deploy.session](./developers/writing-onchain-code/contract-hash-vs-package-hash.md#what-is-session-code) - The session logic defining the Deploy's functionality.
-- [Deploy.approvals](../json-rpc/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
+- [Deploy.body_hash](../concepts/key-types.md) - The blake2b hash of the Deploy body.
+- [Deploy.session](./writing-onchain-code/contract-vs-session.md#what-is-session-code) - The session logic defining the Deploy's functionality.
+- [Deploy.approvals](./json-rpc/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
 
 </details>
 
-For details on custom serializations, check the [Serialization Standard](../../concepts/serialization-standard.md). Also, the [Types](../json-rpc/types_chain.md) page defines the terms used in the event stream output.
+For details on custom serializations, check the [Serialization Standard](../concepts/serialization/index.md). Also, the [Types](./json-rpc/types_chain.md) page defines the terms used in the event stream output.
 
 ### TransactionProcessed
 
@@ -386,11 +386,11 @@ A `TransactionProcessed` event is emitted when a given Deploy has been executed.
 }
 ```
 
-- [transaction_hash](../concepts/serialization/structures.md#transaction-hash) - The cryptographic hash of a Deploy.
+- [transaction_hash](./json-rpc/types_chain.md#transactionhash) - The cryptographic hash of a Deploy.
 - [initiator_addr](../concepts/serialization/transaction.md#initiatoraddr) - Representation of the address that initiated this transaction.
 - [timestamp](../concepts/serialization/types.md#timestamp) - A timestamp type representing a concrete moment in time.
 - [block_hash](../concepts/serialization/structures.md#block-hash) - A cryptographic hash identifying a Block.
-- [execution_result](../concepts/serialization/types.md#execution-result) - The execution status of the transaction. It is a polymorphic type that can be either `Deploy` or `Version1`.
+- [execution_result](./json-rpc/types_chain.md#executionresult) - The execution status of the transaction. It is a polymorphic type that can be either `Deploy` or `Version1`.
 
 </details>
 
@@ -411,7 +411,7 @@ A `TransactionExpired` event is emitted when the Deploy is no longer valid for p
 }
 ```
 
-- [transaction_hash](../concepts/serialization/types.md#transactionhash) - The cryptographic hash of a Transaction.
+- [transaction_hash](./json-rpc/types_chain.md#transactionhash) - The cryptographic hash of a Transaction.
 
 </details>
 

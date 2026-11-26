@@ -71,7 +71,7 @@ _Session code_ provides the main logic for the transaction. It only executes if 
 The user-defined logic of a transaction can be specified in a number of ways:
 
 - a Wasm module in binary format representing valid session code, including logic to be executed in the context of an account entity or to store Wasm in the form of a contract to be executed later. (Note that the named keys from the context of the entity the transaction is running in.)
-- a 32-byte identifier representing the [hash](./serialization/types.md#hash-key-serialization-standard-hash-key) where a contract is already stored in the global state
+- a 32-byte identifier representing the [hash](./serialization/types.md#serialization-standard-hash-key) where a contract is already stored in the global state
 - a name corresponding to a named key, where a contract is stored under the key
 
 Payment and session code can be independently specified, so different methods of specifying them may be used (e.g. payment could be specified by a hash key, while the session is explicitly provided as a Wasm module).

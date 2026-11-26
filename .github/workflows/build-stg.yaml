@@ -5,6 +5,9 @@ on:
     branches:
       - stg
 
+permissions:
+  contents: read
+
 jobs:
   trigger-internal-build:
     runs-on: ubuntu-latest

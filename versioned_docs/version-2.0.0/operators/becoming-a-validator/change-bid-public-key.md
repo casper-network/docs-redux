@@ -56,7 +56,8 @@ Calling the `change_bid_public_key` entry point on the auction contract has a fi
 
 ## Method 2: Using compiled WASM
 
-You may also change the public key associated with a bid via a transaction containing the compiled `change_bid_public_key.wasm` binary. For details, refer to [Building the Required Contracts](../setup/joining.md#step-3-build-contracts).
+You may also change the public key associated with a bid via a transaction containing the compiled `change_bid_public_key.wasm` binary. For details, refer to [Building the Required Contracts](../../developers/c
+li/delegate.md#delegating-compiled-wasm).
 
 The following transaction is a template for sending a request:
 

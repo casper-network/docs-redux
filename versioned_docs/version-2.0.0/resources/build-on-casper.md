@@ -19,21 +19,24 @@ This guide intends to briefly show you the current features and advantages of bu
 The Casper Ecosystem is growing every day through the addition of new dApps and tools. Here is a short list of tools you can use.
 
 ### Wallets
-- [Ledger](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?docs=true)
-- [Casper Wallet](https://www.casperwallet.io)
-- [Metamask](https://metamask.io/) with [Casper Snap](https://github.com/casper-ecosystem/casper-manager)
+- [Ledger](https://support.ledger.com/article/4416379141009-zd)
+- [Casper Wallet](https://www.casperwallet.io/)
+- [MetaMask with Casper Manager Snap](https://snaps.metamask.io/snap/npm/casper-manager/)
 
 ### Block Explorers
-- [cspr.live](https://cspr.live)
-- [Casper.info](https://casper-trench.vercel.app/)
-- [Div3.in](https://div3.in/)
+- [CSPR.live](https://cspr.live/)
 
 ### Developer Tools
-- [casperholders.io](https://casperholders.io)
-- [NOWNodes.io](https://nownodes.io/nodes/casper-cspr)
+- [Odra Smart Contract Framework](https://odra.dev/docs/)
+- [CSPR.cloud](https://cspr.build/cspr-cloud/)
+- [CSPR.click](https://docs.cspr.click/)
+- [NOWNodes Casper API](https://docs.nownodes.io/cspr)
 
 ### Open Source Software
 - [Ecosystem Open Source Software](./casper-open-source-software.md)
+- [Casper Network on GitHub](https://github.com/casper-network)
+- [Casper Ecosystem on GitHub](https://github.com/casper-ecosystem/)
+- [MAKE Software on GitHub](https://github.com/make-software/)
 
 
 ## Developer-Friendly Language {#developer-friendly-language}
@@ -77,4 +80,4 @@ We also offer several tools to run AWS instances of Casper nodes.
 In addition to the default [command-line Rust client](../developers/prerequisites.md#install-casper-client), the Casper community is building [other clients](/sdk) in JavaScript, Java, Golang, Python, C#, and other languages. 
 
 ## No Gas Fees {#no-gas-fees}
-Casper seeks to eliminate volatility and improve developer and enterprise experiences by [eliminating transaction fees](../concepts/economics/fee-elimination.md) on Mainnet. This feature seeks to promote active and diverse network behavior and we are researching innovative pricing models that will favor dApp developers as the ecosystem grows.
+Casper seeks to eliminate volatility and improve developer and enterprise experiences by [eliminating transaction fees](../concepts/economics/index.md#incentives-runtime-layer) on Mainnet. This feature seeks to promote active and diverse network behavior and we are researching innovative pricing models that will favor dApp developers as the ecosystem grows.

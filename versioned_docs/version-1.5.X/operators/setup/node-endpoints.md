@@ -211,7 +211,7 @@ If you have any concerns, questions, or issues, please [submit a request](https:
 
 ## Restricting Access for Private Networks
 
-Any node can join Mainnet and Testnet and communicate with the nodes in the network. Private networks may wish to restrict access for new nodes joining the network as described [here](../setup-network/create-private.md#network-access-control).
+Any node can join Mainnet and Testnet and communicate with the nodes in the network. Private networks may wish to restrict access for new nodes joining the network. See the [node setup guide](./joining.md) for information on connecting a node to an existing network.
 
 
 ## Summary of Related Links
@@ -228,6 +228,6 @@ Here is a summary of the links mentioned on this page:
 - [Verifying successful staging](./upgrade.md#verifying-successful-staging)
 - [Confirming that the node is synchronized](./joining.md#step-7-confirm-the-node-is-synchronized)
 - [Monitoring and consuming events](../../developers/dapps/monitor-and-consume-events.md)
-- [Private network access control](../setup-network/create-private.md#network-access-control)
+- [Joining a Running Network](./joining.md)
 - [Node Operator & Validator FAQ](https://docs.casper.network/faq/faq#-node-operator--validator-faq)
 - [External FAQs on Mainnet and Testnet validator node setup](https://docs.cspr.community/docs/faq-validator.html)

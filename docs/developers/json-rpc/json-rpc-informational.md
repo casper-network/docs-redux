@@ -432,12 +432,12 @@ Please note that adding a `--vv` flag will return the full chainspec bytes.
 
 :::
 
-This method retrieves a [Deploy](../../concepts/design/casper-design.md#execution-semantics-deploys) from a network. It requires a `deploy_hash` to query the Deploy.
+This method retrieves a [Deploy](../../concepts/serialization/structures.md#serialization-standard-deploy) from a network. It requires a `deploy_hash` to query the Deploy.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
 |[deploy_hash](types_chain.md#deployhash)|String|The Deploy hash.|
-|[finalized_approvals](types_chain.md#finalizedapprovals)|Boolean|Determines whether to return the Deploy with the finalized approvals substituted. (Optional)|
+|`finalized_approvals`|Boolean|Determines whether to return the Deploy with the finalized approvals substituted. (Optional)|
 
 <details>
 
@@ -678,7 +678,7 @@ This method retrieves a transaction from a network. It requires a `transaction_h
 |Parameter|Type|Description|
 |---------|----|-----------|
 |[transaction_hash](types_chain.md#transactionhash)|String|The transaction hash.|
-|[finalized_approvals](types_chain.md#finalizedapprovals)|Boolean|Determines whether to return the transaction with the finalized approvals substituted. (Optional)|
+|`finalized_approvals`|Boolean|Determines whether to return the transaction with the finalized approvals substituted. (Optional)|
 
 <details>
 
@@ -1060,7 +1060,7 @@ This method allows for you to query for a value stored under certain keys in glo
 |api_version|String|The RPC API version.|
 |[block_header](types_chain.md#blockheaderv2)|Object|The Block header if a Block hash was provided. (Optional)|
 |[stored_value](types_chain.md#storedvalue)|Object|The stored value.|
-|[merkle_proof](types_chain.md#merkle-proof)|String|The merkle proof.|
+|`merkle_proof`|String|The merkle proof.|
 
 <details>
 
@@ -1186,7 +1186,7 @@ This method returns a JSON representation of an [Account](../../concepts/design/
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
 |[account](types_chain.md#account)|Object|A JSON representation of the Account structure.| 
-|[merkle_proof](types_chain.md#merkleproof)|String|The merkle proof.|
+|`merkle_proof`|String|The merkle proof.|
 
 <details>
 
@@ -1279,7 +1279,7 @@ You may query a stored value directly using the dictionary address.
 |api_version|String|The RPC API version.|
 |dictionary_key|String|The key under which the value is stored.|
 |[stored_value](types_chain.md#storedvalue)|Object|The stored value.|
-|[merkle_proof](types_chain.md#merkle-proof)|String|The merkle proof.|
+|`merkle_proof`|String|The merkle proof.|
 
 <details>
 
@@ -1356,7 +1356,7 @@ This method returns a JSON representation of an [AddressableEntity](types_chain.
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
 |[entity](types_chain.md#addressableentity)|Object|A JSON representation of the AddressableEntity.| 
-|[merkle_proof](types_chain.md#merkleproof)|String|The merkle proof.|
+|`merkle_proof`|String|The merkle proof.|
 
 <details>
 
@@ -1526,8 +1526,8 @@ This method returns the current status of a node.
 |[latest_switch_block_hash](types_chain.md#blockhash)|Object|The hash of the latest switch block. (Optional)|
 |[next_upgrade](types_chain.md#nextupgrade)|Object|Information about the next scheduled upgrade. (Optional)|
 |[our_public_signing_key](types_chain.md#publickey)|String|Our public signing key. (Optional)|
-|[peers](types_chain.md#peersmap)|Array|The node ID and network address of each connected peer.|
-|[reactor_state](types_chain.md#reactorstate)|String|The current state of the node reactor.|
+|[peers](types_chain.md#peers)|Array|The node ID and network address of each connected peer.|
+|`reactor_state`|String|The current state of the node reactor.|
 |[round_length](types_chain.md#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a Block. (Optional)|
 |[starting_state_root_hash](types_chain.md#digest)|String|The state root hash used at the start of the current session.|
 |[uptime](types_chain.md#timediff)|Integer|Time that passed since the node has started.|

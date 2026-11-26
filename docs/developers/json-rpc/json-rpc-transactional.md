@@ -6,7 +6,7 @@
 
 :::caution
 
-**DEPRECATED**: Use [account_put_transaction](#account-put-transaction) instead.
+**DEPRECATED**: Use [account_put_transaction](#account_put_transaction) instead.
 
 :::
 
@@ -253,7 +253,7 @@ The result contains the RPC API version and the [transaction_hash](./types_chain
 
 :::caution
 
-**DEPRECATED**: Use [speculative_exec_txn](#speculative-exec-txn) instead.
+**DEPRECATED**: Use [speculative_exec_txn](#speculative_exec_txn) instead.
 
 :::
 

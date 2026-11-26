@@ -188,6 +188,6 @@ Check that the deploy was successful with the `casper-client get-deploy <deploy_
 
 ## Checking the Bid Activation {#checking-the-bid-activation}
 
-Once your deploy processes, you can [check your bid](recovering.md#detecting-the-eviction-using-the-casper-client) again. You should now see `"inactive": false` in the output.
+Once your deploy processes, you can [check your bid](recovering.md#detection-using-the-casper-client) again. You should now see `"inactive": false` in the output.
 
 If you wait until the next Era starts, you should also see your public key as a future validator on the [Validators](https://cspr.live/validators) tab.

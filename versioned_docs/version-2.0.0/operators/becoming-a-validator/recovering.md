@@ -64,7 +64,7 @@ If you cannot figure out the issue, ask for help in the *node-tech-support* chan
 
 ## Activating the Bid
 
-Once your node is in sync and ready to validate again, you must activate your invalid bid. There are two ways to reactivate your bid. The recommended and cheaper method is to call the `activate_bid` entry point from the system auction contract. The second method involves building the `activate_bid.wasm` contract as explained in [Building the Required Contracts](../setup/joining.md#step-3-build-contracts).
+Once your node is in sync and ready to validate again, you must activate your invalid bid. There are two ways to reactivate your bid. The recommended and cheaper method is to call the `activate_bid` entry point from the system auction contract. The second method involves building the `activate_bid.wasm` contract as explained in [Building the Required Contracts](../../developers/cli/delegate.md#delegating-compiled-wasm).
 
 We recommend testing the following steps on the official Testnet before performing them in a live environment like the Casper Mainnet.
 
@@ -188,6 +188,6 @@ Check that the deploy was successful with the `casper-client get-deploy <deploy_
 
 ## Checking the Bid Activation {#checking-the-bid-activation}
 
-Once your deploy processes, you can [check your bid](recovering.md#detecting-the-eviction-using-the-casper-client) again. You should now see `"inactive": false` in the output.
+Once your deploy processes, you can [check your bid](recovering.md#detection-using-the-casper-client) again. You should now see `"inactive": false` in the output.
 
 If you wait until the next Era starts, you should also see your public key as a future validator on the [Validators](https://cspr.live/validators) tab.

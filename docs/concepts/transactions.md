@@ -28,7 +28,7 @@ casper-client put-txn withdraw-bid
   --transaction-amount <INTEGER>
 /// The maximum gas price that the user is willing to pay for this transaction.
   --gas-price-tolerance <INTEGER>
-/// The path to the local secret key file, or the [`initiator address`](../developers/json-rpc/types_chain.md#initiatoraddr) sending the transaction.
+/// The path to the local secret key file, or the initiator address sending the transaction.
   <--secret-key <PATH>|--initiator-address <HEX STRING>>
 
 ```
@@ -57,7 +57,33 @@ casper-client put-txn add-bid
   --maximum-delegation-amount <INTEGER>
 /// The maximum gas price that the user is willing to pay for this transaction.
   --gas-price-tolerance <INTEGER>
-/// The path to the local secret key file, or the [`initiator address`](../developers/json-rpc/types_chain.md#initiatoraddr) sending the transaction.
+/// The path to the local secret key file, or the initiator address sending the transaction.
+  <--secret-key <PATH>|--initiator-address <HEX STRING>>
+
+```
+</details>
+
+### Activate Bid
+
+`activate-bid` reactivates an inactive validator bid.
+
+<details>
+<summary><b>Casper Client Command</b></summary>
+
+```json
+
+casper-client put-txn activate-bid
+/// The validator's public key.
+  --validator <FORMATTED STRING>
+/// The name of the chain.
+  --chain-name <STRING>
+/// The amount passed to the standard-payment contract.
+  --payment-amount <INTEGER>
+/// The maximum gas price that the user is willing to pay for this transaction.
+  --gas-price-tolerance <INTEGER>
+/// Whether to use standard payment.
+  --standard-payment <BOOLEAN>
+/// The path to the local secret key file, or the initiator address sending the transaction.
   <--secret-key <PATH>|--initiator-address <HEX STRING>>
 
 ```
@@ -81,7 +107,7 @@ casper-client put-txn delegate
   --transaction-amount <INTEGER>
 /// The maximum gas price that the user is willing to pay for this transaction.
   --gas-price-tolerance <INTEGER>
-/// The path to the local secret key file, or the [`initiator address`](../developers/json-rpc/types_chain.md#initiatoraddr) sending the transaction.
+/// The path to the local secret key file, or the initiator address sending the transaction.
   <--secret-key <PATH>|--initiator-address <HEX STRING>>
 
 ```
@@ -106,7 +132,7 @@ casper-client put-txn undelegate
   --transaction-amount <INTEGER>
 /// The maximum gas price that the user is willing to pay for this transaction. 
   --gas-price-tolerance <INTEGER>
-/// The path to the local secret key file, or the [`initiator address`](../developers/json-rpc/types_chain.md#initiatoraddr) sending the transaction.
+/// The path to the local secret key file, or the initiator address sending the transaction.
   <--secret-key <PATH>|--initiator-address <HEX STRING>>
 
 ```
@@ -133,7 +159,7 @@ casper-client put-txn redelegate
   --transaction-amount <INTEGER>
 /// The maximum gas price that the user is willing to pay for this transaction. 
   --gas-price-tolerance <INTEGER>
-/// The path to the local secret key file, or the [`initiator address`](../developers/json-rpc/types_chain.md#initiatoraddr) sending the transaction.
+/// The path to the local secret key file, or the initiator address sending the transaction.
   <--secret-key <PATH>|--initiator-address <HEX STRING>>
 
 ```
@@ -142,7 +168,7 @@ casper-client put-txn redelegate
 
 ### Invocable Entity
 
-`invocable-entity` allows a user to invoke an entry point on the given [`AddressableEntity`](./addressable-entity.md) directly using an [`Entity Address`](./key-types.md#addressableentity).
+`invocable-entity` allows a user to invoke an entry point on the given [`AddressableEntity`](./glossary/A.md#addressable-entity) directly using an [`Entity Address`](./glossary/A.md#addressable-entity).
 
 <details>
 <summary><b>Casper Client Command</b></summary>
@@ -156,7 +182,7 @@ casper-client put-txn invocable-entity
   --session-entry-point <NAME>
 /// The maximum gas price that the user is willing to pay for this transaction.
   --gas-price-tolerance <INTEGER>
-/// The path to the local secret key file, or the [`initiator address`](../developers/json-rpc/types_chain.md#initiatoraddr) sending the transaction.
+/// The path to the local secret key file, or the initiator address sending the transaction.
   <--secret-key <PATH>|--initiator-address <HEX STRING>>
 
 ```
@@ -165,7 +191,7 @@ casper-client put-txn invocable-entity
 
 ### Invocable Entity Alias
 
-`invocable-entity-alias` allows a user to invoke an entry point on the given [`AddressableEntity`](./addressable-entity.md) directly using an alias stored in their [`named keys`](./glossary/N.md#named-keys).
+`invocable-entity-alias` allows a user to invoke an entry point on the given [`AddressableEntity`](./glossary/A.md#addressable-entity) directly using an alias stored in their [`named keys`](./glossary/N.md#named-keys).
 
 <details>
 <summary><b>Casper Client Command</b></summary>
@@ -179,7 +205,7 @@ casper-client put-txn invocable-entity-alias
   --session-entry-point <NAME>
 /// The maximum gas price that the user is willing to pay for this transaction.
   --gas-price-tolerance <INTEGER>
-/// The path to the local secret key file, or the [`initiator address`](../developers/json-rpc/types_chain.md#initiatoraddr) sending the transaction.
+/// The path to the local secret key file, or the initiator address sending the transaction.
   <--secret-key <PATH>|--initiator-address <HEX STRING>>
 
 ```
@@ -202,7 +228,7 @@ casper-client put-txn package
   --session-entry-point <NAME>
 /// The maximum gas price that the user is willing to pay for this transaction.
   --gas-price-tolerance <INTEGER>
-/// The path to the local secret key file, or the [`initiator address`](../developers/json-rpc/types_chain.md#initiatoraddr) sending the transaction.
+/// The path to the local secret key file, or the initiator address sending the transaction.
   <--secret-key <PATH>|--initiator-address <HEX STRING>>
 
 ```
@@ -225,7 +251,7 @@ casper-client put-txn package-name
   --session-entry-point <NAME>
 /// The maximum gas price that the user is willing to pay for this transaction.
   --gas-price-tolerance <INTEGER>
-/// The path to the local secret key file, or the [`initiator address`](../developers/json-rpc/types_chain.md#initiatoraddr) sending the transaction.
+/// The path to the local secret key file, or the initiator address sending the transaction.
   <--secret-key <PATH>|--initiator-address <HEX STRING>>
 
 ```
@@ -250,7 +276,7 @@ casper-client put-txn session
   --category <install-upgrade|large|medium|small>
 /// The maximum gas price that the user is willing to pay for this transaction.
   --gas-price-tolerance <INTEGER>
-/// The path to the local secret key file, or the [`initiator address`](../developers/json-rpc/types_chain.md#initiatoraddr) sending the transaction.
+/// The path to the local secret key file, or the initiator address sending the transaction.
   <--secret-key <PATH>|--initiator-address <HEX STRING>>
 
 ```
@@ -273,7 +299,7 @@ casper-client put-txn transfer
   --transfer-amount <INTEGER>
 /// The maximum gas price that the user is willing to pay for this transaction.
   --gas-price-tolerance <INTEGER>
-/// The path to the local secret key file, or the [`initiator address`](../developers/json-rpc/types_chain.md#initiatoraddr) sending the transaction.
+/// The path to the local secret key file, or the initiator address sending the transaction.
   <--secret-key <PATH>|--initiator-address <HEX STRING>>
 
 ```

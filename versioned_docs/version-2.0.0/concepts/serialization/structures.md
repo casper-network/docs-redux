@@ -26,7 +26,7 @@ The addressable entity consists of the following fields:
 
 - [`package_hash`](./types.md#package-hash)
 
-- [`byte_code_hash`](./types.md#byte-code-hash)
+- [`byte_code_hash`](../../developers/json-rpc/types_chain.md#bytecodehash)
 
 - [`protocol_version`](./types.md#protocolversion)
 
